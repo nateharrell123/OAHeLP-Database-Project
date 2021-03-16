@@ -28,7 +28,6 @@ namespace OAHeLP_Database_Project
 
         private void UI_Load(object sender, EventArgs e)
         {
-            
             PopulateTable();
         }
 

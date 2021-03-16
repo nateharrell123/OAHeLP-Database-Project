@@ -17,24 +17,33 @@ namespace OAHeLP_Database_Project
     /// </summary>
     public partial class UI : Form
     {
+        SqlConnection connection;
+        string connectionString;
         public UI()
         {
             InitializeComponent();
-        }
 
-        private void table1BindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.table1BindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.database1DataSet);
-
+            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
         }
 
         private void UI_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'database1DataSet.Table1' table. You can move, or remove it, as needed.
-            this.table1TableAdapter.Fill(this.database1DataSet.Table1);
+            
+            PopulateTable();
+        }
 
+        private void PopulateTable()
+        {
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Table1", connection))
+            {
+                DataTable table1 = new DataTable();
+                adapter.Fill(table1);
+
+                listBox1.DisplayMember = "Name";
+                listBox1.ValueMember = "Id";
+                listBox1.DataSource = table1;
+            }
         }
     }
 }

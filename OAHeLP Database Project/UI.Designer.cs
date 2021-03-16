@@ -29,20 +29,31 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.database1DataSet = new OAHeLP_Database_Project.Database1DataSet();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             this.SuspendLayout();
+            // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 485);
+            this.ClientSize = new System.Drawing.Size(655, 485);
             this.Name = "UI";
             this.Text = "OaHeLP ";
+            this.Load += new System.EventHandler(this.UI_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Database1DataSet database1DataSet;
     }
 }
 

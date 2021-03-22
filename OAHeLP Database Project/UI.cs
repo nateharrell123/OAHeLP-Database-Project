@@ -23,7 +23,7 @@ namespace OAHeLP_Database_Project
         {
             InitializeComponent();
 
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString; // 
+            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
         }
 
         private void UI_Load(object sender, EventArgs e)
@@ -33,16 +33,16 @@ namespace OAHeLP_Database_Project
 
         private void PopulateTable()
         {
-        //    using (connection = new SqlConnection(connectionString))
-        //    using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Table1", connection))
-        //    {
-        //        DataTable table1 = new DataTable();
-        //        adapter.Fill(table1);
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Table1", connection))
+            {
+                DataTable table1 = new DataTable();
+                //adapter.Fill(table1);
 
-        //        listBox1.DisplayMember = "Name";
-        //        listBox1.ValueMember = "Id";
-        //        listBox1.DataSource = table1;
-          //  }
+                listBox1.DisplayMember = "Name";
+                listBox1.ValueMember = "Id";
+                listBox1.DataSource = table1;
+            }
         }
     }
 }

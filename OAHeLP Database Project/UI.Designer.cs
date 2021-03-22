@@ -29,10 +29,16 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.database1DataSet = new OAHeLP_Database_Project.Database1DataSet();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             this.SuspendLayout();
-
+            // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // listBox1
             // 
@@ -62,6 +68,7 @@ namespace OAHeLP_Database_Project
             this.Name = "UI";
             this.Text = "OaHeLP ";
             this.Load += new System.EventHandler(this.UI_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -69,6 +76,7 @@ namespace OAHeLP_Database_Project
 
         #endregion
 
+        private Database1DataSet database1DataSet;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label2;
     }

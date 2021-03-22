@@ -23,7 +23,7 @@ namespace OAHeLP_Database_Project
         {
             InitializeComponent();
 
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString; // 
         }
 
         private void UI_Load(object sender, EventArgs e)

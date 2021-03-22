@@ -33,16 +33,16 @@ namespace OAHeLP_Database_Project
 
         private void PopulateTable()
         {
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Table1", connection))
-            {
-                DataTable table1 = new DataTable();
-                adapter.Fill(table1);
+        //    using (connection = new SqlConnection(connectionString))
+        //    using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Table1", connection))
+        //    {
+        //        DataTable table1 = new DataTable();
+        //        adapter.Fill(table1);
 
-                listBox1.DisplayMember = "Name";
-                listBox1.ValueMember = "Id";
-                listBox1.DataSource = table1;
-            }
+        //        listBox1.DisplayMember = "Name";
+        //        listBox1.ValueMember = "Id";
+        //        listBox1.DataSource = table1;
+          //  }
         }
     }
 }

@@ -40,7 +40,7 @@ namespace OAHeLP_Database_Project
         private void PopulateTable()
         {
             using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Table1", connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Name", connection))
             {
                 var commandBuilder = new SqlCommandBuilder(adapter);
                 var dataSet = new DataSet();
@@ -60,7 +60,7 @@ namespace OAHeLP_Database_Project
         {
             if (uxNameTextBox.Text == string.Empty) return;
 
-            string query = "insert into Table1 values (@PersonName, 23)";
+            string query = "insert into Name values (@PersonName, 'Middle', 'Last')";
 
             using (connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -81,13 +81,16 @@ namespace OAHeLP_Database_Project
         private bool IsDuplicate()
         {
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "select name from Table1";
-            SqlDataReader sqlReader = command.ExecuteReader();
+            command.CommandText = "select FirstName from Name";
 
-            while (sqlReader.Read())
+            foreach (DataGridViewColumn column in uxDataGridView.Columns)
             {
-                if ()
+                DataGridViewColumnHeaderCell headerCell = column.HeaderCell;
+                string headerCaptionText = column.HeaderText;
+                string columnName = column.Name;
+                return false; // come back
             }
+            return true; // 
         }
     }
 }

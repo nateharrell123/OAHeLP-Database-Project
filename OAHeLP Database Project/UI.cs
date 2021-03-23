@@ -28,6 +28,8 @@ namespace OAHeLP_Database_Project
 
         private void UI_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'database1DataSet.Table1' table. You can move, or remove it, as needed.
+            this.table1TableAdapter.Fill(this.database1DataSet.Table1);
             PopulateTable();
         }
 
@@ -36,13 +38,36 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Table1", connection))
             {
-                DataTable table1 = new DataTable();
-                adapter.Fill(table1);
+                var commandBuilder = new SqlCommandBuilder(adapter);
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
 
-                listBox1.DisplayMember = "Name";
-                listBox1.ValueMember = "Id";
-                listBox1.DataSource = table1;
+
+                uxDataGridView.DataSource = dataSet.Tables[0];
             }
+        }
+
+        private void fillByToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.table1TableAdapter.FillBy(this.database1DataSet.Table1);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// Add person in to DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxAddPerson_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

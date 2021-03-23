@@ -29,10 +29,20 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.database1DataSet = new OAHeLP_Database_Project.Database1DataSet();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.uxDataGridView = new System.Windows.Forms.DataGridView();
+            this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.table1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.table1TableAdapter = new OAHeLP_Database_Project.Database1DataSetTableAdapters.Table1TableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uxAddPerson = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // database1DataSet
@@ -40,45 +50,93 @@ namespace OAHeLP_Database_Project
             this.database1DataSet.DataSetName = "Database1DataSet";
             this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // listBox1
+            // uxDataGridView
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 50);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(196, 212);
-            this.listBox1.TabIndex = 1;
+            this.uxDataGridView.AutoGenerateColumns = false;
+            this.uxDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.uxDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.ageDataGridViewTextBoxColumn});
+            this.uxDataGridView.DataSource = this.table1BindingSource;
+            this.uxDataGridView.Location = new System.Drawing.Point(12, 50);
+            this.uxDataGridView.Name = "uxDataGridView";
+            this.uxDataGridView.Size = new System.Drawing.Size(289, 140);
+            this.uxDataGridView.TabIndex = 3;
             // 
-            // label2
+            // database1DataSetBindingSource
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 24);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Items:";
+            this.database1DataSetBindingSource.DataSource = this.database1DataSet;
+            this.database1DataSetBindingSource.Position = 0;
+            // 
+            // table1BindingSource
+            // 
+            this.table1BindingSource.DataMember = "Table1";
+            this.table1BindingSource.DataSource = this.database1DataSetBindingSource;
+            // 
+            // table1TableAdapter
+            // 
+            this.table1TableAdapter.ClearBeforeFill = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            // 
+            // uxAddPerson
+            // 
+            this.uxAddPerson.Location = new System.Drawing.Point(12, 196);
+            this.uxAddPerson.Name = "uxAddPerson";
+            this.uxAddPerson.Size = new System.Drawing.Size(75, 23);
+            this.uxAddPerson.TabIndex = 4;
+            this.uxAddPerson.Text = "Add:";
+            this.uxAddPerson.UseVisualStyleBackColor = true;
+            this.uxAddPerson.Click += new System.EventHandler(this.uxAddPerson_Click);
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(656, 485);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(608, 348);
+            this.Controls.Add(this.uxAddPerson);
+            this.Controls.Add(this.uxDataGridView);
             this.Name = "UI";
             this.Text = "OaHeLP ";
             this.Load += new System.EventHandler(this.UI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private Database1DataSet database1DataSet;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView uxDataGridView;
+        private System.Windows.Forms.BindingSource database1DataSetBindingSource;
+        private System.Windows.Forms.BindingSource table1BindingSource;
+        private Database1DataSetTableAdapters.Table1TableAdapter table1TableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button uxAddPerson;
     }
 }
 

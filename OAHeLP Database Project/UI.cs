@@ -19,6 +19,9 @@ namespace OAHeLP_Database_Project
     {
         SqlConnection connection;
         string connectionString;
+        /// <summary>
+        /// Connect to DB
+        /// </summary>
         public UI()
         {
             InitializeComponent();
@@ -28,11 +31,12 @@ namespace OAHeLP_Database_Project
 
         private void UI_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'database1DataSet.Table1' table. You can move, or remove it, as needed.
-            this.table1TableAdapter.Fill(this.database1DataSet.Table1);
             PopulateTable();
         }
 
+        /// <summary>
+        /// Fill/Update table
+        /// </summary>
         private void PopulateTable()
         {
             using (connection = new SqlConnection(connectionString))
@@ -42,7 +46,8 @@ namespace OAHeLP_Database_Project
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
 
-                uxDataGridView.DataSource = dataSet.Tables[0];
+                if (dataSet.Tables.Count != 0)
+                    uxDataGridView.DataSource = dataSet.Tables[0];
             }
         }
 
@@ -53,6 +58,8 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPerson_Click(object sender, EventArgs e)
         {
+            if (uxNameTextBox.Text == string.Empty) return;
+
             string query = "insert into Table1 values (@PersonName, 23)";
 
             using (connection = new SqlConnection(connectionString))
@@ -64,6 +71,23 @@ namespace OAHeLP_Database_Project
             }
 
             PopulateTable();
+            uxNameTextBox.Clear();
+        }
+
+        /// <summary>
+        /// Iterates through column to find match
+        /// </summary>
+        /// <returns>true if duplicate is found, else false.</returns>
+        private bool IsDuplicate()
+        {
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "select name from Table1";
+            SqlDataReader sqlReader = command.ExecuteReader();
+
+            while (sqlReader.Read())
+            {
+                if ()
+            }
         }
     }
 }

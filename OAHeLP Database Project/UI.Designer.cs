@@ -40,10 +40,13 @@ namespace OAHeLP_Database_Project
             this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uxAddPerson = new System.Windows.Forms.Button();
             this.uxNameTextBox = new System.Windows.Forms.TextBox();
+            this.table1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // database1DataSet
@@ -62,6 +65,7 @@ namespace OAHeLP_Database_Project
             this.uxDataGridView.DataSource = this.table1BindingSource;
             this.uxDataGridView.Location = new System.Drawing.Point(12, 50);
             this.uxDataGridView.Name = "uxDataGridView";
+            this.uxDataGridView.ReadOnly = true;
             this.uxDataGridView.Size = new System.Drawing.Size(289, 140);
             this.uxDataGridView.TabIndex = 3;
             // 
@@ -116,11 +120,23 @@ namespace OAHeLP_Database_Project
             this.uxNameTextBox.Size = new System.Drawing.Size(102, 20);
             this.uxNameTextBox.TabIndex = 5;
             // 
+            // table1BindingSource1
+            // 
+            this.table1BindingSource1.DataMember = "Table1";
+            this.table1BindingSource1.DataSource = this.database1DataSet;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.Table1TableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 348);
+            this.ClientSize = new System.Drawing.Size(771, 406);
             this.Controls.Add(this.uxNameTextBox);
             this.Controls.Add(this.uxAddPerson);
             this.Controls.Add(this.uxDataGridView);
@@ -131,6 +147,7 @@ namespace OAHeLP_Database_Project
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,6 +165,8 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button uxAddPerson;
         private System.Windows.Forms.TextBox uxNameTextBox;
+        private System.Windows.Forms.BindingSource table1BindingSource1;
+        private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }
 

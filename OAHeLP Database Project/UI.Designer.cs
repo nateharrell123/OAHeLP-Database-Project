@@ -39,6 +39,7 @@ namespace OAHeLP_Database_Project
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uxAddPerson = new System.Windows.Forms.Button();
+            this.uxNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
@@ -100,19 +101,27 @@ namespace OAHeLP_Database_Project
             // 
             // uxAddPerson
             // 
-            this.uxAddPerson.Location = new System.Drawing.Point(12, 196);
+            this.uxAddPerson.Location = new System.Drawing.Point(12, 222);
             this.uxAddPerson.Name = "uxAddPerson";
-            this.uxAddPerson.Size = new System.Drawing.Size(75, 23);
+            this.uxAddPerson.Size = new System.Drawing.Size(102, 23);
             this.uxAddPerson.TabIndex = 4;
             this.uxAddPerson.Text = "Add:";
             this.uxAddPerson.UseVisualStyleBackColor = true;
             this.uxAddPerson.Click += new System.EventHandler(this.uxAddPerson_Click);
+            // 
+            // uxNameTextBox
+            // 
+            this.uxNameTextBox.Location = new System.Drawing.Point(12, 196);
+            this.uxNameTextBox.Name = "uxNameTextBox";
+            this.uxNameTextBox.Size = new System.Drawing.Size(102, 20);
+            this.uxNameTextBox.TabIndex = 5;
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 348);
+            this.Controls.Add(this.uxNameTextBox);
             this.Controls.Add(this.uxAddPerson);
             this.Controls.Add(this.uxDataGridView);
             this.Name = "UI";
@@ -123,6 +132,7 @@ namespace OAHeLP_Database_Project
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,6 +147,7 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button uxAddPerson;
+        private System.Windows.Forms.TextBox uxNameTextBox;
     }
 }
 

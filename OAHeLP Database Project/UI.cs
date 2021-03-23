@@ -42,32 +42,28 @@ namespace OAHeLP_Database_Project
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
 
-
                 uxDataGridView.DataSource = dataSet.Tables[0];
             }
         }
 
-        private void fillByToolStripButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.table1TableAdapter.FillBy(this.database1DataSet.Table1);
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-        }
-
         /// <summary>
-        /// Add person in to DB
+        /// Insert person into DB
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void uxAddPerson_Click(object sender, EventArgs e)
         {
+            string query = "insert into Table1 values (@PersonName, 23)";
 
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("PersonName", uxNameTextBox.Text);
+                command.ExecuteNonQuery();
+            }
+
+            PopulateTable();
         }
     }
 }

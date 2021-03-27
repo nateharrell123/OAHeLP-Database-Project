@@ -42,11 +42,16 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Name", connection))
             {
-                DataTable nameTable = new DataTable();
-                adapter.Fill(nameTable);
+                DataTable namesTable = new DataTable();
+                adapter.Fill(namesTable);
 
-                uxListBox.DataSource = nameTable;
-                uxListBox.ValueMember = "FirstName";
+                foreach(var item in namesTable.Rows)
+                {
+                    MessageBox.Show(item.ToString());
+                }
+
+                uxListBox.DataSource = namesTable;
+                uxListBox.DisplayMember = "FirstName";
             }
         }
 
@@ -82,7 +87,7 @@ namespace OAHeLP_Database_Project
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "select FirstName from Name";
 
-            return false; // come back
+            return false;
         }
     }
 }

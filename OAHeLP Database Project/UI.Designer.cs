@@ -105,12 +105,12 @@ namespace OAHeLP_Database_Project
             // 
             // uxListBox
             // 
-            this.uxListBox.Font = new System.Drawing.Font("Nachlieli CLM", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.uxListBox.Font = new System.Drawing.Font("Nachlieli CLM", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.uxListBox.FormattingEnabled = true;
-            this.uxListBox.ItemHeight = 17;
-            this.uxListBox.Location = new System.Drawing.Point(12, 52);
+            this.uxListBox.ItemHeight = 18;
+            this.uxListBox.Location = new System.Drawing.Point(12, 81);
             this.uxListBox.Name = "uxListBox";
-            this.uxListBox.Size = new System.Drawing.Size(366, 310);
+            this.uxListBox.Size = new System.Drawing.Size(403, 274);
             this.uxListBox.TabIndex = 7;
             // 
             // UI

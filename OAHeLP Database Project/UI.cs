@@ -42,12 +42,11 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Name", connection))
             {
-                var commandBuilder = new SqlCommandBuilder(adapter);
-                var dataSet = new DataSet();
-                adapter.Fill(dataSet);
+                DataTable nameTable = new DataTable();
+                adapter.Fill(nameTable);
 
-                if (dataSet.Tables.Count != 0)
-                    uxDataGridView.DataSource = dataSet.Tables[0];
+                uxListBox.DataSource = nameTable;
+                uxListBox.ValueMember = "FirstName";
             }
         }
 
@@ -83,14 +82,7 @@ namespace OAHeLP_Database_Project
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "select FirstName from Name";
 
-            foreach (DataGridViewColumn column in uxDataGridView.Columns)
-            {
-                DataGridViewColumnHeaderCell headerCell = column.HeaderCell;
-                string headerCaptionText = column.HeaderText;
-                string columnName = column.Name;
-                return false; // come back
-            }
-            return true; // 
+            return false; // come back
         }
     }
 }

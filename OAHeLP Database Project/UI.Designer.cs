@@ -39,11 +39,15 @@ namespace OAHeLP_Database_Project
             this.table1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             this.label1 = new System.Windows.Forms.Label();
-            this.uxListBox = new System.Windows.Forms.ListBox();
+            this.uxDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // database1DataSet
@@ -103,23 +107,46 @@ namespace OAHeLP_Database_Project
             this.label1.TabIndex = 6;
             this.label1.Text = "placeholder";
             // 
-            // uxListBox
+            // uxDataGridView
             // 
-            this.uxListBox.Font = new System.Drawing.Font("Nachlieli CLM", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.uxListBox.FormattingEnabled = true;
-            this.uxListBox.ItemHeight = 18;
-            this.uxListBox.Location = new System.Drawing.Point(12, 81);
-            this.uxListBox.Name = "uxListBox";
-            this.uxListBox.Size = new System.Drawing.Size(403, 274);
-            this.uxListBox.TabIndex = 7;
+            this.uxDataGridView.AutoGenerateColumns = false;
+            this.uxDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.uxDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.uxDataGridView.DataSource = this.table1BindingSource1;
+            this.uxDataGridView.Location = new System.Drawing.Point(12, 42);
+            this.uxDataGridView.Name = "uxDataGridView";
+            this.uxDataGridView.Size = new System.Drawing.Size(300, 220);
+            this.uxDataGridView.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Age";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Age";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(771, 406);
-            this.Controls.Add(this.uxListBox);
+            this.ClientSize = new System.Drawing.Size(771, 412);
+            this.Controls.Add(this.uxDataGridView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.uxNameTextBox);
             this.Controls.Add(this.uxAddPerson);
@@ -130,6 +157,7 @@ namespace OAHeLP_Database_Project
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,7 +174,10 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.BindingSource table1BindingSource1;
         private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox uxListBox;
+        private System.Windows.Forms.DataGridView uxDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }
 

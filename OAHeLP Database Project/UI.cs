@@ -42,16 +42,11 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Name", connection))
             {
-                DataTable namesTable = new DataTable();
-                adapter.Fill(namesTable);
+                var commandBuilder = new SqlCommandBuilder(adapter);
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
 
-                foreach(DataRow row in namesTable.Rows)
-                {
-                    MessageBox.Show(row["FirstName"].ToString());
-                }
-
-                uxListBox.DataSource = namesTable;
-                uxListBox.DisplayMember = "FirstName";
+                uxDataGridView.DataSource = dataSet.Tables[0];
             }
         }
 

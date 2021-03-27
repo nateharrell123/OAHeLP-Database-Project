@@ -45,9 +45,9 @@ namespace OAHeLP_Database_Project
                 DataTable namesTable = new DataTable();
                 adapter.Fill(namesTable);
 
-                foreach(var item in namesTable.Rows)
+                foreach(DataRow row in namesTable.Rows)
                 {
-                    MessageBox.Show(item.ToString());
+                    MessageBox.Show(row["FirstName"].ToString());
                 }
 
                 uxListBox.DataSource = namesTable;

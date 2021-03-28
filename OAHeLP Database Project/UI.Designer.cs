@@ -36,6 +36,10 @@ namespace OAHeLP_Database_Project
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             this.label1 = new System.Windows.Forms.Label();
             this.uxDataGridView = new System.Windows.Forms.DataGridView();
+            this.uxMedicalHistoryButton = new System.Windows.Forms.Button();
+            this.uxFeature1Button = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -87,19 +91,76 @@ namespace OAHeLP_Database_Project
             this.uxDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uxDataGridView.Location = new System.Drawing.Point(12, 42);
             this.uxDataGridView.Name = "uxDataGridView";
-            this.uxDataGridView.Size = new System.Drawing.Size(300, 220);
+            this.uxDataGridView.Size = new System.Drawing.Size(435, 373);
             this.uxDataGridView.TabIndex = 6;
+            // 
+            // uxMedicalHistoryButton
+            // 
+            this.uxMedicalHistoryButton.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.uxMedicalHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxMedicalHistoryButton.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.uxMedicalHistoryButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uxMedicalHistoryButton.Location = new System.Drawing.Point(12, 435);
+            this.uxMedicalHistoryButton.Name = "uxMedicalHistoryButton";
+            this.uxMedicalHistoryButton.Size = new System.Drawing.Size(194, 55);
+            this.uxMedicalHistoryButton.TabIndex = 7;
+            this.uxMedicalHistoryButton.Text = "Medical History";
+            this.uxMedicalHistoryButton.UseVisualStyleBackColor = false;
+            // 
+            // uxFeature1Button
+            // 
+            this.uxFeature1Button.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.uxFeature1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxFeature1Button.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.uxFeature1Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uxFeature1Button.Location = new System.Drawing.Point(224, 435);
+            this.uxFeature1Button.Name = "uxFeature1Button";
+            this.uxFeature1Button.Size = new System.Drawing.Size(194, 55);
+            this.uxFeature1Button.TabIndex = 8;
+            this.uxFeature1Button.Text = "Feature 1";
+            this.uxFeature1Button.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(434, 435);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(194, 55);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Feature 2";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(645, 435);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(194, 55);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Feature 3";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(771, 412);
+            this.ClientSize = new System.Drawing.Size(850, 502);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.uxFeature1Button);
+            this.Controls.Add(this.uxMedicalHistoryButton);
             this.Controls.Add(this.uxDataGridView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.uxNameTextBox);
             this.Controls.Add(this.uxAddPerson);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "UI";
             this.Text = "OaHeLP ";
             this.Load += new System.EventHandler(this.UI_Load);
@@ -119,6 +180,10 @@ namespace OAHeLP_Database_Project
         private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView uxDataGridView;
+        private System.Windows.Forms.Button uxMedicalHistoryButton;
+        private System.Windows.Forms.Button uxFeature1Button;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

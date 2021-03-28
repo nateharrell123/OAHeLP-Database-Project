@@ -12,9 +12,10 @@ namespace OAHeLP_Database_Project
 {
     public partial class DetailedView : Form
     {
-        public DetailedView()
+        public DetailedView(string item1, string item2, string item3)
         {
             InitializeComponent();
+            label2.Text = $"{item1}'s detailed view";
         }
     }
 }

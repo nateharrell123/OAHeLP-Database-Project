@@ -35,11 +35,11 @@ namespace OAHeLP_Database_Project
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei Light", 28F);
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(4, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(389, 50);
+            this.label2.Size = new System.Drawing.Size(247, 31);
             this.label2.TabIndex = 0;
             this.label2.Text = "This is a detailed view";
             // 
@@ -47,7 +47,7 @@ namespace OAHeLP_Database_Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(405, 320);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

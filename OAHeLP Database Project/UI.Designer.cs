@@ -104,6 +104,7 @@ namespace OAHeLP_Database_Project
             this.uxDataGridView.ReadOnly = true;
             this.uxDataGridView.Size = new System.Drawing.Size(406, 373);
             this.uxDataGridView.TabIndex = 6;
+            this.uxDataGridView.SelectionChanged += new System.EventHandler(this.uxDataGridView_SelectionChanged);
             // 
             // uxMedicalHistoryButton
             // 
@@ -130,7 +131,6 @@ namespace OAHeLP_Database_Project
             this.uxFeature1Button.TabIndex = 8;
             this.uxFeature1Button.Text = "Feature 1";
             this.uxFeature1Button.UseVisualStyleBackColor = false;
-            this.uxFeature1Button.Click += new System.EventHandler(this.uxFeature1Button_Click);
             // 
             // button1
             // 

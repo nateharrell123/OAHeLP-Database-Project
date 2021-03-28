@@ -103,10 +103,15 @@ namespace OAHeLP_Database_Project
 
             return false;
         }
-
-        private void uxFeature1Button_Click(object sender, EventArgs e)
+        /// <summary>
+        /// When Name Changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            OpenChildForm(new DetailedView());
+            var item1 = uxDataGridView.CurrentCell.Value.ToString();
+            OpenChildForm(new DetailedView(item1, "Placeholder", "Hello"));
         }
 
         /// <summary>
@@ -118,7 +123,6 @@ namespace OAHeLP_Database_Project
             if (activeForm != null) activeForm.Close();
             activeForm = childForm;
             childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
             uxDetailedViewPanel.Controls.Add(childForm);
             uxDetailedViewPanel.Tag = childForm;

@@ -110,8 +110,9 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxDataGridView_SelectionChanged(object sender, EventArgs e)
         {
+            // TODO: grab ID from selected Name
             var item1 = uxDataGridView.CurrentCell.Value.ToString();
-            OpenChildForm(new DetailedView(item1, "Placeholder", "Hello"));
+            OpenChildForm(new DetailedView(item1, 3, "Hello"));
         }
 
         /// <summary>

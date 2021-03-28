@@ -55,9 +55,9 @@ namespace OAHeLP_Database_Project
             // 
             // uxAddPerson
             // 
-            this.uxAddPerson.Location = new System.Drawing.Point(609, 42);
+            this.uxAddPerson.Location = new System.Drawing.Point(773, 39);
             this.uxAddPerson.Name = "uxAddPerson";
-            this.uxAddPerson.Size = new System.Drawing.Size(102, 23);
+            this.uxAddPerson.Size = new System.Drawing.Size(89, 44);
             this.uxAddPerson.TabIndex = 4;
             this.uxAddPerson.Text = "Add:";
             this.uxAddPerson.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxNameTextBox
             // 
-            this.uxNameTextBox.Location = new System.Drawing.Point(485, 42);
+            this.uxNameTextBox.Location = new System.Drawing.Point(593, 63);
             this.uxNameTextBox.Name = "uxNameTextBox";
             this.uxNameTextBox.Size = new System.Drawing.Size(102, 20);
             this.uxNameTextBox.TabIndex = 5;
@@ -80,7 +80,7 @@ namespace OAHeLP_Database_Project
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(566, 26);
+            this.label1.Location = new System.Drawing.Point(600, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 6;
@@ -88,19 +88,20 @@ namespace OAHeLP_Database_Project
             // 
             // uxDataGridView
             // 
+            this.uxDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.uxDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.uxDataGridView.Location = new System.Drawing.Point(12, 42);
+            this.uxDataGridView.Location = new System.Drawing.Point(12, 157);
             this.uxDataGridView.Name = "uxDataGridView";
-            this.uxDataGridView.Size = new System.Drawing.Size(435, 373);
+            this.uxDataGridView.Size = new System.Drawing.Size(406, 373);
             this.uxDataGridView.TabIndex = 6;
             // 
             // uxMedicalHistoryButton
             // 
             this.uxMedicalHistoryButton.BackColor = System.Drawing.Color.LightSkyBlue;
             this.uxMedicalHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxMedicalHistoryButton.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.uxMedicalHistoryButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxMedicalHistoryButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxMedicalHistoryButton.Location = new System.Drawing.Point(12, 435);
+            this.uxMedicalHistoryButton.Location = new System.Drawing.Point(12, 558);
             this.uxMedicalHistoryButton.Name = "uxMedicalHistoryButton";
             this.uxMedicalHistoryButton.Size = new System.Drawing.Size(194, 55);
             this.uxMedicalHistoryButton.TabIndex = 7;
@@ -111,9 +112,9 @@ namespace OAHeLP_Database_Project
             // 
             this.uxFeature1Button.BackColor = System.Drawing.Color.LightSkyBlue;
             this.uxFeature1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxFeature1Button.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.uxFeature1Button.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxFeature1Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxFeature1Button.Location = new System.Drawing.Point(224, 435);
+            this.uxFeature1Button.Location = new System.Drawing.Point(224, 558);
             this.uxFeature1Button.Name = "uxFeature1Button";
             this.uxFeature1Button.Size = new System.Drawing.Size(194, 55);
             this.uxFeature1Button.TabIndex = 8;
@@ -124,9 +125,9 @@ namespace OAHeLP_Database_Project
             // 
             this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(434, 435);
+            this.button1.Location = new System.Drawing.Point(434, 558);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(194, 55);
             this.button1.TabIndex = 9;
@@ -137,9 +138,9 @@ namespace OAHeLP_Database_Project
             // 
             this.button2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Nachlieli CLM", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(645, 435);
+            this.button2.Location = new System.Drawing.Point(645, 558);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(194, 55);
             this.button2.TabIndex = 10;
@@ -151,7 +152,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(850, 502);
+            this.ClientSize = new System.Drawing.Size(864, 625);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.uxFeature1Button);
@@ -162,7 +163,7 @@ namespace OAHeLP_Database_Project
             this.Controls.Add(this.uxAddPerson);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "UI";
-            this.Text = "OaHeLP ";
+            this.Text = "OaHeLP Database Tool";
             this.Load += new System.EventHandler(this.UI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).EndInit();

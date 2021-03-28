@@ -40,7 +40,7 @@ namespace OAHeLP_Database_Project
         private void PopulateTable()
         {
             using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Name", connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName, MiddleName, LastName from Name", connection)) // select query goes here
             {
                 var commandBuilder = new SqlCommandBuilder(adapter);
                 var dataSet = new DataSet();

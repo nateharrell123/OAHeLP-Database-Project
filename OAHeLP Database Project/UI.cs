@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data.SqlClient; // need this for SQL
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace OAHeLP_Database_Project
 {
@@ -24,14 +25,31 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public UI()
         {
-            InitializeComponent();
-
+            DisplaySplashScreen();
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            InitializeComponent();
+            PopulateTable();
         }
 
-        private void UI_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Load Screen for 2 sec
+        /// </summary>
+        private void DisplaySplashScreen()
         {
-            PopulateTable();
+            Thread thread = new Thread(new ThreadStart(StartScreen));
+            thread.Start();
+            Thread.Sleep(2000);
+            thread.Abort();
+
+            this.Show();
+        }
+
+        /// <summary>
+        /// For Splash Screen
+        /// </summary>
+        public void StartScreen()
+        {
+            Application.Run(new SplashScreen());
         }
 
         /// <summary>

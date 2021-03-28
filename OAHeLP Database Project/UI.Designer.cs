@@ -100,6 +100,7 @@ namespace OAHeLP_Database_Project
             this.uxDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uxDataGridView.Location = new System.Drawing.Point(12, 157);
             this.uxDataGridView.Name = "uxDataGridView";
+            this.uxDataGridView.ReadOnly = true;
             this.uxDataGridView.Size = new System.Drawing.Size(406, 373);
             this.uxDataGridView.TabIndex = 6;
             // 
@@ -230,8 +231,8 @@ namespace OAHeLP_Database_Project
             this.Controls.Add(this.uxAddPerson);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "UI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OaHeLP Database Tool";
-            this.Load += new System.EventHandler(this.UI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).EndInit();

@@ -103,5 +103,27 @@ namespace OAHeLP_Database_Project
 
             return false;
         }
+
+        private void uxFeature1Button_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new DetailedView());
+        }
+
+        /// <summary>
+        /// Opens a form and places it into the Panel
+        /// </summary>
+        private Form activeForm = null;
+        private void OpenChildForm(Form childForm)
+        {
+            if (activeForm != null) activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            uxDetailedViewPanel.Controls.Add(childForm);
+            uxDetailedViewPanel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
     }
 }

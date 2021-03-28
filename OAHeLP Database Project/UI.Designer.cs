@@ -47,6 +47,7 @@ namespace OAHeLP_Database_Project
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.uxDetailedViewPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
@@ -129,6 +130,7 @@ namespace OAHeLP_Database_Project
             this.uxFeature1Button.TabIndex = 8;
             this.uxFeature1Button.Text = "Feature 1";
             this.uxFeature1Button.UseVisualStyleBackColor = false;
+            this.uxFeature1Button.Click += new System.EventHandler(this.uxFeature1Button_Click);
             // 
             // button1
             // 
@@ -209,12 +211,20 @@ namespace OAHeLP_Database_Project
             this.textBox6.Size = new System.Drawing.Size(178, 32);
             this.textBox6.TabIndex = 12;
             // 
+            // uxDetailedViewPanel
+            // 
+            this.uxDetailedViewPanel.Location = new System.Drawing.Point(434, 210);
+            this.uxDetailedViewPanel.Name = "uxDetailedViewPanel";
+            this.uxDetailedViewPanel.Size = new System.Drawing.Size(405, 320);
+            this.uxDetailedViewPanel.TabIndex = 13;
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(864, 625);
+            this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
@@ -261,6 +271,7 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Panel uxDetailedViewPanel;
     }
 }
 

@@ -46,7 +46,8 @@ namespace OAHeLP_Database_Project
                 var dataSet = new DataSet();
                 adapter.Fill(dataSet);
 
-                uxDataGridView.DataSource = dataSet.Tables[0];
+                uxDataGridView.DataSource = dataSet.Tables[0]; 
+                //uxDataGridView.DataMember = "Name";
             }
         }
 

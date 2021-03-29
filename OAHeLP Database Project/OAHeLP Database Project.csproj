@@ -70,6 +70,7 @@
       <DependentUpon>Database1DataSet.xsd</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="SearchAndSort.cs" />
     <Compile Include="UI.cs">
       <SubType>Form</SubType>
     </Compile>

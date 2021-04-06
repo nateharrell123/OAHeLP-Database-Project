@@ -24,8 +24,8 @@ namespace OAHeLP_Database_Project
             int exampleDistance;
 
 
-            exampleInput = "Jak";
-            exampleDB = "Jack";
+            exampleInput = "Jack";
+            exampleDB = "Zack";
 
             exampleDistance = sas.nameMatch(exampleInput, exampleDB);
 

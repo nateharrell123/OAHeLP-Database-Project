@@ -75,6 +75,10 @@ namespace OAHeLP_Database_Project
             string inputPhone = GetPronunciationFromText(inputName);
             string dbPhone = GetPronunciationFromText(dbName);
 
+            Console.WriteLine("Input Phone: " + inputPhone);
+            Console.WriteLine("DB Phone: " + dbPhone);
+
+
             //next is to find the Levenshtein distance between the names
 
             int distance = levenshteinDistance(inputPhone, dbPhone);

@@ -16,22 +16,6 @@ namespace OAHeLP_Database_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            SearchAndSort sas = new SearchAndSort();
-
-            string exampleInput;
-            string exampleDB;
-            int exampleDistance;
-
-
-            exampleInput = "Jack";
-            exampleDB = "Zack";
-
-            exampleDistance = sas.nameMatch(exampleInput, exampleDB);
-
-            Console.WriteLine(exampleDistance);
-
-
             Application.Run(new UI());
 
 

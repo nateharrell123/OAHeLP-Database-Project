@@ -16,7 +16,29 @@ namespace OAHeLP_Database_Project
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            SearchAndSort sas = new SearchAndSort();
+
+            string exampleInput;
+            string exampleDB;
+            int exampleDistance;
+
+
+            exampleInput = "Jak";
+            exampleDB = "Jack";
+
+            exampleDistance = sas.nameMatch(exampleInput, exampleDB);
+
+            Console.WriteLine(exampleDistance);
+
+
             Application.Run(new UI());
+
+
+
+
+
+
         }
     }
 }

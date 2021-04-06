@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Windows.Forms;
+using System.Speech.Synthesis;
+using System.Speech.Recognition;
 
 namespace OAHeLP_Database_Project
 {
@@ -62,10 +68,185 @@ namespace OAHeLP_Database_Project
         public int nameMatch(string inputName,string dbName)
         {
 
-            //this will need to get changed
-            return 0;
+            //make this compatible with all character types
+
+            //first step is to pheoneticise the names
+
+            string inputPhone = GetPronunciationFromText(inputName);
+            string dbPhone = GetPronunciationFromText(dbName);
+
+            //next is to find the Levenshtein distance between the names
+
+            int distance = levenshteinDistance(inputPhone, dbPhone);
+
+            //then we return that distance!
+            return distance;
         }
 
+        /// <summary>
+        /// This method computes the levenshteinDistance between two strings
+        /// </summary>
+        /// <param name="s">string 1</param>
+        /// <param name="t">string 2</param>
+        /// <returns>The levenshtein distance value</returns>
+        public int levenshteinDistance(string s, string t)
+        {
+            int n = s.Length;
+            int m = t.Length;
+            int[,] d = new int[n + 1, m + 1];
 
-    }
+            // Step 1
+            if (n == 0)
+            {
+                return m;
+            }
+
+            if (m == 0)
+            {
+                return n;
+            }
+
+            // Step 2
+            for (int i = 0; i <= n; d[i, 0] = i++)
+            {
+            }
+
+            for (int j = 0; j <= m; d[0, j] = j++)
+            {
+            }
+
+            // Step 3
+            for (int i = 1; i <= n; i++)
+            {
+                //Step 4
+                for (int j = 1; j <= m; j++)
+                {
+                    // Step 5
+                    int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
+
+                    // Step 6
+                    d[i, j] = Math.Min(
+                        Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                        d[i - 1, j - 1] + cost);
+                }
+            }
+            // Step 7
+            return d[n, m];
+        }//distance method
+
+
+
+
+        // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)
+
+        public static string recoPhonemes;
+
+        public static string GetPronunciationFromText(string MyWord)
+        {
+            //this is a trick to figure out phonemes used by synthesis engine
+
+            //txt to wav
+            using (MemoryStream audioStream = new MemoryStream())
+            {
+                using (SpeechSynthesizer synth = new SpeechSynthesizer())
+                {
+                    synth.SetOutputToWaveStream(audioStream);
+                    PromptBuilder pb = new PromptBuilder();
+                    //pb.AppendBreak(PromptBreak.ExtraSmall); //'e' wont be recognized if this is large, or non-existent?
+                    //synth.Speak(pb);
+                    synth.Speak(MyWord);
+                    //synth.Speak(pb);
+                    synth.SetOutputToNull();
+                    audioStream.Position = 0;
+
+                    //now wav to txt (for reco phonemes)
+                    recoPhonemes = String.Empty;
+                    GrammarBuilder gb = new GrammarBuilder(MyWord);
+                    Grammar g = new Grammar(gb); //TODO the hard letters to recognize are 'g' and 'e'
+                    SpeechRecognitionEngine reco = new SpeechRecognitionEngine();
+                    reco.SpeechHypothesized += new EventHandler<SpeechHypothesizedEventArgs>(reco_SpeechHypothesized);
+                    reco.SpeechRecognitionRejected += new EventHandler<SpeechRecognitionRejectedEventArgs>(reco_SpeechRecognitionRejected);
+                    reco.UnloadAllGrammars(); //only use the one word grammar
+                    reco.LoadGrammar(g);
+                    reco.SetInputToWaveStream(audioStream);
+                    RecognitionResult rr = reco.Recognize();
+                    reco.SetInputToNull();
+                    if (rr != null)
+                    {
+                        recoPhonemes = StringFromWordArray(rr.Words, WordType.Pronunciation);
+                    }
+                    //txtRecoPho.Text = recoPhonemes;
+                    return recoPhonemes;
+                }
+            }
+        }
+
+        public static string StringFromWordArray(ReadOnlyCollection<RecognizedWordUnit> words, WordType type)
+        {
+            string text = "";
+            foreach (RecognizedWordUnit word in words)
+            {
+                string wordText = "";
+                if (type == WordType.Text || type == WordType.Normalized)
+                {
+                    wordText = word.Text;
+                }
+                else if (type == WordType.Lexical)
+                {
+                    wordText = word.LexicalForm;
+                }
+                else if (type == WordType.Pronunciation)
+                {
+                    wordText = word.Pronunciation;
+                    //MessageBox.Show(word.LexicalForm);
+                }
+                else
+                {
+                    throw new InvalidEnumArgumentException(String.Format("[0}: is not a valid input", type));
+                }
+                //Use display attribute
+
+                if ((word.DisplayAttributes & DisplayAttributes.OneTrailingSpace) != 0)
+                {
+                    wordText += " ";
+                }
+                if ((word.DisplayAttributes & DisplayAttributes.TwoTrailingSpaces) != 0)
+                {
+                    wordText += "  ";
+                }
+                if ((word.DisplayAttributes & DisplayAttributes.ConsumeLeadingSpaces) != 0)
+                {
+                    wordText = wordText.TrimStart();
+                }
+                if ((word.DisplayAttributes & DisplayAttributes.ZeroTrailingSpaces) != 0)
+                {
+                    wordText = wordText.TrimEnd();
+                }
+
+                text += wordText;
+
+            }
+            return text;
+        }
+
+        public static void reco_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
+        {
+            recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
+        }
+
+        public static void reco_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
+        {
+            recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
+        }
+
+    }//class
+
+
+public enum WordType
+{
+    Text,
+    Normalized = Text,
+    Lexical,
+    Pronunciation
 }
+}//namespace

@@ -18,11 +18,6 @@ namespace OAHeLP_Database_Project
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new UI());
 
-
-
-
-
-
         }
     }
 }

@@ -19,6 +19,7 @@ namespace OAHeLP_Database_Project
         /// this dictionary tracks each subject's score compared to test data
         /// </summary>
         Dictionary<int, int> subjectIDAndScores = new Dictionary<int, int>();
+        Dictionary<int, string> subjectIDAndNames = new Dictionary<int, string>(); 
 
         /// <summary>
         /// Constructor
@@ -36,13 +37,15 @@ namespace OAHeLP_Database_Project
         /// <param name="villageID">The village that the patient currently says that they are from. The search algorithm compares this to other villages at varying ranges</param>
         /// <param name="DOB">DOB is unreliable, but the search algorithm still makes minor use of it</param>
         /// <returns></returns>
-        public Dictionary<int,int> SearchDB(string name, string ethnicGroup, string villageID, DateTime DOB)
+        public Dictionary<int,int> SearchDB(string name, string ethnicGroup, string villageID, string sex)
         {
 
-            //first, we need to filter the Database for all subjects matching the given ethnic group
+            //first we do a sex check, this will straight filter people out rather than contribute to the score
+
+            //next, we need to filter the Database for all subjects matching the given ethnic group
             //these individuals then get added to the dictionary in a loop and get a +10 to their score
-            
-            //next, in a loop, we run our nameMatch method. for an exact match, the subject in the dictionary gets +10. For a close partial, they get +5, for a not so close partial, they get +2, and no match gets +0
+
+            //next, in a loop, we run our nameMatch method. for an exact match (return of 0), the subject in the dictionary gets +10. For a close partial(return < 5), they get +5, (return < 9)for a not so close partial, they get +2, and no match gets +0
 
             //next, we loop through our dictionary and filter out any names that have not already gained >10 score. This should help cut down runtime (although it's already going to be a bit of a beast on those first two)
 
@@ -52,7 +55,6 @@ namespace OAHeLP_Database_Project
             //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
             //next, we do the same analysis if they have been at any other location within 50 miles, assigning varying points depending on how recently. 
 
-            //finally, we do a really easy DOB check. If the DOB is within 1 mo +10, 1 yr +5, 5 yrs +3, something like that
 
             //after that we return the dictionary! This can then be used by the UI to display relative confidences. We can also do some normalization of the data before returning
 

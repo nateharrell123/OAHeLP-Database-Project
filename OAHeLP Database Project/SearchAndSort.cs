@@ -56,27 +56,34 @@ namespace OAHeLP_Database_Project
 
                 //This will be the general format, but I want the query string to be much more complicated to hopefully cut down on the amount of commands we send
                 string queryString;
-                queryString = "SELECT Sex FROM Subject WHERE Sex = Male"; //this will probably need to be edited depending on the exact makeup of our db, but that should be easy
+                queryString = "SELECT DISTINCT SubjectID, Sex FROM Subject WHERE Sex = " + sex; //this will probably need to be edited depending on the exact makeup of our db, but that should be easy
 
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
                 //you can access data through the following syntax:
-                
-
                 if (reader.HasRows)
                 {
-                    int i = 0;
+                    //this could be used to keep track of the row that you are on, but it isn't necessary here
+                    //int i = 0;
+
                     //The while loop iterates through the rows
                     while (reader.Read())
                     {
-                        i++;
+                        //i++;
+
                         //fieldcount returns the number of rows
+                        //this could be used to pull multiple data points, but we only want their subject ID, so this is unnecessary
+                        /*
                         for(int j = 0;j < reader.FieldCount; j++)
                         {
-
+                            
                         }//for
+                        */
+
+                        //enter their subjectIDs into the dict and start at a base score of 0
+                        subjectIDAndScores[reader.GetInt32(0)] = 0;
                     }//while
                 }//if
                 else
@@ -85,8 +92,12 @@ namespace OAHeLP_Database_Project
                 }//else
                 reader.Close();
 
-                //next, we need to filter the Database for all subjects matching the given ethnic group
-                //these individuals then get added to the dictionary in a loop and get a +10 to their score
+                //now our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
+
+                //next, we need to filter the Database for all of the subjects we already have that match the given ethnic group
+                //these individuals then get a +10 to their score
+
+
 
                 //next, in a loop, we run our nameMatch method. for an exact match (return of 0), the subject in the dictionary gets +10. For a close partial(return < 5), they get +5, (return < 9)for a not so close partial, they get +2, and no match gets +0
 

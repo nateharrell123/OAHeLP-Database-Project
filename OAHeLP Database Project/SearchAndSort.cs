@@ -32,6 +32,8 @@ namespace OAHeLP_Database_Project
 
         }//searchandsort
 
+
+
         /// <summary>
         /// This function searches the database given the input parameters. It then returns a dictionary with all people with a >30% match to the test data
         /// </summary>
@@ -60,6 +62,28 @@ namespace OAHeLP_Database_Project
                 connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
+                //you can access data through the following syntax:
+                
+
+                if (reader.HasRows)
+                {
+                    int i = 0;
+                    //The while loop iterates through the rows
+                    while (reader.Read())
+                    {
+                        i++;
+                        //fieldcount returns the number of rows
+                        for(int j = 0;j < reader.FieldCount; j++)
+                        {
+
+                        }//for
+                    }//while
+                }//if
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }//else
+                reader.Close();
 
                 //next, we need to filter the Database for all subjects matching the given ethnic group
                 //these individuals then get added to the dictionary in a loop and get a +10 to their score
@@ -89,7 +113,7 @@ namespace OAHeLP_Database_Project
         public int nameMatch(string inputName,string dbName)
         {
 
-            //make this compatible with all character types
+            //make this compatible with all character types? I think it currently is, but I'm not sure yet
 
             //first step is to pheoneticise the names
 
@@ -108,6 +132,7 @@ namespace OAHeLP_Database_Project
             return distance;
         }
 
+
         /// <summary>
         /// This method computes the levenshteinDistance between two strings
         /// </summary>
@@ -120,6 +145,7 @@ namespace OAHeLP_Database_Project
             int m = t.Length;
             int[,] d = new int[n + 1, m + 1];
 
+            //the first two steps create a matrix with steadily incrementing values on the x and y axis
             // Step 1
             if (n == 0)
             {
@@ -140,6 +166,7 @@ namespace OAHeLP_Database_Project
             {
             }
 
+            //the last 4 steps fill in that matrix
             // Step 3
             for (int i = 1; i <= n; i++)
             {
@@ -166,6 +193,11 @@ namespace OAHeLP_Database_Project
 
         public static string recoPhonemes;
 
+        /// <summary>
+        /// This method is for getting the word phones from a given string
+        /// </summary>
+        /// <param name="MyWord">The word (string) that needs to be phoeneticised</param>
+        /// <returns>the phones for the given input</returns>
         public static string GetPronunciationFromText(string MyWord)
         {
             //this is a trick to figure out phonemes used by synthesis engine
@@ -176,11 +208,7 @@ namespace OAHeLP_Database_Project
                 using (SpeechSynthesizer synth = new SpeechSynthesizer())
                 {
                     synth.SetOutputToWaveStream(audioStream);
-                    PromptBuilder pb = new PromptBuilder();
-                    //pb.AppendBreak(PromptBreak.ExtraSmall); //'e' wont be recognized if this is large, or non-existent?
-                    //synth.Speak(pb);
                     synth.Speak(MyWord);
-                    //synth.Speak(pb);
                     synth.SetOutputToNull();
                     audioStream.Position = 0;
 
@@ -191,7 +219,7 @@ namespace OAHeLP_Database_Project
                     SpeechRecognitionEngine reco = new SpeechRecognitionEngine();
                     reco.SpeechHypothesized += new EventHandler<SpeechHypothesizedEventArgs>(reco_SpeechHypothesized);
                     reco.SpeechRecognitionRejected += new EventHandler<SpeechRecognitionRejectedEventArgs>(reco_SpeechRecognitionRejected);
-                    reco.UnloadAllGrammars(); //only use the one word grammar
+                    reco.UnloadAllGrammars(); 
                     reco.LoadGrammar(g);
                     reco.SetInputToWaveStream(audioStream);
                     RecognitionResult rr = reco.Recognize();
@@ -200,12 +228,17 @@ namespace OAHeLP_Database_Project
                     {
                         recoPhonemes = StringFromWordArray(rr.Words, WordType.Pronunciation);
                     }
-                    //txtRecoPho.Text = recoPhonemes;
                     return recoPhonemes;
                 }
             }
         }
 
+        /// <summary>
+        /// Creates a string given an array of word units
+        /// </summary>
+        /// <param name="words"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static string StringFromWordArray(ReadOnlyCollection<RecognizedWordUnit> words, WordType type)
         {
             string text = "";
@@ -223,7 +256,6 @@ namespace OAHeLP_Database_Project
                 else if (type == WordType.Pronunciation)
                 {
                     wordText = word.Pronunciation;
-                    //MessageBox.Show(word.LexicalForm);
                 }
                 else
                 {
@@ -254,11 +286,21 @@ namespace OAHeLP_Database_Project
             return text;
         }
 
+        /// <summary>
+        /// Event for when the recognition engine has a guess as to the phonemes for a word
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void reco_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
             recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
         }
 
+        /// <summary>
+        /// Event for when the recognition engine regects the given wav (default error message produced)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void reco_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
         {
             recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
@@ -267,11 +309,13 @@ namespace OAHeLP_Database_Project
     }//class
 
 
-public enum WordType
-{
-    Text,
-    Normalized = Text,
-    Lexical,
-    Pronunciation
-}
+
+
+    public enum WordType
+    {
+        Text,
+        Normalized = Text,
+       Lexical,
+       Pronunciation
+    }
 }//namespace

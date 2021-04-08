@@ -1,6 +1,7 @@
 Param(
    [string] $Server = "(LocalDB)\MSSQLLocalDb",
-   [string] $Database = "C:\USERS\RSHALE\SOURCE\REPOS\OAHELP-DATABASE-PROJECT\OAHELP DATABASE PROJECT\DATABASE1.MDF"
+   [string] $Database = "OAHELP"  
+ #[string] $Database = "C:\USERS\RSHALE\SOURCE\REPOS\OAHELP-DATABASE-PROJECT\OAHELP DATABASE PROJECT\DATABASE1.MDF"
 )
 
 # This script requires the SQL Server module for PowerShell.
@@ -29,7 +30,7 @@ Write-Host "Rebuilding database $Database on $Server..."
    In this case, maintain a script to drop all tables.
 #>
 #Write-Host "Dropping tables..."
-#Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DropTables.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DropTables.sql"
 
 Write-Host "Creating schema..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DropCreateSchemas.sql"

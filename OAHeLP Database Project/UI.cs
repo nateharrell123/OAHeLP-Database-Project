@@ -98,18 +98,24 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            var item1 = uxDataGridView.CurrentCell.Value.ToString(); // current cell
+            var selectedCell = uxDataGridView.CurrentCell.Value.ToString(); // current cell
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                string queryString = "select ID from Name N"
-                    + $"where N.FirstName = {item1}";
+                string queryString = "select id from Name N"
+                    + $"where N.FirstName = '{selectedCell}'";
 
                 SqlCommand command = new SqlCommand(queryString, connection); // thanks john
-                SqlDataReader
+                SqlDataReader reader = command.ExecuteReader();
 
-                OpenChildForm(new DetailedView(item1, 3, "Hello"));
+                while (reader.Read())
+                {
+                    string id = (string) reader["FirstName"];
+                    MessageBox.Show(id);
+                }
+
+                OpenChildForm(new DetailedView(selectedCell, 3, "Hello"));
             }
 
         }

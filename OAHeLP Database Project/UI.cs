@@ -113,7 +113,7 @@ namespace OAHeLP_Database_Project
                     while (reader.Read())
                     {
                         var id = reader.GetInt32(0);
-                        OpenChildForm(new DetailedView(selectedCell, id, "Hello"));
+                        OpenChildForm(new DetailedView(id));
                     }
                 }
             }

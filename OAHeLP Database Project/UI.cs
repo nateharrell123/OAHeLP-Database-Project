@@ -25,7 +25,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public UI()
         {
-            DisplaySplashScreen();
+            //DisplaySplashScreen();
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             InitializeComponent();
             PopulateTable();
@@ -91,18 +91,6 @@ namespace OAHeLP_Database_Project
             PopulateTable();
             uxNameTextBox.Clear();
         }
-
-        /// <summary>
-        /// Iterates through column to find match
-        /// </summary>
-        /// <returns>true if duplicate is found, else false.</returns>
-        private bool IsDuplicate()
-        {
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = "select FirstName from Name";
-
-            return false;
-        }
         /// <summary>
         /// When Name Changed
         /// </summary>
@@ -110,9 +98,20 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            // TODO: grab ID from selected Name
-            var item1 = uxDataGridView.CurrentCell.Value.ToString();
-            OpenChildForm(new DetailedView(item1, 3, "Hello"));
+            var item1 = uxDataGridView.CurrentCell.Value.ToString(); // current cell
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string queryString = "select ID from Name N"
+                    + $"where N.FirstName = {item1}";
+
+                SqlCommand command = new SqlCommand(queryString, connection); // thanks john
+                SqlDataReader
+
+                OpenChildForm(new DetailedView(item1, 3, "Hello"));
+            }
+
         }
 
         /// <summary>

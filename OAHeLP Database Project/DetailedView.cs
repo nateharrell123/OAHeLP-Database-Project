@@ -15,7 +15,7 @@ namespace OAHeLP_Database_Project
         public DetailedView(string item1, int id, string item3)
         {
             InitializeComponent();
-            label2.Text = $"{item1}'s detailed view and their ID is {id}";
+            uxProjectIDLabel.Text = $"Project ID: {id}";
         }
     }
 }

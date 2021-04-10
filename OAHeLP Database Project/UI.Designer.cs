@@ -29,6 +29,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.database1DataSet = new OAHeLP_Database_Project.Database1DataSet();
             this.table1TableAdapter = new OAHeLP_Database_Project.Database1DataSetTableAdapters.Table1TableAdapter();
             this.uxAddPerson = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@ namespace OAHeLP_Database_Project
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             this.label1 = new System.Windows.Forms.Label();
             this.uxDataGridView = new System.Windows.Forms.DataGridView();
+            this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.uxMedicalHistoryButton = new System.Windows.Forms.Button();
             this.uxFeature1Button = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,6 +52,7 @@ namespace OAHeLP_Database_Project
             this.uxDetailedViewPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,6 +108,11 @@ namespace OAHeLP_Database_Project
             this.uxDataGridView.Size = new System.Drawing.Size(406, 373);
             this.uxDataGridView.TabIndex = 6;
             this.uxDataGridView.SelectionChanged += new System.EventHandler(this.uxDataGridView_SelectionChanged);
+            // 
+            // database1DataSetBindingSource
+            // 
+            this.database1DataSetBindingSource.DataSource = this.database1DataSet;
+            this.database1DataSetBindingSource.Position = 0;
             // 
             // uxMedicalHistoryButton
             // 
@@ -245,6 +253,7 @@ namespace OAHeLP_Database_Project
             this.Text = "OaHeLP Database Tool";
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -272,6 +281,7 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Panel uxDetailedViewPanel;
+        private System.Windows.Forms.BindingSource database1DataSetBindingSource;
     }
 }
 

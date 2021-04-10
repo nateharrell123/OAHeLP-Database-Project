@@ -31,7 +31,7 @@ namespace OAHeLP_Database_Project
         {
             this.uxProjectIDLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.uxNameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,16 +54,16 @@ namespace OAHeLP_Database_Project
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // uxNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(211, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Project ID Label";
+            this.uxNameLabel.AutoSize = true;
+            this.uxNameLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
+            this.uxNameLabel.ForeColor = System.Drawing.Color.White;
+            this.uxNameLabel.Location = new System.Drawing.Point(211, 52);
+            this.uxNameLabel.Name = "uxNameLabel";
+            this.uxNameLabel.Size = new System.Drawing.Size(147, 25);
+            this.uxNameLabel.TabIndex = 2;
+            this.uxNameLabel.Text = "Project ID Label";
             // 
             // DetailedView
             // 
@@ -71,7 +71,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(405, 320);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.uxNameLabel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.uxProjectIDLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -86,6 +86,6 @@ namespace OAHeLP_Database_Project
         #endregion
         private System.Windows.Forms.Label uxProjectIDLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label uxNameLabel;
     }
 }

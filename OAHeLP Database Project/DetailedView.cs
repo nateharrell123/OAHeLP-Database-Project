@@ -16,6 +16,7 @@ namespace OAHeLP_Database_Project
         {
             InitializeComponent();
             uxProjectIDLabel.Text = $"Project ID: {projectID}";
+            uxNameLabel.Text = $"Name: {name}";
         }
     }
 }

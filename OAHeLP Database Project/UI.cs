@@ -103,7 +103,7 @@ namespace OAHeLP_Database_Project
             {
                 connection.Open();
 
-                string queryString = $"select id from Name N where N.FirstName = '{selectedCell}'";
+                string queryString = $"select * from Name N where N.FirstName = '{selectedCell}'";
 
                 SqlCommand command = new SqlCommand(queryString, connection); // thanks john
                 SqlDataReader reader = command.ExecuteReader();
@@ -113,7 +113,8 @@ namespace OAHeLP_Database_Project
                     while (reader.Read())
                     {
                         var id = reader.GetInt32(0);
-                        OpenChildForm(new DetailedView(id));
+                        var firstName = reader.GetString(1);
+                        OpenChildForm(new DetailedView(id, firstName));
                     }
                 }
             }

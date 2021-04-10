@@ -67,7 +67,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxAddPerson
             // 
-            this.uxAddPerson.Location = new System.Drawing.Point(583, 167);
+            this.uxAddPerson.Location = new System.Drawing.Point(300, 131);
             this.uxAddPerson.Name = "uxAddPerson";
             this.uxAddPerson.Size = new System.Drawing.Size(89, 20);
             this.uxAddPerson.TabIndex = 4;
@@ -77,7 +77,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxNameTextBox
             // 
-            this.uxNameTextBox.Location = new System.Drawing.Point(475, 167);
+            this.uxNameTextBox.Location = new System.Drawing.Point(192, 131);
             this.uxNameTextBox.Name = "uxNameTextBox";
             this.uxNameTextBox.Size = new System.Drawing.Size(102, 20);
             this.uxNameTextBox.TabIndex = 5;
@@ -92,7 +92,7 @@ namespace OAHeLP_Database_Project
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(472, 143);
+            this.label1.Location = new System.Drawing.Point(189, 107);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 6;
@@ -221,9 +221,9 @@ namespace OAHeLP_Database_Project
             // 
             // uxDetailedViewPanel
             // 
-            this.uxDetailedViewPanel.Location = new System.Drawing.Point(434, 210);
+            this.uxDetailedViewPanel.Location = new System.Drawing.Point(434, 157);
             this.uxDetailedViewPanel.Name = "uxDetailedViewPanel";
-            this.uxDetailedViewPanel.Size = new System.Drawing.Size(405, 320);
+            this.uxDetailedViewPanel.Size = new System.Drawing.Size(405, 373);
             this.uxDetailedViewPanel.TabIndex = 13;
             // 
             // UI

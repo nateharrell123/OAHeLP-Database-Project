@@ -102,7 +102,6 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
                 string queryString = $"select * from Name N where N.FirstName = '{selectedCell}'";
 
                 SqlCommand command = new SqlCommand(queryString, connection); // thanks john

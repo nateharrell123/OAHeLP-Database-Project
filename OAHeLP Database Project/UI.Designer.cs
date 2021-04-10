@@ -42,13 +42,8 @@ namespace OAHeLP_Database_Project
             this.uxFeature1Button = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.database1DataSet1 = new OAHeLP_Database_Project.Database1DataSet();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.uxNameLookupText = new System.Windows.Forms.TextBox();
             this.uxDetailedViewPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
@@ -166,58 +161,19 @@ namespace OAHeLP_Database_Project
             this.button2.Text = "Feature 3";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 63);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 32);
-            this.textBox1.TabIndex = 11;
-            // 
             // database1DataSet1
             // 
             this.database1DataSet1.DataSetName = "Database1DataSet";
             this.database1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // textBox2
+            // uxNameLookupText
             // 
-            this.textBox2.Location = new System.Drawing.Point(224, 63);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(178, 32);
-            this.textBox2.TabIndex = 12;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(475, 12);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(178, 32);
-            this.textBox3.TabIndex = 12;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(475, 63);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(178, 32);
-            this.textBox4.TabIndex = 12;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(674, 12);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(178, 32);
-            this.textBox5.TabIndex = 12;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(674, 63);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(178, 32);
-            this.textBox6.TabIndex = 12;
+            this.uxNameLookupText.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxNameLookupText.Location = new System.Drawing.Point(434, 35);
+            this.uxNameLookupText.Multiline = true;
+            this.uxNameLookupText.Name = "uxNameLookupText";
+            this.uxNameLookupText.Size = new System.Drawing.Size(178, 32);
+            this.uxNameLookupText.TabIndex = 12;
             // 
             // uxDetailedViewPanel
             // 
@@ -233,12 +189,7 @@ namespace OAHeLP_Database_Project
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(864, 625);
             this.Controls.Add(this.uxDetailedViewPanel);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.uxNameLookupText);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.uxFeature1Button);
@@ -273,13 +224,9 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Button uxFeature1Button;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox uxNameLookup;
         private Database1DataSet database1DataSet1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox uxNameLookupText;
         private System.Windows.Forms.Panel uxDetailedViewPanel;
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
     }

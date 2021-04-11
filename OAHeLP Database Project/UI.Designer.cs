@@ -182,6 +182,7 @@ namespace OAHeLP_Database_Project
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.uxAddPersonButton);
             this.panel1.Controls.Add(this.uxSearchButton);
             this.panel1.Controls.Add(this.uxEthnicGroupComboBox);
@@ -238,6 +239,7 @@ namespace OAHeLP_Database_Project
             this.uxAddPersonButton.TabIndex = 17;
             this.uxAddPersonButton.UseVisualStyleBackColor = true;
             this.uxAddPersonButton.Click += new System.EventHandler(this.uxAddPersonButton_Click);
+            this.uxAddPersonButton.MouseLeave += new System.EventHandler(this.uxAddPersonButton_MouseLeave);
             this.uxAddPersonButton.MouseHover += new System.EventHandler(this.button3_MouseHover);
             // 
             // UI

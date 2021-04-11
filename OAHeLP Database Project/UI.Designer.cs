@@ -46,9 +46,10 @@ namespace OAHeLP_Database_Project
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             this.database1DataSet = new OAHeLP_Database_Project.Database1DataSet();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.uxSearchButton = new System.Windows.Forms.Button();
             this.uxSearchImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxAddImageList = new System.Windows.Forms.ImageList(this.components);
-            this.uxSearchButton = new System.Windows.Forms.Button();
+            this.uxAddPersonButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
@@ -87,7 +88,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxDetailedViewPanel.Location = new System.Drawing.Point(503, 157);
             this.uxDetailedViewPanel.Name = "uxDetailedViewPanel";
-            this.uxDetailedViewPanel.Size = new System.Drawing.Size(497, 373);
+            this.uxDetailedViewPanel.Size = new System.Drawing.Size(518, 373);
             this.uxDetailedViewPanel.TabIndex = 13;
             // 
             // uxNameLookupText
@@ -181,7 +182,7 @@ namespace OAHeLP_Database_Project
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.uxAddPersonButton);
             this.panel1.Controls.Add(this.uxSearchButton);
             this.panel1.Controls.Add(this.uxEthnicGroupComboBox);
             this.panel1.Controls.Add(this.uxNameLookupText);
@@ -189,22 +190,8 @@ namespace OAHeLP_Database_Project
             this.panel1.Controls.Add(this.uxVillageComboBox);
             this.panel1.Location = new System.Drawing.Point(503, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(497, 116);
+            this.panel1.Size = new System.Drawing.Size(518, 116);
             this.panel1.TabIndex = 16;
-            // 
-            // uxSearchImageList
-            // 
-            this.uxSearchImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("uxSearchImageList.ImageStream")));
-            this.uxSearchImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.uxSearchImageList.Images.SetKeyName(0, "magnifying glass.jpg");
-            this.uxSearchImageList.Images.SetKeyName(1, "magnifying glass highlight.jpg.png");
-            // 
-            // uxAddImageList
-            // 
-            this.uxAddImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("uxAddImageList.ImageStream")));
-            this.uxAddImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.uxAddImageList.Images.SetKeyName(0, "Plus.png");
-            this.uxAddImageList.Images.SetKeyName(1, "Plus Highlight.png.png");
             // 
             // uxSearchButton
             // 
@@ -223,12 +210,42 @@ namespace OAHeLP_Database_Project
             this.uxSearchButton.MouseLeave += new System.EventHandler(this.uxSearchButton_MouseLeave);
             this.uxSearchButton.MouseHover += new System.EventHandler(this.uxSearchButton_MouseHover);
             // 
+            // uxSearchImageList
+            // 
+            this.uxSearchImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("uxSearchImageList.ImageStream")));
+            this.uxSearchImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.uxSearchImageList.Images.SetKeyName(0, "magnifying glass.jpg");
+            this.uxSearchImageList.Images.SetKeyName(1, "magnifying glass highlight.jpg.png");
+            // 
+            // uxAddImageList
+            // 
+            this.uxAddImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("uxAddImageList.ImageStream")));
+            this.uxAddImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.uxAddImageList.Images.SetKeyName(0, "Plus.png");
+            this.uxAddImageList.Images.SetKeyName(1, "Plus Highlight.png.png");
+            // 
+            // uxAddPersonButton
+            // 
+            this.uxAddPersonButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.uxAddPersonButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.uxAddPersonButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.uxAddPersonButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxAddPersonButton.ImageIndex = 0;
+            this.uxAddPersonButton.ImageList = this.uxAddImageList;
+            this.uxAddPersonButton.Location = new System.Drawing.Point(436, 20);
+            this.uxAddPersonButton.Name = "uxAddPersonButton";
+            this.uxAddPersonButton.Size = new System.Drawing.Size(68, 62);
+            this.uxAddPersonButton.TabIndex = 17;
+            this.uxAddPersonButton.UseVisualStyleBackColor = true;
+            this.uxAddPersonButton.Click += new System.EventHandler(this.uxAddPersonButton_Click);
+            this.uxAddPersonButton.MouseHover += new System.EventHandler(this.button3_MouseHover);
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1018, 632);
+            this.ClientSize = new System.Drawing.Size(1033, 632);
             this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -270,6 +287,7 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.ImageList uxSearchImageList;
         private System.Windows.Forms.ImageList uxAddImageList;
         private System.Windows.Forms.Button uxSearchButton;
+        private System.Windows.Forms.Button uxAddPersonButton;
     }
 }
 

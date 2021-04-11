@@ -80,6 +80,7 @@
       <DependentUpon>DetailedView.cs</DependentUpon>
     </Compile>
     <Compile Include="Person.cs" />
+    <Compile Include="SearchAndSort.cs" />
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>

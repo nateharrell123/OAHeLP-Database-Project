@@ -67,15 +67,6 @@ namespace OAHeLP_Database_Project
                 //uxDataGridView.DataMember = "Name";
             }
         }
-
-        /// <summary>
-        /// Insert person into DB
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void uxAddPerson_Click(object sender, EventArgs e)
-        {
-        }
         /// <summary>
         /// When Name Changed
         /// </summary>
@@ -141,19 +132,29 @@ namespace OAHeLP_Database_Project
             }
             uxNameLookupText.Clear();
         }
+        /// <summary>
+        /// Search for person
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uxSearchButton_Click(object sender, EventArgs e)
         {
-
+            SearchAndSort search = new SearchAndSort();
         }
 
-        private void uxSearchButton_MouseHover(object sender, EventArgs e)
-        {
-            uxSearchButton.ImageIndex = 1;
-        }
+        /// <summary>
+        /// I think it's silly I have to do this
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxSearchButton_MouseHover(object sender, EventArgs e) {uxSearchButton.ImageIndex = 1;}
 
-        private void uxSearchButton_MouseLeave(object sender, EventArgs e)
+        private void uxSearchButton_MouseLeave(object sender, EventArgs e) {uxSearchButton.ImageIndex = 0;}
+
+        private void button3_MouseHover(object sender, EventArgs e) {uxAddPersonButton.ImageIndex = 1;}
+
+        private void uxAddPersonButton_Click(object sender, EventArgs e)
         {
-            uxSearchButton.ImageIndex = 0;
 
         }
     }

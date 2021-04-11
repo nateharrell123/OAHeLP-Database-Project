@@ -40,7 +40,6 @@ namespace OAHeLP_Database_Project
             thread.Start();
             Thread.Sleep(2000);
             thread.Abort();
-
             this.Show();
         }
 
@@ -141,6 +140,21 @@ namespace OAHeLP_Database_Project
                 command.ExecuteNonQuery();
             }
             uxNameLookupText.Clear();
+        }
+        private void uxSearchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uxSearchButton_MouseHover(object sender, EventArgs e)
+        {
+            uxSearchButton.ImageIndex = 1;
+        }
+
+        private void uxSearchButton_MouseLeave(object sender, EventArgs e)
+        {
+            uxSearchButton.ImageIndex = 0;
+
         }
     }
 }

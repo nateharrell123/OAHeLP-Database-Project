@@ -124,6 +124,7 @@ namespace OAHeLP_Database_Project
                 command.ExecuteNonQuery();
             }
             uxNameLookupText.Clear();
+            PopulateTable();
         }
 
         #region UI Stuff

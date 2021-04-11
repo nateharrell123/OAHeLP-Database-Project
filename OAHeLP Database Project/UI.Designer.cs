@@ -255,7 +255,8 @@ namespace OAHeLP_Database_Project
             this.Controls.Add(this.uxMedicalHistoryButton);
             this.Controls.Add(this.uxDataGridView);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "UI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OaHeLP Database Tool";

@@ -76,20 +76,6 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPerson_Click(object sender, EventArgs e)
         {
-            if (uxNameTextBox.Text == string.Empty) return;
-
-            string query = "insert into Name values (@PersonName, 'Middle', 'Last')";
-
-            using (connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                connection.Open();
-                command.Parameters.AddWithValue("PersonName", uxNameTextBox.Text);
-                command.ExecuteNonQuery();
-            }
-
-            PopulateTable();
-            uxNameTextBox.Clear();
         }
         /// <summary>
         /// When Name Changed
@@ -133,6 +119,28 @@ namespace OAHeLP_Database_Project
             uxDetailedViewPanel.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        /// <summary>
+        /// Add Person
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxAddPersonClick(object sender, EventArgs e)
+        {
+            if (uxNameLookupText.Text == string.Empty) return;
+
+            string query = "insert into Name values (@PersonName, 'Middle', 'Last')";
+
+            using (connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
+                
+                command.ExecuteNonQuery();
+            }
+            uxNameLookupText.Clear();
         }
     }
 }

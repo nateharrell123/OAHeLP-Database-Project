@@ -60,11 +60,11 @@ namespace OAHeLP_Database_Project
             using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName, MiddleNames, LastName from [Subject].[Name]", connection)) // select query goes here
             {
                 var commandBuilder = new SqlCommandBuilder(adapter);
-                var dataSet = new DataSet();
-                adapter.Fill(dataSet);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
 
-                uxDataGridView.DataSource = dataSet.Tables[0]; 
-                //uxDataGridView.DataMember = "Name";
+                uxNamesListBox.DataSource = dataTable;
+                uxNamesListBox.DisplayMember = "FirstName";
             }
         }
         /// <summary>
@@ -74,11 +74,11 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            var selectedCell = uxDataGridView.CurrentCell.Value.ToString(); // current cell
+            var selectedName = uxNamesListBox.SelectedItem.ToString();
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string queryString = $"select * from [Subject].Name N where N.FirstName = '{selectedCell}'";
+                string queryString = $"select * from [Subject].Name N where N.FirstName = '{selectedName}'";
 
                 SqlCommand command = new SqlCommand(queryString, connection); // thanks john
                 SqlDataReader reader = command.ExecuteReader();

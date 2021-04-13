@@ -42,18 +42,15 @@ namespace OAHeLP_Database_Project
             this.uxFeature1Button = new System.Windows.Forms.Button();
             this.uxMedicalHistoryButton = new System.Windows.Forms.Button();
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.uxDataGridView = new System.Windows.Forms.DataGridView();
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
-            this.database1DataSet = new OAHeLP_Database_Project.Database1DataSet();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.uxAddPersonButton = new System.Windows.Forms.Button();
+            this.uxAddImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxSearchButton = new System.Windows.Forms.Button();
             this.uxSearchImageList = new System.Windows.Forms.ImageList(this.components);
-            this.uxAddImageList = new System.Windows.Forms.ImageList(this.components);
-            this.uxAddPersonButton = new System.Windows.Forms.Button();
+            this.uxNamesListBox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,28 +154,12 @@ namespace OAHeLP_Database_Project
             this.uxMedicalHistoryButton.Text = "Medical History";
             this.uxMedicalHistoryButton.UseVisualStyleBackColor = false;
             // 
-            // uxDataGridView
-            // 
-            this.uxDataGridView.BackgroundColor = System.Drawing.Color.White;
-            this.uxDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.uxDataGridView.Location = new System.Drawing.Point(12, 157);
-            this.uxDataGridView.Name = "uxDataGridView";
-            this.uxDataGridView.ReadOnly = true;
-            this.uxDataGridView.Size = new System.Drawing.Size(465, 373);
-            this.uxDataGridView.TabIndex = 6;
-            this.uxDataGridView.SelectionChanged += new System.EventHandler(this.uxDataGridView_SelectionChanged);
-            // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.Table1TableAdapter = null;
             this.tableAdapterManager.UpdateOrder = OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // database1DataSet
-            // 
-            this.database1DataSet.DataSetName = "Database1DataSet";
-            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -193,6 +174,30 @@ namespace OAHeLP_Database_Project
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(518, 116);
             this.panel1.TabIndex = 16;
+            // 
+            // uxAddPersonButton
+            // 
+            this.uxAddPersonButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.uxAddPersonButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.uxAddPersonButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.uxAddPersonButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxAddPersonButton.ImageIndex = 0;
+            this.uxAddPersonButton.ImageList = this.uxAddImageList;
+            this.uxAddPersonButton.Location = new System.Drawing.Point(436, 20);
+            this.uxAddPersonButton.Name = "uxAddPersonButton";
+            this.uxAddPersonButton.Size = new System.Drawing.Size(68, 62);
+            this.uxAddPersonButton.TabIndex = 17;
+            this.uxAddPersonButton.UseVisualStyleBackColor = true;
+            this.uxAddPersonButton.Click += new System.EventHandler(this.uxAddPersonButton_Click);
+            this.uxAddPersonButton.MouseLeave += new System.EventHandler(this.uxAddPersonButton_MouseLeave);
+            this.uxAddPersonButton.MouseHover += new System.EventHandler(this.button3_MouseHover);
+            // 
+            // uxAddImageList
+            // 
+            this.uxAddImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("uxAddImageList.ImageStream")));
+            this.uxAddImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.uxAddImageList.Images.SetKeyName(0, "Plus.png");
+            this.uxAddImageList.Images.SetKeyName(1, "Plus Highlight.png.png");
             // 
             // uxSearchButton
             // 
@@ -218,29 +223,15 @@ namespace OAHeLP_Database_Project
             this.uxSearchImageList.Images.SetKeyName(0, "magnifying glass.jpg");
             this.uxSearchImageList.Images.SetKeyName(1, "magnifying glass highlight.jpg.png");
             // 
-            // uxAddImageList
+            // uxNamesListBox
             // 
-            this.uxAddImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("uxAddImageList.ImageStream")));
-            this.uxAddImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.uxAddImageList.Images.SetKeyName(0, "Plus.png");
-            this.uxAddImageList.Images.SetKeyName(1, "Plus Highlight.png.png");
-            // 
-            // uxAddPersonButton
-            // 
-            this.uxAddPersonButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.uxAddPersonButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.uxAddPersonButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.uxAddPersonButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxAddPersonButton.ImageIndex = 0;
-            this.uxAddPersonButton.ImageList = this.uxAddImageList;
-            this.uxAddPersonButton.Location = new System.Drawing.Point(436, 20);
-            this.uxAddPersonButton.Name = "uxAddPersonButton";
-            this.uxAddPersonButton.Size = new System.Drawing.Size(68, 62);
-            this.uxAddPersonButton.TabIndex = 17;
-            this.uxAddPersonButton.UseVisualStyleBackColor = true;
-            this.uxAddPersonButton.Click += new System.EventHandler(this.uxAddPersonButton_Click);
-            this.uxAddPersonButton.MouseLeave += new System.EventHandler(this.uxAddPersonButton_MouseLeave);
-            this.uxAddPersonButton.MouseHover += new System.EventHandler(this.button3_MouseHover);
+            this.uxNamesListBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
+            this.uxNamesListBox.FormattingEnabled = true;
+            this.uxNamesListBox.ItemHeight = 25;
+            this.uxNamesListBox.Location = new System.Drawing.Point(12, 157);
+            this.uxNamesListBox.Name = "uxNamesListBox";
+            this.uxNamesListBox.Size = new System.Drawing.Size(465, 354);
+            this.uxNamesListBox.TabIndex = 17;
             // 
             // UI
             // 
@@ -248,12 +239,12 @@ namespace OAHeLP_Database_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1033, 632);
+            this.Controls.Add(this.uxNamesListBox);
             this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.uxFeature1Button);
             this.Controls.Add(this.uxMedicalHistoryButton);
-            this.Controls.Add(this.uxDataGridView);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -262,8 +253,6 @@ namespace OAHeLP_Database_Project
             this.Text = "OaHeLP Database Tool";
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.uxDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -283,14 +272,13 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Button uxFeature1Button;
         private System.Windows.Forms.Button uxMedicalHistoryButton;
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
-        private System.Windows.Forms.DataGridView uxDataGridView;
         private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private Database1DataSet database1DataSet;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ImageList uxSearchImageList;
         private System.Windows.Forms.ImageList uxAddImageList;
         private System.Windows.Forms.Button uxSearchButton;
         private System.Windows.Forms.Button uxAddPersonButton;
+        private System.Windows.Forms.ListBox uxNamesListBox;
     }
 }
 

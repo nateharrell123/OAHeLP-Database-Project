@@ -57,7 +57,7 @@ namespace OAHeLP_Database_Project
         private void PopulateTable()
         {
             using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName, MiddleNames, LastName from [Subject].[Name]", connection)) // select query goes here
+            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName from [Subject].[Name]", connection)) // select query goes here
             {
                 var commandBuilder = new SqlCommandBuilder(adapter);
                 var dataTable = new DataTable();
@@ -145,13 +145,11 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                /*
-                string queryString = "select N.FirstName, N.MiddleNames, N.LastName,S.Sex" +
-                    "from [Subject].[Subject] S" +
-                    "join [Subject].SubjectName SN on S.SubjectID = SN.SubjectID" +
-                    "join [Subject].[Name] N on N.NameID = S.SubjectID;";
-                */
-string query = "select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID";
+                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex " +
+                    "from[Subject].[Subject] S " +
+                    "join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
+                    "join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = 'Shamsul'";
+                    //$"where N.FirstName = '{selectedName}'";
 
                 SqlCommand command = new SqlCommand(query, connection); 
                 SqlDataReader reader = command.ExecuteReader();

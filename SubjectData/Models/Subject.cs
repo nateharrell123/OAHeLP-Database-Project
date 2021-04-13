@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SubjectData
+namespace SubjectData.Models
 {
     public class Subject
     {
@@ -30,7 +30,7 @@ namespace SubjectData
 
         public int FatherID { get; set; }
     
-        Subject(int id, EthnicGroup eg, string oaID, char sex)
+        public Subject(int id, EthnicGroup eg, string oaID, char sex)
         {
             SubjectID = id;
             EthnicGroup = eg;

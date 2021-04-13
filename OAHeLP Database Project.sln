@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonData", "PersonData\PersonData.csproj", "{D51AA58C-05B9-4A7D-9F80-CCEBF8A0EAF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubjectData", "SubjectData\SubjectData.csproj", "{C27893E0-905D-4795-8A69-F9FE3CE3DF80}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A5AC459D-6C0A-4D6E-AD65-ECB3E0FEC3A7} = {A5AC459D-6C0A-4D6E-AD65-ECB3E0FEC3A7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

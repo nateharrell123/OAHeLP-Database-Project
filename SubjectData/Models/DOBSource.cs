@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SubjectData
+namespace SubjectData.Models
 {
     public enum DOBSource
     {

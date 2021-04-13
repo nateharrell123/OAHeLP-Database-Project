@@ -1,4 +1,4 @@
-
+--SQL File to create tables for OAHeLP database
 --SUBJECT SCHEMA
 CREATE TABLE [Subject].DOBSource
 (

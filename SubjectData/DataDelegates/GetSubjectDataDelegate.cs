@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using SubjectData.Models;
+using System;
 
 namespace SubjectData.DataDelegates
 {
@@ -29,7 +30,7 @@ namespace SubjectData.DataDelegates
                 throw new RecordNotFoundException(subjectId.ToString());
 
             return new Subject(subjectId,
-               reader.GetValue<EthnicGroup>("EthnicGroup"),
+               (EthnicGroup)Enum.Parse(typeof(EthnicGroup), reader.GetString("EthnicGroup")),
                reader.GetString("OAHeLPID"),
                reader.GetString("Sex")[0]); //better way to do this??
         }

@@ -94,14 +94,13 @@ namespace OAHeLP_Database_Project
         {
             if (uxNameLookupText.Text == string.Empty) return;
 
-            string query = "insert into Name values (@PersonName, 'Middle', 'Last')";
+            string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
 
             using (connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
-
                 command.ExecuteNonQuery();
             }
             uxNameLookupText.Clear();
@@ -141,6 +140,7 @@ namespace OAHeLP_Database_Project
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
+            //MessageBox.Show(selectedName);
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();

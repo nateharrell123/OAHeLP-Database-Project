@@ -9,6 +9,7 @@ using System.Configuration;
 using System.Data.SqlClient; // need this for SQL
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace OAHeLP_Database_Project
 {
@@ -24,14 +25,30 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public UI()
         {
-            InitializeComponent();
-
+            //DisplaySplashScreen();
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            InitializeComponent();
+            PopulateTable();
         }
 
-        private void UI_Load(object sender, EventArgs e)
+        /// <summary>
+        /// Load Screen for 2 sec
+        /// </summary>
+        private void DisplaySplashScreen()
         {
-            PopulateTable();
+            Thread thread = new Thread(new ThreadStart(StartScreen));
+            thread.Start();
+            Thread.Sleep(2000);
+            thread.Abort();
+            this.Show();
+        }
+
+        /// <summary>
+        /// For Splash Screen
+        /// </summary>
+        public void StartScreen()
+        {
+            Application.Run(new SplashScreen());
         }
 
         /// <summary>
@@ -40,49 +57,115 @@ namespace OAHeLP_Database_Project
         private void PopulateTable()
         {
             using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select * from Name", connection))
+            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName from [Subject].[Name]", connection)) // select query goes here
             {
                 var commandBuilder = new SqlCommandBuilder(adapter);
-                var dataSet = new DataSet();
-                adapter.Fill(dataSet);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
 
-                uxDataGridView.DataSource = dataSet.Tables[0];
+                
+                string firstName, middleNames, lastName;
+                firstName = "FirstName";
+                middleNames = "MiddleNames";
+                lastName = "LastName";
+                Person person = new Person(firstName, middleNames, lastName);
+                //uxNamesListBox.DisplayMember = person.ToString();
+                
+                uxNamesListBox.DataSource = dataTable;
+                uxNamesListBox.DisplayMember = "FirstName";
             }
         }
-
         /// <summary>
-        /// Insert person into DB
+        /// Search for person
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxAddPerson_Click(object sender, EventArgs e)
+        private void uxSearchButton_Click(object sender, EventArgs e)
         {
-            if (uxNameTextBox.Text == string.Empty) return;
+            SearchAndSort search = new SearchAndSort();
+        }
 
-            string query = "insert into Name values (@PersonName, 'Middle', 'Last')";
+        /// <summary>
+        /// Add person to DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxAddPersonButton_Click(object sender, EventArgs e)
+        {
+            if (uxNameLookupText.Text == string.Empty) return;
+
+            string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
+            // Get Sex, Village and Ethnic Group
 
             using (connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 connection.Open();
-                command.Parameters.AddWithValue("PersonName", uxNameTextBox.Text);
+                command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
                 command.ExecuteNonQuery();
             }
-
+            uxNameLookupText.Clear();
             PopulateTable();
-            uxNameTextBox.Clear();
         }
 
+        #region UI Stuff
         /// <summary>
-        /// Iterates through column to find match
+        /// I think it's silly I have to do this
         /// </summary>
-        /// <returns>true if duplicate is found, else false.</returns>
-        private bool IsDuplicate()
-        {
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = "select FirstName from Name";
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxSearchButton_MouseHover(object sender, EventArgs e) {uxSearchButton.ImageIndex = 1;}
 
-            return false;
+        private void uxSearchButton_MouseLeave(object sender, EventArgs e) {uxSearchButton.ImageIndex = 0;}
+
+        private void button3_MouseHover(object sender, EventArgs e) {uxAddPersonButton.ImageIndex = 1;}
+        private void uxAddPersonButton_MouseLeave(object sender, EventArgs e) {uxAddPersonButton.ImageIndex = 0;}
+
+        /// <summary>
+        /// Opens a form and places it into the Panel
+        /// </summary>
+        private Form activeForm = null;
+        private void OpenChildForm(Form childForm)
+        {
+            if (activeForm != null) activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.Dock = DockStyle.Fill;
+            uxDetailedViewPanel.Controls.Add(childForm);
+            uxDetailedViewPanel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+        #endregion
+
+        private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
+            //MessageBox.Show(selectedName);
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex " +
+                    "from[Subject].[Subject] S " +
+                    "join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
+                    "join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = 'Shamsul'";
+                    //$"where N.FirstName = '{selectedName}'";
+
+                SqlCommand command = new SqlCommand(query, connection); 
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        // FIX THIS
+                        var id = reader.GetString(0);
+                        var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
+                        var sex = reader.GetString(4);
+                        OpenChildForm(new DetailedView(id, fullName, sex));
+                    }
+                }
+            }
         }
     }
 }

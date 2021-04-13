@@ -12,14 +12,18 @@ namespace OAHeLP_Database_Project
     public class Person
     {
         public string FirstName { get; set; }
-        public uint ProjectID { get; set; } // probably this one too
-        public string VillageLastSeen { get; set; } // change this for sure
+        public string MiddleNames { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get; set; }
 
-        public Person(string fn, uint pd, string vls)
+        public Person(string firstName, string middleNames, string lastName)
         {
-            FirstName = fn;
-            ProjectID = pd;
-            VillageLastSeen = vls;
+            FirstName = firstName;
+            MiddleNames = middleNames;
+            LastName = lastName;
+            //FullName = firstName + '\t' + middleNames + '\t' + lastName;
         }
+
+        public override string ToString() { return $"{FirstName} \t {MiddleNames} \t {LastName}"; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SubjectData
 {
-    public class ISubjectRepository
+    class DOBSource
     {
     }
 }

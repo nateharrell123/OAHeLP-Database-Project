@@ -12,7 +12,7 @@ namespace OAHeLP_Database_Project
 {
     public partial class DetailedView : Form
     {
-        public DetailedView(int projectID, string name = "", string sex = "", string ethnicity = "")
+        public DetailedView(string projectID, string name = "", string sex = "", string ethnicity = "")
         {
             InitializeComponent();
             uxProjectIDLabel.Text = $"Project ID: {projectID}";

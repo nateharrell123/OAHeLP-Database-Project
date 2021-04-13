@@ -145,18 +145,26 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string queryString = $"select * from [Subject].Name N where N.FirstName = '{selectedName}'";
+                /*
+                string queryString = "select N.FirstName, N.MiddleNames, N.LastName,S.Sex" +
+                    "from [Subject].[Subject] S" +
+                    "join [Subject].SubjectName SN on S.SubjectID = SN.SubjectID" +
+                    "join [Subject].[Name] N on N.NameID = S.SubjectID;";
+                */
+string query = "select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID";
 
-                SqlCommand command = new SqlCommand(queryString, connection); 
+                SqlCommand command = new SqlCommand(query, connection); 
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        var id = reader.GetInt32(0);
-                        var firstName = reader.GetString(1);
-                        OpenChildForm(new DetailedView(id, firstName));
+                        // FIX THIS
+                        var id = reader.GetString(0);
+                        var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
+                        var sex = reader.GetString(4);
+                        OpenChildForm(new DetailedView(id, fullName, sex));
                     }
                 }
             }

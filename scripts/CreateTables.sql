@@ -109,7 +109,7 @@ CREATE TABLE Clinic.Medication(
 );
 
 CREATE TABLE Clinic.SubstanceUse(
-    SubstanceUseID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    SubstanceUseID INT NOT NULL PRIMARY KEY,
     [Description] NVARCHAR(20) UNIQUE 
 );
 
@@ -146,18 +146,18 @@ CREATE TABLE Clinic.ClinicVisit(
         REFERENCES [Subject].[Subject](SubjectID),
     ClinicianID INT NOT NULL FOREIGN KEY    
         REFERENCES Clinic.Clinician(ClinicianID),
-    BodyTempDegC DECIMAL(4,2) NOT NULL,
-    WeightKG DECIMAL(4,2) NOT NULL,
-    PercentBodyFat DECIMAL(4,2) NULL,
-    HeightCM DECIMAL(4,2) NOT NULL,
-    WaistCircumferenceCM DECIMAL(4,2) NULL,
-    LegLengthCM DECIMAL(4,2) NULL,
+    BodyTempDegC DECIMAL(5,2) NOT NULL,
+    WeightKG DECIMAL(5,2) NOT NULL,
+    PercentBodyFat DECIMAL(5,2) NULL,
+    HeightCM DECIMAL(5,2) NOT NULL,
+    WaistCircumferenceCM DECIMAL(5,2) NULL,
+    LegLengthCM DECIMAL(5,2) NULL,
     Pulse INT NULL,
     BloodPressureSystolic INT NULL,
     BloodPressureDiastolic INT NULL,
     VisualAcuity INT NULL,
     WBCCount INT NULL,
-    IsPregnant BIT NOT NULL,
+    IsPregnant BIT NULL,
     TobaccoUse INT NULL FOREIGN KEY 
         REFERENCES Clinic.SubstanceUse(SubstanceUseID),
     AlcoholUse INT NULL FOREIGN KEY 
@@ -167,8 +167,8 @@ CREATE TABLE Clinic.ClinicVisit(
     NumberMiscarriages INT NULL,
     IsFatherAlive BIT NULL,
     IsMotherAlive BIT NULL,
-    XRayImageFile NVARCHAR(30) NULL UNIQUE,
-    HandImageFile NVARCHAR(30) NULL UNIQUE, 
+    XRayImageFile NVARCHAR(30) NULL, --UNIQUE
+    HandImageFile NVARCHAR(30) NULL, --UNIQUE, 
 
     UNIQUE(
         [Date],

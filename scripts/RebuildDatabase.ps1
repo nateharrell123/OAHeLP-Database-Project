@@ -50,6 +50,7 @@ Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData
 
 Write-Host "Inserting data..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertData.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertClinicData.sql"
 
 Write-Host "Rebuild completed."
 Write-Host ""

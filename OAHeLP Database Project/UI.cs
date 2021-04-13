@@ -25,7 +25,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public UI()
         {
-            DisplaySplashScreen();
+            //DisplaySplashScreen();
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             InitializeComponent();
             PopulateTable();
@@ -57,7 +57,7 @@ namespace OAHeLP_Database_Project
         private void PopulateTable()
         {
             using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName, MiddleName, LastName from Name", connection)) // select query goes here
+            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName, MiddleNames, LastName from [Subject].[Name]", connection)) // select query goes here
             {
                 var commandBuilder = new SqlCommandBuilder(adapter);
                 var dataSet = new DataSet();
@@ -78,7 +78,7 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string queryString = $"select * from Name N where N.FirstName = '{selectedCell}'";
+                string queryString = $"select * from [Subject].Name N where N.FirstName = '{selectedCell}'";
 
                 SqlCommand command = new SqlCommand(queryString, connection); // thanks john
                 SqlDataReader reader = command.ExecuteReader();

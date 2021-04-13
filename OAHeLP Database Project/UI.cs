@@ -95,6 +95,7 @@ namespace OAHeLP_Database_Project
             if (uxNameLookupText.Text == string.Empty) return;
 
             string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
+            // Get Sex, Village and Ethnic Group
 
             using (connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))

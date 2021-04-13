@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace SubjectData
 {
-    class Name
+    public class Name
     {
+        public string FirstName { get; }
+        public string MiddleNames { get; }
+        public string LastName { get; }
+
+        Name(string f, string m, string l)
+        {
+            FirstName = f;
+            MiddleNames = m;
+            LastName = l;
+        }
     }
 }

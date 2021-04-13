@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SubjectData
 {
-    class DOBSource
+    public enum DOBSource
     {
+        ic_card,
+        known,
+        anthro_estimate
     }
 }

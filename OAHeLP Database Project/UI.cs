@@ -63,35 +63,16 @@ namespace OAHeLP_Database_Project
                 var dataTable = new DataTable();
                 adapter.Fill(dataTable);
 
+                
+                string firstName, middleNames, lastName;
+                firstName = "FirstName";
+                middleNames = "MiddleNames";
+                lastName = "LastName";
+                Person person = new Person(firstName, middleNames, lastName);
+                //uxNamesListBox.DisplayMember = person.ToString();
+                
                 uxNamesListBox.DataSource = dataTable;
                 uxNamesListBox.DisplayMember = "FirstName";
-            }
-        }
-        /// <summary>
-        /// When Name Changed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void uxDataGridView_SelectionChanged(object sender, EventArgs e)
-        {
-            var selectedName = uxNamesListBox.SelectedItem.ToString();
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string queryString = $"select * from [Subject].Name N where N.FirstName = '{selectedName}'";
-
-                SqlCommand command = new SqlCommand(queryString, connection); // thanks john
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        var id = reader.GetInt32(0);
-                        var firstName = reader.GetString(1);
-                        OpenChildForm(new DetailedView(id, firstName));
-                    }
-                }
             }
         }
         /// <summary>
@@ -156,5 +137,28 @@ namespace OAHeLP_Database_Project
             childForm.Show();
         }
         #endregion
+
+        private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string queryString = $"select * from [Subject].Name N where N.FirstName = '{selectedName}'";
+
+                SqlCommand command = new SqlCommand(queryString, connection); 
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        var id = reader.GetInt32(0);
+                        var firstName = reader.GetString(1);
+                        OpenChildForm(new DetailedView(id, firstName));
+                    }
+                }
+            }
+        }
     }
 }

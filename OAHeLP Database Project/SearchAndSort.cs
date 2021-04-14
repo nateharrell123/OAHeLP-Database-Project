@@ -52,38 +52,82 @@ namespace OAHeLP_Database_Project
 
             using (connection = new SqlConnection(connectionString))
             {
-                //first we do a sex check, this will straight filter people out rather than contribute to the score
-
-                //This will be the general format, but I want the query string to be much more complicated to hopefully cut down on the amount of commands we send
+                
                 string queryString;
-                queryString = "SELECT DISTINCT SubjectID, Sex FROM Subject WHERE Sex = " + sex; //this will probably need to be edited depending on the exact makeup of our db, but that should be easy
+
+                //alright, we're going to make a giant query so that we don't have to do a bunch of seperate ones. Then, we'll store the info and filter through it as needed
+                //so the question is, what all do we need?
+
+                //also, eventually this should probably be some sort of string builder, but I'm just hardcoding this for now to make everything clear
+
+                //First we do sex
+                queryString = "SELECT DISTINCT S.SubjectID, S.Sex, FROM Subject S WHERE Sex = " + sex; //this will probably need to be edited depending on the exact makeup of our db, but that should be easy
+
+                //then, we need ethnic group
+                queryString = "SELECT DISTINCT S.SubjectID, S.Sex, S.EthnicGroup FROM Subject S WHERE Sex = " + sex;
+
+                //now we need the name(s) of the the SubjectIDs. This will involve a join based on the SubjectName table
+                queryString = "SELECT DISTINCT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName" + 
+                    "FROM Subject S " + 
+                        "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
+                        "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
+                    "WHERE Sex = " + sex;
+
+                //next we need to get the VillageID of their Residence, also taking out distinct because I'm unsure if it's needed
+                queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID" + 
+                    "FROM Subject S " + 
+                        "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
+                        "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
+                        "LEFT JOIN Residence R ON S.SubjectID = R.SubjectID " +
+                        "LEFT JOIN Village V ON V.VillageID = R.VillageID" +
+                    "WHERE Sex = " + sex;
+
+                //and that should be the entire query!
+
+                //for reference, this query will output a table that looks like this
+                
+                //     0          1           2            3             4               5           6             7                     
+                //S.SubjectID | S.Sex | S.EthnicGroup | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID
+                
+
+                
 
                 SqlCommand command = new SqlCommand(queryString, connection);
                 connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
                 //you can access data through the following syntax:
+
+                //now this is going into a list array so that I don't pull out my hair trying to work with it
+                //it's going to be a list array of strings, that's the easiest to parse into other types if need be
+                List<string>[] queryResultsList = new List<string>[reader.FieldCount]
+
                 if (reader.HasRows)
                 {
-                    //this could be used to keep track of the row that you are on, but it isn't necessary here
-                    //int i = 0;
+                    
+                    int i = 0;//I mostly have th counter here just in case I need it. I don't actually think you do, but it's still decent to have
 
                     //The while loop iterates through the rows
                     while (reader.Read())
                     {
-                        //i++;
+                        
+                        //string array to represent the row
+                        string[] row = new string[reader.FieldCount];
 
                         //fieldcount returns the number of rows
-                        //this could be used to pull multiple data points, but we only want their subject ID, so this is unnecessary
-                        /*
+                        
                         for(int j = 0;j < reader.FieldCount; j++)
                         {
-                            
+                            row[j] = ToString(reader.GetValue(j));
                         }//for
-                        */
+                        
+                        //now that we have the row stored in the array, we can add it to the list
+                        queryResultsList.Append(row);
 
                         //enter their subjectIDs into the dict and start at a base score of 0
                         subjectIDAndScores[reader.GetInt32(0)] = 0;
+                        
+                        i++;//iterate the counter
                     }//while
                 }//if
                 else
@@ -92,16 +136,34 @@ namespace OAHeLP_Database_Project
                 }//else
                 reader.Close();
 
-                //now our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
+                //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to. We'll look at possible performance differences later
+                string[][] queryResultsArray = new string[queryResultsList.Length][reader.FieldCount];
 
-                //next, we need to filter the Database for all of the subjects we already have that match the given ethnic group
+                for(int i = 0 ; i < queryResultsList.Length ; i++)
+                {
+                    //string array to represent the row
+                    string[] row = queryResultsList.GetValue(i);
+
+                    for(int j = 0; j<reader.FieldCount; j++)
+                    {
+                        queryResultsArray[i][j] = row[j];
+                    }//for
+                }//for
+
+                //cool, now we have a 2d array with all of the data points we need!
+                //our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
+
+                //next, we need to filter through the Database for all of the subjects we already have that match the given ethnic group
                 //these individuals then get a +10 to their score
 
+                //each row is one subject, but one subject may be on multiple rows if they have multiple names associated with the subject. 
+                for (int i = 0; i < queryResultsArray.Length; i++)
+                {
+                    
+                }
 
 
                 //next, in a loop, we run our nameMatch method. for an exact match (return of 0), the subject in the dictionary gets +10. For a close partial(return < 5), they get +5, (return < 9)for a not so close partial, they get +2, and no match gets +0
-
-                //next, we loop through our dictionary and filter out any names that have not already gained >10 score. This should help cut down runtime (although it's already going to be a bit of a beast on those first two)
 
                 //next, we loop and check the given villageID compared to the current village. I'm hoping that we can get some geo-data and do a range analysis here (I think we should be able to given the long and lati properties in that table). The villages being within 10m is +10, within 50m is +5, within 100m is +2
 

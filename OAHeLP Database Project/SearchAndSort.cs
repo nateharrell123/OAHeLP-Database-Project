@@ -316,7 +316,15 @@ namespace OAHeLP_Database_Project
                         int inputLong = int.Parse(inputRecordRow[2]);
 
                         //now we get to do a distance analysis!
+                        //int physicalDistance = physicalDistanceEstimation(lat,long,inputLat,inputLong);
 
+                        var sCoord = new GeoCoordinate(lat,long);
+                        var eCoord = new GeoCoordinate(inputLat,inputLong);
+
+                        //this method returns the distance in meters
+                        int sCoord.GetDistanceTo(eCoord);
+
+                        if()
 
                     }//if
                 }//for
@@ -415,13 +423,9 @@ namespace OAHeLP_Database_Project
             return d[n, m];
         }//distance method
 
-        
-        public int physicalDistanceEstimation(int lat1, int long1, int lat2, int long2)
-        {
-
-        }//physDist
 
 
+    
         // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)
 
         public static string recoPhonemes;

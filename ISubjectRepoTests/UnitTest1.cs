@@ -29,14 +29,7 @@ namespace ISubjectRepoTests
         {
             transaction.Dispose();
         }
-        [TestMethod]
-        public void GetSubjectShouldWork()
-        {
-            var expected = new Subject(2, EthnicGroup.Jahai, "eyxbzz", 'F');
-            var actual = repo.GetSubject(2);
 
-            AssertSubjectsAreEqual(expected, actual);
-        }
         [TestMethod]
         public void SubjectWithNullValuesShouldWork()
         {
@@ -49,6 +42,7 @@ namespace ISubjectRepoTests
                 null,
                 null,
                 null,
+                null, 
                 null
                 );
 
@@ -58,6 +52,14 @@ namespace ISubjectRepoTests
             Assert.AreEqual(null, test.MotherID);
             Assert.AreEqual(null, test.FatherID);
             Assert.IsNotNull(test);
+        }
+        [TestMethod]
+        public void GetSubjectWithNullValuesShouldWork()
+        {
+            var expected = new Subject(31, EthnicGroup.Semai,"jpb1r6",'M',(new DateTime(2000,11,5)),DOBSource.known,"n555388832027",null,44,null);
+            var actual = repo.GetSubject(31);
+
+            AssertSubjectsAreEqual(expected, actual);
         }
 
 

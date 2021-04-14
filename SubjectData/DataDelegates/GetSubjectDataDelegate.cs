@@ -28,11 +28,29 @@ namespace SubjectData.DataDelegates
         {
             if (!reader.Read())
                 throw new RecordNotFoundException(subjectId.ToString());
+            DOBSource source;
+            if (reader.GetString("DOBSource") == "NULL") source = DOBSource.none;
+            else source = (DOBSource)Enum.Parse(typeof(DOBSource), reader.GetString("DOBSource"));
+            return new Subject(
+                subjectId,
+                (EthnicGroup)Enum.Parse(typeof(EthnicGroup), reader.GetString("EthnicGroup")),
+                reader.GetString("OAHeLPID"),
+                reader.GetString("Sex")[0],
+                reader.GetNullableDateTime("DOB"),
+                source,
+                reader.GetNullableString("ICNumber"),
+                reader.GetNullableInt32("MotherID"),
+                reader.GetNullableInt32("FatherID"),
+                reader.GetNullableString("PhotoFileName")
 
+                );
+
+            /*
             return new Subject(subjectId,
                (EthnicGroup)Enum.Parse(typeof(EthnicGroup), reader.GetString("EthnicGroup")),
                reader.GetString("OAHeLPID"),
                reader.GetString("Sex")[0]); //better way to do this??
+            */
         }
     }
 }

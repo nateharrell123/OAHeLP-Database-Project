@@ -16,7 +16,7 @@ namespace SubjectData.Models
 
         public string OAHeLPID { get; set; }
 
-        public DateTime? DOB { get; set; }
+        public DateTimeOffset? DOB { get; set; }
 
         public DOBSource? DOBSource { get; set; }
 
@@ -39,7 +39,8 @@ namespace SubjectData.Models
             DOBSource? dobSource, 
             string ic, 
             int? mother, 
-            int? father)
+            int? father,
+            string photo)
         {
             SubjectID = id;
             EthnicGroup = eg;
@@ -50,8 +51,9 @@ namespace SubjectData.Models
             ICNumber = ic;
             MotherID = mother;
             FatherID = father;
+            photoFileName = photo;
         }
-
+        /*
         public Subject(int id, EthnicGroup eg, string oaID, char sex)
         {
             SubjectID = id;
@@ -59,6 +61,7 @@ namespace SubjectData.Models
             OAHeLPID = oaID;
             Sex = sex;
         }
+        */
 
         void SetNames(List<Name> n)
         {

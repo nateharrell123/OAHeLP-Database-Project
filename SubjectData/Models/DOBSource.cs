@@ -8,6 +8,7 @@ namespace SubjectData.Models
 {
     public enum DOBSource
     {
+        none,
         ic_card,
         known,
         anthro_estimate

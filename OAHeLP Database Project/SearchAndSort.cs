@@ -42,7 +42,7 @@ namespace OAHeLP_Database_Project
         /// <param name="villageID">The village that the patient currently says that they are from. The search algorithm compares this to other villages at varying ranges</param>
         /// <param name="DOB">DOB is unreliable, but the search algorithm still makes minor use of it</param>
         /// <returns></returns>
-        public Dictionary<int,int> SearchDB(string name, string ethnicGroup, string villageID, string sex)
+        public Dictionary<int,int> SearchDB(string inputName, string ethnicGroup, string villageID, string sex)
         {
             SqlConnection connection;
             string connectionString;
@@ -60,6 +60,7 @@ namespace OAHeLP_Database_Project
 
                 //also, eventually this should probably be some sort of string builder, but I'm just hardcoding this for now to make everything clear
 
+                /*
                 //First we do sex
                 queryString = "SELECT DISTINCT S.SubjectID, S.Sex, FROM Subject S WHERE Sex = " + sex; //this will probably need to be edited depending on the exact makeup of our db, but that should be easy
 
@@ -72,15 +73,18 @@ namespace OAHeLP_Database_Project
                         "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
                         "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
                     "WHERE Sex = " + sex;
+                */
 
                 //next we need to get the VillageID of their Residence, also taking out distinct because I'm unsure if it's needed
+                //also added the ordering to the query
                 queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID" + 
                     "FROM Subject S " + 
                         "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
                         "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
                         "LEFT JOIN Residence R ON S.SubjectID = R.SubjectID " +
                         "LEFT JOIN Village V ON V.VillageID = R.VillageID" +
-                    "WHERE Sex = " + sex;
+                    "WHERE Sex = " + sex +
+                    " ORDER BY S.SubjectID";
 
                 //and that should be the entire query!
 
@@ -159,11 +163,81 @@ namespace OAHeLP_Database_Project
                 //each row is one subject, but one subject may be on multiple rows if they have multiple names associated with the subject. 
                 for (int i = 0; i < queryResultsArray.Length; i++)
                 {
-                    
-                }
+                    //check to see if this is the last entry for the given subject
+                    //it doesn't actually matter which entry it is, just matters that we only consider one of them
+                    if(!(queryResultsArray[i][0].Equals(queryResultsArray[i+1][0])))
+                    {
+                        //if this is the last record for that subject, we will look at the ethnic group compared to the input ethnic group
+                        if (queryResultsArray[i][2].Equals(ethnicGroup))
+                        {
+                            subjectIDAndScores[queryResultsArray[i][0]] += 10
+                        }//if
+                    }//if
+                }//for
 
 
                 //next, in a loop, we run our nameMatch method. for an exact match (return of 0), the subject in the dictionary gets +10. For a close partial(return < 5), they get +5, (return < 9)for a not so close partial, they get +2, and no match gets +0
+
+                for (int i = 0; i < queryResultsArray.Length; i++)
+                {
+                    
+                    //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
+                    //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
+                    int nameCount = 0;
+                    while (queryResultsArray[i][0].Equals(queryResultsArray[i + 1][0]))
+                    {
+                        nameCount++;
+                        i++;
+                    }//if
+                    
+                    //now we can check nameCount and run our name match a corrasponding number of times
+                    //we will take the lowest result from the series of runs
+                    int lowestResult = Int32.MaxValue;
+                    for(int j = 0; j <= nameCount; j++)
+                    {
+                        //the weird arithmetic in that box is because of:
+                        //i is the row we are on assuming that there was only one name
+                        //we subtract by namecount to take us back to the first entry (which is subtracting by 0 if there was only 1 name, and then subtracting by an additional 1 per name over 1 name)
+                        //we then add j, which will iterate a number of times = to the ammount of names
+                        //this is all because we don't actually want to manipulate i anymore since it's in the right place for the next subject
+                        string[] row = queryResultsArray[i-nameCount+j];
+
+                        //we will now create a single string that is the first, all middles, and last name of the subject
+                        string databaseRowName = row[4] + " " + row[5] + " " + row[6];
+
+                        //then we run nameMatch!
+                        int distance = nameMatch(inputName,databaseRowName);
+
+                        //next, compare the result to the lowest result and bing bang boom we got it
+                        if (distance < lowestResult)
+                        {
+                            lowestResult = distance;
+                        }//if
+
+                    }//for
+
+                    //now we take our lowest result and compare it to our weights
+                    if(lowestResult == 0)
+                    {
+                        subjectIDAndScores[queryResultsArray[i-nameCount][0]] += 10
+                    }//if
+                    else if(lowestResult < 5)
+                    {
+                        subjectIDAndScores[queryResultsArray[i-nameCount][0]] += 5;
+                    }//else if
+                    else if(lowestResult < 9)
+                    {
+                        subjectIDAndScores[queryResultsArray[i-nameCount][0]] += 2;
+                    }//else if
+                    else
+                    {
+
+                    }//else
+
+
+                }//for
+
+
 
                 //next, we loop and check the given villageID compared to the current village. I'm hoping that we can get some geo-data and do a range analysis here (I think we should be able to given the long and lati properties in that table). The villages being within 10m is +10, within 50m is +5, within 100m is +2
 

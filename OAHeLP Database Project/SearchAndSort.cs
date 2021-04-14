@@ -42,7 +42,7 @@ namespace OAHeLP_Database_Project
         /// <param name="villageID">The village that the patient currently says that they are from. The search algorithm compares this to other villages at varying ranges</param>
         /// <param name="DOB">DOB is unreliable, but the search algorithm still makes minor use of it</param>
         /// <returns></returns>
-        public Dictionary<int,int> SearchDB(string inputName, string ethnicGroup, string villageID, string sex)
+        public Dictionary<int,int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageID, string inputSex)
         {
             SqlConnection connection;
             string connectionString;
@@ -53,7 +53,47 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             {
                 
+
+                //firstly this we need to grab the long and lat info for the inputVillage, so we'll run a quick query for that. 
+                
                 string queryString;
+                queryString = "SELECT V.VillageID,V.GPSLatitude,V.GPSLongitude FROM Village V WHERE V.VillageID = " + inputVillageID;
+
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                //you can access data through the following syntax:
+
+                //now this is going into a list array so that I don't pull out my hair trying to work with it
+                //it's going to be a list array of strings, that's the easiest to parse into other types if need be
+                List<string>[] queryResultsListInputVillageGPS = new List<string>[reader.FieldCount]
+
+                if (reader.HasRows)
+                {
+                    
+                    //The while loop iterates through the rows
+                    while (reader.Read())
+                    {
+                        
+                        //string array to represent the row
+                        string[] row = new string[reader.FieldCount];
+
+                        row[0] = reader.GetValue(0);
+                        row[1] = reader.GetValue(1);
+                        row[2] = reader.GetValue(2);
+
+                        //this should only have one row, but better safe than sorry
+                        queryResultsListVillageGPS.Append(row);
+                        
+                    }//while
+                }//if
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }//else
+                reader.Close();
 
                 //alright, we're going to make a giant query so that we don't have to do a bunch of seperate ones. Then, we'll store the info and filter through it as needed
                 //so the question is, what all do we need?
@@ -73,7 +113,7 @@ namespace OAHeLP_Database_Project
                         "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
                         "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
                     "WHERE Sex = " + sex;
-                */
+                
 
                 //next we need to get the VillageID of their Residence, also taking out distinct because I'm unsure if it's needed
                 //also added the ordering to the query
@@ -83,23 +123,33 @@ namespace OAHeLP_Database_Project
                         "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
                         "LEFT JOIN Residence R ON S.SubjectID = R.SubjectID " +
                         "LEFT JOIN Village V ON V.VillageID = R.VillageID" +
-                    "WHERE Sex = " + sex +
+                    "WHERE Sex = " + inputSex +
+                    " ORDER BY S.SubjectID";
+                */
+                //finally, we'll also query the lat and long of that village
+                queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude" + 
+                    "FROM Subject S " + 
+                        "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
+                        "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
+                        "LEFT JOIN Residence R ON S.SubjectID = R.SubjectID " +
+                        "LEFT JOIN Village V ON V.VillageID = R.VillageID" +
+                    "WHERE Sex = " + inputSex +
                     " ORDER BY S.SubjectID";
 
                 //and that should be the entire query!
 
                 //for reference, this query will output a table that looks like this
                 
-                //     0          1           2            3             4               5           6             7                     
-                //S.SubjectID | S.Sex | S.EthnicGroup | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID
+                //     0          1           2            3             4               5           6             7              8               9      
+                //S.SubjectID | S.Sex | S.EthnicGroup | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID | V.GPSLatitude | V.GPSLongitude
                 
 
                 
 
-                SqlCommand command = new SqlCommand(queryString, connection);
+                command = new SqlCommand(queryString, connection);
                 connection.Open();
 
-                SqlDataReader reader = command.ExecuteReader();
+                reader = command.ExecuteReader();
                 //you can access data through the following syntax:
 
                 //now this is going into a list array so that I don't pull out my hair trying to work with it
@@ -134,11 +184,14 @@ namespace OAHeLP_Database_Project
                         i++;//iterate the counter
                     }//while
                 }//if
+
                 else
                 {
                     Console.WriteLine("No rows found.");
                 }//else
+
                 reader.Close();
+
 
                 //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to. We'll look at possible performance differences later
                 string[][] queryResultsArray = new string[queryResultsList.Length][reader.FieldCount];
@@ -168,7 +221,7 @@ namespace OAHeLP_Database_Project
                     if(!(queryResultsArray[i][0].Equals(queryResultsArray[i+1][0])))
                     {
                         //if this is the last record for that subject, we will look at the ethnic group compared to the input ethnic group
-                        if (queryResultsArray[i][2].Equals(ethnicGroup))
+                        if (queryResultsArray[i][2].Equals(inputEthnicGroup))
                         {
                             subjectIDAndScores[queryResultsArray[i][0]] += 10
                         }//if
@@ -231,7 +284,7 @@ namespace OAHeLP_Database_Project
                     }//else if
                     else
                     {
-
+                        //nothing
                     }//else
 
 
@@ -239,7 +292,34 @@ namespace OAHeLP_Database_Project
 
 
 
-                //next, we loop and check the given villageID compared to the current village. I'm hoping that we can get some geo-data and do a range analysis here (I think we should be able to given the long and lati properties in that table). The villages being within 10m is +10, within 50m is +5, within 100m is +2
+                //next, we loop and check the given villageID compared to the current village. I'm hoping that we can get some geo-data and do a range analysis here
+                //(I think we should be able to given the long and lati properties in that table). The villages being within 10m is +10, within 50m is +5, within 100m is +2
+
+                for (int i = 0; i < queryResultsArray.Length; i++)
+                {
+                    //check to see if this is the last entry for the given subject
+                    //it doesn't actually matter which entry it is, just matters that we only consider one of them
+                    if(!(queryResultsArray[i][0].Equals(queryResultsArray[i+1][0])))
+                    {
+                        
+                        //if this is the last record, then we can look at the village
+                        string[] row = queryResultsArray[i];
+
+                        //lets get the lat and long
+                        int lat = int.Parse(row[8]);
+                        int long = int.Parse(row[9]);
+
+                        string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
+                        int inputLat = int.Parse(inputRecordRow[1]);
+                        int inputLong = int.Parse(inputRecordRow[2]);
+
+                        //now we get to do a distance analysis!
+
+
+                    }//if
+                }//for
+
+
 
                 //after this, I would want to get a bit creative. We want both a time analysis on the given location and time analysis for all nearby locations. 
                 //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
@@ -247,7 +327,7 @@ namespace OAHeLP_Database_Project
 
 
                 //after that we return the dictionary! This can then be used by the UI to display relative confidences. We can also do some normalization of the data before returning
-            }
+            }//opening connection
                 return subjectIDAndScores;
         }//SearchDB
 

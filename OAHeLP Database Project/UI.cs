@@ -70,6 +70,7 @@ namespace OAHeLP_Database_Project
                 lastName = "LastName";
                 Person person = new Person(firstName, middleNames, lastName);
                 //uxNamesListBox.DisplayMember = person.ToString();
+                // make a list of people, add people to list show in table
                 
                 uxNamesListBox.DataSource = dataTable;
                 uxNamesListBox.DisplayMember = "FirstName";
@@ -102,6 +103,7 @@ namespace OAHeLP_Database_Project
             {
                 connection.Open();
                 command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
+
                 command.ExecuteNonQuery();
             }
             uxNameLookupText.Clear();

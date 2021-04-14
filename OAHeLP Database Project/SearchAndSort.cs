@@ -89,10 +89,12 @@ namespace OAHeLP_Database_Project
                         
                     }//while
                 }//if
+
                 else
                 {
                     Console.WriteLine("No rows found.");
                 }//else
+
                 reader.Close();
 
                 //alright, we're going to make a giant query so that we don't have to do a bunch of seperate ones. Then, we'll store the info and filter through it as needed
@@ -413,7 +415,11 @@ namespace OAHeLP_Database_Project
             return d[n, m];
         }//distance method
 
+        
+        public int physicalDistanceEstimation(int lat1, int long1, int lat2, int long2)
+        {
 
+        }//physDist
 
 
         // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)

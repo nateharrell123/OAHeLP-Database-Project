@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SubjectData;
+using SubjectData.Models;
+using System;
 using System.Collections.Generic;
 using System.Transactions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataAccess;
-using SubjectData.Models;
-using SubjectData;
 
 namespace ISubjectRepoTests
 {
@@ -34,15 +34,15 @@ namespace ISubjectRepoTests
         public void SubjectWithNullValuesShouldWork()
         {
             var test = new Subject(
-                2, 
-                EthnicGroup.Jahai, 
-                "eyxbzz", 
+                2,
+                EthnicGroup.Jahai,
+                "eyxbzz",
                 'F',
                 null,
                 null,
                 null,
                 null,
-                null, 
+                null,
                 null
                 );
 
@@ -56,20 +56,32 @@ namespace ISubjectRepoTests
         [TestMethod]
         public void GetSubjectWithNullValuesShouldWork()
         {
-            var expected = new Subject(31, EthnicGroup.Semai,"jpb1r6",'M',(new DateTime(2000,11,5)),DOBSource.known,"n555388832027",null,44,null);
+            var expected = new Subject(31, EthnicGroup.Semai, "jpb1r6", 'M', (new DateTime(2000, 11, 5)), DOBSource.known, "n555388832027", null, 44, null);
             var actual = repo.GetSubject(31);
 
             AssertSubjectsAreEqual(expected, actual);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(RecordNotFoundException))]
+        public void FetchPersonWithNonExistingIdShouldThrowRecordNotFoundException()
+        {
+            repo.GetSubject(0);
+        }
+
+        [TestMethod]
+        public void GetNamesShouldWork()
+        {
+            Name n1 = new Name("mohd", "noor azmi bin", "ahmad");
+            Name n2 = new Name("ey celangeh", "", "");
+            List<Name> actual = repo.GetNames(12);
+            Assert.IsTrue(actual.Contains(n1));
+            Assert.IsTrue(actual.Contains(n2));
+
+
+        }
 
         /*
-            [TestMethod]
-            [ExpectedException(typeof(RecordNotFoundException))]
-            public void FetchPersonWithNonExistingIdShouldThrowRecordNotFoundException()
-            {
-                repo.FetchPerson(0);
-            }
 
             [TestMethod]
             public void FetchPersonShouldWork()
@@ -139,16 +151,16 @@ namespace ISubjectRepoTests
         */
 
         private static void AssertSubjectsAreEqual(Subject expected, Subject actual)
-    {
-        Assert.IsNotNull(actual);
-        Assert.AreEqual(expected.SubjectID, actual.SubjectID);
-        Assert.AreEqual(expected.EthnicGroup, actual.EthnicGroup);
-        Assert.AreEqual(expected.Sex, actual.Sex);
-        //Assert.AreEqual(expected.Names, actual.Names);
-        Assert.AreEqual(expected.MotherID, actual.MotherID);
-        Assert.AreEqual(expected.FatherID, actual.FatherID);
-        Assert.AreEqual(expected.photoFileName, actual.photoFileName);
-        Assert.AreEqual(expected.ICNumber, actual.ICNumber);
-    }
+        {
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(expected.SubjectID, actual.SubjectID);
+            Assert.AreEqual(expected.EthnicGroup, actual.EthnicGroup);
+            Assert.AreEqual(expected.Sex, actual.Sex);
+            //Assert.AreEqual(expected.Names, actual.Names);
+            Assert.AreEqual(expected.MotherID, actual.MotherID);
+            Assert.AreEqual(expected.FatherID, actual.FatherID);
+            Assert.AreEqual(expected.photoFileName, actual.photoFileName);
+            Assert.AreEqual(expected.ICNumber, actual.ICNumber);
+        }
     }
 }

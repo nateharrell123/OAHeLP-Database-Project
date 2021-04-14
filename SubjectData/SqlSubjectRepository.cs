@@ -44,6 +44,12 @@ namespace SubjectData
         {
             throw new NotImplementedException();
         }
+
+        public List<Name> GetNames(int subjectId)
+        {
+            var d = new GetNamesDataDelegate(subjectId);
+            return executor.ExecuteReader(d);
+        }
         
     }
 }

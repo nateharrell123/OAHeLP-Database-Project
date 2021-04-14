@@ -1,5 +1,5 @@
-﻿select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex
+﻿select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex, S.[Name]
 from[Subject].[Subject] S 
 join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID 
 join[Subject].[Name] N on N.NameID = S.SubjectID
-where N.FirstName = 'Shamsul'
+where N.FirstName = 'Shamsul' 

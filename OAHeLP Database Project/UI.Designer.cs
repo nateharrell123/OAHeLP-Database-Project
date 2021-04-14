@@ -88,7 +88,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxDetailedViewPanel.Location = new System.Drawing.Point(503, 157);
             this.uxDetailedViewPanel.Name = "uxDetailedViewPanel";
-            this.uxDetailedViewPanel.Size = new System.Drawing.Size(518, 373);
+            this.uxDetailedViewPanel.Size = new System.Drawing.Size(617, 373);
             this.uxDetailedViewPanel.TabIndex = 13;
             // 
             // uxNameLookupText

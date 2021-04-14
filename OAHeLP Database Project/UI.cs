@@ -152,7 +152,7 @@ namespace OAHeLP_Database_Project
                     //$"where N.FirstName = 'Shamsul'";
                 */
 
-                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = '{selectedName}'";
+                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex,S.EthnicGroup from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = '{selectedName}'";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
@@ -165,7 +165,8 @@ namespace OAHeLP_Database_Project
                         var id = reader.GetString(0);
                         var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
                         var sex = reader.GetString(4);
-                        OpenChildForm(new DetailedView(id, fullName, sex));
+                        var ethnicGroup = reader.GetString(5);
+                        OpenChildForm(new DetailedView(id, fullName, sex, ethnicGroup));
                     }
                 }
             }

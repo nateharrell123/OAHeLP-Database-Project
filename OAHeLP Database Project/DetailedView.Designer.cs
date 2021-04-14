@@ -117,7 +117,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
-            this.ClientSize = new System.Drawing.Size(617, 373);
+            this.ClientSize = new System.Drawing.Size(787, 373);
             this.Controls.Add(this.uxResidenceHistory);
             this.Controls.Add(this.uxEthnicityLabel);
             this.Controls.Add(this.uxAgeLabel);

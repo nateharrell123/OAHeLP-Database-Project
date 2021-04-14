@@ -86,7 +86,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxDetailedViewPanel
             // 
-            this.uxDetailedViewPanel.Location = new System.Drawing.Point(503, 157);
+            this.uxDetailedViewPanel.Location = new System.Drawing.Point(499, 163);
             this.uxDetailedViewPanel.Name = "uxDetailedViewPanel";
             this.uxDetailedViewPanel.Size = new System.Drawing.Size(617, 373);
             this.uxDetailedViewPanel.TabIndex = 13;
@@ -173,7 +173,7 @@ namespace OAHeLP_Database_Project
             this.panel1.Controls.Add(this.uxNameLookupText);
             this.panel1.Controls.Add(this.uxSexComboBox);
             this.panel1.Controls.Add(this.uxVillageComboBox);
-            this.panel1.Location = new System.Drawing.Point(503, 35);
+            this.panel1.Location = new System.Drawing.Point(785, 53);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(518, 116);
             this.panel1.TabIndex = 16;
@@ -242,7 +242,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1033, 632);
+            this.ClientSize = new System.Drawing.Size(1128, 632);
             this.Controls.Add(this.uxNamesListBox);
             this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.button2);

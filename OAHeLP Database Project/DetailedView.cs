@@ -12,13 +12,13 @@ namespace OAHeLP_Database_Project
 {
     public partial class DetailedView : Form
     {
-        public DetailedView(string projectID, string name = "", string sex = "", string ethnicity = "")
+        public DetailedView(string projectID, string name = "", string sex = "", int ethnicityID = 0)
         {
             InitializeComponent();
             uxProjectIDLabel.Text = $"Project ID: {projectID}";
             uxNameLabel.Text = $"Name: {name}";
             uxSexLabel.Text = $"Sex: {sex}";
-            uxEthnicityLabel.Text = $"Ethnic Group: {ethnicity}";
+            uxEthnicityLabel.Text = $"Ethnic Group: {ethnicityID}";
         }
     }
 }

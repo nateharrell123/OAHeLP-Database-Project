@@ -39,7 +39,10 @@ namespace SubjectData
 
         public Subject GetOASubject(string oaId)
         {
-            throw new NotImplementedException();
+            var d = new GetOASubjectDataDelegate(oaId);
+            Subject s = executor.ExecuteReader(d);
+            s.SetNames(GetNames(s.SubjectID));
+            return s;
         }
 
         public List<Subject> GetSubjects(List<int> subjectIds)

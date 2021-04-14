@@ -77,9 +77,21 @@ namespace ISubjectRepoTests
             List<Name> actual = repo.GetNames(12);
             Assert.IsTrue(actual.Contains(n1));
             Assert.IsTrue(actual.Contains(n2));
-
-
         }
+
+        [TestMethod]
+        public void BindingNamesToSubjectShouldWork()
+        {
+            Subject test = repo.GetSubject(40);
+            List<Name> names = repo.GetNames(40);
+            test.SetNames(names);
+
+            foreach(Name n in names)
+            {
+                Assert.IsTrue(test.Names.Contains(n));
+            }
+        }
+
 
         /*
 

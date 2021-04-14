@@ -63,7 +63,7 @@ namespace SubjectData.Models
         }
         */
 
-        void SetNames(List<Name> n)
+        public void SetNames(List<Name> n)
         {
             if (Names == null) Names = new List<Name>();
             foreach(Name nm in n)

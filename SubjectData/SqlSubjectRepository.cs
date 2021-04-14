@@ -32,7 +32,9 @@ namespace SubjectData
         public Subject GetSubject(int subjectId)
         {
             var d = new GetSubjectDataDelegate(subjectId);
-            return executor.ExecuteReader(d);
+            Subject s = executor.ExecuteReader(d);
+            s.SetNames(GetNames(subjectId));
+            return s;
         }
 
         public Subject GetOASubject(string oaId)

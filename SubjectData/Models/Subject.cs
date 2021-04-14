@@ -12,7 +12,7 @@ namespace SubjectData.Models
 
         public List<Name> Names { get; private set; }
 
-        public EthnicGroup? EthnicGroup { get; } //this doesn't need to be nullable?
+        public EthnicGroup EthnicGroup { get; } //does this need to be nullable?
 
         public string OAHeLPID { get; set; }
 

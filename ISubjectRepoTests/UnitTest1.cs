@@ -79,6 +79,7 @@ namespace ISubjectRepoTests
             Assert.IsTrue(actual.Contains(n2));
         }
 
+        /*
         [TestMethod]
         public void BindingNamesToSubjectShouldWork()
         {
@@ -91,6 +92,7 @@ namespace ISubjectRepoTests
                 Assert.IsTrue(test.Names.Contains(n));
             }
         }
+        */
 
         private static void AssertSubjectsAreEqual(Subject expected, Subject actual)
         {

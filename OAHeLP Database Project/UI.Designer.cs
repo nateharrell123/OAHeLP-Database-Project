@@ -233,7 +233,7 @@ namespace OAHeLP_Database_Project
             this.uxNamesListBox.ItemHeight = 25;
             this.uxNamesListBox.Location = new System.Drawing.Point(12, 157);
             this.uxNamesListBox.Name = "uxNamesListBox";
-            this.uxNamesListBox.Size = new System.Drawing.Size(465, 354);
+            this.uxNamesListBox.Size = new System.Drawing.Size(465, 379);
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
             // 

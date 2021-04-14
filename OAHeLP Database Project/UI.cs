@@ -140,40 +140,35 @@ namespace OAHeLP_Database_Project
 
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
+            using (connection = new SqlConnection(connectionString))
             {
-                var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
+                connection.Open();
+                /*
+                query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex" +
+                    "from[Subject].[Subject] S" +
+                    "join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID" +
+                    "join[Subject].[Name] N on N.NameID = S.SubjectID";
+                    //$"where N.FirstName = 'Shamsul'";
+                */
 
-                using (connection = new SqlConnection(connectionString))
+                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = '{selectedName}'";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
                 {
-                    connection.Open();
-                    string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex " +
-                        "from[Subject].[Subject] S " +
-                        "join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                        "join[Subject].[Name] N on N.NameID = S.SubjectID" +
-                        $"where N.FirstName = '{selectedName}'";
-
-                    SqlCommand command = new SqlCommand(query, connection);
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.HasRows)
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            // FIX THIS
-                            var id = reader.GetString(0);
-                            var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
-                            var sex = reader.GetString(4);
-                            OpenChildForm(new DetailedView(id, fullName, sex));
-                        }
+                        // FIX THIS
+                        var id = reader.GetString(0);
+                        var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
+                        var sex = reader.GetString(4);
+                        OpenChildForm(new DetailedView(id, fullName, sex));
                     }
                 }
             }
-            catch (Exception)
-            {
-                return; // this has to change
-            }
-           
         }
     }
 }

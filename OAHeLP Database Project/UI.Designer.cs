@@ -51,7 +51,8 @@ namespace OAHeLP_Database_Project
             this.uxNamesListBox = new System.Windows.Forms.ListBox();
             this.uxPipeOne = new System.Windows.Forms.Label();
             this.uxICCardNumberTextBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.uxProjectIDTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -170,11 +171,12 @@ namespace OAHeLP_Database_Project
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.uxPipeOne);
             this.panel1.Controls.Add(this.uxAddPersonButton);
             this.panel1.Controls.Add(this.uxSearchButton);
             this.panel1.Controls.Add(this.uxEthnicGroupComboBox);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.uxProjectIDTextBox);
             this.panel1.Controls.Add(this.uxICCardNumberTextBox);
             this.panel1.Controls.Add(this.uxNameLookupText);
             this.panel1.Controls.Add(this.uxSexComboBox);
@@ -246,10 +248,10 @@ namespace OAHeLP_Database_Project
             // uxPipeOne
             // 
             this.uxPipeOne.AutoSize = true;
-            this.uxPipeOne.Font = new System.Drawing.Font("Microsoft YaHei Light", 60F);
-            this.uxPipeOne.Location = new System.Drawing.Point(445, 0);
+            this.uxPipeOne.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
+            this.uxPipeOne.Location = new System.Drawing.Point(456, 15);
             this.uxPipeOne.Name = "uxPipeOne";
-            this.uxPipeOne.Size = new System.Drawing.Size(65, 104);
+            this.uxPipeOne.Size = new System.Drawing.Size(43, 70);
             this.uxPipeOne.TabIndex = 18;
             this.uxPipeOne.Text = "|";
             // 
@@ -262,14 +264,24 @@ namespace OAHeLP_Database_Project
             this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 28);
             this.uxICCardNumberTextBox.TabIndex = 12;
             // 
-            // textBox1
+            // uxProjectIDTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.textBox1.Location = new System.Drawing.Point(35, 40);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(171, 28);
-            this.textBox1.TabIndex = 12;
+            this.uxProjectIDTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxProjectIDTextBox.Location = new System.Drawing.Point(35, 40);
+            this.uxProjectIDTextBox.Multiline = true;
+            this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
+            this.uxProjectIDTextBox.Size = new System.Drawing.Size(171, 28);
+            this.uxProjectIDTextBox.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
+            this.label1.Location = new System.Drawing.Point(212, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 70);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "|";
             // 
             // UI
             // 
@@ -318,8 +330,9 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Button uxAddPersonButton;
         private System.Windows.Forms.ListBox uxNamesListBox;
         private System.Windows.Forms.Label uxPipeOne;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox uxProjectIDTextBox;
         private System.Windows.Forms.TextBox uxICCardNumberTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 

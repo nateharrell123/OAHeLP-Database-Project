@@ -37,84 +37,106 @@ namespace ISubjectRepoTests
 
             AssertSubjectsAreEqual(expected, actual);
         }
-
-
-    /*
         [TestMethod]
-        [ExpectedException(typeof(RecordNotFoundException))]
-        public void FetchPersonWithNonExistingIdShouldThrowRecordNotFoundException()
+        public void SubjectWithNullValuesShouldWork()
         {
-            repo.FetchPerson(0);
+            var test = new Subject(
+                2, 
+                EthnicGroup.Jahai, 
+                "eyxbzz", 
+                'F',
+                null,
+                null,
+                null,
+                null,
+                null
+                );
+
+            Assert.AreEqual(null, test.DOB);
+            Assert.AreEqual(null, test.DOBSource);
+            Assert.AreEqual(null, test.ICNumber);
+            Assert.AreEqual(null, test.MotherID);
+            Assert.AreEqual(null, test.FatherID);
+            Assert.IsNotNull(test);
         }
 
-        [TestMethod]
-        public void FetchPersonShouldWork()
-        {
-            var expected = CreateTestPerson();
-            var actual = repo.FetchPerson(expected.PersonId);
 
-            AssertPersonsAreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void GetPersonShouldWork()
-        {
-            var expected = CreateTestPerson();
-            var actual = repo.GetPerson(expected.Email);
-
-            AssertPersonsAreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void RetrievePersonsShouldWork()
-        {
-            var p1 = CreateTestPerson();
-            var p2 = CreateTestPerson();
-            var p3 = CreateTestPerson();
-
-            var expected = new Dictionary<int, Person>
-         {
-            { p1.PersonId, p1 },
-            { p2.PersonId, p2 },
-            { p3.PersonId, p3 }
-         };
-
-            var actual = repo.RetrievePersons();
-
-            Assert.IsNotNull(actual);
-            Assert.IsTrue(actual.Count >= 3, "At least three are expected.");
-
-            var matchCount = 0;
-
-            foreach (var a in actual)
+        /*
+            [TestMethod]
+            [ExpectedException(typeof(RecordNotFoundException))]
+            public void FetchPersonWithNonExistingIdShouldThrowRecordNotFoundException()
             {
-                if (!expected.ContainsKey(a.PersonId))
-                    continue;
-
-                AssertPersonsAreEqual(expected[a.PersonId], a);
-
-                matchCount += 1;
+                repo.FetchPerson(0);
             }
 
-            Assert.AreEqual(expected.Count, matchCount, "Not all expected persons were returned.");
-        }
+            [TestMethod]
+            public void FetchPersonShouldWork()
+            {
+                var expected = CreateTestPerson();
+                var actual = repo.FetchPerson(expected.PersonId);
 
-        private static void AssertPersonsAreEqual(Person expected, Person actual)
-        {
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(expected.FirstName, actual.FirstName);
-            Assert.AreEqual(expected.LastName, actual.LastName);
-            Assert.AreEqual(expected.Email, actual.Email);
-        }
+                AssertPersonsAreEqual(expected, actual);
+            }
 
-        private Person CreateTestPerson()
-        {
-            return repo.CreatePerson(GetTestString(), GetTestString(), $"{GetTestString()}@test.com");
-        }
-    
-    */
+            [TestMethod]
+            public void GetPersonShouldWork()
+            {
+                var expected = CreateTestPerson();
+                var actual = repo.GetPerson(expected.Email);
 
-    private static void AssertSubjectsAreEqual(Subject expected, Subject actual)
+                AssertPersonsAreEqual(expected, actual);
+            }
+
+            [TestMethod]
+            public void RetrievePersonsShouldWork()
+            {
+                var p1 = CreateTestPerson();
+                var p2 = CreateTestPerson();
+                var p3 = CreateTestPerson();
+
+                var expected = new Dictionary<int, Person>
+             {
+                { p1.PersonId, p1 },
+                { p2.PersonId, p2 },
+                { p3.PersonId, p3 }
+             };
+
+                var actual = repo.RetrievePersons();
+
+                Assert.IsNotNull(actual);
+                Assert.IsTrue(actual.Count >= 3, "At least three are expected.");
+
+                var matchCount = 0;
+
+                foreach (var a in actual)
+                {
+                    if (!expected.ContainsKey(a.PersonId))
+                        continue;
+
+                    AssertPersonsAreEqual(expected[a.PersonId], a);
+
+                    matchCount += 1;
+                }
+
+                Assert.AreEqual(expected.Count, matchCount, "Not all expected persons were returned.");
+            }
+
+            private static void AssertPersonsAreEqual(Person expected, Person actual)
+            {
+                Assert.IsNotNull(actual);
+                Assert.AreEqual(expected.FirstName, actual.FirstName);
+                Assert.AreEqual(expected.LastName, actual.LastName);
+                Assert.AreEqual(expected.Email, actual.Email);
+            }
+
+            private Person CreateTestPerson()
+            {
+                return repo.CreatePerson(GetTestString(), GetTestString(), $"{GetTestString()}@test.com");
+            }
+
+        */
+
+        private static void AssertSubjectsAreEqual(Subject expected, Subject actual)
     {
         Assert.IsNotNull(actual);
         Assert.AreEqual(expected.SubjectID, actual.SubjectID);

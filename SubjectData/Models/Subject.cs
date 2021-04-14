@@ -12,13 +12,13 @@ namespace SubjectData.Models
 
         public List<Name> Names { get; private set; }
 
-        public EthnicGroup EthnicGroup { get; }
+        public EthnicGroup? EthnicGroup { get; }
 
         public string OAHeLPID { get; set; }
 
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
 
-        public DOBSource DOBSource { get; set; }
+        public DOBSource? DOBSource { get; set; }
 
         public char Sex { get; }
 
@@ -26,10 +26,32 @@ namespace SubjectData.Models
 
         public string photoFileName { get; set; }
 
-        public int MotherID { get; set; }
+        public int? MotherID { get; set; }
 
-        public int FatherID { get; set; }
+        public int? FatherID { get; set; }
     
+        public Subject(
+            int id, 
+            EthnicGroup eg, 
+            string oaID, 
+            char sex, 
+            DateTime? dob, 
+            DOBSource? dobSource, 
+            string ic, 
+            int? mother, 
+            int? father)
+        {
+            SubjectID = id;
+            EthnicGroup = eg;
+            OAHeLPID = oaID;
+            Sex = sex;
+            DOB = dob;
+            DOBSource = dobSource;
+            ICNumber = ic;
+            MotherID = mother;
+            FatherID = father;
+        }
+
         public Subject(int id, EthnicGroup eg, string oaID, char sex)
         {
             SubjectID = id;

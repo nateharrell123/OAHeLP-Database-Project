@@ -12,6 +12,7 @@ using System.Speech.Recognition;
 //using Microsoft.AspNet.SignalR.Infrastructure;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Device.Location;
 
 namespace OAHeLP_Database_Project
 {
@@ -68,7 +69,7 @@ namespace OAHeLP_Database_Project
 
                 //now this is going into a list array so that I don't pull out my hair trying to work with it
                 //it's going to be a list array of strings, that's the easiest to parse into other types if need be
-                List<string>[] queryResultsListInputVillageGPS = new List<string>[reader.FieldCount]
+                List<string[]> queryResultsListInputVillageGPS = new List<string[]>();
 
                 if (reader.HasRows)
                 {
@@ -80,12 +81,12 @@ namespace OAHeLP_Database_Project
                         //string array to represent the row
                         string[] row = new string[reader.FieldCount];
 
-                        row[0] = reader.GetValue(0);
-                        row[1] = reader.GetValue(1);
-                        row[2] = reader.GetValue(2);
+                        row[0] = reader.GetValue(0).ToString();
+                        row[1] = reader.GetValue(1).ToString();
+                        row[2] = reader.GetValue(2).ToString();
 
                         //this should only have one row, but better safe than sorry
-                        queryResultsListVillageGPS.Append(row);
+                        queryResultsListInputVillageGPS.Append<string[]>(row);
                         
                     }//while
                 }//if
@@ -102,33 +103,6 @@ namespace OAHeLP_Database_Project
 
                 //also, eventually this should probably be some sort of string builder, but I'm just hardcoding this for now to make everything clear
 
-                /*
-                //First we do sex
-                queryString = "SELECT DISTINCT S.SubjectID, S.Sex, FROM Subject S WHERE Sex = " + sex; //this will probably need to be edited depending on the exact makeup of our db, but that should be easy
-
-                //then, we need ethnic group
-                queryString = "SELECT DISTINCT S.SubjectID, S.Sex, S.EthnicGroup FROM Subject S WHERE Sex = " + sex;
-
-                //now we need the name(s) of the the SubjectIDs. This will involve a join based on the SubjectName table
-                queryString = "SELECT DISTINCT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName" + 
-                    "FROM Subject S " + 
-                        "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
-                        "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
-                    "WHERE Sex = " + sex;
-                
-
-                //next we need to get the VillageID of their Residence, also taking out distinct because I'm unsure if it's needed
-                //also added the ordering to the query
-                queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID" + 
-                    "FROM Subject S " + 
-                        "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
-                        "LEFT JOIN Name N ON SN.NameID = N.NameID " + 
-                        "LEFT JOIN Residence R ON S.SubjectID = R.SubjectID " +
-                        "LEFT JOIN Village V ON V.VillageID = R.VillageID" +
-                    "WHERE Sex = " + inputSex +
-                    " ORDER BY S.SubjectID";
-                */
-                //finally, we'll also query the lat and long of that village
                 queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude" + 
                     "FROM Subject S " + 
                         "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " + 
@@ -146,8 +120,6 @@ namespace OAHeLP_Database_Project
                 //S.SubjectID | S.Sex | S.EthnicGroup | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID | V.GPSLatitude | V.GPSLongitude
                 
 
-                
-
                 command = new SqlCommand(queryString, connection);
                 connection.Open();
 
@@ -156,7 +128,7 @@ namespace OAHeLP_Database_Project
 
                 //now this is going into a list array so that I don't pull out my hair trying to work with it
                 //it's going to be a list array of strings, that's the easiest to parse into other types if need be
-                List<string>[] queryResultsList = new List<string>[reader.FieldCount]
+                List<string[]> queryResultsList = new List<string[]>();
 
                 if (reader.HasRows)
                 {
@@ -174,7 +146,7 @@ namespace OAHeLP_Database_Project
                         
                         for(int j = 0;j < reader.FieldCount; j++)
                         {
-                            row[j] = ToString(reader.GetValue(j));
+                            row[j] = reader.GetValue(j).ToString();
                         }//for
                         
                         //now that we have the row stored in the array, we can add it to the list
@@ -196,18 +168,20 @@ namespace OAHeLP_Database_Project
 
 
                 //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to. We'll look at possible performance differences later
-                string[][] queryResultsArray = new string[queryResultsList.Length][reader.FieldCount];
+                string[,] queryResultsArray = new string[queryResultsList.Count,reader.FieldCount];
 
-                for(int i = 0 ; i < queryResultsList.Length ; i++)
+                int counter = 0;
+                foreach(string[] SA in queryResultsList)
                 {
                     //string array to represent the row
-                    string[] row = queryResultsList.GetValue(i);
 
                     for(int j = 0; j<reader.FieldCount; j++)
                     {
-                        queryResultsArray[i][j] = row[j];
+                        queryResultsArray[counter, j] = SA[j];
                     }//for
-                }//for
+
+                    counter++;
+                }//foreach
 
                 //cool, now we have a 2d array with all of the data points we need!
                 //our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
@@ -220,18 +194,19 @@ namespace OAHeLP_Database_Project
                 {
                     //check to see if this is the last entry for the given subject
                     //it doesn't actually matter which entry it is, just matters that we only consider one of them
-                    if(!(queryResultsArray[i][0].Equals(queryResultsArray[i+1][0])))
+                    if(!(queryResultsArray[i,0].Equals(queryResultsArray[i+1,0])))
                     {
                         //if this is the last record for that subject, we will look at the ethnic group compared to the input ethnic group
-                        if (queryResultsArray[i][2].Equals(inputEthnicGroup))
+                        if (queryResultsArray[i,2].Equals(inputEthnicGroup))
                         {
-                            subjectIDAndScores[queryResultsArray[i][0]] += 10
+
+                            subjectIDAndScores[int.Parse(queryResultsArray[i,0])] += 10;
                         }//if
                     }//if
                 }//for
 
 
-                //next, in a loop, we run our nameMatch method. for an exact match (return of 0), the subject in the dictionary gets +10. For a close partial(return < 5), they get +5, (return < 9)for a not so close partial, they get +2, and no match gets +0
+                //next, in a loop, we run our nameMatch method. This will add 10-distance as long as distance is < 10
 
                 for (int i = 0; i < queryResultsArray.Length; i++)
                 {
@@ -239,7 +214,7 @@ namespace OAHeLP_Database_Project
                     //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
                     //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
                     int nameCount = 0;
-                    while (queryResultsArray[i][0].Equals(queryResultsArray[i + 1][0]))
+                    while (queryResultsArray[i,0].Equals(queryResultsArray[i + 1,0]))
                     {
                         nameCount++;
                         i++;
@@ -255,10 +230,11 @@ namespace OAHeLP_Database_Project
                         //we subtract by namecount to take us back to the first entry (which is subtracting by 0 if there was only 1 name, and then subtracting by an additional 1 per name over 1 name)
                         //we then add j, which will iterate a number of times = to the ammount of names
                         //this is all because we don't actually want to manipulate i anymore since it's in the right place for the next subject
-                        string[] row = queryResultsArray[i-nameCount+j];
+                        //string[] row = queryResultsArray[i-nameCount+j];
 
                         //we will now create a single string that is the first, all middles, and last name of the subject
-                        string databaseRowName = row[4] + " " + row[5] + " " + row[6];
+                        //string databaseRowName = row[4] + " " + row[5] + " " + row[6];
+                        string databaseRowName = queryResultsArray[i - nameCount + j , 4] + " " + queryResultsArray[i - nameCount + j , 5] + " " + queryResultsArray[i - nameCount + j , 6];
 
                         //then we run nameMatch!
                         int distance = nameMatch(inputName,databaseRowName);
@@ -272,18 +248,10 @@ namespace OAHeLP_Database_Project
                     }//for
 
                     //now we take our lowest result and compare it to our weights
-                    if(lowestResult == 0)
+                    if(lowestResult < 10)
                     {
-                        subjectIDAndScores[queryResultsArray[i-nameCount][0]] += 10
+                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount,0])] += (10 - lowestResult);
                     }//if
-                    else if(lowestResult < 5)
-                    {
-                        subjectIDAndScores[queryResultsArray[i-nameCount][0]] += 5;
-                    }//else if
-                    else if(lowestResult < 9)
-                    {
-                        subjectIDAndScores[queryResultsArray[i-nameCount][0]] += 2;
-                    }//else if
                     else
                     {
                         //nothing
@@ -294,42 +262,63 @@ namespace OAHeLP_Database_Project
 
 
 
-                //next, we loop and check the given villageID compared to the current village. I'm hoping that we can get some geo-data and do a range analysis here
-                //(I think we should be able to given the long and lati properties in that table). The villages being within 10m is +10, within 50m is +5, within 100m is +2
-
+                //next, we loop and check the given villageID compared to the current village. 
+                
                 for (int i = 0; i < queryResultsArray.Length; i++)
                 {
                     //check to see if this is the last entry for the given subject
                     //it doesn't actually matter which entry it is, just matters that we only consider one of them
-                    if(!(queryResultsArray[i][0].Equals(queryResultsArray[i+1][0])))
+                    if(!(queryResultsArray[i,0].Equals(queryResultsArray[i+1,0])))
                     {
                         
                         //if this is the last record, then we can look at the village
-                        string[] row = queryResultsArray[i];
+                        //string[] row = queryResultsArray[i];
 
                         //lets get the lat and long
-                        int lat = int.Parse(row[8]);
-                        int long = int.Parse(row[9]);
+                        int lat = int.Parse(queryResultsArray[i,8]);
+                        int lon = int.Parse(queryResultsArray[i,9]);
 
-                        string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
-                        int inputLat = int.Parse(inputRecordRow[1]);
-                        int inputLong = int.Parse(inputRecordRow[2]);
+                        //string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
+                        int inputLat = 0;
+                        int inputLon = 0;
+
+                        foreach (string[] SA in queryResultsListInputVillageGPS)
+                        {
+                            inputLat = int.Parse(SA[1]);
+                            inputLon = int.Parse(SA[2]);
+                        }//foreach
+
 
                         //now we get to do a distance analysis!
-                        //int physicalDistance = physicalDistanceEstimation(lat,long,inputLat,inputLong);
 
-                        var sCoord = new GeoCoordinate(lat,long);
-                        var eCoord = new GeoCoordinate(inputLat,inputLong);
+                        var sCoord = new GeoCoordinate(lat,lon);
+                        var eCoord = new GeoCoordinate(inputLat,inputLon);
 
                         //this method returns the distance in meters
-                        int sCoord.GetDistanceTo(eCoord);
+                        double physicalDistance = sCoord.GetDistanceTo(eCoord);
+                        //now in km
+                        physicalDistance = physicalDistance / 1000;
 
-                        if()
+                        //The villages being within 100km is +10, within 500km is +5, within 2500km is +2
+                        if(physicalDistance < 2500)
+                        {
+                            //In this calculation, the highest value (where physicalDistance is 0) is 10, and the lowest value is 0
+                            int distanceWeight = (2500 - Convert.ToInt32(physicalDistance)) / 250;
+                            if(!(distanceWeight < 0))
+                            {
+                                subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceWeight;
+                            }//if
+                        }//if
+                        else 
+                        {
 
+                        }//else if
                     }//if
                 }//for
 
+                //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+                //this next bit would be CRAZY cool, but I don't think I have time
 
                 //after this, I would want to get a bit creative. We want both a time analysis on the given location and time analysis for all nearby locations. 
                 //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
@@ -338,7 +327,8 @@ namespace OAHeLP_Database_Project
 
                 //after that we return the dictionary! This can then be used by the UI to display relative confidences. We can also do some normalization of the data before returning
             }//opening connection
-                return subjectIDAndScores;
+                
+            return subjectIDAndScores;
         }//SearchDB
 
         /// <summary>

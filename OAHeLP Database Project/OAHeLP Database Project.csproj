@@ -68,6 +68,7 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Security" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />

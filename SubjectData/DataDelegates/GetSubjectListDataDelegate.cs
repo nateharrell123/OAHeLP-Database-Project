@@ -24,7 +24,7 @@ namespace SubjectData.DataDelegates
             base.PrepareCommand(command);
 
             DataTable idTable = new DataTable("SubjectIds");
-            DataColumn col = new DataColumn("ids", System.Type.GetType("System.Int32"));
+            DataColumn col = new DataColumn("IDNumber", System.Type.GetType("System.Int32"));
             DataRow row;
             idTable.Columns.Add(col);
             

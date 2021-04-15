@@ -44,6 +44,7 @@
     <Compile Include="DataDelegates\GetNamesDataDelegate.cs" />
     <Compile Include="DataDelegates\GetOASubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\GetSubjectDataDelegate.cs" />
+    <Compile Include="DataDelegates\GetSubjectListDataDelegate.cs" />
     <Compile Include="Models\DOBSource.cs" />
     <Compile Include="Models\EthnicGroup.cs" />
     <Compile Include="ISubjectRepository.cs" />

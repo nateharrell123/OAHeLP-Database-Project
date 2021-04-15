@@ -35,7 +35,7 @@ namespace SubjectData.DataDelegates
                 subjectId,
                 (EthnicGroup)Enum.Parse(typeof(EthnicGroup), reader.GetString("EthnicGroup")),
                 reader.GetString("OAHeLPID"),
-                reader.GetString("Sex")[0],
+                reader.GetString("Sex")[0], //there is a GetChar function to use instead of this
                 reader.GetNullableDateTime("DOB"),
                 source,
                 reader.GetNullableString("ICNumber"),
@@ -44,13 +44,6 @@ namespace SubjectData.DataDelegates
                 reader.GetNullableString("PhotoFileName")
 
                 );
-
-            /*
-            return new Subject(subjectId,
-               (EthnicGroup)Enum.Parse(typeof(EthnicGroup), reader.GetString("EthnicGroup")),
-               reader.GetString("OAHeLPID"),
-               reader.GetString("Sex")[0]); //better way to do this??
-            */
         }
     }
 }

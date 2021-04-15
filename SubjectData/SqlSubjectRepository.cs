@@ -45,7 +45,7 @@ namespace SubjectData
             return s;
         }
 
-        public List<Subject> GetSubjects(List<int> subjectIds)
+        public List<Subject> GetSubjectList(List<int> subjectIds)
         {
             throw new NotImplementedException();
         }

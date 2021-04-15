@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SubjectData.Models
 {
-    public class Subject
+    public class Subject:IEquatable<Subject>
     {
         public int SubjectID { get; }
 
@@ -70,6 +70,11 @@ namespace SubjectData.Models
             {
                 Names.Add(nm);
             }
+        }
+
+        public bool Equals(Subject other)
+        {
+            return this.SubjectID == other.SubjectID;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace SubjectData
         /// </summary>
         /// <param name="subjectIds"></param>
         /// <returns></returns>
-        List<Subject> GetSubjects(List<int> subjectIds);
+        List<Subject> GetSubjectList(List<int> subjectIds);
 
         List<Name> GetNames(int subjectId);
     }

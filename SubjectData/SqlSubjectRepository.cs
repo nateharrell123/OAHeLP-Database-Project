@@ -47,7 +47,8 @@ namespace SubjectData
 
         public List<Subject> GetSubjectList(List<int> subjectIds)
         {
-            throw new NotImplementedException();
+            var d = new GetSubjectListDataDelegate(subjectIds);
+            return executor.ExecuteReader(d);
         }
 
         public List<Name> GetNames(int subjectId)

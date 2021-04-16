@@ -72,6 +72,12 @@ namespace SubjectData.Models
             }
         }
 
+        public void AddName(Name n)
+        {
+            if (Names == null) Names = new List<Name>();
+            Names.Add(n);
+        }
+
         public bool Equals(Subject other)
         {
             return this.SubjectID == other.SubjectID;

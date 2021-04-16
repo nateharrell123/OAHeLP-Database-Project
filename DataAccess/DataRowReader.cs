@@ -81,6 +81,11 @@ namespace DataAccess
             return (T)reader.GetValue(reader.GetOrdinal(name));
         }
 
+        public bool IsNull(string name)
+        {
+            int col = reader.GetOrdinal(name);
+            return reader.IsDBNull(col);
+        }
         public T GetValue<T>(string name, Func<int, T> getter)
         {
             try

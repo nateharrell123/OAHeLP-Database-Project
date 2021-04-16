@@ -57,6 +57,7 @@ namespace ISubjectRepoTests
         public void GetSubjectWithNullValuesShouldWork()
         {
             var expected = new Subject(31, EthnicGroup.Semai, "jpb1r6", 'M', (new DateTime(2000, 11, 5)), DOBSource.known, "n555388832027", null, 44, null);
+            expected.SetNames(repo.GetNames(31));
             var actual = repo.GetSubject(31);
 
             AssertSubjectsAreEqual(expected, actual);
@@ -78,7 +79,17 @@ namespace ISubjectRepoTests
             Assert.IsTrue(actual.Contains(n1));
             Assert.IsTrue(actual.Contains(n2));
         }
-
+        [TestMethod]
+        public void GetSubjectListShouldWork()
+        {
+            List<int> ids = new List<int>();
+            ids.Add(3);
+            ids.Add(12);
+            ids.Add(40);
+            ids.Add(74);
+            List<Subject> actual = repo.GetSubjectList(ids);
+            Assert.IsTrue(actual.Count == 4);
+        }
         /*
         [TestMethod]
         public void BindingNamesToSubjectShouldWork()
@@ -100,7 +111,7 @@ namespace ISubjectRepoTests
             Assert.AreEqual(expected.SubjectID, actual.SubjectID);
             Assert.AreEqual(expected.EthnicGroup, actual.EthnicGroup);
             Assert.AreEqual(expected.Sex, actual.Sex);
-            CollectionAssert.AreEqual(expected.Names, actual.Names);
+            CollectionAssert.AreEquivalent(expected.Names, actual.Names);
             Assert.AreEqual(expected.MotherID, actual.MotherID);
             Assert.AreEqual(expected.FatherID, actual.FatherID);
             Assert.AreEqual(expected.photoFileName, actual.photoFileName);

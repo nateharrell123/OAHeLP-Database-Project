@@ -13,6 +13,7 @@ namespace DataAccess
         int GetInt32(string name);
         int? GetNullableInt32(string name);
 
+        bool IsNull(string name);
         string GetString(string name);
         string GetNullableString(string name);
         T GetValue<T>(string name);

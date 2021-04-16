@@ -11,6 +11,10 @@ namespace OAHeLP_Database_Project
     /// </summary>
     public class SearchAndSort
     {
-
+        public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageID, string inputSex)
+        {
+            Dictionary<int, int> asdf = new Dictionary<int, int>();
+            return asdf;
+        }
     }
 }

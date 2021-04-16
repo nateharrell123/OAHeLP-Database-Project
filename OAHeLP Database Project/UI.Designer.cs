@@ -49,6 +49,10 @@ namespace OAHeLP_Database_Project
             this.uxSearchButton = new System.Windows.Forms.Button();
             this.uxSearchImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxNamesListBox = new System.Windows.Forms.ListBox();
+            this.uxPipeOne = new System.Windows.Forms.Label();
+            this.uxICCardNumberTextBox = new System.Windows.Forms.TextBox();
+            this.uxProjectIDTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -58,7 +62,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxEthnicGroupComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxEthnicGroupComboBox.FormattingEnabled = true;
-            this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(197, 15);
+            this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(776, 18);
             this.uxEthnicGroupComboBox.Name = "uxEthnicGroupComboBox";
             this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxEthnicGroupComboBox.TabIndex = 15;
@@ -70,7 +74,7 @@ namespace OAHeLP_Database_Project
             this.uxSexComboBox.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.uxSexComboBox.Location = new System.Drawing.Point(197, 58);
+            this.uxSexComboBox.Location = new System.Drawing.Point(776, 61);
             this.uxSexComboBox.Name = "uxSexComboBox";
             this.uxSexComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxSexComboBox.TabIndex = 15;
@@ -79,22 +83,22 @@ namespace OAHeLP_Database_Project
             // 
             this.uxVillageComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxVillageComboBox.FormattingEnabled = true;
-            this.uxVillageComboBox.Location = new System.Drawing.Point(20, 58);
+            this.uxVillageComboBox.Location = new System.Drawing.Point(599, 61);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
             this.uxVillageComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxVillageComboBox.TabIndex = 15;
             // 
             // uxDetailedViewPanel
             // 
-            this.uxDetailedViewPanel.Location = new System.Drawing.Point(503, 157);
+            this.uxDetailedViewPanel.Location = new System.Drawing.Point(499, 157);
             this.uxDetailedViewPanel.Name = "uxDetailedViewPanel";
-            this.uxDetailedViewPanel.Size = new System.Drawing.Size(518, 373);
+            this.uxDetailedViewPanel.Size = new System.Drawing.Size(617, 379);
             this.uxDetailedViewPanel.TabIndex = 13;
             // 
             // uxNameLookupText
             // 
             this.uxNameLookupText.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.uxNameLookupText.Location = new System.Drawing.Point(20, 15);
+            this.uxNameLookupText.Location = new System.Drawing.Point(599, 18);
             this.uxNameLookupText.Multiline = true;
             this.uxNameLookupText.Name = "uxNameLookupText";
             this.uxNameLookupText.Size = new System.Drawing.Size(171, 28);
@@ -167,15 +171,19 @@ namespace OAHeLP_Database_Project
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.uxPipeOne);
             this.panel1.Controls.Add(this.uxAddPersonButton);
             this.panel1.Controls.Add(this.uxSearchButton);
             this.panel1.Controls.Add(this.uxEthnicGroupComboBox);
+            this.panel1.Controls.Add(this.uxProjectIDTextBox);
+            this.panel1.Controls.Add(this.uxICCardNumberTextBox);
             this.panel1.Controls.Add(this.uxNameLookupText);
             this.panel1.Controls.Add(this.uxSexComboBox);
             this.panel1.Controls.Add(this.uxVillageComboBox);
-            this.panel1.Location = new System.Drawing.Point(503, 35);
+            this.panel1.Location = new System.Drawing.Point(12, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(518, 116);
+            this.panel1.Size = new System.Drawing.Size(1104, 116);
             this.panel1.TabIndex = 16;
             // 
             // uxAddPersonButton
@@ -186,7 +194,7 @@ namespace OAHeLP_Database_Project
             this.uxAddPersonButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxAddPersonButton.ImageIndex = 0;
             this.uxAddPersonButton.ImageList = this.uxAddImageList;
-            this.uxAddPersonButton.Location = new System.Drawing.Point(436, 20);
+            this.uxAddPersonButton.Location = new System.Drawing.Point(1015, 23);
             this.uxAddPersonButton.Name = "uxAddPersonButton";
             this.uxAddPersonButton.Size = new System.Drawing.Size(68, 62);
             this.uxAddPersonButton.TabIndex = 17;
@@ -210,7 +218,7 @@ namespace OAHeLP_Database_Project
             this.uxSearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxSearchButton.ImageIndex = 0;
             this.uxSearchButton.ImageList = this.uxSearchImageList;
-            this.uxSearchButton.Location = new System.Drawing.Point(374, 25);
+            this.uxSearchButton.Location = new System.Drawing.Point(953, 28);
             this.uxSearchButton.Name = "uxSearchButton";
             this.uxSearchButton.Size = new System.Drawing.Size(56, 52);
             this.uxSearchButton.TabIndex = 16;
@@ -233,16 +241,54 @@ namespace OAHeLP_Database_Project
             this.uxNamesListBox.ItemHeight = 25;
             this.uxNamesListBox.Location = new System.Drawing.Point(12, 157);
             this.uxNamesListBox.Name = "uxNamesListBox";
-            this.uxNamesListBox.Size = new System.Drawing.Size(465, 354);
+            this.uxNamesListBox.Size = new System.Drawing.Size(465, 379);
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
+            // 
+            // uxPipeOne
+            // 
+            this.uxPipeOne.AutoSize = true;
+            this.uxPipeOne.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
+            this.uxPipeOne.Location = new System.Drawing.Point(456, 15);
+            this.uxPipeOne.Name = "uxPipeOne";
+            this.uxPipeOne.Size = new System.Drawing.Size(43, 70);
+            this.uxPipeOne.TabIndex = 18;
+            this.uxPipeOne.Text = "|";
+            // 
+            // uxICCardNumberTextBox
+            // 
+            this.uxICCardNumberTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxICCardNumberTextBox.Location = new System.Drawing.Point(255, 40);
+            this.uxICCardNumberTextBox.Multiline = true;
+            this.uxICCardNumberTextBox.Name = "uxICCardNumberTextBox";
+            this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 28);
+            this.uxICCardNumberTextBox.TabIndex = 12;
+            // 
+            // uxProjectIDTextBox
+            // 
+            this.uxProjectIDTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxProjectIDTextBox.Location = new System.Drawing.Point(35, 40);
+            this.uxProjectIDTextBox.Multiline = true;
+            this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
+            this.uxProjectIDTextBox.Size = new System.Drawing.Size(171, 28);
+            this.uxProjectIDTextBox.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
+            this.label1.Location = new System.Drawing.Point(212, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 70);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "|";
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1033, 632);
+            this.ClientSize = new System.Drawing.Size(1128, 632);
             this.Controls.Add(this.uxNamesListBox);
             this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.button2);
@@ -283,6 +329,10 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Button uxSearchButton;
         private System.Windows.Forms.Button uxAddPersonButton;
         private System.Windows.Forms.ListBox uxNamesListBox;
+        private System.Windows.Forms.Label uxPipeOne;
+        private System.Windows.Forms.TextBox uxProjectIDTextBox;
+        private System.Windows.Forms.TextBox uxICCardNumberTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 

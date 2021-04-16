@@ -70,6 +70,7 @@ namespace OAHeLP_Database_Project
                 lastName = "LastName";
                 Person person = new Person(firstName, middleNames, lastName);
                 //uxNamesListBox.DisplayMember = person.ToString();
+                // make a list of people, add people to list show in table
                 
                 uxNamesListBox.DataSource = dataTable;
                 uxNamesListBox.DisplayMember = "FirstName";
@@ -102,6 +103,7 @@ namespace OAHeLP_Database_Project
             {
                 connection.Open();
                 command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
+
                 command.ExecuteNonQuery();
             }
             uxNameLookupText.Clear();
@@ -141,17 +143,20 @@ namespace OAHeLP_Database_Project
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
-            //MessageBox.Show(selectedName);
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex " +
-                    "from[Subject].[Subject] S " +
-                    "join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                    "join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = 'Shamsul'";
-                    //$"where N.FirstName = '{selectedName}'";
+                /*
+                query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex" +
+                    "from[Subject].[Subject] S" +
+                    "join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID" +
+                    "join[Subject].[Name] N on N.NameID = S.SubjectID";
+                    //$"where N.FirstName = 'Shamsul'";
+                */
 
-                SqlCommand command = new SqlCommand(query, connection); 
+                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex,S.EthnicGroupID from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = '{selectedName}'";
+                //string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex, EG.EthnicGroupName from[Subject].[Subject] S inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID inner join[Subject].[Name] N on N.NameID = S.SubjectID inner join[Subject].EthnicGroup EG on S.EthnicGroupID = EG.EthnicGroupID";
+                SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
@@ -162,7 +167,8 @@ namespace OAHeLP_Database_Project
                         var id = reader.GetString(0);
                         var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
                         var sex = reader.GetString(4);
-                        OpenChildForm(new DetailedView(id, fullName, sex));
+                        var ethnicGroup = reader.GetInt32(5);
+                        OpenChildForm(new DetailedView(id, fullName, sex, ethnicGroup));
                     }
                 }
             }

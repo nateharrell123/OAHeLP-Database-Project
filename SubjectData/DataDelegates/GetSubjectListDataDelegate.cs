@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DataAccess;
+using SubjectData.Models;
+using System.Data;
+
+namespace SubjectData.DataDelegates
+{
+    internal class GetSubjectListDataDelegate : DataReaderDelegate<List<Subject>>
+    {
+        private readonly List<int> subjectIds;
+
+        public GetSubjectListDataDelegate(List<int> ids):base("Subject.GetSubjectList")
+        {
+            this.subjectIds = ids;
+        }
+
+        public override void PrepareCommand(SqlCommand command)
+        {
+            base.PrepareCommand(command);
+
+            DataTable idTable = new DataTable("SubjectIds");
+            DataColumn col = new DataColumn("IDNumber", System.Type.GetType("System.Int32"));
+            DataRow row;
+            idTable.Columns.Add(col);
+            
+            foreach (int i in subjectIds){
+                row = idTable.NewRow();
+                row["IDNumber"] = i;
+                idTable.Rows.Add(row);
+            }
+
+            var p = command.Parameters.Add("SubjectIds", SqlDbType.Structured);
+            p.Value = idTable; 
+        }
+        public override List<Subject> Translate(SqlCommand command, IDataRowReader reader)
+        {
+            if (!reader.Read())
+            {
+                throw new RecordNotFoundException(subjectIds.ToString());
+            }
+            List<Subject> result = new List<Subject>();
+            do
+            {
+                DOBSource source;
+                if (reader.IsNull("DOBSource")) source = DOBSource.none;
+                else source = (DOBSource)Enum.Parse(typeof(DOBSource), reader.GetString("DOBSource"));
+                Subject next = new Subject(
+                    reader.GetInt32("SubjectID"),
+                    (EthnicGroup)Enum.Parse(typeof(EthnicGroup), reader.GetString("EthnicGroup")),
+                    reader.GetString("OAHeLPID"),
+                    reader.GetString("Sex")[0], //there is a GetChar function to use instead of this
+                    reader.GetNullableDateTime("DOB"),
+                    source,
+                    reader.GetNullableString("ICNumber"),
+                    reader.GetNullableInt32("MotherID"),
+                    reader.GetNullableInt32("FatherID"),
+                    reader.GetNullableString("PhotoFileName")
+                    );
+                Name name = new Name(
+                    reader.GetString("FirstName"),
+                    reader.GetString("MiddleNames"),
+                    reader.GetString("LastName"));
+                if (result.Contains(next)) result[result.IndexOf(next)].Names.Add(name);
+                else
+                {
+                    next.AddName(name);
+                    result.Add(next);
+                }
+            }
+            while (reader.Read());
+            return result;
+        }
+    }
+}

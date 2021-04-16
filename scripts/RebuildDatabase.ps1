@@ -31,6 +31,7 @@ Write-Host "Rebuilding database $Database on $Server..."
 #>
 #Write-Host "Dropping tables..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DropTables.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DropProcedures.sql"
 
 Write-Host "Creating schema..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DropCreateSchemas.sql"
@@ -38,15 +39,10 @@ Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DropCreate
 Write-Host "Creating tables..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "CreateTables.sql"
 
-<#
+
 Write-Host "Stored procedures..."
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData\Sql\Procedures\Person.CreatePerson.sql"
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData\Sql\Procedures\Person.RetrievePersons.sql"
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData\Sql\Procedures\Person.FetchPerson.sql"
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData\Sql\Procedures\Person.GetPerson.sql"
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData\Sql\Procedures\Person.SavePersonAddress.sql"
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "PersonData\Sql\Procedures\Person.RetrieveAddressesForPerson.sql"
-#>
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "Procedures.sql"
+
 
 Write-Host "Inserting data..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertData.sql"

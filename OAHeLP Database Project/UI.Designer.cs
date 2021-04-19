@@ -60,8 +60,20 @@ namespace OAHeLP_Database_Project
             // 
             // uxEthnicGroupComboBox
             // 
+            this.uxEthnicGroupComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxEthnicGroupComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxEthnicGroupComboBox.ForeColor = System.Drawing.Color.Black;
             this.uxEthnicGroupComboBox.FormattingEnabled = true;
+            this.uxEthnicGroupComboBox.Items.AddRange(new object[] {
+            "Batek",
+            "Jahai",
+            "Jakun",
+            "Lanoh",
+            "Malay",
+            "Mendriq",
+            "Semai",
+            "Temiar",
+            "Temuan"});
             this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(741, 18);
             this.uxEthnicGroupComboBox.Name = "uxEthnicGroupComboBox";
             this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 28);
@@ -69,6 +81,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxSexComboBox
             // 
+            this.uxSexComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxSexComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxSexComboBox.FormattingEnabled = true;
             this.uxSexComboBox.Items.AddRange(new object[] {
@@ -81,9 +94,10 @@ namespace OAHeLP_Database_Project
             // 
             // uxVillageComboBox
             // 
+            this.uxVillageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxVillageComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxVillageComboBox.FormattingEnabled = true;
-            this.uxVillageComboBox.Location = new System.Drawing.Point(564, 61);
+            this.uxVillageComboBox.Location = new System.Drawing.Point(564, 62);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
             this.uxVillageComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxVillageComboBox.TabIndex = 15;
@@ -235,11 +249,15 @@ namespace OAHeLP_Database_Project
             // uxProjectIDTextBox
             // 
             this.uxProjectIDTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxProjectIDTextBox.ForeColor = System.Drawing.Color.Silver;
             this.uxProjectIDTextBox.Location = new System.Drawing.Point(35, 40);
             this.uxProjectIDTextBox.Multiline = true;
             this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
             this.uxProjectIDTextBox.Size = new System.Drawing.Size(171, 28);
             this.uxProjectIDTextBox.TabIndex = 12;
+            this.uxProjectIDTextBox.Text = "Project ID:";
+            this.uxProjectIDTextBox.Enter += new System.EventHandler(this.uxProjectIDTextBox_Enter);
+            this.uxProjectIDTextBox.Leave += new System.EventHandler(this.uxProjectIDTextBox_Leave);
             // 
             // uxICCardNumberTextBox
             // 

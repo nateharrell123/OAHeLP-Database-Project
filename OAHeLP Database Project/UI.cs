@@ -182,19 +182,27 @@ namespace OAHeLP_Database_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxNameLookupText_Enter(object sender, EventArgs e)
-        {
-            uxNameLookupText.Clear();
-        }
+        private void uxNameLookupText_Enter(object sender, EventArgs e) { uxNameLookupText.Clear(); }
 
         /// <summary>
         /// Reset text when leave
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxNameLookupText_Leave(object sender, EventArgs e)
-        {
-            uxNameLookupText.Text = "Name";
-        }
+        private void uxNameLookupText_Leave(object sender, EventArgs e) { uxNameLookupText.Text = "Name"; }
+        /// <summary>
+        /// Clear text on entry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void uxProjectIDTextBox_Enter(object sender, EventArgs e) { uxProjectIDTextBox.Clear(); }
+        /// <summary>
+        /// Reset text when leave
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void uxProjectIDTextBox_Leave(object sender, EventArgs e) { uxProjectIDTextBox.Text = "Project ID:"; }
     }
 }

@@ -36,6 +36,7 @@ namespace OAHeLP_Database_Project
             this.uxAgeLabel = new System.Windows.Forms.Label();
             this.uxEthnicityLabel = new System.Windows.Forms.Label();
             this.uxResidenceHistory = new System.Windows.Forms.ListBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.uxPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxPictureBox.Location = new System.Drawing.Point(12, 43);
             this.uxPictureBox.Name = "uxPictureBox";
-            this.uxPictureBox.Size = new System.Drawing.Size(193, 209);
+            this.uxPictureBox.Size = new System.Drawing.Size(193, 187);
             this.uxPictureBox.TabIndex = 1;
             this.uxPictureBox.TabStop = false;
             // 
@@ -107,10 +108,24 @@ namespace OAHeLP_Database_Project
             this.uxResidenceHistory.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxResidenceHistory.FormattingEnabled = true;
             this.uxResidenceHistory.ItemHeight = 20;
-            this.uxResidenceHistory.Location = new System.Drawing.Point(12, 258);
+            this.uxResidenceHistory.Location = new System.Drawing.Point(12, 268);
             this.uxResidenceHistory.Name = "uxResidenceHistory";
             this.uxResidenceHistory.Size = new System.Drawing.Size(381, 124);
             this.uxResidenceHistory.TabIndex = 4;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.Enabled = false;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button5.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.button5.Location = new System.Drawing.Point(12, 236);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(381, 34);
+            this.button5.TabIndex = 22;
+            this.button5.Text = "Residence History";
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // DetailedView
             // 
@@ -118,6 +133,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(617, 404);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.uxResidenceHistory);
             this.Controls.Add(this.uxEthnicityLabel);
             this.Controls.Add(this.uxAgeLabel);
@@ -142,5 +158,6 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Label uxAgeLabel;
         private System.Windows.Forms.Label uxEthnicityLabel;
         private System.Windows.Forms.ListBox uxResidenceHistory;
+        private System.Windows.Forms.Button button5;
     }
 }

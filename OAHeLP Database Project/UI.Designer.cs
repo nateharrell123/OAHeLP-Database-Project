@@ -55,6 +55,7 @@ namespace OAHeLP_Database_Project
             this.uxSearchImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxNamesListBox = new System.Windows.Forms.ListBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -323,12 +324,26 @@ namespace OAHeLP_Database_Project
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(499, 173);
+            this.button4.Location = new System.Drawing.Point(498, 173);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(125, 34);
             this.button4.TabIndex = 20;
             this.button4.Text = "Details";
             this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.Enabled = false;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button5.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.button5.Location = new System.Drawing.Point(12, 173);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(465, 34);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Results";
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // UI
             // 
@@ -336,6 +351,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1128, 711);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.uxNamesListBox);
             this.Controls.Add(this.uxDetailedViewPanel);
@@ -383,6 +399,7 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Button uxAddPersonButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

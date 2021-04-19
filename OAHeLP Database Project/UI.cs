@@ -76,22 +76,13 @@ namespace OAHeLP_Database_Project
                 uxNamesListBox.DisplayMember = "FirstName";
             }
         }
-        /// <summary>
-        /// Search for person
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void uxSearchButton_Click(object sender, EventArgs e)
-        {
-            SearchAndSort search = new SearchAndSort();
-        }
 
         /// <summary>
-        /// Add person to DB
+        /// Add person to DB.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxAddPersonButton_Click(object sender, EventArgs e)
+        private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
             if (uxNameLookupText.Text == string.Empty) return;
 
@@ -109,6 +100,18 @@ namespace OAHeLP_Database_Project
             uxNameLookupText.Clear();
             PopulateTable();
         }
+
+        /// <summary>
+        /// Search for person
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxSearchButton_Click_1(object sender, EventArgs e)
+        {
+            SearchAndSort search = new SearchAndSort();
+        }
+
+
 
         #region UI Stuff
         /// <summary>

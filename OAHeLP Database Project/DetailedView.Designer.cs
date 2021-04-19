@@ -109,7 +109,7 @@ namespace OAHeLP_Database_Project
             this.uxResidenceHistory.ItemHeight = 20;
             this.uxResidenceHistory.Location = new System.Drawing.Point(12, 258);
             this.uxResidenceHistory.Name = "uxResidenceHistory";
-            this.uxResidenceHistory.Size = new System.Drawing.Size(381, 104);
+            this.uxResidenceHistory.Size = new System.Drawing.Size(381, 124);
             this.uxResidenceHistory.TabIndex = 4;
             // 
             // DetailedView
@@ -117,7 +117,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
-            this.ClientSize = new System.Drawing.Size(617, 379);
+            this.ClientSize = new System.Drawing.Size(617, 404);
             this.Controls.Add(this.uxResidenceHistory);
             this.Controls.Add(this.uxEthnicityLabel);
             this.Controls.Add(this.uxAgeLabel);

@@ -110,39 +110,11 @@ namespace OAHeLP_Database_Project
         {
             SearchAndSort search = new SearchAndSort();
         }
-
-
-
-        #region UI Stuff
         /// <summary>
-        /// I think it's silly I have to do this
+        /// Load Detailed View with information from query
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void uxSearchButton_MouseHover(object sender, EventArgs e) {uxSearchButton.ImageIndex = 1;}
-
-        private void uxSearchButton_MouseLeave(object sender, EventArgs e) {uxSearchButton.ImageIndex = 0;}
-
-        private void button3_MouseHover(object sender, EventArgs e) {uxAddPersonButton.ImageIndex = 1;}
-        private void uxAddPersonButton_MouseLeave(object sender, EventArgs e) {uxAddPersonButton.ImageIndex = 0;}
-
-        /// <summary>
-        /// Opens a form and places it into the Panel
-        /// </summary>
-        private Form activeForm = null;
-        private void OpenChildForm(Form childForm)
-        {
-            if (activeForm != null) activeForm.Close();
-            activeForm = childForm;
-            childForm.TopLevel = false;
-            childForm.Dock = DockStyle.Fill;
-            uxDetailedViewPanel.Controls.Add(childForm);
-            uxDetailedViewPanel.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
-        }
-        #endregion
-
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
@@ -177,6 +149,24 @@ namespace OAHeLP_Database_Project
             }
         }
 
+
+
+        #region UI Stuff
+        /// <summary>
+        /// Opens a form and places it into the Panel
+        /// </summary>
+        private Form activeForm = null;
+        private void OpenChildForm(Form childForm)
+        {
+            if (activeForm != null) activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.Dock = DockStyle.Fill;
+            uxDetailedViewPanel.Controls.Add(childForm);
+            uxDetailedViewPanel.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
         /// <summary>
         /// Clear Text on entry
         /// </summary>
@@ -190,19 +180,12 @@ namespace OAHeLP_Database_Project
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void uxNameLookupText_Leave(object sender, EventArgs e) { uxNameLookupText.Text = "Name"; }
-        /// <summary>
-        /// Clear text on entry
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
-        private void uxProjectIDTextBox_Enter(object sender, EventArgs e) { uxProjectIDTextBox.Clear(); }
-        /// <summary>
-        /// Reset text when leave
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        private void uxProjectIDTextBox_Enter(object sender, EventArgs e) { uxProjectIDTextBox.Clear(); uxProjectIDTextBox.ForeColor = Color.Black; }
 
-        private void uxProjectIDTextBox_Leave(object sender, EventArgs e) { uxProjectIDTextBox.Text = "Project ID:"; }
+        private void uxProjectIDTextBox_Leave(object sender, EventArgs e) { uxProjectIDTextBox.Text = "Project ID:"; uxProjectIDTextBox.ForeColor = Color.Silver; }
+        private void uxICCardNumberTextBox_Enter(object sender, EventArgs e) { uxICCardNumberTextBox.Clear(); uxICCardNumberTextBox.ForeColor = Color.Black;  }
+        private void uxICCardNumberTextBox_Leave(object sender, EventArgs e) { uxICCardNumberTextBox.Text = "IC Card Number:"; uxICCardNumberTextBox.ForeColor = Color.Silver; }
+        #endregion
     }
 }

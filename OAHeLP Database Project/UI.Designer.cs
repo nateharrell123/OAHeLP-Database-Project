@@ -53,6 +53,8 @@ namespace OAHeLP_Database_Project
             this.uxAddImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxSearchImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxNamesListBox = new System.Windows.Forms.ListBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -74,7 +76,7 @@ namespace OAHeLP_Database_Project
             "Semai",
             "Temiar",
             "Temuan"});
-            this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(741, 18);
+            this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(741, 27);
             this.uxEthnicGroupComboBox.Name = "uxEthnicGroupComboBox";
             this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxEthnicGroupComboBox.TabIndex = 15;
@@ -87,7 +89,7 @@ namespace OAHeLP_Database_Project
             this.uxSexComboBox.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.uxSexComboBox.Location = new System.Drawing.Point(741, 61);
+            this.uxSexComboBox.Location = new System.Drawing.Point(741, 70);
             this.uxSexComboBox.Name = "uxSexComboBox";
             this.uxSexComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxSexComboBox.TabIndex = 15;
@@ -97,7 +99,7 @@ namespace OAHeLP_Database_Project
             this.uxVillageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxVillageComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxVillageComboBox.FormattingEnabled = true;
-            this.uxVillageComboBox.Location = new System.Drawing.Point(564, 62);
+            this.uxVillageComboBox.Location = new System.Drawing.Point(564, 71);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
             this.uxVillageComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxVillageComboBox.TabIndex = 15;
@@ -113,7 +115,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxNameLookupText.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxNameLookupText.ForeColor = System.Drawing.Color.Silver;
-            this.uxNameLookupText.Location = new System.Drawing.Point(564, 18);
+            this.uxNameLookupText.Location = new System.Drawing.Point(564, 27);
             this.uxNameLookupText.Multiline = true;
             this.uxNameLookupText.Name = "uxNameLookupText";
             this.uxNameLookupText.Size = new System.Drawing.Size(171, 28);
@@ -133,7 +135,7 @@ namespace OAHeLP_Database_Project
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(792, 635);
+            this.button2.Location = new System.Drawing.Point(879, 635);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(194, 55);
             this.button2.TabIndex = 10;
@@ -146,7 +148,7 @@ namespace OAHeLP_Database_Project
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(531, 635);
+            this.button1.Location = new System.Drawing.Point(608, 635);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(194, 55);
             this.button1.TabIndex = 9;
@@ -159,7 +161,7 @@ namespace OAHeLP_Database_Project
             this.uxFeature1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxFeature1Button.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxFeature1Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxFeature1Button.Location = new System.Drawing.Point(275, 635);
+            this.uxFeature1Button.Location = new System.Drawing.Point(336, 635);
             this.uxFeature1Button.Name = "uxFeature1Button";
             this.uxFeature1Button.Size = new System.Drawing.Size(194, 55);
             this.uxFeature1Button.TabIndex = 8;
@@ -189,6 +191,7 @@ namespace OAHeLP_Database_Project
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.uxAddPersonButton);
             this.panel1.Controls.Add(this.uxSearchButton);
             this.panel1.Controls.Add(this.label1);
@@ -199,16 +202,16 @@ namespace OAHeLP_Database_Project
             this.panel1.Controls.Add(this.uxNameLookupText);
             this.panel1.Controls.Add(this.uxSexComboBox);
             this.panel1.Controls.Add(this.uxVillageComboBox);
-            this.panel1.Location = new System.Drawing.Point(12, 43);
+            this.panel1.Location = new System.Drawing.Point(12, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1104, 116);
+            this.panel1.Size = new System.Drawing.Size(1104, 126);
             this.panel1.TabIndex = 16;
             // 
             // uxAddPersonButton
             // 
             this.uxAddPersonButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxAddPersonButton.BackgroundImage")));
             this.uxAddPersonButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uxAddPersonButton.Location = new System.Drawing.Point(1013, 19);
+            this.uxAddPersonButton.Location = new System.Drawing.Point(1013, 28);
             this.uxAddPersonButton.Name = "uxAddPersonButton";
             this.uxAddPersonButton.Size = new System.Drawing.Size(69, 71);
             this.uxAddPersonButton.TabIndex = 18;
@@ -219,7 +222,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxSearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxSearchButton.BackgroundImage")));
             this.uxSearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uxSearchButton.Location = new System.Drawing.Point(928, 19);
+            this.uxSearchButton.Location = new System.Drawing.Point(928, 28);
             this.uxSearchButton.Name = "uxSearchButton";
             this.uxSearchButton.Size = new System.Drawing.Size(69, 71);
             this.uxSearchButton.TabIndex = 18;
@@ -230,7 +233,7 @@ namespace OAHeLP_Database_Project
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
-            this.label1.Location = new System.Drawing.Point(224, 10);
+            this.label1.Location = new System.Drawing.Point(224, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 70);
             this.label1.TabIndex = 18;
@@ -240,7 +243,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxPipeOne.AutoSize = true;
             this.uxPipeOne.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
-            this.uxPipeOne.Location = new System.Drawing.Point(474, 10);
+            this.uxPipeOne.Location = new System.Drawing.Point(474, 19);
             this.uxPipeOne.Name = "uxPipeOne";
             this.uxPipeOne.Size = new System.Drawing.Size(43, 70);
             this.uxPipeOne.TabIndex = 18;
@@ -250,7 +253,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxProjectIDTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxProjectIDTextBox.ForeColor = System.Drawing.Color.Silver;
-            this.uxProjectIDTextBox.Location = new System.Drawing.Point(35, 40);
+            this.uxProjectIDTextBox.Location = new System.Drawing.Point(35, 49);
             this.uxProjectIDTextBox.Multiline = true;
             this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
             this.uxProjectIDTextBox.Size = new System.Drawing.Size(171, 28);
@@ -262,11 +265,15 @@ namespace OAHeLP_Database_Project
             // uxICCardNumberTextBox
             // 
             this.uxICCardNumberTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.uxICCardNumberTextBox.Location = new System.Drawing.Point(278, 40);
+            this.uxICCardNumberTextBox.ForeColor = System.Drawing.Color.Silver;
+            this.uxICCardNumberTextBox.Location = new System.Drawing.Point(278, 49);
             this.uxICCardNumberTextBox.Multiline = true;
             this.uxICCardNumberTextBox.Name = "uxICCardNumberTextBox";
             this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 28);
             this.uxICCardNumberTextBox.TabIndex = 12;
+            this.uxICCardNumberTextBox.Text = "IC Card Number:";
+            this.uxICCardNumberTextBox.Enter += new System.EventHandler(this.uxICCardNumberTextBox_Enter);
+            this.uxICCardNumberTextBox.Leave += new System.EventHandler(this.uxICCardNumberTextBox_Leave);
             // 
             // uxAddImageList
             // 
@@ -293,12 +300,41 @@ namespace OAHeLP_Database_Project
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button3.Enabled = false;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(19, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(125, 34);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Subject Search";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button4.Enabled = false;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(499, 173);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(125, 34);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "Details";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1128, 711);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.uxNamesListBox);
             this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.button2);
@@ -343,6 +379,8 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button uxSearchButton;
         private System.Windows.Forms.Button uxAddPersonButton;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

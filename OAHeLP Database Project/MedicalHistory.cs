@@ -21,8 +21,8 @@ namespace OAHeLP_Database_Project
             {
                 connection.Open();
 
-                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex,S.EthnicGroupID from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = '{selectedName}'";
-                //string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex, EG.EthnicGroupName from[Subject].[Subject] S inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID inner join[Subject].[Name] N on N.NameID = S.SubjectID inner join[Subject].EthnicGroup EG on S.EthnicGroupID = EG.EthnicGroupID";
+                string query = 
+
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
             }

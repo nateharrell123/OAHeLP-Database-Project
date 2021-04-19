@@ -68,6 +68,12 @@
     <Compile Include="DetailedView.Designer.cs">
       <DependentUpon>DetailedView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedicalHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicalHistory.Designer.cs">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs" />
     <Compile Include="SearchAndSort.cs" />
     <Compile Include="SplashScreen.cs">
@@ -86,6 +92,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DetailedView.resx">
       <DependentUpon>DetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicalHistory.resx">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>

@@ -89,19 +89,29 @@ namespace OAHeLP_Database_Project
         {
             if (uxNameLookupText.Text == string.Empty) return;
 
-            string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
-            // Get Sex, Village and Ethnic Group
+            DialogResult dialogResult = MessageBox.Show($"Add {uxNameLookupText.Text}?", "Add Person", MessageBoxButtons.YesNo); // stack overflow
 
-            using (connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
+            if (dialogResult == DialogResult.Yes)
             {
-                connection.Open();
-                command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
 
-                command.ExecuteNonQuery();
+                string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
+                // Get Sex, Village and Ethnic Group
+
+                using (connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
+
+                    command.ExecuteNonQuery();
+                }
+                uxNameLookupText.Clear();
+                PopulateTable();
+                MessageBox.Show($"Added {uxNameLookupText.Text} to the database.");
             }
-            uxNameLookupText.Clear();
-            PopulateTable();
+            else MessageBox.Show($"Cancelled adding {uxNameLookupText.Text} to the database.");
+
+
         }
 
         /// <summary>
@@ -150,6 +160,16 @@ namespace OAHeLP_Database_Project
         }
 
         /// <summary>
+        /// Show everyone in table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void everyoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PopulateTable();
+        }
+
+        /// <summary>
         /// When enter pressed on textbox
         /// </summary>
         /// <param name="sender"></param>
@@ -157,6 +177,8 @@ namespace OAHeLP_Database_Project
         private void uxProjectIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             var projectID = uxProjectIDTextBox.Text;
+            if (projectID == "" || projectID == null) return;
+
             if (e.KeyChar == (char)Keys.Enter)
             {
                 string query = $"select N.FirstName, S.OaHeLPID from[Subject].[Subject] S " +
@@ -170,11 +192,14 @@ namespace OAHeLP_Database_Project
                     var commandBuilder = new SqlCommandBuilder(adapter);
                     var dataTable = new DataTable();
                     adapter.Fill(dataTable);
-
                     uxNamesListBox.DataSource = dataTable;
                 }
-
             }
+        }
+
+        private void showInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PopulateTable();
         }
 
         /// <summary>
@@ -226,6 +251,18 @@ namespace OAHeLP_Database_Project
         private void uxProjectIDTextBox_Leave(object sender, EventArgs e) { uxProjectIDTextBox.Text = "Project ID:"; uxProjectIDTextBox.ForeColor = Color.Silver; }
         private void uxICCardNumberTextBox_Enter(object sender, EventArgs e) { uxICCardNumberTextBox.Clear(); uxICCardNumberTextBox.ForeColor = Color.Black;  }
         private void uxICCardNumberTextBox_Leave(object sender, EventArgs e) { uxICCardNumberTextBox.Text = "IC Card Number:"; uxICCardNumberTextBox.ForeColor = Color.Silver; }
+
+
         #endregion
+
+        /// <summary>
+        /// Search for person based on 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxSearchProjectIDButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -17,14 +17,17 @@ namespace OAHeLP_Database_Project
         public MedicalHistory(string selectedItem)
         {
             InitializeComponent();
-            using (connection = new SqlConnection(UI.connectionString))
+            string query = "select * from [Clinic].ClinicVisit CV " +
+                "inner join[Subject].[Subject] S on S.SubjectID = CV.SubjectID " +
+                $"where {selectedItem} = S.SubjectID";
+            using (SqlConnection connection = new SqlConnection(UI.connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
             {
-                connection.Open();
+                var commandBuilder = new SqlCommandBuilder(adapter);
+                var dataSet = new DataSet();
+                adapter.Fill(dataSet);
 
-                string query = 
-
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
+                uxMedicalHistoryDataGridView.DataSource = dataSet.Tables[0];
             }
         }
     }

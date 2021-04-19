@@ -17,9 +17,10 @@ namespace OAHeLP_Database_Project
         public MedicalHistory(string selectedItem)
         {
             InitializeComponent();
-            string query = "select * from [Clinic].ClinicVisit CV " +
+            string query = "select * from[Clinic].ClinicVisit CV " +
                 "inner join[Subject].[Subject] S on S.SubjectID = CV.SubjectID " +
-                $"where {selectedItem} = S.SubjectID";
+                "inner join[Subject].[Name] N on N.NameID = S.SubjectID ";
+                //$"where N.FirstName = {selectedItem}";
             using (SqlConnection connection = new SqlConnection(UI.connectionString))
             using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
             {

@@ -180,6 +180,7 @@ namespace OAHeLP_Database_Project
             this.uxMedicalHistoryButton.TabIndex = 7;
             this.uxMedicalHistoryButton.Text = "Medical History";
             this.uxMedicalHistoryButton.UseVisualStyleBackColor = false;
+            this.uxMedicalHistoryButton.Click += new System.EventHandler(this.uxMedicalHistoryButton_Click);
             // 
             // tableAdapterManager
             // 

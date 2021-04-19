@@ -19,7 +19,10 @@ namespace OAHeLP_Database_Project
     public partial class UI : Form
     {
         SqlConnection connection;
-        string connectionString;
+        /// <summary>
+        /// The connection string.
+        /// </summary>
+        public static string connectionString; // might be a bad idea
         /// <summary>
         /// Connect to DB
         /// </summary>
@@ -147,6 +150,17 @@ namespace OAHeLP_Database_Project
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Pull up medical history for individual
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxMedicalHistoryButton_Click(object sender, EventArgs e)
+        {
+            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
+            MedicalHistory medicalHistory = new MedicalHistory(selectedName);
         }
 
 

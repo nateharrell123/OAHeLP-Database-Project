@@ -124,13 +124,6 @@ namespace OAHeLP_Database_Project
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                /*
-                query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex" +
-                    "from[Subject].[Subject] S" +
-                    "join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID" +
-                    "join[Subject].[Name] N on N.NameID = S.SubjectID";
-                    //$"where N.FirstName = 'Shamsul'";
-                */
 
                 string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex,S.EthnicGroupID from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = '{selectedName}'";
                 //string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex, EG.EthnicGroupName from[Subject].[Subject] S inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID inner join[Subject].[Name] N on N.NameID = S.SubjectID inner join[Subject].EthnicGroup EG on S.EthnicGroupID = EG.EthnicGroupID";
@@ -153,6 +146,19 @@ namespace OAHeLP_Database_Project
         }
 
         /// <summary>
+        /// When enter pressed on textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxProjectIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                
+            }
+        }
+
+        /// <summary>
         /// Pull up medical history for individual
         /// </summary>
         /// <param name="sender"></param>
@@ -161,6 +167,7 @@ namespace OAHeLP_Database_Project
         {
             var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
             MedicalHistory medicalHistory = new MedicalHistory(selectedName);
+            medicalHistory.Show();
         }
 
 

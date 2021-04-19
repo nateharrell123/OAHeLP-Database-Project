@@ -37,6 +37,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxMedicalHistoryDataGridView.AllowUserToAddRows = false;
             this.uxMedicalHistoryDataGridView.AllowUserToDeleteRows = false;
+            this.uxMedicalHistoryDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.uxMedicalHistoryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uxMedicalHistoryDataGridView.Location = new System.Drawing.Point(12, 12);
             this.uxMedicalHistoryDataGridView.Name = "uxMedicalHistoryDataGridView";
@@ -50,6 +51,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 440);
             this.Controls.Add(this.uxMedicalHistoryDataGridView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MedicalHistory";
             this.Text = "MedicalHistory";
             ((System.ComponentModel.ISupportInitialize)(this.uxMedicalHistoryDataGridView)).EndInit();

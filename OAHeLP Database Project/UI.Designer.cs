@@ -44,6 +44,7 @@ namespace OAHeLP_Database_Project
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.uxAddPersonButton = new System.Windows.Forms.Button();
             this.uxSearchButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@ namespace OAHeLP_Database_Project
             this.uxAddImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxSearchImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxNamesListBox = new System.Windows.Forms.ListBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
@@ -208,6 +208,20 @@ namespace OAHeLP_Database_Project
             this.panel1.Size = new System.Drawing.Size(1104, 126);
             this.panel1.TabIndex = 16;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button3.Enabled = false;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(19, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(125, 34);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Subject Search";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // uxAddPersonButton
             // 
             this.uxAddPersonButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxAddPersonButton.BackgroundImage")));
@@ -261,6 +275,7 @@ namespace OAHeLP_Database_Project
             this.uxProjectIDTextBox.TabIndex = 12;
             this.uxProjectIDTextBox.Text = "Project ID:";
             this.uxProjectIDTextBox.Enter += new System.EventHandler(this.uxProjectIDTextBox_Enter);
+            this.uxProjectIDTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.uxProjectIDTextBox_KeyPress);
             this.uxProjectIDTextBox.Leave += new System.EventHandler(this.uxProjectIDTextBox_Leave);
             // 
             // uxICCardNumberTextBox
@@ -300,20 +315,6 @@ namespace OAHeLP_Database_Project
             this.uxNamesListBox.Size = new System.Drawing.Size(465, 404);
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button3.Enabled = false;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(19, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 34);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Subject Search";
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // button4
             // 

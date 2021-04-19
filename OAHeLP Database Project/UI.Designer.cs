@@ -98,11 +98,15 @@ namespace OAHeLP_Database_Project
             // uxNameLookupText
             // 
             this.uxNameLookupText.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxNameLookupText.ForeColor = System.Drawing.Color.Silver;
             this.uxNameLookupText.Location = new System.Drawing.Point(564, 18);
             this.uxNameLookupText.Multiline = true;
             this.uxNameLookupText.Name = "uxNameLookupText";
             this.uxNameLookupText.Size = new System.Drawing.Size(171, 28);
             this.uxNameLookupText.TabIndex = 12;
+            this.uxNameLookupText.Text = "Name";
+            this.uxNameLookupText.Enter += new System.EventHandler(this.uxNameLookupText_Enter);
+            this.uxNameLookupText.Leave += new System.EventHandler(this.uxNameLookupText_Leave);
             // 
             // database1DataSet1
             // 

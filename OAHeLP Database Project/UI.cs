@@ -176,5 +176,25 @@ namespace OAHeLP_Database_Project
                 }
             }
         }
+
+        /// <summary>
+        /// Clear Text on entry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxNameLookupText_Enter(object sender, EventArgs e)
+        {
+            uxNameLookupText.Clear();
+        }
+
+        /// <summary>
+        /// Reset text when leave
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxNameLookupText_Leave(object sender, EventArgs e)
+        {
+            uxNameLookupText.Text = "Name";
+        }
     }
 }

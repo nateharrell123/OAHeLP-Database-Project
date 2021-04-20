@@ -41,12 +41,17 @@ Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "CreateTabl
 
 
 Write-Host "Stored procedures..."
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "Procedures.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetSubject.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetNames.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetOASubject.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetSubjectList.sql"
 
 
 Write-Host "Inserting data..."
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertData.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertSubjectData.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertNamesData.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertClinicData.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertVillageData.sql"
 
 Write-Host "Rebuild completed."
 Write-Host ""

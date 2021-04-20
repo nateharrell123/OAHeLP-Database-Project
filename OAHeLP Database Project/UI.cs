@@ -42,6 +42,8 @@ namespace OAHeLP_Database_Project
             InitializeComponent();
             PopulateTable();
             uxNamesListBox.DataSource = subjectList;
+            DetailedView detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
+            OpenChildForm(detailedView);
         }
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+   
         }
 
         /// <summary>

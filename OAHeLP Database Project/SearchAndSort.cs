@@ -16,7 +16,7 @@ namespace OAHeLP_Database_Project
 {
     //merging was being odd, so copy and pasting from John branch
 
-    class SearchAndSort
+    public class SearchAndSort
     {
 
         /// <summary>

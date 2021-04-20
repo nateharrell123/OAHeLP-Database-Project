@@ -135,12 +135,12 @@ namespace OAHeLP_Database_Project
             {
                 connection.Open();
 
-                //string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex,S.EthnicGroupID from[Subject].[Subject] S join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID join[Subject].[Name] N on N.NameID = S.SubjectID where N.FirstName = '{selectedName}'";
                 string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex, EG.EthnicGroupName from[Subject].[Subject] S " +
                     $"inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
                     $"inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
                     $"inner join[Subject].EthnicGroup EG on S.EthnicGroupID = EG.EthnicGroupID " +
                     $"where N.FirstName = '{selectedName}'";
+
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -156,6 +156,36 @@ namespace OAHeLP_Database_Project
                         OpenChildForm(new DetailedView(id, fullName, sex, ethnicGroup));
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Search for person based on Project ID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void uxProjectIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var projectID = uxProjectIDTextBox.Text;
+                if (projectID == "" || projectID == null) return;
+
+                string query = $"select N.FirstName, S.OaHeLPID from[Subject].[Subject] S " +
+                    "inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
+                    "inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
+                    $"where S.OaHeLPID = '{projectID}'";
+
+                using (connection = new SqlConnection(connectionString))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection)) // select query goes here
+                {
+                    var commandBuilder = new SqlCommandBuilder(adapter);
+                    var dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    uxNamesListBox.DataSource = dataTable;
+                }
+                uxProjectIDTextBox.Clear();
             }
         }
 
@@ -183,32 +213,6 @@ namespace OAHeLP_Database_Project
             var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
             MedicalHistory medicalHistory = new MedicalHistory(selectedName);
             medicalHistory.Show();
-        }
-
-        /// <summary>
-        /// Search for person based on 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void uxSearchProjectIDButton_Click(object sender, EventArgs e)
-        {
-            var projectID = uxProjectIDTextBox.Text;
-            if (projectID == "" || projectID == null) return;
-
-            string query = $"select N.FirstName, S.OaHeLPID from[Subject].[Subject] S " +
-                "inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                "inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
-                $"where S.OaHeLPID = '{projectID}'";
-
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection)) // select query goes here
-            {
-                var commandBuilder = new SqlCommandBuilder(adapter);
-                var dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                uxNamesListBox.DataSource = dataTable;
-            }
-            uxProjectIDTextBox.Clear();
         }
 
         #region UI Stuff
@@ -246,9 +250,16 @@ namespace OAHeLP_Database_Project
         private void uxProjectIDTextBox_Leave(object sender, EventArgs e) { uxProjectIDTextBox.Text = "Project ID:"; uxProjectIDTextBox.ForeColor = Color.Silver; }
         private void uxICCardNumberTextBox_Enter(object sender, EventArgs e) { uxICCardNumberTextBox.Clear(); uxICCardNumberTextBox.ForeColor = Color.Black;  }
         private void uxICCardNumberTextBox_Leave(object sender, EventArgs e) { uxICCardNumberTextBox.Text = "IC Card Number:"; uxICCardNumberTextBox.ForeColor = Color.Silver; }
-
-
         #endregion
+        /// <summary>
+        /// Populate Table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
+        private void uxSearchProjectIDButton_Click(object sender, EventArgs e)
+        {
+            PopulateTable();
+        }
     }
 }

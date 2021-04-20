@@ -10,6 +10,8 @@ using System.Data.SqlClient; // need this for SQL
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using SubjectData.Models;
+using SubjectData;
 
 namespace OAHeLP_Database_Project
 {
@@ -20,13 +22,17 @@ namespace OAHeLP_Database_Project
     {
         SqlConnection connection;
         string connectionString;
+        private ISubjectRepository repo;
+
         /// <summary>
         /// Connect to DB
         /// </summary>
         public UI()
         {
             //DisplaySplashScreen();
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            repo = new SqlSubjectRepository(connectionString);
             InitializeComponent();
             PopulateTable();
         }
@@ -56,25 +62,10 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void PopulateTable()
         {
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName from [Subject].[Name]", connection)) // select query goes here
-            {
-                var commandBuilder = new SqlCommandBuilder(adapter);
-                var dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                
-                string firstName, middleNames, lastName;
-                firstName = "FirstName";
-                middleNames = "MiddleNames";
-                lastName = "LastName";
-                Person person = new Person(firstName, middleNames, lastName);
-                //uxNamesListBox.DisplayMember = person.ToString();
-                // make a list of people, add people to list show in table
-                
-                uxNamesListBox.DataSource = dataTable;
-                uxNamesListBox.DisplayMember = "FirstName";
-            }
+            List<int> ids = new List<int>();
+            for (int i = 0; i < 20; i++) ids.Add(i);
+            List<Subject> subjects = repo.GetSubjectList(ids);
+            uxNamesListBox.DataSource = subjects;
         }
         /// <summary>
         /// Search for person

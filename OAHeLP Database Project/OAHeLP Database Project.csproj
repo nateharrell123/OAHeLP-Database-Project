@@ -37,7 +37,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-
     <IntermediateOutputPath>C:\Users\haler\AppData\Local\Temp\vsEA7B.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -167,6 +166,16 @@
     <Content Include="scripts\DropTables.sql" />
     <Content Include="scripts\InsertData.sql" />
     <Content Include="scripts\Test.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{a5ac459d-6c0a-4d6e-ad65-ecb3e0fec3a7}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SubjectData\SubjectData.csproj">
+      <Project>{c27893e0-905d-4795-8a69-f9fe3ce3df80}</Project>
+      <Name>SubjectData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

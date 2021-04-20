@@ -58,7 +58,7 @@ namespace OAHeLP_Database_Project
                 //firstly this we need to grab the long and lat info for the inputVillage, so we'll run a quick query for that. 
                 
                 string queryString;
-                queryString = "SELECT V.VillageID,V.GPSLatitude,V.GPSLongitude FROM Village V WHERE V.VillageID = " + inputVillageID;
+                queryString = "SELECT V.VillageID,V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.VillageID = " + inputVillageID;
 
 
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -534,8 +534,6 @@ namespace OAHeLP_Database_Project
         }
 
     }//class
-
-
 
 
     public enum WordType

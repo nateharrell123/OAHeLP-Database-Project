@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace SubjectData
         /// </summary>
         /// <param name="subjectIds"></param>
         /// <returns></returns>
-        List<Subject> GetSubjectList(List<int> subjectIds);
+        BindingList<Subject> GetSubjectList(List<int> subjectIds);
 
         List<Name> GetNames(int subjectId);
     }

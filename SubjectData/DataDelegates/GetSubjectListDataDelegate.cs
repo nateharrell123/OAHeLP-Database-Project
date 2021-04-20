@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using DataAccess;
 using SubjectData.Models;
 using System.Data;
+using System.ComponentModel;
 
 namespace SubjectData.DataDelegates
 {
-    internal class GetSubjectListDataDelegate : DataReaderDelegate<List<Subject>>
+    internal class GetSubjectListDataDelegate : DataReaderDelegate<BindingList<Subject>>
     {
         private readonly List<int> subjectIds;
 
@@ -37,13 +38,13 @@ namespace SubjectData.DataDelegates
             var p = command.Parameters.Add("SubjectIds", SqlDbType.Structured);
             p.Value = idTable; 
         }
-        public override List<Subject> Translate(SqlCommand command, IDataRowReader reader)
+        public override BindingList<Subject> Translate(SqlCommand command, IDataRowReader reader)
         {
             if (!reader.Read())
             {
                 throw new RecordNotFoundException(subjectIds.ToString());
             }
-            List<Subject> result = new List<Subject>();
+            BindingList<Subject> result = new BindingList<Subject>();
             do
             {
                 DOBSource source;

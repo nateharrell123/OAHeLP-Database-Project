@@ -82,5 +82,10 @@ namespace SubjectData.Models
         {
             return this.SubjectID == other.SubjectID;
         }
+
+        public override string ToString()
+        {
+            return $"{Names[0].FirstName} {Names[0].MiddleNames} {Names[0].LastName}";
+        }
     }
 }

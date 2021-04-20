@@ -10,6 +10,9 @@ using System.Data.SqlClient; // need this for SQL
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using SubjectData.Models;
+using SubjectData;
+using DataAccess;
 
 namespace OAHeLP_Database_Project
 {
@@ -23,15 +26,22 @@ namespace OAHeLP_Database_Project
         /// The connection string.
         /// </summary>
         public static string connectionString; // might be a bad idea
+        ISubjectRepository repo;
+        BindingList<Subject> subjectList;
+
+        
         /// <summary>
         /// Connect to DB
         /// </summary>
         public UI()
         {
             //DisplaySplashScreen();
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            repo = new SqlSubjectRepository(connectionString);
+            subjectList = new BindingList<Subject>();
             InitializeComponent();
             PopulateTable();
+            uxNamesListBox.DataSource = subjectList;
         }
 
         /// <summary>
@@ -59,25 +69,9 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void PopulateTable()
         {
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName from [Subject].[Name]", connection)) // select query goes here
-            {
-                var commandBuilder = new SqlCommandBuilder(adapter);
-                var dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                
-                string firstName, middleNames, lastName;
-                firstName = "FirstName";
-                middleNames = "MiddleNames";
-                lastName = "LastName";
-                Person person = new Person(firstName, middleNames, lastName);
-                //uxNamesListBox.DisplayMember = person.ToString();
-                // make a list of people, add people to list show in table
-                
-                uxNamesListBox.DataSource = dataTable;
-                uxNamesListBox.DisplayMember = "FirstName";
-            }
+            List<int> myIds = new List<int>();
+            for (int i = 1; i < 20; i++) myIds.Add(i);
+            subjectList = repo.GetSubjectList(myIds);
         }
 
         /// <summary>
@@ -130,33 +124,7 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex, EG.EthnicGroupName from[Subject].[Subject] S " +
-                    $"inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                    $"inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
-                    $"inner join[Subject].EthnicGroup EG on S.EthnicGroupID = EG.EthnicGroupID " +
-                    $"where N.FirstName = '{selectedName}'";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        // FIX THIS
-                        var id = reader.GetString(0);
-                        var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
-                        var sex = reader.GetString(4);
-                        var ethnicGroup = reader.GetString(5);
-                        OpenChildForm(new DetailedView(id, fullName, sex, ethnicGroup));
-                    }
-                }
-            }
+            
         }
 
         /// <summary>
@@ -171,21 +139,19 @@ namespace OAHeLP_Database_Project
             {
                 var projectID = uxProjectIDTextBox.Text;
                 if (projectID == "" || projectID == null) return;
+                if (projectID.Length != 6) MessageBox.Show("Enter a valid project ID");
 
-                string query = $"select N.FirstName, S.OaHeLPID from[Subject].[Subject] S " +
-                    "inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                    "inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
-                    $"where S.OaHeLPID = '{projectID}'";
-
-                using (connection = new SqlConnection(connectionString))
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection)) // select query goes here
+                try
                 {
-                    var commandBuilder = new SqlCommandBuilder(adapter);
-                    var dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    uxNamesListBox.DataSource = dataTable;
+                    Subject result = repo.GetOASubject(projectID);
+                    subjectList.Clear();
+                    subjectList.Add(result);
+                    uxNamesListBox.Update();
                 }
-                uxProjectIDTextBox.Clear();
+                catch(RecordNotFoundException ex)
+                {
+                    MessageBox.Show("No records found");
+                }
             }
         }
 

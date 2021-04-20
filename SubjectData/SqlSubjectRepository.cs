@@ -3,7 +3,7 @@ using DataAccess;
 using SubjectData.Models;
 using SubjectData.DataDelegates;
 using System.Collections.Generic;
-
+using System.ComponentModel;
 
 namespace SubjectData
 {
@@ -45,7 +45,7 @@ namespace SubjectData
             return s;
         }
 
-        public List<Subject> GetSubjectList(List<int> subjectIds)
+        public BindingList<Subject> GetSubjectList(List<int> subjectIds)
         {
             var d = new GetSubjectListDataDelegate(subjectIds);
             return executor.ExecuteReader(d);

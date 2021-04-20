@@ -14,9 +14,18 @@ namespace OAHeLP_Database_Project
         [STAThread]
         static void Main()
         {
+
+            //testing for the night, will uncomment soon
+
+
+
+
+            /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new UI());
+            */
+
         }
     }
 }

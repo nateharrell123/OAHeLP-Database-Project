@@ -28,6 +28,7 @@ namespace OAHeLP_Database_Project
         public static string connectionString; // might be a bad idea
         ISubjectRepository repo;
         BindingList<Subject> subjectList;
+        DetailedView detailedView;
 
         
         /// <summary>
@@ -42,7 +43,7 @@ namespace OAHeLP_Database_Project
             InitializeComponent();
             PopulateTable();
             uxNamesListBox.DataSource = subjectList;
-            DetailedView detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
+            detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
             OpenChildForm(detailedView);
         }
 
@@ -126,7 +127,11 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-   
+            if (detailedView == null) detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
+            {
+                detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                detailedView.UpdateView();
+            }
         }
 
         /// <summary>

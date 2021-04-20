@@ -16,7 +16,7 @@ namespace OAHeLP_Database_Project
         {
 
             //testing for the night, will uncomment soon
-
+            /*
             SearchAndSort SaS = new SearchAndSort();
             string inputName = "johnson"; //eq15ip
             string inputEthnicGroup = "Batek";
@@ -24,13 +24,13 @@ namespace OAHeLP_Database_Project
             string inputSex = "M";
 
             Dictionary<int, int> testDict = SaS.SearchDB(inputName, inputEthnicGroup, inputVillageID, inputSex);
+            */
 
 
-            /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new UI());
-            */
+            
 
         }
     }

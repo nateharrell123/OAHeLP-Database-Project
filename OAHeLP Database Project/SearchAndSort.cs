@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Device.Location;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
+using System.Collections.Generic;
 
 namespace OAHeLP_Database_Project
 {
@@ -87,7 +88,7 @@ namespace OAHeLP_Database_Project
                         row[2] = reader.GetValue(2).ToString();
 
                         //this should only have one row, but better safe than sorry
-                        queryResultsListInputVillageGPS.Append<string[]>(row);
+                        queryResultsListInputVillageGPS.Add(row);
 
                     }//while
                 }//if
@@ -151,7 +152,7 @@ namespace OAHeLP_Database_Project
                         }//for
 
                         //now that we have the row stored in the array, we can add it to the list
-                        queryResultsList.Append(row);
+                        queryResultsList.Add(row);
 
                         //enter their subjectIDs into the dict and start at a base score of 0
                         subjectIDAndScores[reader.GetInt32(0)] = 0;

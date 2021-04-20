@@ -708,4 +708,35 @@ ORDER BY S.SubjectID
 
 DROP TABLE #name_temp
 
+INSERT INTO [Subject].[Village] ([Name], GPSLatitude,GPSLongitude,EthnicGroup,HasRunningWater,HasElectricity,HasSchool,DistanceToMarket)
+SELECT VillageName, Lat, Long, 
+    (
+        SELECT EG.EthnicGroupID
+        FROM [Subject].EthnicGroup EG 
+        WHERE EG.Name = dta.EGName
+    ) AS EGID,
+    Water, Electric, School, Mkt
+FROM(
+    VALUES
+        (N'Gerik', 5.4168, 101.1164, N'temiar', 0, 0, 0, 9),
+        (N'Raub', 3.7899, 101.857, N'Semai', 0,0,0,4),
+        (N'Kuala_Koh', 4.8705, 102.4402, N'Batek', 0,0,0,5),
+        (N'Merapoh',4.6965,102.004,N'Batek',0,1,1,1)
+) dta(VillageName, Lat, Long, EGName, Water, Electric, School, Mkt)
+
+INSERT INTO [Clinic].[VillageSite] (SiteName, VillageID)
+SELECT SiteName,
+(
+    SELECT VillageID 
+    FROM [Subject].[Village] V 
+    WHERE V.Name = dta.VillageName
+) AS VillageID
+FROM (
+    VALUES
+        (N'T', N'Gerik'),
+        (N'F', N'Raub'),
+        (N'M', N'Kuala_Koh'),
+        (N'B', N'Merapoh')
+)dta(SiteName, VillageName)
+
 

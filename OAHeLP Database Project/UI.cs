@@ -89,7 +89,7 @@ namespace OAHeLP_Database_Project
         {
             if (uxNameLookupText.Text == string.Empty) return;
 
-            DialogResult dialogResult = MessageBox.Show($"Add {uxNameLookupText.Text}?", "Add Person", MessageBoxButtons.YesNo); // stack overflow
+            DialogResult dialogResult = MessageBox.Show($"Add {uxNameLookupText.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -168,35 +168,6 @@ namespace OAHeLP_Database_Project
         {
             PopulateTable();
         }
-
-        /// <summary>
-        /// When enter pressed on textbox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void uxProjectIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            var projectID = uxProjectIDTextBox.Text;
-            if (projectID == "" || projectID == null) return;
-
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                string query = $"select N.FirstName, S.OaHeLPID from[Subject].[Subject] S " +
-                    "inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                    "inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
-                    $"where S.OaHeLPID = '{projectID}'";
-
-                using (connection = new SqlConnection(connectionString))
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection)) // select query goes here
-                {
-                    var commandBuilder = new SqlCommandBuilder(adapter);
-                    var dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    uxNamesListBox.DataSource = dataTable;
-                }
-            }
-        }
-
         private void showInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PopulateTable();
@@ -214,7 +185,31 @@ namespace OAHeLP_Database_Project
             medicalHistory.Show();
         }
 
+        /// <summary>
+        /// Search for person based on 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxSearchProjectIDButton_Click(object sender, EventArgs e)
+        {
+            var projectID = uxProjectIDTextBox.Text;
+            if (projectID == "" || projectID == null) return;
 
+            string query = $"select N.FirstName, S.OaHeLPID from[Subject].[Subject] S " +
+                "inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
+                "inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
+                $"where S.OaHeLPID = '{projectID}'";
+
+            using (connection = new SqlConnection(connectionString))
+            using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection)) // select query goes here
+            {
+                var commandBuilder = new SqlCommandBuilder(adapter);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                uxNamesListBox.DataSource = dataTable;
+            }
+            uxProjectIDTextBox.Clear();
+        }
 
         #region UI Stuff
         /// <summary>
@@ -255,14 +250,5 @@ namespace OAHeLP_Database_Project
 
         #endregion
 
-        /// <summary>
-        /// Search for person based on 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void uxSearchProjectIDButton_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

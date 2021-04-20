@@ -45,6 +45,7 @@ namespace OAHeLP_Database_Project
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.uxSearchProjectIDButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.uxAddPersonButton = new System.Windows.Forms.Button();
             this.uxSearchButton = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@ namespace OAHeLP_Database_Project
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.everyoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uxSearchProjectIDButton = new System.Windows.Forms.Button();
             pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
@@ -231,6 +231,17 @@ namespace OAHeLP_Database_Project
             this.panel1.Size = new System.Drawing.Size(1104, 134);
             this.panel1.TabIndex = 16;
             // 
+            // uxSearchProjectIDButton
+            // 
+            this.uxSearchProjectIDButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxSearchProjectIDButton.BackgroundImage")));
+            this.uxSearchProjectIDButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uxSearchProjectIDButton.Location = new System.Drawing.Point(196, 57);
+            this.uxSearchProjectIDButton.Name = "uxSearchProjectIDButton";
+            this.uxSearchProjectIDButton.Size = new System.Drawing.Size(34, 28);
+            this.uxSearchProjectIDButton.TabIndex = 22;
+            this.uxSearchProjectIDButton.UseVisualStyleBackColor = true;
+            this.uxSearchProjectIDButton.Click += new System.EventHandler(this.uxSearchProjectIDButton_Click);
+            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
@@ -238,7 +249,7 @@ namespace OAHeLP_Database_Project
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(19, 6);
+            this.button3.Location = new System.Drawing.Point(-1, -1);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(125, 34);
             this.button3.TabIndex = 19;
@@ -292,13 +303,11 @@ namespace OAHeLP_Database_Project
             this.uxProjectIDTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxProjectIDTextBox.ForeColor = System.Drawing.Color.Silver;
             this.uxProjectIDTextBox.Location = new System.Drawing.Point(19, 57);
-            this.uxProjectIDTextBox.Multiline = true;
             this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
-            this.uxProjectIDTextBox.Size = new System.Drawing.Size(171, 28);
+            this.uxProjectIDTextBox.Size = new System.Drawing.Size(171, 27);
             this.uxProjectIDTextBox.TabIndex = 12;
             this.uxProjectIDTextBox.Text = "Project ID:";
             this.uxProjectIDTextBox.Enter += new System.EventHandler(this.uxProjectIDTextBox_Enter);
-            this.uxProjectIDTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.uxProjectIDTextBox_KeyPress);
             this.uxProjectIDTextBox.Leave += new System.EventHandler(this.uxProjectIDTextBox_Leave);
             // 
             // uxICCardNumberTextBox
@@ -306,9 +315,8 @@ namespace OAHeLP_Database_Project
             this.uxICCardNumberTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxICCardNumberTextBox.ForeColor = System.Drawing.Color.Silver;
             this.uxICCardNumberTextBox.Location = new System.Drawing.Point(287, 57);
-            this.uxICCardNumberTextBox.Multiline = true;
             this.uxICCardNumberTextBox.Name = "uxICCardNumberTextBox";
-            this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 28);
+            this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 27);
             this.uxICCardNumberTextBox.TabIndex = 12;
             this.uxICCardNumberTextBox.Text = "IC Card Number:";
             this.uxICCardNumberTextBox.Enter += new System.EventHandler(this.uxICCardNumberTextBox_Enter);
@@ -398,17 +406,6 @@ namespace OAHeLP_Database_Project
             this.everyoneToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.everyoneToolStripMenuItem.Text = "Everyone";
             this.everyoneToolStripMenuItem.Click += new System.EventHandler(this.everyoneToolStripMenuItem_Click);
-            // 
-            // uxSearchProjectIDButton
-            // 
-            this.uxSearchProjectIDButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxSearchProjectIDButton.BackgroundImage")));
-            this.uxSearchProjectIDButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uxSearchProjectIDButton.Location = new System.Drawing.Point(196, 57);
-            this.uxSearchProjectIDButton.Name = "uxSearchProjectIDButton";
-            this.uxSearchProjectIDButton.Size = new System.Drawing.Size(34, 28);
-            this.uxSearchProjectIDButton.TabIndex = 22;
-            this.uxSearchProjectIDButton.UseVisualStyleBackColor = true;
-            this.uxSearchProjectIDButton.Click += new System.EventHandler(this.uxSearchProjectIDButton_Click);
             // 
             // UI
             // 

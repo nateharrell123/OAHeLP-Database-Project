@@ -720,7 +720,7 @@ FROM(
     VALUES
         (N'Gerik', 5.4168, 101.1164, N'temiar', 0, 0, 0, 9),
         (N'Raub', 3.7899, 101.857, N'Semai', 0,0,0,4),
-        (N'Kuala_Koh', 4.8705, 102.4402, N'Batek', 0,0,0,5),
+        (N'Kuala Koh', 4.8705, 102.4402, N'Batek', 0,0,0,5),
         (N'Merapoh',4.6965,102.004,N'Batek',0,1,1,1)
 ) dta(VillageName, Lat, Long, EGName, Water, Electric, School, Mkt)
 
@@ -735,8 +735,40 @@ FROM (
     VALUES
         (N'T', N'Gerik'),
         (N'F', N'Raub'),
-        (N'M', N'Kuala_Koh'),
+        (N'M', N'Kuala Koh'),
         (N'B', N'Merapoh')
 )dta(SiteName, VillageName)
+
+INSERT INTO [Subject].Village ([Name], GPSLatitude, GPSLongitude, EthnicGroup, HasRunningWater, HasElectricity, HasSchool, DistanceToMarket)
+SELECT VillageName, Lat, Long, EthnicGrp, Water, Electic, School, MarketDist
+FROM(
+    VALUES
+        (N'Kuala Lumpur',3.1478,101.6953,2,0,0,1,23),
+        (N'Klang',3.0333,101.45,8,0,1,0,21),
+        (N'Ipoh',4.6,101.07,4,1,0,1,11),
+        (N'Butterworth',5.3942,100.3664,3,1,0,1,20),
+        (N'George Town',5.4145,100.3292,2,0,1,0,7),
+        (N'Petaling Jaya',3.1073,101.6067,9,0,0,0,15),
+        (N'Kuantan',3.8167,103.3333,9,1,0,0,7),
+        (N'Shah Alam',3.0833,101.5333,2,0,0,0,25),
+        (N'Johor Bahru',1.4556,103.7611,9,1,1,0,24),
+        (N'Kota Bharu',6.1333,102.25,1,1,1,1,2),
+        (N'Melaka',2.1889,102.2511,4,1,1,0,9),
+        (N'Kota Kinabalu',5.975,116.0725,6,0,1,0,22),
+        (N'Seremban',2.7297,101.9381,2,1,0,1,9),
+        (N'Sandakan',5.8388,118.1173,4,0,1,1,5),
+        (N'Sungai Petani',5.65,100.48,1,1,0,1,2),
+        (N'Kuching',1.5397,110.3542,4,1,1,0,16),
+        (N'Kuala Terengganu',5.3303,103.1408,1,0,0,0,16),
+        (N'Alor Setar',6.1167,100.3667,9,1,0,0,2),
+        (N'Putrajaya',2.914,101.7019,9,1,0,0,12),
+        (N'Kangar',6.4414,100.1986,4,1,0,0,14),
+        (N'Labuan',5.2803,115.2475,7,1,1,1,19),
+        (N'Pasir Mas',6.0493,102.1399,7,0,1,1,25),
+        (N'Tumpat',6.2,102.1667,9,0,1,0,14),
+        (N'Ketereh',5.957,102.2482,6,0,1,0,18),
+        (N'Kampung Lemal',6.0302,102.1413,3,1,1,0,1),
+        (N'Pulai Chondong',5.8713,102.2318,1,1,0,1,25)
+)dta(VillageName, Lat, Long, EthnicGrp, Water, Electic, School, MarketDist)
 
 

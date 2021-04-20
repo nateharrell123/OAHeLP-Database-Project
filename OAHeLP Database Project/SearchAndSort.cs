@@ -46,18 +46,20 @@ namespace OAHeLP_Database_Project
         {
             SqlConnection connection;
             string connectionString;
+            
+
 
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
 
 
             using (connection = new SqlConnection(connectionString))
             {
-
+                
 
                 //firstly this we need to grab the long and lat info for the inputVillage, so we'll run a quick query for that. 
 
                 string queryString;
-                queryString = "SELECT V.VillageID,V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.VillageID = " + inputVillageID;
+                queryString = $"SELECT V.VillageID,V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.VillageID = '{inputVillageID}'";
 
 
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -102,13 +104,13 @@ namespace OAHeLP_Database_Project
 
                 //also, eventually this should probably be some sort of string builder, but I'm just hardcoding this for now to make everything clear
 
-                queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroup, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude" +
-                    "FROM Subject S " +
-                        "LEFT JOIN SubjectName SN ON S.SubjectID = SN.SubjectID " +
-                        "LEFT JOIN Name N ON SN.NameID = N.NameID " +
-                        "LEFT JOIN Residence R ON S.SubjectID = R.SubjectID " +
-                        "LEFT JOIN Village V ON V.VillageID = R.VillageID" +
-                    "WHERE Sex = " + inputSex +
+                queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroupID, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
+                    "FROM [Subject].[Subject] S " +
+                        "LEFT JOIN [Subject].[SubjectName] SN ON S.SubjectID = SN.SubjectID " +
+                        "LEFT JOIN [Subject].[Name] N ON SN.NameID = N.NameID " +
+                        "LEFT JOIN [Subject].Residence R ON S.SubjectID = R.SubjectID " +
+                        "LEFT JOIN [Subject].Village V ON V.VillageID = R.VillageID " +
+                    $"WHERE Sex = '{inputSex}'" +
                     " ORDER BY S.SubjectID";
 
                 //and that should be the entire query!
@@ -120,7 +122,7 @@ namespace OAHeLP_Database_Project
 
 
                 command = new SqlCommand(queryString, connection);
-                connection.Open();
+                
 
                 reader = command.ExecuteReader();
                 //you can access data through the following syntax:
@@ -162,19 +164,19 @@ namespace OAHeLP_Database_Project
                 {
                     Console.WriteLine("No rows found.");
                 }//else
-
+                int readerCount = reader.FieldCount;
                 reader.Close();
 
 
                 //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to. We'll look at possible performance differences later
-                string[,] queryResultsArray = new string[queryResultsList.Count, reader.FieldCount];
+                string[,] queryResultsArray = new string[queryResultsList.Count, readerCount];
 
                 int counter = 0;
                 foreach (string[] SA in queryResultsList)
                 {
                     //string array to represent the row
 
-                    for (int j = 0; j < reader.FieldCount; j++)
+                    for (int j = 0; j < readerCount; j++)
                     {
                         queryResultsArray[counter, j] = SA[j];
                     }//for
@@ -327,6 +329,7 @@ namespace OAHeLP_Database_Project
                 //after that we return the dictionary! This can then be used by the UI to display relative confidences. We can also do some normalization of the data before returning
             }//opening connection
 
+            connection.Close();
             return subjectIDAndScores;
         }//SearchDB
 

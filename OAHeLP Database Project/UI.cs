@@ -127,10 +127,17 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (detailedView == null) detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
+            try
             {
-                detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
-                detailedView.UpdateView();
+                if (detailedView == null) detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
+                {
+                    detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                    detailedView.UpdateView();
+                }
+            }
+            catch(System.ArgumentOutOfRangeException ex)
+            {
+
             }
         }
 

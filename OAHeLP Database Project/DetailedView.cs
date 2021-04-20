@@ -34,5 +34,13 @@ namespace OAHeLP_Database_Project
             uxSexLabel.Text = $"Sex: {subject.Sex}";
             uxEthnicityLabel.Text = $"Ethnic Group: {subject.EthnicGroup}";
         }
+
+        public void ClearView()
+        {
+            uxProjectIDLabel.Text = $"Project ID: ";
+            uxNameLabel.Text = $"Name: ";
+            uxSexLabel.Text = $"Sex: ";
+            uxEthnicityLabel.Text = $"Ethnic Group: ";
+        }
     }
 }

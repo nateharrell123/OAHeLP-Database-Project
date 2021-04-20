@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+//using Microsoft.AspNet.SignalR.Infrastructure;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Device.Location;
+using System.Speech.Recognition;
+using System.Speech.Synthesis;
 
 namespace OAHeLP_Database_Project
 {

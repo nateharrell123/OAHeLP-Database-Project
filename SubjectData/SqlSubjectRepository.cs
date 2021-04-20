@@ -3,7 +3,7 @@ using DataAccess;
 using SubjectData.Models;
 using SubjectData.DataDelegates;
 using System.Collections.Generic;
-
+using System.Data;
 
 namespace SubjectData
 {
@@ -56,6 +56,11 @@ namespace SubjectData
             var d = new GetNamesDataDelegate(subjectId);
             return executor.ExecuteReader(d);
         }
-        
+
+        public DataTable GetMedicalHistory(int subjectId)
+        {
+            var d = new GetMedicalHistoryDataDelegate(subjectId);
+            return executor.ExecuteReader(d);
+        }
     }
 }

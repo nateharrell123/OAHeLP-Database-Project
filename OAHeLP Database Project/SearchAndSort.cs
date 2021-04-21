@@ -47,7 +47,21 @@ namespace OAHeLP_Database_Project
         {
             SqlConnection connection;
             string connectionString;
-            
+
+
+            //alright, the very first thing we need to do is normalize our data
+            //the database stores sex as either M or F, so if it's any version of male/female we need to normalize it to M or F
+
+            if (inputSex.Equals("Male"))
+            {
+                inputSex = "M";
+            }//if
+            else
+            {
+                inputSex = "F";
+            }//else
+
+
 
 
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
@@ -105,12 +119,13 @@ namespace OAHeLP_Database_Project
 
                 //also, eventually this should probably be some sort of string builder, but I'm just hardcoding this for now to make everything clear
 
-                queryString = "SELECT S.SubjectID, S.Sex, S.EthnicGroupID, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
+                queryString = "SELECT S.SubjectID, S.Sex, EG.EthnicGroupName, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
                     "FROM [Subject].[Subject] S " +
                         "LEFT JOIN [Subject].[SubjectName] SN ON S.SubjectID = SN.SubjectID " +
                         "LEFT JOIN [Subject].[Name] N ON SN.NameID = N.NameID " +
                         "LEFT JOIN [Subject].Residence R ON S.SubjectID = R.SubjectID " +
                         "LEFT JOIN [Subject].Village V ON V.VillageID = R.VillageID " +
+                        "LEFT JOIN [Subject].EthnicGroup EG ON EG.EthnicGroupID = S.EthnicGroupID " +
                     $"WHERE Sex = '{inputSex}'" +
                     " ORDER BY S.SubjectID";
 
@@ -118,8 +133,8 @@ namespace OAHeLP_Database_Project
 
                 //for reference, this query will output a table that looks like this
 
-                //     0          1           2            3             4               5           6             7              8               9      
-                //S.SubjectID | S.Sex | S.EthnicGroup | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID | V.GPSLatitude | V.GPSLongitude
+                //     0          1            2                3             4             5             6             7              8               9      
+                //S.SubjectID | S.Sex | EG.EthnicGroupName | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID | V.GPSLatitude | V.GPSLongitude
 
 
                 command = new SqlCommand(queryString, connection);
@@ -192,7 +207,7 @@ namespace OAHeLP_Database_Project
                 //these individuals then get a +10 to their score
 
                 //each row is one subject, but one subject may be on multiple rows if they have multiple names associated with the subject. 
-                for (int i = 0; i < queryResultsArray.Length; i++)
+                for (int i = 0; i < counter - 1; i++)
                 {
                     //check to see if this is the last entry for the given subject
                     //it doesn't actually matter which entry it is, just matters that we only consider one of them
@@ -202,7 +217,7 @@ namespace OAHeLP_Database_Project
                         if (queryResultsArray[i, 2].Equals(inputEthnicGroup))
                         {
 
-                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += 10;
+                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += 15;
                         }//if
                     }//if
                 }//for
@@ -210,7 +225,7 @@ namespace OAHeLP_Database_Project
 
                 //next, in a loop, we run our nameMatch method. This will add 10-distance as long as distance is < 10
 
-                for (int i = 0; i < queryResultsArray.Length; i++)
+                for (int i = 0; i < counter - 1; i++)
                 {
 
                     //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
@@ -250,9 +265,9 @@ namespace OAHeLP_Database_Project
                     }//for
 
                     //now we take our lowest result and compare it to our weights
-                    if (lowestResult < 10)
+                    if (lowestResult < 15)
                     {
-                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += (10 - lowestResult);
+                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += (15 - lowestResult);
                     }//if
                     else
                     {
@@ -266,7 +281,7 @@ namespace OAHeLP_Database_Project
 
                 //next, we loop and check the given villageID compared to the current village. 
 
-                for (int i = 0; i < queryResultsArray.Length; i++)
+                for (int i = 0; i < counter - 1; i++)
                 {
                     //check to see if this is the last entry for the given subject
                     //it doesn't actually matter which entry it is, just matters that we only consider one of them
@@ -277,47 +292,93 @@ namespace OAHeLP_Database_Project
                         //string[] row = queryResultsArray[i];
 
                         //lets get the lat and long
-                        int lat = int.Parse(queryResultsArray[i, 8]);
-                        int lon = int.Parse(queryResultsArray[i, 9]);
-
-                        //string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
-                        int inputLat = 0;
-                        int inputLon = 0;
-
-                        foreach (string[] SA in queryResultsListInputVillageGPS)
+                        //not every subject has a res, so we just skip the ones that don't. 
+                        if (!queryResultsArray[i, 8].Equals(""))
                         {
-                            inputLat = int.Parse(SA[1]);
-                            inputLon = int.Parse(SA[2]);
-                        }//foreach
+                            int lat = int.Parse(queryResultsArray[i, 8]);
+                            int lon = int.Parse(queryResultsArray[i, 9]);
 
+                            //string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
+                            int inputLat = 0;
+                            int inputLon = 0;
 
-                        //now we get to do a distance analysis!
-
-                        var sCoord = new GeoCoordinate(lat, lon);
-                        var eCoord = new GeoCoordinate(inputLat, inputLon);
-
-                        //this method returns the distance in meters
-                        double physicalDistance = sCoord.GetDistanceTo(eCoord);
-                        //now in km
-                        physicalDistance = physicalDistance / 1000;
-
-                        //The villages being within 100km is +10, within 500km is +5, within 2500km is +2
-                        if (physicalDistance < 2500)
-                        {
-                            //In this calculation, the highest value (where physicalDistance is 0) is 10, and the lowest value is 0
-                            int distanceWeight = (2500 - Convert.ToInt32(physicalDistance)) / 250;
-                            if (!(distanceWeight < 0))
+                            foreach (string[] SA in queryResultsListInputVillageGPS)
                             {
-                                subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceWeight;
-                            }//if
-                        }//if
-                        else
-                        {
+                                inputLat = int.Parse(SA[1]);
+                                inputLon = int.Parse(SA[2]);
+                            }//foreach
 
-                        }//else if
+
+                            //now we get to do a distance analysis!
+
+                            var sCoord = new GeoCoordinate(lat, lon);
+                            var eCoord = new GeoCoordinate(inputLat, inputLon);
+
+                            //this method returns the distance in meters
+                            double physicalDistance = sCoord.GetDistanceTo(eCoord);
+                            //now in km
+                            physicalDistance = physicalDistance / 1000;
+
+                            //The villages being within 100km is +10, within 500km is +5, within 2500km is +2
+                            if (physicalDistance < 2500)
+                            {
+                                //In this calculation, the highest value (where physicalDistance is 0) is 10, and the lowest value is 0
+                                int distanceWeight = (2500 - Convert.ToInt32(physicalDistance)) / 250;
+                                if (!(distanceWeight < 0))
+                                {
+                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceWeight;
+                                }//if
+                            }//if
+                            else
+                            {
+
+                            }//else if
+                        }//if
                     }//if
                 }//for
 
+                List<int> subjectsToRemove = new List<int>();
+                //Now we're going to filter out all of the zeroes
+                //we have to get all of the keys first before actually modifying the dictionary
+                foreach(KeyValuePair<int,int> i in subjectIDAndScores)
+                {
+                    if(i.Value == 0)
+                    {
+                        subjectsToRemove.Add(i.Key);
+                    }//if
+                }//foreach
+
+                //then we can go through and remove the subjects
+                foreach(int i in subjectsToRemove)
+                {
+                    subjectIDAndScores.Remove(i);
+                }//foreach
+
+
+                //last thing I'm going to do is normalize the values a bit
+                //or at least I wanted to, but the normalization isn't working
+                /*
+                int maxValueInSet = subjectIDAndScores.Values.Max();
+                int minValueInSet = subjectIDAndScores.Values.Max();
+
+                int maxNormalizedValue = 50;
+                int minNormalizedValue = 10;
+
+                //getting the keys 
+                List<int> subjectIDs = subjectIDAndScores.Keys.ToList<int>();
+
+                //trasnforming the values
+                foreach(int i in subjectIDs)
+                {
+                    int oldVal = subjectIDAndScores[i];
+                    int newI = (maxNormalizedValue - minNormalizedValue) / (maxValueInSet - minValueInSet) * (oldVal - maxValueInSet) + maxNormalizedValue;
+                    subjectIDAndScores[i] = newI;
+                }//foreach
+
+                */
+
+
+                //then we're done!!!!
                 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 //this next bit would be CRAZY cool, but I don't think I have time

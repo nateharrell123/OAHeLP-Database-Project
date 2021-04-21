@@ -5,6 +5,7 @@ using SubjectData.DataDelegates;
 using System.Collections.Generic;
 using System.Data;
 
+
 namespace SubjectData
 {
     public class SqlSubjectRepository : ISubjectRepository
@@ -60,6 +61,12 @@ namespace SubjectData
         public DataTable GetMedicalHistory(int subjectId)
         {
             var d = new GetMedicalHistoryDataDelegate(subjectId);
+            return executor.ExecuteReader(d);
+        }
+
+        public bool DeleteSubject(int id)
+        {
+            var d = new DeleteSubjectDataDelegate(id);
             return executor.ExecuteReader(d);
         }
     }

@@ -36,5 +36,7 @@ namespace SubjectData
         List<Name> GetNames(int subjectId);
 
         DataTable GetMedicalHistory(int subjectId);
+
+        bool DeleteSubject(int id);
     }
 }

@@ -8,3 +8,5 @@ DROP PROCEDURE  [Subject].GetSubjectList;
 GO
 DROP PROCEDURE  [Subject].GetMedicalHistory;
 GO
+DROP PROCEDURE  [Subject].GetICSubject;
+GO

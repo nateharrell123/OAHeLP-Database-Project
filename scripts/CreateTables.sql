@@ -36,7 +36,7 @@ CREATE TABLE [Subject].[Subject]
 CREATE TABLE [Subject].Residence
 (
     SubjectID INT NOT NULL FOREIGN KEY 
-        REFERENCES [Subject].[Subject](SubjectID),
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE CASCADE,
     [Date] DATE NOT NULL,
     VillageID INT NOT NULL
 
@@ -55,7 +55,7 @@ CREATE TABLE [Subject].[Name]
 CREATE TABLE [Subject].[SubjectName]
 (
     SubjectID INT NOT NULL FOREIGN KEY
-        REFERENCES [Subject].[Subject](SubjectID),
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE CASCADE,
     NameID INT NOT NULL FOREIGN KEY
         REFERENCES [Subject].[Name](NameID)
 
@@ -66,10 +66,10 @@ CREATE TABLE [Subject].[SubjectName]
 CREATE TABLE [Subject].Marriage
 (
     SubjectID INT NOT NULL FOREIGN KEY  
-        REFERENCES [Subject].[Subject](SubjectID),
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE NO ACTION,
     [Date] DATE NOT NULL,
     SpouseID INT NOT NULL FOREIGN KEY
-        REFERENCES [Subject].[Subject](SubjectID),
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE NO ACTION,
     YearsMarried INT NULL
 
     CONSTRAINT PK_Marriage
@@ -143,7 +143,7 @@ CREATE TABLE Clinic.ClinicVisit(
         REFERENCES Clinic.Clinic(ClinicID),
     RecordID INT NOT NULL,
     SubjectID INT NOT NULL FOREIGN KEY  
-        REFERENCES [Subject].[Subject](SubjectID),
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE CASCADE,
     ClinicianID INT NOT NULL FOREIGN KEY    
         REFERENCES Clinic.Clinician(ClinicianID),
     BodyTempDegC DECIMAL(5,2) NOT NULL,

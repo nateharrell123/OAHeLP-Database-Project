@@ -44,7 +44,11 @@ Write-Host "Stored procedures..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetSubject.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetNames.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetOASubject.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetMedicalHistory.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetICSubject.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetSubjectList.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DeleteSubject.sql"
+
 
 
 Write-Host "Inserting data..."

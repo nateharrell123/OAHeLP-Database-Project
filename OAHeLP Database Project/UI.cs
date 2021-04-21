@@ -1,15 +1,13 @@
-﻿using System;
+﻿using DataAccess;
+using SubjectData;
+using SubjectData.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Configuration;
 using System.Data.SqlClient; // need this for SQL
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Drawing;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace OAHeLP_Database_Project
 {
@@ -23,15 +21,26 @@ namespace OAHeLP_Database_Project
         /// The connection string.
         /// </summary>
         public static string connectionString; // might be a bad idea
+        ISubjectRepository repo;
+        BindingList<Subject> subjectList;
+        DetailedView detailedView;
+
+
         /// <summary>
         /// Connect to DB
         /// </summary>
         public UI()
         {
             //DisplaySplashScreen();
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            repo = new SqlSubjectRepository(connectionString);
+            subjectList = new BindingList<Subject>();
             InitializeComponent();
             PopulateTable();
+            uxNamesListBox.DataSource = subjectList;
+            detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
+            OpenChildForm(detailedView);
         }
 
         /// <summary>
@@ -59,25 +68,10 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void PopulateTable()
         {
-            using (connection = new SqlConnection(connectionString))
-            using (SqlDataAdapter adapter = new SqlDataAdapter("select FirstName from [Subject].[Name]", connection)) // select query goes here
-            {
-                var commandBuilder = new SqlCommandBuilder(adapter);
-                var dataTable = new DataTable();
-                adapter.Fill(dataTable);
-
-                
-                string firstName, middleNames, lastName;
-                firstName = "FirstName";
-                middleNames = "MiddleNames";
-                lastName = "LastName";
-                Person person = new Person(firstName, middleNames, lastName);
-                //uxNamesListBox.DisplayMember = person.ToString();
-                // make a list of people, add people to list show in table
-                
-                uxNamesListBox.DataSource = dataTable;
-                uxNamesListBox.DisplayMember = "FirstName";
-            }
+            List<int> myIds = new List<int>();
+            for (int i = 1; i < 20; i++) myIds.Add(i);
+            subjectList = repo.GetSubjectList(myIds);
+            uxNamesListBox.DataSource = subjectList;
         }
 
         /// <summary>
@@ -109,6 +103,7 @@ namespace OAHeLP_Database_Project
                 PopulateTable();
                 MessageBox.Show($"Added {uxNameLookupText.Text} to the database.");
             }
+            else MessageBox.Show($"Cancelled adding {uxNameLookupText.Text} to the database.");
         }
 
         /// <summary>
@@ -127,32 +122,17 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
-            using (connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
+                if (detailedView == null) detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
 
-                string query = $"select S.OAHeLPID, N.FirstName, N.MiddleNames, N.LastName,S.Sex, EG.EthnicGroupName from[Subject].[Subject] S " +
-                    $"inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                    $"inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
-                    $"inner join[Subject].EthnicGroup EG on S.EthnicGroupID = EG.EthnicGroupID " +
-                    $"where N.FirstName = '{selectedName}'";
+                detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                detailedView.UpdateView();
 
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        // FIX THIS
-                        var id = reader.GetString(0);
-                        var fullName = reader.GetString(1) + reader.GetString(2) + reader.GetString(3);
-                        var sex = reader.GetString(4);
-                        var ethnicGroup = reader.GetString(5);
-                        OpenChildForm(new DetailedView(id, fullName, sex, ethnicGroup));
-                    }
-                }
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                //this exception is thrown between when list is cleared and repopulated
             }
         }
 
@@ -167,22 +147,47 @@ namespace OAHeLP_Database_Project
             if (e.KeyChar == (char)Keys.Enter)
             {
                 var projectID = uxProjectIDTextBox.Text;
-                if (projectID == "" || projectID == null) return;
-
-                string query = $"select N.FirstName, S.OaHeLPID from[Subject].[Subject] S " +
-                    "inner join[Subject].SubjectName SN on S.SubjectID = SN.SubjectID " +
-                    "inner join[Subject].[Name] N on N.NameID = S.SubjectID " +
-                    $"where S.OaHeLPID = '{projectID}'";
-
-                using (connection = new SqlConnection(connectionString))
-                using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection)) // select query goes here
+                if (projectID == "" || projectID == null) PopulateTable();
+                else if (projectID.Length != 6) MessageBox.Show("Enter a valid project ID");
+                else
                 {
-                    var commandBuilder = new SqlCommandBuilder(adapter);
-                    var dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    uxNamesListBox.DataSource = dataTable;
+                    try
+                    {
+                        Subject result = repo.GetOASubject(projectID);
+                        subjectList.Clear();
+                        subjectList.Add(result);
+                        uxNamesListBox.DataSource = subjectList;
+                    }
+                    catch (RecordNotFoundException ex)
+                    {
+                        MessageBox.Show("No records found");
+                    }
                 }
-                uxProjectIDTextBox.Clear();
+            }
+        }
+        private void uxICCardNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var icNum = uxICCardNumberTextBox.Text;
+                if (icNum == "" || icNum == null) PopulateTable();
+                else if (icNum.Length != 12) MessageBox.Show("Enter a valid project ID"); //could also check and make sure they are all digits
+                else
+                {
+                    icNum = 'n' + icNum;
+                    try
+                    {
+                        Subject result = repo.GetICSubject(icNum);
+                        subjectList.Clear();
+                        subjectList.Add(result);
+                        uxNamesListBox.DataSource = subjectList;
+                    }
+                    catch (RecordNotFoundException ex)
+                    {
+                        MessageBox.Show("No records found");
+                    }
+                }
             }
         }
 
@@ -265,7 +270,7 @@ namespace OAHeLP_Database_Project
         private void uxProjectIDTextBox_Enter(object sender, EventArgs e) { uxProjectIDTextBox.Clear(); uxProjectIDTextBox.ForeColor = Color.Black; }
 
         private void uxProjectIDTextBox_Leave(object sender, EventArgs e) { uxProjectIDTextBox.Text = "Project ID:"; uxProjectIDTextBox.ForeColor = Color.Silver; }
-        private void uxICCardNumberTextBox_Enter(object sender, EventArgs e) { uxICCardNumberTextBox.Clear(); uxICCardNumberTextBox.ForeColor = Color.Black;  }
+        private void uxICCardNumberTextBox_Enter(object sender, EventArgs e) { uxICCardNumberTextBox.Clear(); uxICCardNumberTextBox.ForeColor = Color.Black; }
         private void uxICCardNumberTextBox_Leave(object sender, EventArgs e) { uxICCardNumberTextBox.Text = "IC Card Number:"; uxICCardNumberTextBox.ForeColor = Color.Silver; }
         #endregion
         /// <summary>
@@ -278,5 +283,6 @@ namespace OAHeLP_Database_Project
         {
             PopulateTable();
         }
+
     }
 }

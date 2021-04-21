@@ -165,6 +165,31 @@ namespace OAHeLP_Database_Project
                 }
             }
         }
+        private void uxICCardNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                var icNum = uxICCardNumberTextBox.Text;
+                if (icNum == "" || icNum == null) PopulateTable();
+                else if (icNum.Length != 12) MessageBox.Show("Enter a valid project ID"); //could also check and make sure they are all digits
+                else
+                {
+                    icNum = 'n' + icNum;
+                    try
+                    {
+                        Subject result = repo.GetICSubject(icNum);
+                        subjectList.Clear();
+                        subjectList.Add(result);
+                        uxNamesListBox.DataSource = subjectList;
+                    }
+                    catch (RecordNotFoundException ex)
+                    {
+                        MessageBox.Show("No records found");
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Show everyone in table
@@ -238,5 +263,6 @@ namespace OAHeLP_Database_Project
         {
             PopulateTable();
         }
+
     }
 }

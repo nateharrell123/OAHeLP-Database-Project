@@ -26,6 +26,8 @@ namespace SubjectData
         /// <param name="oaId"></param>
         /// <returns></returns>
         Subject GetOASubject(string oaId);
+
+        Subject GetICSubject(string icNum);
        
         /// <summary>
         /// Gets a list of subjects provided an ordered list of id numbers resulting from search

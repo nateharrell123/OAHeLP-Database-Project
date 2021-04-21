@@ -48,7 +48,7 @@ namespace SubjectData.DataDelegates
             do
             {
                 DOBSource source;
-                if (reader.IsNull("DOBSource")) source = DOBSource.none;
+                if (reader.GetNullableString("DOBSource") == null) source = DOBSource.none;
                 else source = (DOBSource)Enum.Parse(typeof(DOBSource), reader.GetString("DOBSource"));
                 Subject next = new Subject(
                     reader.GetInt32("SubjectID"),

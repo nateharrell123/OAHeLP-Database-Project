@@ -208,8 +208,28 @@ namespace OAHeLP_Database_Project
         private void uxMedicalHistoryButton_Click(object sender, EventArgs e)
         {
             var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
-            MedicalHistory medicalHistory = new MedicalHistory(selectedName);
-            medicalHistory.Show();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = $"";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        // FIX THIS
+                        var id = reader.GetString(0);
+                        MedicalHistory medicalHistory = new MedicalHistory(id);
+                        medicalHistory.Show();
+                    }
+                }
+            }
+
+
         }
 
         #region UI Stuff

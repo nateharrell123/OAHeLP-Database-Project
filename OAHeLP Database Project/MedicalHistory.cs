@@ -14,7 +14,7 @@ namespace OAHeLP_Database_Project
     public partial class MedicalHistory : Form
     {
         SqlConnection connection;
-        public MedicalHistory(string selectedItem)
+        public MedicalHistory(int subjectID)
         {
             InitializeComponent();
             using (SqlConnection connection = new SqlConnection(UI.connectionString))
@@ -23,7 +23,7 @@ namespace OAHeLP_Database_Project
                 connection.Open();
 
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("SubjectID", selectedItem);
+                command.Parameters.AddWithValue("SubjectID", subjectID);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataSet dataSet = new DataSet();

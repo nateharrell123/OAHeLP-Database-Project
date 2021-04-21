@@ -1,18 +1,13 @@
-﻿using System;
+﻿using DataAccess;
+using SubjectData;
+using SubjectData.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Configuration;
 using System.Data.SqlClient; // need this for SQL
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Drawing;
 using System.Threading;
-using SubjectData.Models;
-using SubjectData;
-using DataAccess;
+using System.Windows.Forms;
 
 namespace OAHeLP_Database_Project
 {
@@ -30,7 +25,7 @@ namespace OAHeLP_Database_Project
         BindingList<Subject> subjectList;
         DetailedView detailedView;
 
-        
+
         /// <summary>
         /// Connect to DB
         /// </summary>
@@ -76,6 +71,7 @@ namespace OAHeLP_Database_Project
             List<int> myIds = new List<int>();
             for (int i = 1; i < 20; i++) myIds.Add(i);
             subjectList = repo.GetSubjectList(myIds);
+            uxNamesListBox.DataSource = subjectList;
         }
 
         /// <summary>
@@ -108,8 +104,6 @@ namespace OAHeLP_Database_Project
                 MessageBox.Show($"Added {uxNameLookupText.Text} to the database.");
             }
             else MessageBox.Show($"Cancelled adding {uxNameLookupText.Text} to the database.");
-
-
         }
 
         /// <summary>
@@ -131,14 +125,14 @@ namespace OAHeLP_Database_Project
             try
             {
                 if (detailedView == null) detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
-                {
-                    detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
-                    detailedView.UpdateView();
-                }
-            }
-            catch(System.ArgumentOutOfRangeException ex)
-            {
 
+                detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                detailedView.UpdateView();
+
+            }
+            catch (System.ArgumentOutOfRangeException ex)
+            {
+                //this exception is thrown between when list is cleared and repopulated
             }
         }
 
@@ -153,19 +147,21 @@ namespace OAHeLP_Database_Project
             if (e.KeyChar == (char)Keys.Enter)
             {
                 var projectID = uxProjectIDTextBox.Text;
-                if (projectID == "" || projectID == null) return;
-                if (projectID.Length != 6) MessageBox.Show("Enter a valid project ID");
-
-                try
+                if (projectID == "" || projectID == null) PopulateTable();
+                else if (projectID.Length != 6) MessageBox.Show("Enter a valid project ID");
+                else
                 {
-                    Subject result = repo.GetOASubject(projectID);
-                    subjectList.Clear();
-                    subjectList.Add(result);
-                    //uxNamesListBox.Update();
-                }
-                catch(RecordNotFoundException ex)
-                {
-                    MessageBox.Show("No records found");
+                    try
+                    {
+                        Subject result = repo.GetOASubject(projectID);
+                        subjectList.Clear();
+                        subjectList.Add(result);
+                        uxNamesListBox.DataSource = subjectList;
+                    }
+                    catch (RecordNotFoundException ex)
+                    {
+                        MessageBox.Show("No records found");
+                    }
                 }
             }
         }
@@ -229,7 +225,7 @@ namespace OAHeLP_Database_Project
         private void uxProjectIDTextBox_Enter(object sender, EventArgs e) { uxProjectIDTextBox.Clear(); uxProjectIDTextBox.ForeColor = Color.Black; }
 
         private void uxProjectIDTextBox_Leave(object sender, EventArgs e) { uxProjectIDTextBox.Text = "Project ID:"; uxProjectIDTextBox.ForeColor = Color.Silver; }
-        private void uxICCardNumberTextBox_Enter(object sender, EventArgs e) { uxICCardNumberTextBox.Clear(); uxICCardNumberTextBox.ForeColor = Color.Black;  }
+        private void uxICCardNumberTextBox_Enter(object sender, EventArgs e) { uxICCardNumberTextBox.Clear(); uxICCardNumberTextBox.ForeColor = Color.Black; }
         private void uxICCardNumberTextBox_Leave(object sender, EventArgs e) { uxICCardNumberTextBox.Text = "IC Card Number:"; uxICCardNumberTextBox.ForeColor = Color.Silver; }
         #endregion
         /// <summary>

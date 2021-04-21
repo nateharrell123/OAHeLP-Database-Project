@@ -18,7 +18,7 @@ namespace OAHeLP_Database_Project
         {
             InitializeComponent();
             using (SqlConnection connection = new SqlConnection(UI.connectionString))
-            using (SqlCommand command = new SqlCommand("GetMedicalHistory", connection))
+            using (SqlCommand command = new SqlCommand("[Subject].[GetMedicalHistory]", connection))
             {
                 connection.Open();
 

@@ -37,7 +37,8 @@ namespace OAHeLP_Database_Project
         public UI()
         {
             //DisplaySplashScreen();
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
             InitializeComponent();

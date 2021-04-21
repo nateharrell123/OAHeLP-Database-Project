@@ -29,10 +29,19 @@ namespace OAHeLP_Database_Project
 
         public void UpdateView()
         {
+         
             uxProjectIDLabel.Text = $"Project ID: {subject.OAHeLPID}";
             uxNameLabel.Text = $"Name: {subject.Names[0].FirstName} {subject.Names[0].MiddleNames} {subject.Names[0].LastName}";
             uxSexLabel.Text = $"Sex: {subject.Sex}";
             uxEthnicityLabel.Text = $"Ethnic Group: {subject.EthnicGroup}";
+            if (subject.DOB != null)
+            {
+                DateTimeOffset now = System.DateTimeOffset.UtcNow;
+                TimeSpan ts = now - (DateTimeOffset)subject.DOB;
+                int age = ts.Days / 365;
+                uxAgeLabel.Text = $"Age: {age}";
+            }
+            else uxAgeLabel.Text = "Age: UNKNOWN";
         }
 
         public void ClearView()

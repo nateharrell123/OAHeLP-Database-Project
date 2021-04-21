@@ -5,6 +5,7 @@ using SubjectData.Models;
 using System;
 using System.Collections.Generic;
 using System.Transactions;
+using System.ComponentModel;
 
 namespace ISubjectRepoTests
 {
@@ -87,7 +88,7 @@ namespace ISubjectRepoTests
             ids.Add(12);
             ids.Add(40);
             ids.Add(74);
-            List<Subject> actual = repo.GetSubjectList(ids);
+            BindingList<Subject> actual = repo.GetSubjectList(ids);
             Assert.IsTrue(actual.Count == 4);
         }
         /*

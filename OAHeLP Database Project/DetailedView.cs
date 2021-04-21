@@ -7,18 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SubjectData.Models;
+using System.Windows;
 
 namespace OAHeLP_Database_Project
 {
     public partial class DetailedView : Form
     {
-        public DetailedView(string projectID, string name = "", string sex = "", string ethnicGroup = "")
+        Subject subject;
+        public DetailedView(Subject s)
         {
+            subject = s;
             InitializeComponent();
-            uxProjectIDLabel.Text = $"Project ID: {projectID}";
-            uxNameLabel.Text = $"Name: {name}";
-            uxSexLabel.Text = $"Sex: {sex}";
-            uxEthnicityLabel.Text = $"Ethnic Group: {ethnicGroup}";
+            UpdateView();
+        }
+
+        public void UpdateSubject(Subject s)
+        {
+            subject = s;
+        }
+
+        public void UpdateView()
+        {
+         
+            uxProjectIDLabel.Text = $"Project ID: {subject.OAHeLPID}";
+            uxNameLabel.Text = $"Name: {subject.Names[0].FirstName} {subject.Names[0].MiddleNames} {subject.Names[0].LastName}";
+            uxSexLabel.Text = $"Sex: {subject.Sex}";
+            uxEthnicityLabel.Text = $"Ethnic Group: {subject.EthnicGroup}";
+            if (subject.DOB != null)
+            {
+                DateTimeOffset now = System.DateTimeOffset.UtcNow;
+                TimeSpan ts = now - (DateTimeOffset)subject.DOB;
+                int age = ts.Days / 365;
+                uxAgeLabel.Text = $"Age: {age}";
+            }
+            else uxAgeLabel.Text = "Age: UNKNOWN";
+        }
+
+        public void ClearView()
+        {
+            uxProjectIDLabel.Text = $"Project ID: ";
+            uxNameLabel.Text = $"Name: ";
+            uxSexLabel.Text = $"Sex: ";
+            uxEthnicityLabel.Text = $"Ethnic Group: ";
         }
     }
 }

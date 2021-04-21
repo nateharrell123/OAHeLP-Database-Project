@@ -109,9 +109,6 @@ namespace OAHeLP_Database_Project
                 PopulateTable();
                 MessageBox.Show($"Added {uxNameLookupText.Text} to the database.");
             }
-            else MessageBox.Show($"Cancelled adding {uxNameLookupText.Text} to the database.");
-
-
         }
 
         /// <summary>

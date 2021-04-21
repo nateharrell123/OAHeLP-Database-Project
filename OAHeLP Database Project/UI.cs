@@ -161,7 +161,7 @@ namespace OAHeLP_Database_Project
                     Subject result = repo.GetOASubject(projectID);
                     subjectList.Clear();
                     subjectList.Add(result);
-                    uxNamesListBox.Update();
+                    //uxNamesListBox.Update();
                 }
                 catch(RecordNotFoundException ex)
                 {

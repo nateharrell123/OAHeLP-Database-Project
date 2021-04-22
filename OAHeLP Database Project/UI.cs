@@ -40,10 +40,11 @@ namespace OAHeLP_Database_Project
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
-
+            
             InitializeComponent();
             PopulateTable();
             uxNamesListBox.DataSource = subjectList;
+            //this gets thrown when a connection is unsuccessful
             detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
             OpenChildForm(detailedView);
         }
@@ -75,8 +76,7 @@ namespace OAHeLP_Database_Project
         {
             List<int> ids = new List<int>();
             for (int i = 0; i < 20; i++) ids.Add(i);
-            BindingList<Subject> subjects = repo.GetSubjectList(ids);
-            uxNamesListBox.DataSource = subjects;
+            subjectList = repo.GetSubjectList(ids);
         }
 
         /// <summary>

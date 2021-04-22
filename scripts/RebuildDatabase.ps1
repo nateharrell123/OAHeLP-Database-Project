@@ -1,7 +1,7 @@
 Param(
    [string] $Server = "(LocalDB)\MSSQLLocalDb",
-   #[string] $Database = "OAHELP"  
- [string] $Database = "C:\USERS\RSHALE\SOURCE\REPOS\OAHELP-DATABASE-PROJECT\OAHELP DATABASE PROJECT\DATABASE1.MDF"
+   [string] $Database = "OAHELP"  
+ #[string] $Database = "C:\USERS\RSHALE\SOURCE\REPOS\OAHELP-DATABASE-PROJECT\OAHELP DATABASE PROJECT\DATABASE1.MDF"
 )
 
 # This script requires the SQL Server module for PowerShell.

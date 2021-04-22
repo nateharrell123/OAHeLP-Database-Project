@@ -35,17 +35,12 @@ namespace OAHeLP_Database_Project
         {
             
             //DisplaySplashScreen();
-<<<<<<< HEAD
-            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            //connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
             connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
-            repo = new SqlSubjectRepository(connectionString);
-=======
-            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
-            //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
->>>>>>> origin/dev
+
             InitializeComponent();
             PopulateTable();
             uxNamesListBox.DataSource = subjectList;
@@ -78,16 +73,10 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void PopulateTable()
         {
-<<<<<<< HEAD
             List<int> ids = new List<int>();
             for (int i = 0; i < 20; i++) ids.Add(i);
-            List<Subject> subjects = repo.GetSubjectList(ids);
+            BindingList<Subject> subjects = repo.GetSubjectList(ids);
             uxNamesListBox.DataSource = subjects;
-=======
-            List<int> myIds = new List<int>();
-            for (int i = 1; i < 20; i++) myIds.Add(i);
-            subjectList = repo.GetSubjectList(myIds);
-            uxNamesListBox.DataSource = subjectList;
         }
 
         /// <summary>
@@ -120,7 +109,6 @@ namespace OAHeLP_Database_Project
                 MessageBox.Show($"Added {uxNameLookupText.Text} to the database.");
             }
             else MessageBox.Show($"Cancelled adding {uxNameLookupText.Text} to the database.");
->>>>>>> origin/dev
         }
 
         /// <summary>

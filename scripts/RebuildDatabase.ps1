@@ -1,7 +1,7 @@
 Param(
    [string] $Server = "(LocalDB)\MSSQLLocalDb",
-   [string] $Database = "OAHELP"  
- #[string] $Database = "C:\USERS\RSHALE\SOURCE\REPOS\OAHELP-DATABASE-PROJECT\OAHELP DATABASE PROJECT\DATABASE1.MDF"
+   #[string] $Database = "OAHELP"  
+ [string] $Database = "C:\USERS\RSHALE\SOURCE\REPOS\OAHELP-DATABASE-PROJECT\OAHELP DATABASE PROJECT\DATABASE1.MDF"
 )
 
 # This script requires the SQL Server module for PowerShell.
@@ -44,10 +44,11 @@ Write-Host "Stored procedures..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetSubject.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetNames.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetOASubject.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetSubjectList.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetMedicalHistory.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetICSubject.sql"
-Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetSubjectList.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DeleteSubject.sql"
+
 
 Write-Host "Inserting data..."
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "InsertSubjectData.sql"

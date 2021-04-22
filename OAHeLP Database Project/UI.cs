@@ -291,7 +291,7 @@ namespace OAHeLP_Database_Project
             PopulateTable();
         }
 
-        private void uxFeature1Button_Click(object sender, EventArgs e)
+        private void uxDeleteButton_Click(object sender, EventArgs e)
         {
             int id = subjectList[uxNamesListBox.SelectedIndex].SubjectID;
             repo.DeleteSubject(id);

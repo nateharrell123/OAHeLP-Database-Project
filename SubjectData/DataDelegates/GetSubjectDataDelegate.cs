@@ -29,7 +29,7 @@ namespace SubjectData.DataDelegates
             if (!reader.Read())
                 throw new RecordNotFoundException(subjectId.ToString());
             DOBSource source;
-            if (reader.GetString("DOBSource") == "NULL") source = DOBSource.none;
+            if (reader.GetNullableString("DOBSource") == null) source = DOBSource.none;
             else source = (DOBSource)Enum.Parse(typeof(DOBSource), reader.GetString("DOBSource"));
             return new Subject(
                 subjectId,

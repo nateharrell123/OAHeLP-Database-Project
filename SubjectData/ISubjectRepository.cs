@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +26,15 @@ namespace SubjectData
         /// <param name="oaId"></param>
         /// <returns></returns>
         Subject GetOASubject(string oaId);
+
+        Subject GetICSubject(string icNum);
        
         /// <summary>
         /// Gets a list of subjects provided an ordered list of id numbers resulting from search
         /// </summary>
         /// <param name="subjectIds"></param>
         /// <returns></returns>
-        List<Subject> GetSubjectList(List<int> subjectIds);
+        BindingList<Subject> GetSubjectList(List<int> subjectIds);
 
         List<Name> GetNames(int subjectId);
 

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DataDelegates\DeleteSubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\GetMedicalHistoryDataDelegate.cs" />
+    <Compile Include="DataDelegates\GetICSubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\GetNamesDataDelegate.cs" />
     <Compile Include="DataDelegates\GetOASubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\GetSubjectDataDelegate.cs" />

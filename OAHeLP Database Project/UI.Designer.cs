@@ -44,65 +44,97 @@ namespace OAHeLP_Database_Project
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.uxProjectIDTextBox = new System.Windows.Forms.TextBox();
+            this.uxICCardNumberTextBox = new System.Windows.Forms.TextBox();
+            this.uxSearchProjectIDButton = new System.Windows.Forms.Button();
             this.uxAddPersonButton = new System.Windows.Forms.Button();
-            this.uxAddImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxSearchButton = new System.Windows.Forms.Button();
+            this.uxAddImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxSearchImageList = new System.Windows.Forms.ImageList(this.components);
             this.uxNamesListBox = new System.Windows.Forms.ListBox();
-            this.uxPipeOne = new System.Windows.Forms.Label();
-            this.uxICCardNumberTextBox = new System.Windows.Forms.TextBox();
-            this.uxProjectIDTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.everyoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // uxEthnicGroupComboBox
             // 
+            this.uxEthnicGroupComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxEthnicGroupComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxEthnicGroupComboBox.ForeColor = System.Drawing.Color.Black;
             this.uxEthnicGroupComboBox.FormattingEnabled = true;
-            this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(776, 18);
+            this.uxEthnicGroupComboBox.Items.AddRange(new object[] {
+            "Batek",
+            "Jahai",
+            "Jakun",
+            "Lanoh",
+            "Malay",
+            "Mendriq",
+            "Semai",
+            "Temiar",
+            "Temuan"});
+            this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(299, 48);
+            this.uxEthnicGroupComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxEthnicGroupComboBox.Name = "uxEthnicGroupComboBox";
-            this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 28);
+            this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(227, 32);
             this.uxEthnicGroupComboBox.TabIndex = 15;
             // 
             // uxSexComboBox
             // 
+            this.uxSexComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxSexComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxSexComboBox.FormattingEnabled = true;
             this.uxSexComboBox.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.uxSexComboBox.Location = new System.Drawing.Point(776, 61);
+            this.uxSexComboBox.Location = new System.Drawing.Point(299, 101);
+            this.uxSexComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxSexComboBox.Name = "uxSexComboBox";
-            this.uxSexComboBox.Size = new System.Drawing.Size(171, 28);
+            this.uxSexComboBox.Size = new System.Drawing.Size(227, 32);
             this.uxSexComboBox.TabIndex = 15;
             // 
             // uxVillageComboBox
             // 
+            this.uxVillageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxVillageComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxVillageComboBox.FormattingEnabled = true;
-            this.uxVillageComboBox.Location = new System.Drawing.Point(599, 61);
+            this.uxVillageComboBox.Location = new System.Drawing.Point(63, 102);
+            this.uxVillageComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
-            this.uxVillageComboBox.Size = new System.Drawing.Size(171, 28);
+            this.uxVillageComboBox.Size = new System.Drawing.Size(227, 32);
             this.uxVillageComboBox.TabIndex = 15;
             // 
             // uxDetailedViewPanel
             // 
-            this.uxDetailedViewPanel.Location = new System.Drawing.Point(499, 157);
+            this.uxDetailedViewPanel.Location = new System.Drawing.Point(665, 260);
+            this.uxDetailedViewPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxDetailedViewPanel.Name = "uxDetailedViewPanel";
-            this.uxDetailedViewPanel.Size = new System.Drawing.Size(617, 379);
+            this.uxDetailedViewPanel.Size = new System.Drawing.Size(823, 497);
             this.uxDetailedViewPanel.TabIndex = 13;
             // 
             // uxNameLookupText
             // 
             this.uxNameLookupText.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.uxNameLookupText.Location = new System.Drawing.Point(599, 18);
+            this.uxNameLookupText.ForeColor = System.Drawing.Color.Black;
+            this.uxNameLookupText.Location = new System.Drawing.Point(63, 48);
+            this.uxNameLookupText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxNameLookupText.Multiline = true;
             this.uxNameLookupText.Name = "uxNameLookupText";
-            this.uxNameLookupText.Size = new System.Drawing.Size(171, 28);
+            this.uxNameLookupText.Size = new System.Drawing.Size(227, 34);
             this.uxNameLookupText.TabIndex = 12;
+            this.uxNameLookupText.Text = "Name";
             // 
             // database1DataSet1
             // 
@@ -115,9 +147,10 @@ namespace OAHeLP_Database_Project
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(785, 558);
+            this.button2.Location = new System.Drawing.Point(1172, 786);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(194, 55);
+            this.button2.Size = new System.Drawing.Size(259, 68);
             this.button2.TabIndex = 10;
             this.button2.Text = "Feature 3";
             this.button2.UseVisualStyleBackColor = false;
@@ -128,9 +161,10 @@ namespace OAHeLP_Database_Project
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(524, 558);
+            this.button1.Location = new System.Drawing.Point(811, 786);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 55);
+            this.button1.Size = new System.Drawing.Size(259, 68);
             this.button1.TabIndex = 9;
             this.button1.Text = "Feature 2";
             this.button1.UseVisualStyleBackColor = false;
@@ -141,9 +175,10 @@ namespace OAHeLP_Database_Project
             this.uxFeature1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxFeature1Button.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxFeature1Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxFeature1Button.Location = new System.Drawing.Point(268, 558);
+            this.uxFeature1Button.Location = new System.Drawing.Point(448, 786);
+            this.uxFeature1Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxFeature1Button.Name = "uxFeature1Button";
-            this.uxFeature1Button.Size = new System.Drawing.Size(194, 55);
+            this.uxFeature1Button.Size = new System.Drawing.Size(259, 68);
             this.uxFeature1Button.TabIndex = 8;
             this.uxFeature1Button.Text = "Feature 1";
             this.uxFeature1Button.UseVisualStyleBackColor = false;
@@ -154,12 +189,14 @@ namespace OAHeLP_Database_Project
             this.uxMedicalHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxMedicalHistoryButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxMedicalHistoryButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxMedicalHistoryButton.Location = new System.Drawing.Point(25, 558);
+            this.uxMedicalHistoryButton.Location = new System.Drawing.Point(43, 786);
+            this.uxMedicalHistoryButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxMedicalHistoryButton.Name = "uxMedicalHistoryButton";
-            this.uxMedicalHistoryButton.Size = new System.Drawing.Size(194, 55);
+            this.uxMedicalHistoryButton.Size = new System.Drawing.Size(259, 68);
             this.uxMedicalHistoryButton.TabIndex = 7;
             this.uxMedicalHistoryButton.Text = "Medical History";
             this.uxMedicalHistoryButton.UseVisualStyleBackColor = false;
+            this.uxMedicalHistoryButton.Click += new System.EventHandler(this.uxMedicalHistoryButton_Click);
             // 
             // tableAdapterManager
             // 
@@ -171,37 +208,106 @@ namespace OAHeLP_Database_Project
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.uxPipeOne);
-            this.panel1.Controls.Add(this.uxAddPersonButton);
-            this.panel1.Controls.Add(this.uxSearchButton);
-            this.panel1.Controls.Add(this.uxEthnicGroupComboBox);
             this.panel1.Controls.Add(this.uxProjectIDTextBox);
             this.panel1.Controls.Add(this.uxICCardNumberTextBox);
-            this.panel1.Controls.Add(this.uxNameLookupText);
-            this.panel1.Controls.Add(this.uxSexComboBox);
-            this.panel1.Controls.Add(this.uxVillageComboBox);
-            this.panel1.Location = new System.Drawing.Point(12, 25);
+            this.panel1.Location = new System.Drawing.Point(16, 46);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1104, 116);
+            this.panel1.Size = new System.Drawing.Size(619, 164);
             this.panel1.TabIndex = 16;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button3.Enabled = false;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(-1, -1);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(167, 42);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "Subject Search";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
+            this.label1.Location = new System.Drawing.Point(277, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 88);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "|";
+            // 
+            // uxProjectIDTextBox
+            // 
+            this.uxProjectIDTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxProjectIDTextBox.ForeColor = System.Drawing.Color.Silver;
+            this.uxProjectIDTextBox.Location = new System.Drawing.Point(25, 70);
+            this.uxProjectIDTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
+            this.uxProjectIDTextBox.Size = new System.Drawing.Size(212, 32);
+            this.uxProjectIDTextBox.TabIndex = 12;
+            this.uxProjectIDTextBox.Text = "Project ID:";
+            this.uxProjectIDTextBox.Enter += new System.EventHandler(this.uxProjectIDTextBox_Enter);
+            this.uxProjectIDTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.uxProjectIDTextBox_KeyPress);
+            this.uxProjectIDTextBox.Leave += new System.EventHandler(this.uxProjectIDTextBox_Leave);
+            // 
+            // uxICCardNumberTextBox
+            // 
+            this.uxICCardNumberTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxICCardNumberTextBox.ForeColor = System.Drawing.Color.Silver;
+            this.uxICCardNumberTextBox.Location = new System.Drawing.Point(359, 70);
+            this.uxICCardNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uxICCardNumberTextBox.Name = "uxICCardNumberTextBox";
+            this.uxICCardNumberTextBox.Size = new System.Drawing.Size(227, 32);
+            this.uxICCardNumberTextBox.TabIndex = 12;
+            this.uxICCardNumberTextBox.Text = "IC Card Number:";
+            this.uxICCardNumberTextBox.Enter += new System.EventHandler(this.uxICCardNumberTextBox_Enter);
+            this.uxICCardNumberTextBox.Leave += new System.EventHandler(this.uxICCardNumberTextBox_Leave);
+            this.uxICCardNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.uxICCardNumberTextBox_KeyPress);
+            // 
+            // uxSearchProjectIDButton
+            // 
+            this.uxSearchProjectIDButton.BackColor = System.Drawing.Color.Gainsboro;
+            this.uxSearchProjectIDButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxSearchProjectIDButton.BackgroundImage")));
+            this.uxSearchProjectIDButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uxSearchProjectIDButton.Location = new System.Drawing.Point(581, 218);
+            this.uxSearchProjectIDButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uxSearchProjectIDButton.Name = "uxSearchProjectIDButton";
+            this.uxSearchProjectIDButton.Size = new System.Drawing.Size(55, 42);
+            this.uxSearchProjectIDButton.TabIndex = 22;
+            this.uxSearchProjectIDButton.UseVisualStyleBackColor = false;
+            this.uxSearchProjectIDButton.Click += new System.EventHandler(this.uxSearchProjectIDButton_Click);
             // 
             // uxAddPersonButton
             // 
-            this.uxAddPersonButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.uxAddPersonButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.uxAddPersonButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.uxAddPersonButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxAddPersonButton.ImageIndex = 0;
-            this.uxAddPersonButton.ImageList = this.uxAddImageList;
-            this.uxAddPersonButton.Location = new System.Drawing.Point(1015, 23);
+            this.uxAddPersonButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxAddPersonButton.BackgroundImage")));
+            this.uxAddPersonButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uxAddPersonButton.Location = new System.Drawing.Point(672, 49);
+            this.uxAddPersonButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxAddPersonButton.Name = "uxAddPersonButton";
-            this.uxAddPersonButton.Size = new System.Drawing.Size(68, 62);
-            this.uxAddPersonButton.TabIndex = 17;
+            this.uxAddPersonButton.Size = new System.Drawing.Size(92, 87);
+            this.uxAddPersonButton.TabIndex = 18;
             this.uxAddPersonButton.UseVisualStyleBackColor = true;
-            this.uxAddPersonButton.Click += new System.EventHandler(this.uxAddPersonButton_Click);
-            this.uxAddPersonButton.MouseLeave += new System.EventHandler(this.uxAddPersonButton_MouseLeave);
-            this.uxAddPersonButton.MouseHover += new System.EventHandler(this.button3_MouseHover);
+            this.uxAddPersonButton.Click += new System.EventHandler(this.uxAddPersonButton_Click_1);
+            // 
+            // uxSearchButton
+            // 
+            this.uxSearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uxSearchButton.BackgroundImage")));
+            this.uxSearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uxSearchButton.Location = new System.Drawing.Point(551, 48);
+            this.uxSearchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uxSearchButton.Name = "uxSearchButton";
+            this.uxSearchButton.Size = new System.Drawing.Size(92, 87);
+            this.uxSearchButton.TabIndex = 18;
+            this.uxSearchButton.UseVisualStyleBackColor = true;
+            this.uxSearchButton.Click += new System.EventHandler(this.uxSearchButton_Click_1);
             // 
             // uxAddImageList
             // 
@@ -209,23 +315,6 @@ namespace OAHeLP_Database_Project
             this.uxAddImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.uxAddImageList.Images.SetKeyName(0, "Plus.png");
             this.uxAddImageList.Images.SetKeyName(1, "Plus Highlight.png.png");
-            // 
-            // uxSearchButton
-            // 
-            this.uxSearchButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.uxSearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.uxSearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.uxSearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxSearchButton.ImageIndex = 0;
-            this.uxSearchButton.ImageList = this.uxSearchImageList;
-            this.uxSearchButton.Location = new System.Drawing.Point(953, 28);
-            this.uxSearchButton.Name = "uxSearchButton";
-            this.uxSearchButton.Size = new System.Drawing.Size(56, 52);
-            this.uxSearchButton.TabIndex = 16;
-            this.uxSearchButton.UseVisualStyleBackColor = true;
-            this.uxSearchButton.Click += new System.EventHandler(this.uxSearchButton_Click);
-            this.uxSearchButton.MouseLeave += new System.EventHandler(this.uxSearchButton_MouseLeave);
-            this.uxSearchButton.MouseHover += new System.EventHandler(this.uxSearchButton_MouseHover);
             // 
             // uxSearchImageList
             // 
@@ -238,57 +327,118 @@ namespace OAHeLP_Database_Project
             // 
             this.uxNamesListBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxNamesListBox.FormattingEnabled = true;
-            this.uxNamesListBox.ItemHeight = 25;
-            this.uxNamesListBox.Location = new System.Drawing.Point(12, 157);
+            this.uxNamesListBox.ItemHeight = 30;
+            this.uxNamesListBox.Location = new System.Drawing.Point(16, 260);
+            this.uxNamesListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uxNamesListBox.Name = "uxNamesListBox";
-            this.uxNamesListBox.Size = new System.Drawing.Size(465, 379);
+            this.uxNamesListBox.Size = new System.Drawing.Size(619, 484);
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
             // 
-            // uxPipeOne
+            // button5
             // 
-            this.uxPipeOne.AutoSize = true;
-            this.uxPipeOne.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
-            this.uxPipeOne.Location = new System.Drawing.Point(456, 15);
-            this.uxPipeOne.Name = "uxPipeOne";
-            this.uxPipeOne.Size = new System.Drawing.Size(43, 70);
-            this.uxPipeOne.TabIndex = 18;
-            this.uxPipeOne.Text = "|";
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.Enabled = false;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button5.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.button5.Location = new System.Drawing.Point(16, 218);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(620, 42);
+            this.button5.TabIndex = 21;
+            this.button5.Text = "Results";
+            this.button5.UseVisualStyleBackColor = false;
             // 
-            // uxICCardNumberTextBox
+            // menuStrip1
             // 
-            this.uxICCardNumberTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.uxICCardNumberTextBox.Location = new System.Drawing.Point(255, 40);
-            this.uxICCardNumberTextBox.Multiline = true;
-            this.uxICCardNumberTextBox.Name = "uxICCardNumberTextBox";
-            this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 28);
-            this.uxICCardNumberTextBox.TabIndex = 12;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.showToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1504, 28);
+            this.menuStrip1.TabIndex = 22;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // uxProjectIDTextBox
+            // fileToolStripMenuItem
             // 
-            this.uxProjectIDTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.uxProjectIDTextBox.Location = new System.Drawing.Point(35, 40);
-            this.uxProjectIDTextBox.Multiline = true;
-            this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
-            this.uxProjectIDTextBox.Size = new System.Drawing.Size(171, 28);
-            this.uxProjectIDTextBox.TabIndex = 12;
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Text = "File";
             // 
-            // label1
+            // showToolStripMenuItem
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
-            this.label1.Location = new System.Drawing.Point(212, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 70);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "|";
+            this.showToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.everyoneToolStripMenuItem});
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.showToolStripMenuItem.Text = "Show";
+            // 
+            // everyoneToolStripMenuItem
+            // 
+            this.everyoneToolStripMenuItem.Name = "everyoneToolStripMenuItem";
+            this.everyoneToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.everyoneToolStripMenuItem.Text = "Everyone";
+            this.everyoneToolStripMenuItem.Click += new System.EventHandler(this.everyoneToolStripMenuItem_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.button6);
+            this.panel3.Controls.Add(this.uxNameLookupText);
+            this.panel3.Controls.Add(this.uxVillageComboBox);
+            this.panel3.Controls.Add(this.uxSexComboBox);
+            this.panel3.Controls.Add(this.uxAddPersonButton);
+            this.panel3.Controls.Add(this.uxEthnicGroupComboBox);
+            this.panel3.Controls.Add(this.uxSearchButton);
+            this.panel3.Location = new System.Drawing.Point(665, 46);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(822, 164);
+            this.panel3.TabIndex = 24;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button6.Enabled = false;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(-1, -1);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(167, 42);
+            this.button6.TabIndex = 19;
+            this.button6.Text = "Lookup/Add";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.Enabled = false;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button4.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.button4.Location = new System.Drawing.Point(665, 217);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(823, 42);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "Details";
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // UI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1128, 632);
+            this.ClientSize = new System.Drawing.Size(1504, 875);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.uxSearchProjectIDButton);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.uxNamesListBox);
             this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.button2);
@@ -296,7 +446,10 @@ namespace OAHeLP_Database_Project
             this.Controls.Add(this.uxFeature1Button);
             this.Controls.Add(this.uxMedicalHistoryButton);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "UI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -305,7 +458,12 @@ namespace OAHeLP_Database_Project
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -326,13 +484,22 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ImageList uxSearchImageList;
         private System.Windows.Forms.ImageList uxAddImageList;
-        private System.Windows.Forms.Button uxSearchButton;
-        private System.Windows.Forms.Button uxAddPersonButton;
         private System.Windows.Forms.ListBox uxNamesListBox;
-        private System.Windows.Forms.Label uxPipeOne;
         private System.Windows.Forms.TextBox uxProjectIDTextBox;
         private System.Windows.Forms.TextBox uxICCardNumberTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button uxSearchButton;
+        private System.Windows.Forms.Button uxAddPersonButton;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem everyoneToolStripMenuItem;
+        private System.Windows.Forms.Button uxSearchProjectIDButton;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button4;
     }
 }
 

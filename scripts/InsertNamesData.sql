@@ -221,7 +221,6 @@ FROM (
         (215,N'pe0d0v',N'Nak Besar','',''),
         (216,N'equv0o',N'Nak Cecik','',''),
         (217,N'xsh8ux',N'Sulit','','')
-
 ) dta(idx,id,firstNm, middleNms,lastNm)
 LEFT JOIN [Subject].[Subject] S ON dta.id = S.OAHeLPID
 

@@ -55,7 +55,9 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +81,12 @@
     <Compile Include="DetailedView.Designer.cs">
       <DependentUpon>DetailedView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedicalHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicalHistory.Designer.cs">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs" />
     <Compile Include="SearchAndSort.cs" />
     <Compile Include="SplashScreen.cs">
@@ -97,6 +105,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DetailedView.resx">
       <DependentUpon>DetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicalHistory.resx">
+      <DependentUpon>MedicalHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
@@ -136,7 +147,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="scripts\RebuildDatabase.ps1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -161,11 +171,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
-    <Content Include="scripts\CreateTables.sql" />
-    <Content Include="scripts\DropCreateSchemas.sql" />
-    <Content Include="scripts\DropTables.sql" />
-    <Content Include="scripts\InsertData.sql" />
-    <Content Include="scripts\Test.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{a5ac459d-6c0a-4d6e-ad65-ecb3e0fec3a7}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SubjectData\SubjectData.csproj">
+      <Project>{c27893e0-905d-4795-8a69-f9fe3ce3df80}</Project>
+      <Name>SubjectData</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">

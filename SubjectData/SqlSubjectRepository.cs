@@ -4,7 +4,7 @@ using SubjectData.Models;
 using SubjectData.DataDelegates;
 using System.Collections.Generic;
 using System.Data;
-
+using System.ComponentModel;
 
 namespace SubjectData
 {
@@ -46,7 +46,15 @@ namespace SubjectData
             return s;
         }
 
-        public List<Subject> GetSubjectList(List<int> subjectIds)
+        public Subject GetICSubject(string icNum)
+        {
+            var d = new GetICSubjectDataDelegate(icNum);
+            Subject s = executor.ExecuteReader(d);
+            s.SetNames(GetNames(s.SubjectID));
+            return s;
+        }
+
+        public BindingList<Subject> GetSubjectList(List<int> subjectIds)
         {
             var d = new GetSubjectListDataDelegate(subjectIds);
             return executor.ExecuteReader(d);

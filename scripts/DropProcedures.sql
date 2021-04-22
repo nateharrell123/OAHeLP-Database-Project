@@ -6,7 +6,7 @@ DROP PROCEDURE [Subject].GetNames;
 GO  
 DROP PROCEDURE  [Subject].GetSubjectList;
 GO
-DROP PROCEDURE  [Subject].GetMedicalHistory;
+DROP PROCEDURE [Subject].GetMedicalHistory;
 GO
-DROP PROCEDURE  [Subject].GetICSubject;
+DROP PROCEDURE [Subject].GetICSubject;
 GO

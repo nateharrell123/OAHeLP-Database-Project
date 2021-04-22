@@ -76,7 +76,7 @@ namespace OAHeLP_Database_Project
         private void PopulateTable()
         {
             List<int> ids = new List<int>();
-            for (int i = 0; i < 20; i++) ids.Add(i);
+            for (int i = 0; i < 30; i++) ids.Add(i);
             subjectList = repo.GetSubjectList(ids);
             uxNamesListBox.DataSource = subjectList;
         }
@@ -294,8 +294,11 @@ namespace OAHeLP_Database_Project
         private void uxFeature1Button_Click(object sender, EventArgs e)
         {
             int id = subjectList[uxNamesListBox.SelectedIndex].SubjectID;
-            bool deleted = repo.DeleteSubject(id);
+            repo.DeleteSubject(id);
             subjectList.Remove(subjectList[uxNamesListBox.SelectedIndex]);
+            detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+            detailedView.UpdateView();
+
         }
     }
 }

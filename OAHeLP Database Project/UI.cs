@@ -33,7 +33,7 @@ namespace OAHeLP_Database_Project
         {
             
             //DisplaySplashScreen();
-            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
+            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\nateharrell\source\repos\OAHeLP-Database-Project412\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
             //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);

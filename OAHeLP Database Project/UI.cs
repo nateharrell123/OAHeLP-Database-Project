@@ -43,7 +43,7 @@ namespace OAHeLP_Database_Project
             
             InitializeComponent();
             PopulateTable();
-            uxNamesListBox.DataSource = subjectList;
+
             //this gets thrown when a connection is unsuccessful
             detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
             OpenChildForm(detailedView);
@@ -77,6 +77,7 @@ namespace OAHeLP_Database_Project
             List<int> ids = new List<int>();
             for (int i = 0; i < 20; i++) ids.Add(i);
             subjectList = repo.GetSubjectList(ids);
+            uxNamesListBox.DataSource = subjectList;
         }
 
         /// <summary>
@@ -289,5 +290,11 @@ namespace OAHeLP_Database_Project
             PopulateTable();
         }
 
+        private void uxFeature1Button_Click(object sender, EventArgs e)
+        {
+            int id = subjectList[uxNamesListBox.SelectedIndex].SubjectID;
+            bool deleted = repo.DeleteSubject(id);
+            subjectList.Remove(subjectList[uxNamesListBox.SelectedIndex]);
+        }
     }
 }

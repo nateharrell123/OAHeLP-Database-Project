@@ -42,6 +42,7 @@ namespace OAHeLP_Database_Project
                 uxAgeLabel.Text = $"Age: {age}";
             }
             else uxAgeLabel.Text = "Age: UNKNOWN";
+            //uxPictureBox.Image = Image.FromFile($"C:\\Users\\rshale\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\{subject.photoFileName}.jpg");
         }
 
         public void ClearView()

@@ -25,9 +25,9 @@ CREATE TABLE [Subject].[Subject]
     ICNumber NVARCHAR(20) NULL, --UNIQUE
     PhotoFileName NVARCHAR(30) NULL, --UNIQUE
     MotherID INT NULL FOREIGN KEY 
-        REFERENCES [Subject].[Subject](SubjectID),
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE NO ACTION,
     FatherID INT NULL FOREIGN KEY 
-        REFERENCES [Subject].[Subject](SubjectID),
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE NO ACTION,
     
     CONSTRAINT CHK_Subject_Sex
         CHECK(Sex IN ('M','F'))
@@ -66,7 +66,7 @@ CREATE TABLE [Subject].[SubjectName]
 CREATE TABLE [Subject].Marriage
 (
     SubjectID INT NOT NULL FOREIGN KEY  
-        REFERENCES [Subject].[Subject](SubjectID) ON DELETE NO ACTION,
+        REFERENCES [Subject].[Subject](SubjectID) ON DELETE CASCADE,
     [Date] DATE NOT NULL,
     SpouseID INT NOT NULL FOREIGN KEY
         REFERENCES [Subject].[Subject](SubjectID) ON DELETE NO ACTION,

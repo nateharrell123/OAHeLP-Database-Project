@@ -477,9 +477,6 @@ namespace OAHeLP_Database_Project
             return d[n, m];
         }//distance method
 
-
-
-
         // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)
 
         public static string recoPhonemes;

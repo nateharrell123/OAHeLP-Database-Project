@@ -197,3 +197,9 @@ CREATE TABLE Clinic.Prescription(
     Amount INT NOT NULL,
     Units NVARCHAR(10)
 );
+
+IF TYPE_ID(N'IdTableType') IS NULL CREATE TYPE IdTableType AS TABLE
+(
+        IDNumber int primary key
+)
+GO

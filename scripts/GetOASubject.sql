@@ -1,6 +1,6 @@
 --Gets a subject from the OAHeLP project ID 
 CREATE OR ALTER PROCEDURE [Subject].GetOASubject
-    @OAId NVARCHAR
+    @OAId NVARCHAR(6)
 AS
 SELECT SubjectID, OAHeLPID, DOB, Src.SourceName AS DOBSource, Sex, ICNumber, PhotoFileName, MotherID, FatherID, EG.Name AS EthnicGroup
 FROM [Subject].[Subject] S 

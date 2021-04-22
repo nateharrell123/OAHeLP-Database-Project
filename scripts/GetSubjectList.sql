@@ -1,9 +1,5 @@
 --Gets a list of subjects and their related information. Includes subjects with IDs in the table (Col: IDNumber) passed into the stored procedure
-IF TYPE_ID(N'MyType') IS NOT NULL CREATE TYPE IdTableType AS TABLE
-(
-        IDNumber int primary key
-)
-GO
+
 
 CREATE OR ALTER PROCEDURE [Subject].GetSubjectList
     @SubjectIds IdTableType READONLY

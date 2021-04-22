@@ -31,8 +31,10 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public UI()
         {
+            
             //DisplaySplashScreen();
-            connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
+            //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
@@ -228,8 +230,8 @@ namespace OAHeLP_Database_Project
                     {
                         // FIX THIS
                         var id = reader.GetString(0);
-                        MedicalHistory medicalHistory = new MedicalHistory(id);
-                        medicalHistory.Show();
+                        //MedicalHistory medicalHistory = new MedicalHistory(id);
+                        //medicalHistory.Show();
                     }
                 }
             }

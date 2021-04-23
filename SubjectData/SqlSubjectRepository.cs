@@ -62,7 +62,7 @@ namespace SubjectData
         public bool DeleteSubject(int id)
         {
             var d = new DeleteSubjectDataDelegate(id);
-            return executor.ExecuteReader(d);
+            return executor.ExecuteNonQuery(d);
         }
 
 
@@ -73,7 +73,7 @@ namespace SubjectData
             char sex)
         {
             var d = new AddSubjectDataDelegate(firstName, middleNames, lastName, ethnicGroup, sex);
-            return executor.ExecuteReader(d);
+            return executor.ExecuteNonQuery(d);
         }
     }
 }

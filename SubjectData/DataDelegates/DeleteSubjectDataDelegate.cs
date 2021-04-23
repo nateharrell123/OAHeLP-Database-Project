@@ -6,7 +6,7 @@ using System;
 
 namespace SubjectData.DataDelegates
 {
-    internal class DeleteSubjectDataDelegate : DataReaderDelegate<bool>
+    internal class DeleteSubjectDataDelegate : NonQueryDataDelegate<bool>
     {
         private readonly int subjectId;
 
@@ -24,7 +24,7 @@ namespace SubjectData.DataDelegates
             p.Value = subjectId;
         }
 
-        public override bool Translate(SqlCommand command, IDataRowReader reader)
+        public override bool Translate(SqlCommand command)
         {
             return true;
         }

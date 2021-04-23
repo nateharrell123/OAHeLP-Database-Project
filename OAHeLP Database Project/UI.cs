@@ -164,6 +164,8 @@ namespace OAHeLP_Database_Project
                         subjectList.Clear();
                         subjectList.Add(result);
                         uxNamesListBox.DataSource = subjectList;
+                        detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                        detailedView.UpdateView();
                     }
                     catch (RecordNotFoundException ex)
                     {
@@ -189,6 +191,8 @@ namespace OAHeLP_Database_Project
                         subjectList.Clear();
                         subjectList.Add(result);
                         uxNamesListBox.DataSource = subjectList;
+                        detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                        detailedView.UpdateView();
                     }
                     catch (RecordNotFoundException ex)
                     {

@@ -4,8 +4,10 @@ using SubjectData.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data.SqlClient; // need this for SQL
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -33,7 +35,7 @@ namespace OAHeLP_Database_Project
         {
             
             //DisplaySplashScreen();
-            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
+            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\Source\Repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
             //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
@@ -118,6 +120,7 @@ namespace OAHeLP_Database_Project
             SearchAndSort search = new SearchAndSort();
             string inputName = uxNameLookupText.Text;
             string inputEthnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
+
             //this doesn't work yet since the village combo box doesn't have anything in it
             //string inputVillageID = uxVillageComboBox.SelectedItem.ToString();
             string inputVillageID = "n684972815913";
@@ -127,6 +130,18 @@ namespace OAHeLP_Database_Project
             Dictionary<int, int> potentialMatchesIDsAndRanks = search.SearchDB(inputName,inputEthnicGroup,inputVillageID,inputSex);
             //just get the keys so that we can grab all of the names associated with these IDs
             List<int> subjectIDs = potentialMatchesIDsAndRanks.Keys.ToList<int>();
+
+
+
+
+
+            //create a rank property inside of subject and just manage all of this info using subject objects
+            //then you can just clear out the datasource on the listbox and add them in ranked order
+
+
+
+
+
 
             //make a string of all of the IDs for the query
             string IDs = "";
@@ -140,21 +155,16 @@ namespace OAHeLP_Database_Project
             //dictionary for IDs and Names
             Dictionary<int, string> SubjectIDsAndNames = new Dictionary<int, string>();
 
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
                 //I DON'T KNOW WHY THIS QUERY DOESN'T WORK
                 string query = 
-                    "SELECT S.SubjectID," +
+                    "SELECT S.SubjectID,N.FirstName" +
                     " FROM [Subject].[Subject] S" +
-                    " LEFT JOIN" + 
-                    " (" +
-                            " SELECT N.FirstName" +
-                            " FROM [Subject].[Subject] S" +
-                            $"LEFT JOIN [Subject].[Name] N ON N.NameID = S.SubjectID " +
-                        " )" +
+                        " LEFT JOIN [Subject].SubjectName SN ON SN.SubjectID = S.SubjectID " +
+                        " LEFT JOIN [Subject].Name N ON N.NameID = SN.NameID" +
                     " WHERE S.SubjectID" + 
                     " IN (" + IDs + ")";
 
@@ -170,7 +180,7 @@ namespace OAHeLP_Database_Project
                     while (reader.Read())
                     {
                         firstName = reader.GetString(1);
-                        id = reader.GetString(0);
+                        id = reader.GetInt32(0).ToString();
                         SubjectIDsAndNames[int.Parse(id)] = firstName;
                         
                     }//while
@@ -192,15 +202,14 @@ namespace OAHeLP_Database_Project
             }//foreach
 
             //first we clear out the listbox
-            uxNamesListBox.Items.Clear();
-
+            subjectList.Clear();
             //while the dict still has entries
             while(SubjectNamesAndRanks.Count > 0)
             {
 
                 KeyValuePair<string, int> maxRank = SubjectNamesAndRanks.Max();
                 string displayRankAndName = maxRank.Value + "   " + maxRank.Key;
-                uxNamesListBox.Items.Add(displayRankAndName);
+                subjectList.Add(displayRankAndName);
 
             }//while
             

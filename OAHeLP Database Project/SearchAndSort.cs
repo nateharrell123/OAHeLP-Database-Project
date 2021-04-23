@@ -119,7 +119,7 @@ namespace OAHeLP_Database_Project
 
                 //also, eventually this should probably be some sort of string builder, but I'm just hardcoding this for now to make everything clear
 
-                queryString = "SELECT S.SubjectID, S.Sex, EG.EthnicGroupName, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
+                queryString = "SELECT S.SubjectID, S.Sex, EG.Name, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
                     "FROM [Subject].[Subject] S " +
                         "LEFT JOIN [Subject].[SubjectName] SN ON S.SubjectID = SN.SubjectID " +
                         "LEFT JOIN [Subject].[Name] N ON SN.NameID = N.NameID " +
@@ -295,17 +295,17 @@ namespace OAHeLP_Database_Project
                         //not every subject has a res, so we just skip the ones that don't. 
                         if (!queryResultsArray[i, 8].Equals(""))
                         {
-                            int lat = int.Parse(queryResultsArray[i, 8]);
-                            int lon = int.Parse(queryResultsArray[i, 9]);
+                            double lat = double.Parse(queryResultsArray[i, 8]);
+                            double lon = double.Parse(queryResultsArray[i, 9]);
 
                             //string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
-                            int inputLat = 0;
-                            int inputLon = 0;
+                            double inputLat = 0;
+                            double inputLon = 0;
 
                             foreach (string[] SA in queryResultsListInputVillageGPS)
                             {
-                                inputLat = int.Parse(SA[1]);
-                                inputLon = int.Parse(SA[2]);
+                                inputLat = double.Parse(SA[1]);
+                                inputLon = double.Parse(SA[2]);
                             }//foreach
 
 

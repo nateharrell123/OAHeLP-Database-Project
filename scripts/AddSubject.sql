@@ -5,6 +5,7 @@ CREATE OR ALTER PROCEDURE [Subject].AddSubject
     @EthnicGroupName NVARCHAR(15),
     @Sex CHAR,
     @OAid NVARCHAR = N'000000'
+    @SubjectId INT OUTPUT
 AS
 INSERT INTO [Subject].[Subject] (EthnicGroupID, OAHeLPID, Sex)
 SELECT (

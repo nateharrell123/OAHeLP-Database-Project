@@ -16,19 +16,6 @@ namespace SubjectData
         {
             executor = new SqlCommandExecutor(connectionString);
         }
-        /*
-        public Person FetchPerson(int personId)
-        {
-            var d = new FetchPersonDataDelegate(personId);
-            return executor.ExecuteReader(d);
-        }
-
-        public Person GetPerson(string email)
-        {
-            var d = new GetPersonDataDelegate(email);
-            return executor.ExecuteReader(d);
-        }
-        */
 
         public Subject GetSubject(int subjectId)
         {
@@ -75,6 +62,17 @@ namespace SubjectData
         public bool DeleteSubject(int id)
         {
             var d = new DeleteSubjectDataDelegate(id);
+            return executor.ExecuteReader(d);
+        }
+
+
+        public Subject AddSubject(string firstName, 
+            string middleNames, 
+            string lastName, 
+            string ethnicGroup, 
+            char sex)
+        {
+            var d = new AddSubjectDataDelegate(firstName, middleNames, lastName, ethnicGroup, sex);
             return executor.ExecuteReader(d);
         }
     }

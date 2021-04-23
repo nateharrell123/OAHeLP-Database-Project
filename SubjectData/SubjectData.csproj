@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataDelegates\AddSubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\DeleteSubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\GetMedicalHistoryDataDelegate.cs" />
     <Compile Include="DataDelegates\GetICSubjectDataDelegate.cs" />

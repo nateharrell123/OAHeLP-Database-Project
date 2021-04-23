@@ -41,5 +41,6 @@ namespace SubjectData
         DataTable GetMedicalHistory(int subjectId);
 
         bool DeleteSubject(int id);
+        Subject AddSubject(string firstName, string middleNames, string lastName, string ethnicGroup, char sex);
     }
 }

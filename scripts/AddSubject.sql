@@ -4,7 +4,7 @@ CREATE OR ALTER PROCEDURE [Subject].AddSubject
     @LastName NVARCHAR(15),
     @EthnicGroupName NVARCHAR(15),
     @Sex CHAR,
-    @OAid NVARCHAR = N'000000'
+    @OAid NVARCHAR = N'000000',
     @SubjectId INT OUTPUT
 AS
 INSERT INTO [Subject].[Subject] (EthnicGroupID, OAHeLPID, Sex)
@@ -14,7 +14,7 @@ SELECT (
     WHERE EG.Name = @EthnicGroupName
 ), @OAid, @Sex
 
-DECLARE @SubjectId INT = SCOPE_IDENTITY();
+SET @SubjectId = SCOPE_IDENTITY();
 
 INSERT INTO [Subject].[Name] (FirstName, MiddleNames,LastName)
 VALUES(@FirstName,@MiddleNames,@LastName);

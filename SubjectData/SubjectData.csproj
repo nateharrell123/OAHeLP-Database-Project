@@ -47,12 +47,14 @@
     <Compile Include="DataDelegates\GetICSubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\GetNamesDataDelegate.cs" />
     <Compile Include="DataDelegates\GetOASubjectDataDelegate.cs" />
+    <Compile Include="DataDelegates\GetResidenceHistoryDataDelegate.cs" />
     <Compile Include="DataDelegates\GetSubjectDataDelegate.cs" />
     <Compile Include="DataDelegates\GetSubjectListDataDelegate.cs" />
     <Compile Include="Models\DOBSource.cs" />
     <Compile Include="Models\EthnicGroup.cs" />
     <Compile Include="ISubjectRepository.cs" />
     <Compile Include="Models\Name.cs" />
+    <Compile Include="Models\Residence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlSubjectRepository.cs" />
     <Compile Include="Models\Subject.cs" />

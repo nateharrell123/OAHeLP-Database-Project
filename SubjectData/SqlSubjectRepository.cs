@@ -53,6 +53,12 @@ namespace SubjectData
             return executor.ExecuteReader(d);
         }
 
+        public List<Residence> GetResidenceHistory(int subjectId)
+        {
+            var d = new GetResidenceHistoryDataDelegate(subjectId);
+            return executor.ExecuteReader(d);
+        }
+
         public DataTable GetMedicalHistory(int subjectId)
         {
             var d = new GetMedicalHistoryDataDelegate(subjectId);

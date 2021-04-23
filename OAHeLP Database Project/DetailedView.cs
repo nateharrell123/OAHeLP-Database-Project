@@ -42,7 +42,16 @@ namespace OAHeLP_Database_Project
                 uxAgeLabel.Text = $"Age: {age}";
             }
             else uxAgeLabel.Text = "Age: UNKNOWN";
-            //uxPictureBox.Image = Image.FromFile($"C:\\Users\\rshale\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\{subject.photoFileName}.jpg");
+            if(subject.photoFileName != null)
+            try
+            {
+                uxPictureBox.Image = Image.FromFile($"C:\\Users\\haler\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\{subject.photoFileName}");
+            }
+            catch(System.IO.FileNotFoundException ex)
+                {
+                    uxPictureBox.Image = Image.FromFile($"C:\\Users\\haler\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\default.jpg");
+                }
+
         }
 
         public void ClearView()

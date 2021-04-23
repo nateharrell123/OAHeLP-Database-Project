@@ -12,3 +12,5 @@ DROP PROCEDURE  [Subject].GetICSubject;
 GO
 DROP PROCEDURE [Subject].DeleteSubject;
 GO
+DROP PROCEDURE [Subject].AddSubject;
+GO

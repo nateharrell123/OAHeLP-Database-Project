@@ -94,6 +94,14 @@ namespace OAHeLP_Database_Project
 
             if (dialogResult == DialogResult.Yes)
             {
+                /*
+                 * CODE TO HOOK UP ADD SUJECT DATA DELEGATE
+                 * Need to retrieve Name (with parsing), Village, Ethnic Group and Sex from drop downs
+                 *Subject s = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, sex);
+                 *subjectList.Add(s);
+                 *Might also need to refresh data binding? Not sure if it will do this automatically
+                 */
+
 
                 string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
                 // Get Sex, Village and Ethnic Group

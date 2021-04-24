@@ -12,11 +12,9 @@ FROM [Subject].[Subject] S
     INNER JOIN [Subject].SubjectName SN ON S.SubjectID = SN.SubjectID
     INNER JOIN [Subject].[Name] N ON SN.NameID = N.NameID
     LEFT JOIN [Subject].Residence R ON S.SubjectID = R.SubjectID
-    INNER JOIN [Subject].Village V ON V.VillageID = R.VillageID
+    LEFT JOIN [Subject].Village V ON V.VillageID = R.VillageID
 WHERE S.SubjectID IN (
     SELECT IDNumber FROM @SubjectIds
 )
 GO
-
-
 

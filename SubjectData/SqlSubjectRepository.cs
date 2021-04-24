@@ -3,6 +3,7 @@ using DataAccess;
 using SubjectData.Models;
 using SubjectData.DataDelegates;
 using System.Collections.Generic;
+using System.Data;
 using System.ComponentModel;
 
 namespace SubjectData
@@ -15,25 +16,13 @@ namespace SubjectData
         {
             executor = new SqlCommandExecutor(connectionString);
         }
-        /*
-        public Person FetchPerson(int personId)
-        {
-            var d = new FetchPersonDataDelegate(personId);
-            return executor.ExecuteReader(d);
-        }
-
-        public Person GetPerson(string email)
-        {
-            var d = new GetPersonDataDelegate(email);
-            return executor.ExecuteReader(d);
-        }
-        */
 
         public Subject GetSubject(int subjectId)
         {
             var d = new GetSubjectDataDelegate(subjectId);
             Subject s = executor.ExecuteReader(d);
             s.SetNames(GetNames(subjectId));
+            s.SetResidences(GetResidenceHistory(subjectId));
             return s;
         }
 
@@ -42,6 +31,7 @@ namespace SubjectData
             var d = new GetOASubjectDataDelegate(oaId);
             Subject s = executor.ExecuteReader(d);
             s.SetNames(GetNames(s.SubjectID));
+            s.SetResidences(GetResidenceHistory(s.SubjectID));
             return s;
         }
 
@@ -50,6 +40,7 @@ namespace SubjectData
             var d = new GetICSubjectDataDelegate(icNum);
             Subject s = executor.ExecuteReader(d);
             s.SetNames(GetNames(s.SubjectID));
+            s.SetResidences(GetResidenceHistory(s.SubjectID));
             return s;
         }
 
@@ -64,6 +55,34 @@ namespace SubjectData
             var d = new GetNamesDataDelegate(subjectId);
             return executor.ExecuteReader(d);
         }
-        
+
+        public List<Residence> GetResidenceHistory(int subjectId)
+        {
+            var d = new GetResidenceHistoryDataDelegate(subjectId);
+            return executor.ExecuteReader(d);
+        }
+
+        public DataTable GetMedicalHistory(int subjectId)
+        {
+            var d = new GetMedicalHistoryDataDelegate(subjectId);
+            return executor.ExecuteReader(d);
+        }
+
+        public bool DeleteSubject(int id)
+        {
+            var d = new DeleteSubjectDataDelegate(id);
+            return executor.ExecuteNonQuery(d);
+        }
+
+
+        public Subject AddSubject(string firstName, 
+            string middleNames, 
+            string lastName, 
+            string ethnicGroup, 
+            char sex)
+        {
+            var d = new AddSubjectDataDelegate(firstName, middleNames, lastName, ethnicGroup, sex);
+            return executor.ExecuteNonQuery(d);
+        }
     }
 }

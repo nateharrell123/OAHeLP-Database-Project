@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace SubjectData.Models
 {
-    public class Name: IEquatable<Name>
+    public class Name : IEquatable<Name>
     {
         public string FirstName { get; }
         public string MiddleNames { get; }
@@ -25,5 +23,6 @@ namespace SubjectData.Models
                 && this.MiddleNames == other.MiddleNames
                 && this.LastName == other.LastName);
         }
+
     }
 }

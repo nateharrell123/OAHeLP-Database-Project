@@ -39,7 +39,7 @@ namespace OAHeLP_Database_Project
             this.database1DataSet1 = new OAHeLP_Database_Project.Database1DataSet();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.uxFeature1Button = new System.Windows.Forms.Button();
+            this.uxDeleteButton = new System.Windows.Forms.Button();
             this.uxMedicalHistoryButton = new System.Windows.Forms.Button();
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableAdapterManager = new OAHeLP_Database_Project.Database1DataSetTableAdapters.TableAdapterManager();
@@ -162,18 +162,19 @@ namespace OAHeLP_Database_Project
             this.button1.Text = "Feature 2";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // uxFeature1Button
+            // uxDeleteButton
             // 
-            this.uxFeature1Button.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.uxFeature1Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uxFeature1Button.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
-            this.uxFeature1Button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxFeature1Button.Location = new System.Drawing.Point(336, 639);
-            this.uxFeature1Button.Name = "uxFeature1Button";
-            this.uxFeature1Button.Size = new System.Drawing.Size(194, 55);
-            this.uxFeature1Button.TabIndex = 8;
-            this.uxFeature1Button.Text = "Feature 1";
-            this.uxFeature1Button.UseVisualStyleBackColor = false;
+            this.uxDeleteButton.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.uxDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxDeleteButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
+            this.uxDeleteButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uxDeleteButton.Location = new System.Drawing.Point(336, 639);
+            this.uxDeleteButton.Name = "uxDeleteButton";
+            this.uxDeleteButton.Size = new System.Drawing.Size(194, 55);
+            this.uxDeleteButton.TabIndex = 8;
+            this.uxDeleteButton.Text = "Remove Subject";
+            this.uxDeleteButton.UseVisualStyleBackColor = false;
+            this.uxDeleteButton.Click += new System.EventHandler(this.uxDeleteButton_Click);
             // 
             // uxMedicalHistoryButton
             // 
@@ -422,7 +423,7 @@ namespace OAHeLP_Database_Project
             this.Controls.Add(this.uxDetailedViewPanel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.uxFeature1Button);
+            this.Controls.Add(this.uxDeleteButton);
             this.Controls.Add(this.uxMedicalHistoryButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -455,7 +456,7 @@ namespace OAHeLP_Database_Project
         private Database1DataSet database1DataSet1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button uxFeature1Button;
+        private System.Windows.Forms.Button uxDeleteButton;
         private System.Windows.Forms.Button uxMedicalHistoryButton;
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
         private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;

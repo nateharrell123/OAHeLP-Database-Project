@@ -38,7 +38,7 @@ namespace OAHeLP_Database_Project
         {
             
             //DisplaySplashScreen();
-            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
+            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
             //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
@@ -143,86 +143,29 @@ namespace OAHeLP_Database_Project
             List<int> subjectIDs = potentialMatchesIDsAndRanks.Keys.ToList<int>();
 
 
-
-
-
             //create a rank property inside of subject and just manage all of this info using subject objects
             //then you can just clear out the datasource on the listbox and add them in ranked order
 
+            subjectList = repo.GetSubjectList(subjectIDs);
 
-
-
-
-
-            //make a string of all of the IDs for the query
-            string IDs = "";
-            foreach(int i in subjectIDs)
+            //we add each subject's rank to the object
+            foreach(Subject s in subjectList)
             {
-                IDs += ("'" + i.ToString() + "',");
+                int id = s.SubjectID;
+                int rank = potentialMatchesIDsAndRanks[id];
+
+                s.Rank = rank;
+
             }//foreach
 
-            IDs = IDs.Remove(IDs.Length - 1, 1);
+            //now we need to sort these by rank
+            BindingList<Subject> subjectListSorted = new BindingList<Subject>(subjectList.OrderByDescending(x => x.Rank).ToList());
 
-            //dictionary for IDs and Names
-            Dictionary<int, string> SubjectIDsAndNames = new Dictionary<int, string>();
+            //settin up the new sorted list as the datasource
+            subjectList = subjectListSorted;
 
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                //I DON'T KNOW WHY THIS QUERY DOESN'T WORK
-                string query = 
-                    "SELECT S.SubjectID,N.FirstName" +
-                    " FROM [Subject].[Subject] S" +
-                        " LEFT JOIN [Subject].SubjectName SN ON SN.SubjectID = S.SubjectID " +
-                        " LEFT JOIN [Subject].Name N ON N.NameID = SN.NameID" +
-                    " WHERE S.SubjectID" + 
-                    " IN (" + IDs + ")";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                string firstName;
-                string id;
-
-                //add names to the dictionary with the id as the key
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        firstName = reader.GetString(1);
-                        id = reader.GetInt32(0).ToString();
-                        SubjectIDsAndNames[int.Parse(id)] = firstName;
-                        
-                    }//while
-                }//if
-
-                connection.Close();
-            }//using
-
-            //now this dictionary will associate the names and the ranks for display in the listbox
-            Dictionary<string, int> SubjectNamesAndRanks = new Dictionary<string, int>();
-
-            foreach(KeyValuePair<int,int> i in potentialMatchesIDsAndRanks)
-            {
-                int id = i.Key;
-                int rank = i.Value;
-                string name = SubjectIDsAndNames[id];
-
-                SubjectNamesAndRanks[name] = rank;
-            }//foreach
-
-            //first we clear out the listbox
-            subjectList.Clear();
-            //while the dict still has entries
-            while(SubjectNamesAndRanks.Count > 0)
-            {
-
-                KeyValuePair<string, int> maxRank = SubjectNamesAndRanks.Max();
-                string displayRankAndName = maxRank.Value + "   " + maxRank.Key;
-                subjectList.Add(displayRankAndName);
-
-            }//while
+            uxNamesListBox.DataSource = subjectList;
+            uxNamesListBox.Refresh();
             
 
         }//SearchButtonClick

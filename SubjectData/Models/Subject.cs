@@ -31,6 +31,8 @@ namespace SubjectData.Models
         public int? MotherID { get; set; }
 
         public int? FatherID { get; set; }
+
+        public int? Rank { get; set; }
     
         public Subject(
             int id, 
@@ -100,7 +102,15 @@ namespace SubjectData.Models
 
         public override string ToString()
         {
-            return $"{Names[0].FirstName} {Names[0].MiddleNames} {Names[0].LastName}";
+            if(Rank == null)
+            {
+                return $"{Names[0].FirstName} {Names[0].MiddleNames} {Names[0].LastName}";
+            }
+            else
+            {
+                return $"{Rank} {Names[0].FirstName} {Names[0].MiddleNames} {Names[0].LastName}";
+            }
+            
         }
     }
 }

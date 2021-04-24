@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,6 @@ namespace SubjectData
     public interface ISubjectRepository
     {
         //Subject CreateSubject(...)
-
 
         /// <summary>
         /// Gets the subject specified by the provided subjectId
@@ -36,6 +36,13 @@ namespace SubjectData
         /// <returns></returns>
         BindingList<Subject> GetSubjectList(List<int> subjectIds);
 
+        List<Residence> GetResidenceHistory(int subjectId);
+
         List<Name> GetNames(int subjectId);
+
+        DataTable GetMedicalHistory(int subjectId);
+
+        bool DeleteSubject(int id);
+        Subject AddSubject(string firstName, string middleNames, string lastName, string ethnicGroup, char sex);
     }
 }

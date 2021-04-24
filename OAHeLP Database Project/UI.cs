@@ -9,7 +9,10 @@ using System.Data.SqlClient; // need this for SQL
 using System.Drawing;
 using System.Linq;
 using System.Threading;
+using SubjectData.Models;
+using SubjectData;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace OAHeLP_Database_Project
 {
@@ -19,14 +22,14 @@ namespace OAHeLP_Database_Project
     public partial class UI : Form
     {
         SqlConnection connection;
+        private ISubjectRepository repo;
+
         /// <summary>
         /// The connection string.
         /// </summary>
         public static string connectionString; // might be a bad idea
-        ISubjectRepository repo;
         BindingList<Subject> subjectList;
         DetailedView detailedView;
-
 
         /// <summary>
         /// Connect to DB
@@ -72,9 +75,9 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private void PopulateTable()
         {
-            List<int> myIds = new List<int>();
-            for (int i = 1; i < 20; i++) myIds.Add(i);
-            subjectList = repo.GetSubjectList(myIds);
+            List<int> ids = new List<int>();
+            for (int i = 0; i < 30; i++) ids.Add(i);
+            subjectList = repo.GetSubjectList(ids);
             uxNamesListBox.DataSource = subjectList;
         }
 
@@ -91,6 +94,14 @@ namespace OAHeLP_Database_Project
 
             if (dialogResult == DialogResult.Yes)
             {
+                /*
+                 * CODE TO HOOK UP ADD SUJECT DATA DELEGATE
+                 * Need to retrieve Name (with parsing), Village, Ethnic Group and Sex from drop downs
+                 *Subject s = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, sex);
+                 *subjectList.Add(s);
+                 *Might also need to refresh data binding? Not sure if it will do this automatically
+                 */
+
 
                 string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
                 // Get Sex, Village and Ethnic Group
@@ -260,6 +271,8 @@ namespace OAHeLP_Database_Project
                         subjectList.Clear();
                         subjectList.Add(result);
                         uxNamesListBox.DataSource = subjectList;
+                        detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                        detailedView.UpdateView();
                     }
                     catch (RecordNotFoundException ex)
                     {
@@ -285,6 +298,8 @@ namespace OAHeLP_Database_Project
                         subjectList.Clear();
                         subjectList.Add(result);
                         uxNamesListBox.DataSource = subjectList;
+                        detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                        detailedView.UpdateView();
                     }
                     catch (RecordNotFoundException ex)
                     {
@@ -387,5 +402,17 @@ namespace OAHeLP_Database_Project
             PopulateTable();
         }
 
+        private void uxDeleteButton_Click(object sender, EventArgs e)
+        {
+            int id = subjectList[uxNamesListBox.SelectedIndex].SubjectID;
+            repo.DeleteSubject(id);
+            subjectList.Remove(subjectList[uxNamesListBox.SelectedIndex]);
+            if(subjectList.Count > 0)
+            {
+                detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                detailedView.UpdateView();
+            }
+
+        }
     }
 }

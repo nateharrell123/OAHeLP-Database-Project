@@ -12,6 +12,8 @@ namespace SubjectData.Models
 
         public List<Name> Names { get; private set; }
 
+        public List<Residence> Residences { get; private set; }
+
         public EthnicGroup EthnicGroup { get; } //does this need to be nullable?
 
         public string OAHeLPID { get; set; }
@@ -72,10 +74,23 @@ namespace SubjectData.Models
             }
         }
 
+        public void SetResidences(List<Residence> r)
+        {
+            if (Residences == null) Residences = new List<Residence>();
+            foreach (Residence rs in r)
+            {
+                Residences.Add(rs);
+            }
+        }
+        public void AddResidence(Residence r)
+        {
+            if (Residences == null) Residences = new List<Residence>();
+            if (!Residences.Contains(r)) Residences.Add(r);
+        }
         public void AddName(Name n)
         {
             if (Names == null) Names = new List<Name>();
-            Names.Add(n);
+            if (!Names.Contains(n)) Names.Add(n);
         }
 
         public bool Equals(Subject other)

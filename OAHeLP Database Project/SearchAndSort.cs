@@ -23,7 +23,6 @@ namespace OAHeLP_Database_Project
         /// this dictionary tracks each subject's score compared to test data
         /// </summary>
         Dictionary<int, int> subjectIDAndScores = new Dictionary<int, int>();
-        Dictionary<int, string> subjectIDAndNames = new Dictionary<int, string>();
 
         /// <summary>
         /// Constructor
@@ -401,7 +400,7 @@ namespace OAHeLP_Database_Project
         /// <param name="inputName">the name that was entered as part of the input parameters</param>
         /// <param name="dbName">the current name from the database that we are comparing</param>
         /// <returns>Returns an int based on how close the match is. 3 = exact, 2 = Close Partial, 1 = Not very close partial, 0 = nothing</returns>
-        public int nameMatch(string inputName, string dbName)
+        private int nameMatch(string inputName, string dbName)
         {
 
             //make this compatible with all character types? I think it currently is, but I'm not sure yet
@@ -430,7 +429,7 @@ namespace OAHeLP_Database_Project
         /// <param name="s">string 1</param>
         /// <param name="t">string 2</param>
         /// <returns>The levenshtein distance value</returns>
-        public int levenshteinDistance(string s, string t)
+        private int levenshteinDistance(string s, string t)
         {
             int n = s.Length;
             int m = t.Length;
@@ -479,14 +478,14 @@ namespace OAHeLP_Database_Project
 
         // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)
 
-        public static string recoPhonemes;
+        private static string recoPhonemes;
 
         /// <summary>
         /// This method is for getting the word phones from a given string
         /// </summary>
         /// <param name="MyWord">The word (string) that needs to be phoeneticised</param>
         /// <returns>the phones for the given input</returns>
-        public static string GetPronunciationFromText(string MyWord)
+        private static string GetPronunciationFromText(string MyWord)
         {
             //this is a trick to figure out phonemes used by synthesis engine
 
@@ -527,7 +526,7 @@ namespace OAHeLP_Database_Project
         /// <param name="words"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static string StringFromWordArray(ReadOnlyCollection<RecognizedWordUnit> words, WordType type)
+        private static string StringFromWordArray(ReadOnlyCollection<RecognizedWordUnit> words, WordType type)
         {
             string text = "";
             foreach (RecognizedWordUnit word in words)
@@ -579,7 +578,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void reco_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
+        private static void reco_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
             recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
         }
@@ -589,7 +588,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void reco_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
+        private static void reco_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
         {
             recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
         }

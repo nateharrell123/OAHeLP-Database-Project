@@ -16,5 +16,10 @@ namespace SubjectData.Models
             Date = d;
             Village = village;
         }
+
+        public override string ToString()
+        {
+            return $"{Date.ToString("yyyy-M-dd")}        {Village}";
+        }
     }
 }

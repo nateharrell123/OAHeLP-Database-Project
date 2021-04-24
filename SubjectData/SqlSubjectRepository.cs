@@ -22,6 +22,7 @@ namespace SubjectData
             var d = new GetSubjectDataDelegate(subjectId);
             Subject s = executor.ExecuteReader(d);
             s.SetNames(GetNames(subjectId));
+            s.SetResidences(GetResidenceHistory(subjectId));
             return s;
         }
 
@@ -30,6 +31,7 @@ namespace SubjectData
             var d = new GetOASubjectDataDelegate(oaId);
             Subject s = executor.ExecuteReader(d);
             s.SetNames(GetNames(s.SubjectID));
+            s.SetResidences(GetResidenceHistory(s.SubjectID));
             return s;
         }
 
@@ -38,6 +40,7 @@ namespace SubjectData
             var d = new GetICSubjectDataDelegate(icNum);
             Subject s = executor.ExecuteReader(d);
             s.SetNames(GetNames(s.SubjectID));
+            s.SetResidences(GetResidenceHistory(s.SubjectID));
             return s;
         }
 

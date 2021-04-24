@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using SubjectData.Models;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SubjectData.Models;
-using System.Windows;
 
 namespace OAHeLP_Database_Project
 {
@@ -29,11 +22,12 @@ namespace OAHeLP_Database_Project
 
         public void UpdateView()
         {
-         
+
             uxProjectIDLabel.Text = $"Project ID: {subject.OAHeLPID}";
             uxNameLabel.Text = $"Name: {subject.Names[0].FirstName} {subject.Names[0].MiddleNames} {subject.Names[0].LastName}";
             uxSexLabel.Text = $"Sex: {subject.Sex}";
             uxEthnicityLabel.Text = $"Ethnic Group: {subject.EthnicGroup}";
+            uxResidenceHistory.DataSource = subject.Residences;
             if (subject.DOB != null)
             {
                 DateTimeOffset now = System.DateTimeOffset.UtcNow;
@@ -42,15 +36,17 @@ namespace OAHeLP_Database_Project
                 uxAgeLabel.Text = $"Age: {age}";
             }
             else uxAgeLabel.Text = "Age: UNKNOWN";
-            if(subject.photoFileName != null)
-            try
+            if (subject.photoFileName != null)
             {
-                uxPictureBox.Image = Image.FromFile($"C:\\Users\\haler\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\{subject.photoFileName}");
-            }
-            catch(System.IO.FileNotFoundException ex)
+                try
+                {
+                    uxPictureBox.Image = Image.FromFile($"C:\\Users\\haler\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\{subject.photoFileName}");
+                }
+                catch (System.IO.FileNotFoundException ex)
                 {
                     uxPictureBox.Image = Image.FromFile($"C:\\Users\\haler\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\default.jpg");
                 }
+            }
 
         }
 

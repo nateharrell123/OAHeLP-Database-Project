@@ -36,7 +36,7 @@ namespace SubjectData
         /// <returns></returns>
         BindingList<Subject> GetSubjectList(List<int> subjectIds);
 
-        public List<Residence> GetResidenceHistory(int subjectId);
+        List<Residence> GetResidenceHistory(int subjectId);
 
         List<Name> GetNames(int subjectId);
 

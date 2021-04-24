@@ -66,10 +66,13 @@ namespace SubjectData.DataDelegates
                     reader.GetString("FirstName"),
                     reader.GetString("MiddleNames"),
                     reader.GetString("LastName"));
-                if (result.Contains(next)) result[result.IndexOf(next)].Names.Add(name);
+                Residence residence = new Residence(reader.GetDateTime("ResidenceDate"), reader.GetNullableString("VillageName"));
+                if (result.Contains(next)) result[result.IndexOf(next)].AddName(name);
+                if (result.Contains(next)) result[result.IndexOf(next)].AddResidence(residence);
                 else
                 {
                     next.AddName(name);
+                    next.AddResidence(residence);
                     result.Add(next);
                 }
             }

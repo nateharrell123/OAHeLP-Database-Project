@@ -14,3 +14,5 @@ DROP PROCEDURE [Subject].DeleteSubject;
 GO
 DROP PROCEDURE [Subject].AddSubject;
 GO
+DROP PROCEDURE [Subject].GetResidenceHistory;
+GO

@@ -49,6 +49,8 @@ Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetMedical
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetICSubject.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DeleteSubject.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "AddSubject.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetResidenceHistory.sql"
+
 
 
 Write-Host "Inserting data..."

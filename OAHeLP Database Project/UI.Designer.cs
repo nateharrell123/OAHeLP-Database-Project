@@ -109,6 +109,33 @@ namespace OAHeLP_Database_Project
             this.uxVillageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uxVillageComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxVillageComboBox.FormattingEnabled = true;
+            this.uxVillageComboBox.Items.AddRange(new object[] {
+            "Kuala Lumpur",
+            "Klang",
+            "Ipoh",
+            "Butterworth",
+            "George Town",
+            "Petaling Jaya",
+            "Kuantan",
+            "Shah Alam",
+            "Johor Bahru",
+            "Kota Bharu",
+            "Melaka",
+            "Kota Kinabalu",
+            "Seremban",
+            "Sandakan",
+            "Sungai Petani",
+            "Kuching",
+            "Kuala Terengganu",
+            "Alor Setar",
+            "Putrajaya",
+            "Kangar",
+            "Labuan",
+            "Pasir Mas",
+            "Tumpat",
+            "Ketereh",
+            "Kampung Lemal",
+            "Pulai Chondong"});
             this.uxVillageComboBox.Location = new System.Drawing.Point(47, 83);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
             this.uxVillageComboBox.Size = new System.Drawing.Size(171, 32);

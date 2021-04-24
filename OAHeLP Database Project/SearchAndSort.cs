@@ -23,7 +23,6 @@ namespace OAHeLP_Database_Project
         /// this dictionary tracks each subject's score compared to test data
         /// </summary>
         Dictionary<int, int> subjectIDAndScores = new Dictionary<int, int>();
-        Dictionary<int, string> subjectIDAndNames = new Dictionary<int, string>();
 
         /// <summary>
         /// Constructor
@@ -43,7 +42,7 @@ namespace OAHeLP_Database_Project
         /// <param name="villageID">The village that the patient currently says that they are from. The search algorithm compares this to other villages at varying ranges</param>
         /// <param name="DOB">DOB is unreliable, but the search algorithm still makes minor use of it</param>
         /// <returns></returns>
-        public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageID, string inputSex)
+        public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageName, string inputSex)
         {
             SqlConnection connection;
             string connectionString;
@@ -61,20 +60,14 @@ namespace OAHeLP_Database_Project
                 inputSex = "F";
             }//else
 
-
-
-
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
-
 
             using (connection = new SqlConnection(connectionString))
             {
-                
-
                 //firstly this we need to grab the long and lat info for the inputVillage, so we'll run a quick query for that. 
 
                 string queryString;
-                queryString = $"SELECT V.VillageID,V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.VillageID = '{inputVillageID}'";
+                queryString = $"SELECT V.[Name],V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.[Name] = '{inputVillageName}'";
 
 
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -89,11 +82,9 @@ namespace OAHeLP_Database_Project
 
                 if (reader.HasRows)
                 {
-
                     //The while loop iterates through the rows
                     while (reader.Read())
                     {
-
                         //string array to represent the row
                         string[] row = new string[reader.FieldCount];
 
@@ -267,7 +258,9 @@ namespace OAHeLP_Database_Project
                     //now we take our lowest result and compare it to our weights
                     if (lowestResult < 15)
                     {
-                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += (15 - lowestResult);
+                        //multiplying the raw score by 2 to give a bit more weight to the namematch
+                        int scoreAdd = (15 - lowestResult) * 2;
+                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += scoreAdd;
                     }//if
                     else
                     {
@@ -356,13 +349,13 @@ namespace OAHeLP_Database_Project
 
 
                 //last thing I'm going to do is normalize the values a bit
-                //or at least I wanted to, but the normalization isn't working
-                /*
-                int maxValueInSet = subjectIDAndScores.Values.Max();
-                int minValueInSet = subjectIDAndScores.Values.Max();
+                
+                double maxValueInSet = subjectIDAndScores.Values.Max();
+                double minValueInSet = subjectIDAndScores.Values.Min();
 
-                int maxNormalizedValue = 50;
-                int minNormalizedValue = 10;
+                //this can be whatever we want them to be
+                double maxNormalizedValue = 50;
+                double minNormalizedValue = 10;
 
                 //getting the keys 
                 List<int> subjectIDs = subjectIDAndScores.Keys.ToList<int>();
@@ -370,12 +363,12 @@ namespace OAHeLP_Database_Project
                 //trasnforming the values
                 foreach(int i in subjectIDs)
                 {
-                    int oldVal = subjectIDAndScores[i];
-                    int newI = (maxNormalizedValue - minNormalizedValue) / (maxValueInSet - minValueInSet) * (oldVal - maxValueInSet) + maxNormalizedValue;
-                    subjectIDAndScores[i] = newI;
+                    double oldVal = subjectIDAndScores[i];
+                    double newI = scaleBetween(oldVal, minNormalizedValue, maxNormalizedValue, minValueInSet, maxValueInSet);
+                    subjectIDAndScores[i] = Convert.ToInt32(newI);
                 }//foreach
 
-                */
+                
 
 
                 //then we're done!!!!
@@ -401,7 +394,7 @@ namespace OAHeLP_Database_Project
         /// <param name="inputName">the name that was entered as part of the input parameters</param>
         /// <param name="dbName">the current name from the database that we are comparing</param>
         /// <returns>Returns an int based on how close the match is. 3 = exact, 2 = Close Partial, 1 = Not very close partial, 0 = nothing</returns>
-        public int nameMatch(string inputName, string dbName)
+        private int nameMatch(string inputName, string dbName)
         {
 
             //make this compatible with all character types? I think it currently is, but I'm not sure yet
@@ -410,9 +403,6 @@ namespace OAHeLP_Database_Project
 
             string inputPhone = GetPronunciationFromText(inputName);
             string dbPhone = GetPronunciationFromText(dbName);
-
-            Console.WriteLine("Input Phone: " + inputPhone);
-            Console.WriteLine("DB Phone: " + dbPhone);
 
 
             //next is to find the Levenshtein distance between the names
@@ -423,6 +413,20 @@ namespace OAHeLP_Database_Project
             return distance;
         }
 
+        /// <summary>
+        /// This function scales a function in a certain range
+        /// </summary>
+        /// <param name="unscaledNum"></param>
+        /// <param name="newMin">the minimum value that w want our scaled values to be</param>
+        /// <param name="newMax">the maximum value that w want our scaled values to be</param>
+        /// <param name="previousMin">the minumum value in our data set</param>
+        /// <param name="previousMax">the maximum value in our data set</param>
+        /// <returns></returns>
+        private double scaleBetween(double unscaledNum, double newMin, double newMax, double previousMin, double previousMax)
+        {
+            return (newMax - newMin) * (unscaledNum - previousMin) / (previousMax - previousMin) + newMin;
+        }
+
 
         /// <summary>
         /// This method computes the levenshteinDistance between two strings
@@ -430,7 +434,7 @@ namespace OAHeLP_Database_Project
         /// <param name="s">string 1</param>
         /// <param name="t">string 2</param>
         /// <returns>The levenshtein distance value</returns>
-        public int levenshteinDistance(string s, string t)
+        private int levenshteinDistance(string s, string t)
         {
             int n = s.Length;
             int m = t.Length;
@@ -479,14 +483,14 @@ namespace OAHeLP_Database_Project
 
         // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)
 
-        public static string recoPhonemes;
+        private static string recoPhonemes;
 
         /// <summary>
         /// This method is for getting the word phones from a given string
         /// </summary>
         /// <param name="MyWord">The word (string) that needs to be phoeneticised</param>
         /// <returns>the phones for the given input</returns>
-        public static string GetPronunciationFromText(string MyWord)
+        private static string GetPronunciationFromText(string MyWord)
         {
             //this is a trick to figure out phonemes used by synthesis engine
 
@@ -527,7 +531,7 @@ namespace OAHeLP_Database_Project
         /// <param name="words"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static string StringFromWordArray(ReadOnlyCollection<RecognizedWordUnit> words, WordType type)
+        private static string StringFromWordArray(ReadOnlyCollection<RecognizedWordUnit> words, WordType type)
         {
             string text = "";
             foreach (RecognizedWordUnit word in words)
@@ -579,7 +583,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void reco_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
+        private static void reco_SpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
             recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
         }
@@ -589,7 +593,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void reco_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
+        private static void reco_SpeechRecognitionRejected(object sender, SpeechRecognitionRejectedEventArgs e)
         {
             recoPhonemes = StringFromWordArray(e.Result.Words, WordType.Pronunciation);
         }

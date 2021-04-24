@@ -128,13 +128,35 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxSearchButton_Click_1(object sender, EventArgs e)
         {
+
+            //no idea how to make the loading pop-up work
+
+            /*
+            //display loading pop-up
+            Form loadingForm = new Form();
+
+            Label text = new Label();
+            text.Text = "Searching...";
+
+            Size size = new Size();
+            size.Width = 100;
+            size.Height = 10;
+
+            text.Size = size;
+            text.AutoSize = true;
+
+            loadingForm.Controls.Add(text);
+            loadingForm.ShowDialog();
+            */
+
+
+
             SearchAndSort search = new SearchAndSort();
             string inputName = uxNameLookupText.Text;
             string inputEthnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
 
-            //this doesn't work yet since the village combo box doesn't have anything in it
-            //string inputVillageID = uxVillageComboBox.SelectedItem.ToString();
-            string inputVillageID = "n684972815913";
+            string inputVillageID = uxVillageComboBox.SelectedItem.ToString();
+            //string inputVillageID = "n684972815913";
             string inputSex = uxSexComboBox.SelectedItem.ToString();
             
             //find our potential matches to the input data with their respective ranks
@@ -164,8 +186,10 @@ namespace OAHeLP_Database_Project
             //settin up the new sorted list as the datasource
             subjectList = subjectListSorted;
 
+            //loadingForm.Close();
             uxNamesListBox.DataSource = subjectList;
             uxNamesListBox.Refresh();
+
             
 
         }//SearchButtonClick

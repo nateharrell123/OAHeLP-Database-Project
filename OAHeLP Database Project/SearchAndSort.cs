@@ -42,7 +42,7 @@ namespace OAHeLP_Database_Project
         /// <param name="villageID">The village that the patient currently says that they are from. The search algorithm compares this to other villages at varying ranges</param>
         /// <param name="DOB">DOB is unreliable, but the search algorithm still makes minor use of it</param>
         /// <returns></returns>
-        public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageID, string inputSex)
+        public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageName, string inputSex)
         {
             SqlConnection connection;
             string connectionString;
@@ -60,20 +60,14 @@ namespace OAHeLP_Database_Project
                 inputSex = "F";
             }//else
 
-
-
-
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
-
 
             using (connection = new SqlConnection(connectionString))
             {
-                
-
                 //firstly this we need to grab the long and lat info for the inputVillage, so we'll run a quick query for that. 
 
                 string queryString;
-                queryString = $"SELECT V.VillageID,V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.VillageID = '{inputVillageID}'";
+                queryString = $"SELECT V.[Name],V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.[Name] = '{inputVillageName}'";
 
 
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -88,11 +82,9 @@ namespace OAHeLP_Database_Project
 
                 if (reader.HasRows)
                 {
-
                     //The while loop iterates through the rows
                     while (reader.Read())
                     {
-
                         //string array to represent the row
                         string[] row = new string[reader.FieldCount];
 
@@ -266,7 +258,9 @@ namespace OAHeLP_Database_Project
                     //now we take our lowest result and compare it to our weights
                     if (lowestResult < 15)
                     {
-                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += (15 - lowestResult);
+                        //multiplying the raw score by 2 to give a bit more weight to the namematch
+                        int scoreAdd = (15 - lowestResult) * 2;
+                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += scoreAdd;
                     }//if
                     else
                     {
@@ -355,13 +349,13 @@ namespace OAHeLP_Database_Project
 
 
                 //last thing I'm going to do is normalize the values a bit
-                //or at least I wanted to, but the normalization isn't working
-                /*
-                int maxValueInSet = subjectIDAndScores.Values.Max();
-                int minValueInSet = subjectIDAndScores.Values.Max();
+                
+                double maxValueInSet = subjectIDAndScores.Values.Max();
+                double minValueInSet = subjectIDAndScores.Values.Min();
 
-                int maxNormalizedValue = 50;
-                int minNormalizedValue = 10;
+                //this can be whatever we want them to be
+                double maxNormalizedValue = 50;
+                double minNormalizedValue = 10;
 
                 //getting the keys 
                 List<int> subjectIDs = subjectIDAndScores.Keys.ToList<int>();
@@ -369,12 +363,12 @@ namespace OAHeLP_Database_Project
                 //trasnforming the values
                 foreach(int i in subjectIDs)
                 {
-                    int oldVal = subjectIDAndScores[i];
-                    int newI = (maxNormalizedValue - minNormalizedValue) / (maxValueInSet - minValueInSet) * (oldVal - maxValueInSet) + maxNormalizedValue;
-                    subjectIDAndScores[i] = newI;
+                    double oldVal = subjectIDAndScores[i];
+                    double newI = scaleBetween(oldVal, minNormalizedValue, maxNormalizedValue, minValueInSet, maxValueInSet);
+                    subjectIDAndScores[i] = Convert.ToInt32(newI);
                 }//foreach
 
-                */
+                
 
 
                 //then we're done!!!!
@@ -410,9 +404,6 @@ namespace OAHeLP_Database_Project
             string inputPhone = GetPronunciationFromText(inputName);
             string dbPhone = GetPronunciationFromText(dbName);
 
-            Console.WriteLine("Input Phone: " + inputPhone);
-            Console.WriteLine("DB Phone: " + dbPhone);
-
 
             //next is to find the Levenshtein distance between the names
 
@@ -420,6 +411,20 @@ namespace OAHeLP_Database_Project
 
             //then we return that distance!
             return distance;
+        }
+
+        /// <summary>
+        /// This function scales a function in a certain range
+        /// </summary>
+        /// <param name="unscaledNum"></param>
+        /// <param name="newMin">the minimum value that w want our scaled values to be</param>
+        /// <param name="newMax">the maximum value that w want our scaled values to be</param>
+        /// <param name="previousMin">the minumum value in our data set</param>
+        /// <param name="previousMax">the maximum value in our data set</param>
+        /// <returns></returns>
+        private double scaleBetween(double unscaledNum, double newMin, double newMax, double previousMin, double previousMax)
+        {
+            return (newMax - newMin) * (unscaledNum - previousMin) / (previousMax - previousMin) + newMin;
         }
 
 

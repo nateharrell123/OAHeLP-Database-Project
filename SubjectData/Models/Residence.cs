@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SubjectData.Models
 {
-    public struct Residence
+    public class Residence
     {
         public DateTime Date { get; }
         public string Village { get; }

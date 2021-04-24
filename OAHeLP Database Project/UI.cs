@@ -4,8 +4,10 @@ using SubjectData.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data.SqlClient; // need this for SQL
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using SubjectData.Models;
 using SubjectData;
@@ -36,16 +38,14 @@ namespace OAHeLP_Database_Project
         {
             
             //DisplaySplashScreen();
-            //connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
+            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\Source\Repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
             //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
-            
             InitializeComponent();
             PopulateTable();
-
-            //this gets thrown when a connection is unsuccessful
+            uxNamesListBox.DataSource = subjectList;
             detailedView = new DetailedView(subjectList[uxNamesListBox.SelectedIndex]);
             OpenChildForm(detailedView);
         }
@@ -129,7 +129,106 @@ namespace OAHeLP_Database_Project
         private void uxSearchButton_Click_1(object sender, EventArgs e)
         {
             SearchAndSort search = new SearchAndSort();
-        }
+            string inputName = uxNameLookupText.Text;
+            string inputEthnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
+
+            //this doesn't work yet since the village combo box doesn't have anything in it
+            //string inputVillageID = uxVillageComboBox.SelectedItem.ToString();
+            string inputVillageID = "n684972815913";
+            string inputSex = uxSexComboBox.SelectedItem.ToString();
+            
+            //find our potential matches to the input data with their respective ranks
+            Dictionary<int, int> potentialMatchesIDsAndRanks = search.SearchDB(inputName,inputEthnicGroup,inputVillageID,inputSex);
+            //just get the keys so that we can grab all of the names associated with these IDs
+            List<int> subjectIDs = potentialMatchesIDsAndRanks.Keys.ToList<int>();
+
+
+
+
+
+            //create a rank property inside of subject and just manage all of this info using subject objects
+            //then you can just clear out the datasource on the listbox and add them in ranked order
+
+
+
+
+
+
+            //make a string of all of the IDs for the query
+            string IDs = "";
+            foreach(int i in subjectIDs)
+            {
+                IDs += ("'" + i.ToString() + "',");
+            }//foreach
+
+            IDs = IDs.Remove(IDs.Length - 1, 1);
+
+            //dictionary for IDs and Names
+            Dictionary<int, string> SubjectIDsAndNames = new Dictionary<int, string>();
+
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                //I DON'T KNOW WHY THIS QUERY DOESN'T WORK
+                string query = 
+                    "SELECT S.SubjectID,N.FirstName" +
+                    " FROM [Subject].[Subject] S" +
+                        " LEFT JOIN [Subject].SubjectName SN ON SN.SubjectID = S.SubjectID " +
+                        " LEFT JOIN [Subject].Name N ON N.NameID = SN.NameID" +
+                    " WHERE S.SubjectID" + 
+                    " IN (" + IDs + ")";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                string firstName;
+                string id;
+
+                //add names to the dictionary with the id as the key
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        firstName = reader.GetString(1);
+                        id = reader.GetInt32(0).ToString();
+                        SubjectIDsAndNames[int.Parse(id)] = firstName;
+                        
+                    }//while
+                }//if
+
+                connection.Close();
+            }//using
+
+            //now this dictionary will associate the names and the ranks for display in the listbox
+            Dictionary<string, int> SubjectNamesAndRanks = new Dictionary<string, int>();
+
+            foreach(KeyValuePair<int,int> i in potentialMatchesIDsAndRanks)
+            {
+                int id = i.Key;
+                int rank = i.Value;
+                string name = SubjectIDsAndNames[id];
+
+                SubjectNamesAndRanks[name] = rank;
+            }//foreach
+
+            //first we clear out the listbox
+            subjectList.Clear();
+            //while the dict still has entries
+            while(SubjectNamesAndRanks.Count > 0)
+            {
+
+                KeyValuePair<string, int> maxRank = SubjectNamesAndRanks.Max();
+                string displayRankAndName = maxRank.Value + "   " + maxRank.Key;
+                subjectList.Add(displayRankAndName);
+
+            }//while
+            
+
+        }//SearchButtonClick
+
+
+
         /// <summary>
         /// Load Detailed View with information from query
         /// </summary>

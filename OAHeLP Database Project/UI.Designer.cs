@@ -87,7 +87,7 @@ namespace OAHeLP_Database_Project
             "Temuan"});
             this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(224, 39);
             this.uxEthnicGroupComboBox.Name = "uxEthnicGroupComboBox";
-            this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 32);
+            this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxEthnicGroupComboBox.TabIndex = 15;
             // 
             // uxSexComboBox
@@ -100,7 +100,7 @@ namespace OAHeLP_Database_Project
             "Female"});
             this.uxSexComboBox.Location = new System.Drawing.Point(224, 82);
             this.uxSexComboBox.Name = "uxSexComboBox";
-            this.uxSexComboBox.Size = new System.Drawing.Size(171, 32);
+            this.uxSexComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxSexComboBox.TabIndex = 15;
             // 
             // uxVillageComboBox
@@ -110,7 +110,7 @@ namespace OAHeLP_Database_Project
             this.uxVillageComboBox.FormattingEnabled = true;
             this.uxVillageComboBox.Location = new System.Drawing.Point(47, 83);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
-            this.uxVillageComboBox.Size = new System.Drawing.Size(171, 32);
+            this.uxVillageComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxVillageComboBox.TabIndex = 15;
             // 
             // uxDetailedViewPanel
@@ -229,7 +229,7 @@ namespace OAHeLP_Database_Project
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
             this.label1.Location = new System.Drawing.Point(208, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 88);
+            this.label1.Size = new System.Drawing.Size(43, 70);
             this.label1.TabIndex = 18;
             this.label1.Text = "|";
             // 
@@ -239,7 +239,7 @@ namespace OAHeLP_Database_Project
             this.uxProjectIDTextBox.ForeColor = System.Drawing.Color.Silver;
             this.uxProjectIDTextBox.Location = new System.Drawing.Point(19, 57);
             this.uxProjectIDTextBox.Name = "uxProjectIDTextBox";
-            this.uxProjectIDTextBox.Size = new System.Drawing.Size(160, 32);
+            this.uxProjectIDTextBox.Size = new System.Drawing.Size(160, 27);
             this.uxProjectIDTextBox.TabIndex = 12;
             this.uxProjectIDTextBox.Text = "Project ID:";
             this.uxProjectIDTextBox.Enter += new System.EventHandler(this.uxProjectIDTextBox_Enter);
@@ -252,7 +252,7 @@ namespace OAHeLP_Database_Project
             this.uxICCardNumberTextBox.ForeColor = System.Drawing.Color.Silver;
             this.uxICCardNumberTextBox.Location = new System.Drawing.Point(269, 57);
             this.uxICCardNumberTextBox.Name = "uxICCardNumberTextBox";
-            this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 32);
+            this.uxICCardNumberTextBox.Size = new System.Drawing.Size(171, 27);
             this.uxICCardNumberTextBox.TabIndex = 12;
             this.uxICCardNumberTextBox.Text = "IC Card Number:";
             this.uxICCardNumberTextBox.Enter += new System.EventHandler(this.uxICCardNumberTextBox_Enter);
@@ -311,10 +311,10 @@ namespace OAHeLP_Database_Project
             // 
             this.uxNamesListBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxNamesListBox.FormattingEnabled = true;
-            this.uxNamesListBox.ItemHeight = 30;
+            this.uxNamesListBox.ItemHeight = 25;
             this.uxNamesListBox.Location = new System.Drawing.Point(12, 211);
             this.uxNamesListBox.Name = "uxNamesListBox";
-            this.uxNamesListBox.Size = new System.Drawing.Size(465, 394);
+            this.uxNamesListBox.Size = new System.Drawing.Size(465, 379);
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
             // 
@@ -341,14 +341,14 @@ namespace OAHeLP_Database_Project
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1128, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1146, 24);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // showToolStripMenuItem
@@ -356,13 +356,13 @@ namespace OAHeLP_Database_Project
             this.showToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.everyoneToolStripMenuItem});
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.showToolStripMenuItem.Text = "Show";
             // 
             // everyoneToolStripMenuItem
             // 
             this.everyoneToolStripMenuItem.Name = "everyoneToolStripMenuItem";
-            this.everyoneToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.everyoneToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.everyoneToolStripMenuItem.Text = "Everyone";
             this.everyoneToolStripMenuItem.Click += new System.EventHandler(this.everyoneToolStripMenuItem_Click);
             // 
@@ -414,7 +414,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1128, 711);
+            this.ClientSize = new System.Drawing.Size(1146, 622);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.uxSearchProjectIDButton);

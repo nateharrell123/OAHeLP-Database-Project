@@ -308,8 +308,11 @@ namespace OAHeLP_Database_Project
             int id = subjectList[uxNamesListBox.SelectedIndex].SubjectID;
             repo.DeleteSubject(id);
             subjectList.Remove(subjectList[uxNamesListBox.SelectedIndex]);
-            detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
-            detailedView.UpdateView();
+            if(subjectList.Count > 0)
+            {
+                detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                detailedView.UpdateView();
+            }
 
         }
     }

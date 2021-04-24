@@ -8,6 +8,7 @@ namespace OAHeLP_Database_Project
     public partial class DetailedView : Form
     {
         Subject subject;
+        string path = Application.StartupPath;
         public DetailedView(Subject s)
         {
             subject = s;
@@ -40,11 +41,13 @@ namespace OAHeLP_Database_Project
             {
                 try
                 {
-                    uxPictureBox.Image = Image.FromFile($"C:\\Users\\haler\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\{subject.photoFileName}");
+                    //these will need to be changed when moved to "release" mode
+                    uxPictureBox.Image = Image.FromFile($"{path}\\..\\..\\Images\\{subject.photoFileName}");
                 }
                 catch (System.IO.FileNotFoundException ex)
                 {
-                    uxPictureBox.Image = Image.FromFile($"C:\\Users\\haler\\source\\repos\\OAHeLP-Database-Project\\OAHeLP Database Project\\Images\\default.jpg");
+                    uxPictureBox.Image = uxPictureBox.Image = Image.FromFile($"{path}\\..\\..\\Images\\default.jpg");
+
                 }
             }
 

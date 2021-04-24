@@ -9,8 +9,6 @@ using System.Data.SqlClient; // need this for SQL
 using System.Drawing;
 using System.Linq;
 using System.Threading;
-using SubjectData.Models;
-using SubjectData;
 using System.Windows.Forms;
 using System.Configuration;
 

@@ -96,8 +96,8 @@ namespace OAHeLP_Database_Project
             this.uxSexComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxSexComboBox.FormattingEnabled = true;
             this.uxSexComboBox.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
+            "M",
+            "F"});
             this.uxSexComboBox.Location = new System.Drawing.Point(224, 82);
             this.uxSexComboBox.Name = "uxSexComboBox";
             this.uxSexComboBox.Size = new System.Drawing.Size(171, 28);

@@ -88,34 +88,51 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
-            if (uxNameLookupText.Text == string.Empty) return;
-
+            string[] fullName = uxNameLookupText.Text.Split(' ');
+            if (fullName.Length == 0)
+            {
+                MessageBox.Show("Please enter a name.");
+                return;
+            }
+            if (fullName.Length > 3)
+            {
+                MessageBox.Show("Please enter up to three (3) names.");
+                return;
+            }
+            
             DialogResult dialogResult = MessageBox.Show($"Add {uxNameLookupText.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
-                /*
-                 * CODE TO HOOK UP ADD SUJECT DATA DELEGATE
-                 * Need to retrieve Name (with parsing), Village, Ethnic Group and Sex from drop downs
-                 *Subject s = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, sex);
-                 *subjectList.Add(s);
-                 *Might also need to refresh data binding? Not sure if it will do this automatically
-                 */
+                var ethnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
+                var sex = uxSexComboBox.SelectedItem.ToString();
+                string firstName, middleNames, lastNames;
 
-
-                string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
-                // Get Sex, Village and Ethnic Group
-
-                using (connection = new SqlConnection(connectionString))
-                using (SqlCommand command = new SqlCommand(query, connection))
+                if (fullName.Length == 1)
                 {
-                    connection.Open();
-                    command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
-
-                    command.ExecuteNonQuery();
+                    firstName = fullName[0];
+                    Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, Convert.ToChar(sex));
+                    subjectList.Add(subject);
                 }
-                uxNameLookupText.Clear();
-                PopulateTable();
+                else if (fullName.Length == 2)
+                {
+                    firstName = fullName[0];
+                    middleNames = fullName[1];
+
+                    Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, Convert.ToChar(sex));
+                    subjectList.Add(subject);
+                }
+                else if (fullName.Length == 3)
+                {
+                    firstName = fullName[0];
+                    middleNames = fullName[1];
+                    lastNames = fullName[2];
+
+                    Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, Convert.ToChar(sex));
+                    subjectList.Add(subject);
+                }
+                detailedView.UpdateView();
+
             }
         }
 

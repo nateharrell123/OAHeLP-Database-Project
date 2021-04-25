@@ -36,10 +36,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public UI()
         {
-            
             //DisplaySplashScreen();
-            //connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
-            //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
@@ -89,6 +86,9 @@ namespace OAHeLP_Database_Project
         private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
             string[] fullName = uxNameLookupText.Text.Split(' ');
+            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) return;
+            var ethnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString(); 
+            var sex = uxSexComboBox.SelectedItem.ToString(); 
             if (fullName.Length == 0)
             {
                 MessageBox.Show("Please enter a name.");
@@ -104,8 +104,7 @@ namespace OAHeLP_Database_Project
 
             if (dialogResult == DialogResult.Yes)
             {
-                var ethnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
-                var sex = uxSexComboBox.SelectedItem.ToString();
+
                 string firstName, middleNames, lastNames;
 
                 if (fullName.Length == 1)
@@ -164,9 +163,8 @@ namespace OAHeLP_Database_Project
             loadingForm.ShowDialog();
             */
 
-
-
             SearchAndSort search = new SearchAndSort();
+            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) return;
             string inputName = uxNameLookupText.Text;
             string inputEthnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
 
@@ -204,9 +202,6 @@ namespace OAHeLP_Database_Project
             //loadingForm.Close();
             uxNamesListBox.DataSource = subjectList;
             uxNamesListBox.Refresh();
-
-            
-
         }//SearchButtonClick
 
 

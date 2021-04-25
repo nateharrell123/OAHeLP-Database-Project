@@ -38,9 +38,9 @@ namespace OAHeLP_Database_Project
         {
             
             //DisplaySplashScreen();
-            connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
+            //connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
             //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
-            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
             InitializeComponent();
@@ -116,9 +116,7 @@ namespace OAHeLP_Database_Project
                 }
                 uxNameLookupText.Clear();
                 PopulateTable();
-                MessageBox.Show($"Added {uxNameLookupText.Text} to the database.");
             }
-            else MessageBox.Show($"Cancelled adding {uxNameLookupText.Text} to the database.");
         }
 
         /// <summary>
@@ -297,7 +295,7 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxMedicalHistoryButton_Click(object sender, EventArgs e)
         {
-            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
+            Subject selectedSubject = subjectList[uxNamesListBox.SelectedIndex];
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();

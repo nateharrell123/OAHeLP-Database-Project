@@ -341,7 +341,7 @@ namespace OAHeLP_Database_Project
             this.uxNamesListBox.ItemHeight = 25;
             this.uxNamesListBox.Location = new System.Drawing.Point(12, 211);
             this.uxNamesListBox.Name = "uxNamesListBox";
-            this.uxNamesListBox.Size = new System.Drawing.Size(465, 379);
+            this.uxNamesListBox.Size = new System.Drawing.Size(465, 404);
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
             // 
@@ -441,7 +441,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1146, 622);
+            this.ClientSize = new System.Drawing.Size(1146, 712);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.uxSearchProjectIDButton);

@@ -142,32 +142,22 @@ namespace OAHeLP_Database_Project
         private void uxSearchButton_Click_1(object sender, EventArgs e)
         {
 
-            //no idea how to make the loading pop-up work
-            // I gotchu don't worry
-
-            /*
-            //display loading pop-up
-            Form loadingForm = new Form();
-
-            Label text = new Label();
-            text.Text = "Searching...";
-
-            Size size = new Size();
-            size.Width = 100;
-            size.Height = 10;
-
-            text.Size = size;
-            text.AutoSize = true;
-
-            loadingForm.Controls.Add(text);
-            loadingForm.ShowDialog();
-            */
+            
 
             LoadingScreen load = new LoadingScreen();
             load.Show();
 
             SearchAndSort search = new SearchAndSort();
-            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) return;
+            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) 
+            {
+                load.Close();
+                MessageBox.Show("Please enter a selection in all boxes");
+                
+                return;
+            };
+
+
+
             string inputName = uxNameLookupText.Text;
             string inputEthnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
 

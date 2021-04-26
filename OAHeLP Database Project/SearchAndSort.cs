@@ -55,7 +55,7 @@ namespace OAHeLP_Database_Project
             {
                 inputSex = "M";
             }//if
-            else
+            else if(inputSex.Equals("Female"))
             {
                 inputSex = "F";
             }//else

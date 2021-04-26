@@ -169,7 +169,7 @@ namespace OAHeLP_Database_Project
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(879, 639);
+            this.button2.Location = new System.Drawing.Point(862, 639);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(194, 55);
             this.button2.TabIndex = 10;
@@ -182,7 +182,7 @@ namespace OAHeLP_Database_Project
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(608, 639);
+            this.button1.Location = new System.Drawing.Point(584, 639);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(194, 55);
             this.button1.TabIndex = 9;
@@ -195,7 +195,7 @@ namespace OAHeLP_Database_Project
             this.uxDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxDeleteButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxDeleteButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxDeleteButton.Location = new System.Drawing.Point(336, 639);
+            this.uxDeleteButton.Location = new System.Drawing.Point(308, 639);
             this.uxDeleteButton.Name = "uxDeleteButton";
             this.uxDeleteButton.Size = new System.Drawing.Size(194, 55);
             this.uxDeleteButton.TabIndex = 8;

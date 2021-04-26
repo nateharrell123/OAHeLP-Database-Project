@@ -34,11 +34,11 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public UI()
         {
-            
             //DisplaySplashScreen();
             //connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
             connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
             InitializeComponent();
@@ -86,37 +86,53 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
-            if (uxNameLookupText.Text == string.Empty) return;
-
+            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) return;
+            string[] fullName = uxNameLookupText.Text.Split(' ');
+            var ethnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString(); 
+            var sex = uxSexComboBox.SelectedItem.ToString(); 
+            if (fullName.Length == 0)
+            {
+                MessageBox.Show("Please enter a name.");
+                return;
+            }
+            if (fullName.Length > 3)
+            {
+                MessageBox.Show("Please enter up to three (3) names.");
+                return;
+            }
+            
             DialogResult dialogResult = MessageBox.Show($"Add {uxNameLookupText.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
-                /*
-                 * CODE TO HOOK UP ADD SUJECT DATA DELEGATE
-                 * Need to retrieve Name (with parsing), Village, Ethnic Group and Sex from drop downs
-                 *Subject s = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, sex);
-                 *subjectList.Add(s);
-                 *Might also need to refresh data binding? Not sure if it will do this automatically
-                 */
+                string firstName, middleNames, lastNames;
 
-
-                string query = "insert into [Subject].[Name] values (@PersonName, 'Middle', 'Last')";
-                // Get Sex, Village and Ethnic Group
-
-                using (connection = new SqlConnection(connectionString))
-                using (SqlCommand command = new SqlCommand(query, connection))
+                if (fullName.Length == 1)
                 {
-                    connection.Open();
-                    command.Parameters.AddWithValue("PersonName", uxNameLookupText.Text);
-
-                    command.ExecuteNonQuery();
+                    firstName = fullName[0];
+                    Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, Convert.ToChar(sex));
+                    subjectList.Add(subject);
                 }
-                uxNameLookupText.Clear();
-                PopulateTable();
-                MessageBox.Show($"Added {uxNameLookupText.Text} to the database.");
+                else if (fullName.Length == 2)
+                {
+                    firstName = fullName[0];
+                    middleNames = fullName[1];
+
+                    Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, Convert.ToChar(sex));
+                    subjectList.Add(subject);
+                }
+                else if (fullName.Length == 3)
+                {
+                    firstName = fullName[0];
+                    middleNames = fullName[1];
+                    lastNames = fullName[2];
+
+                    Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, Convert.ToChar(sex));
+                    subjectList.Add(subject);
+                }
+                detailedView.UpdateView();
+
             }
-            else MessageBox.Show($"Cancelled adding {uxNameLookupText.Text} to the database.");
         }
 
         /// <summary>
@@ -127,29 +143,22 @@ namespace OAHeLP_Database_Project
         private void uxSearchButton_Click_1(object sender, EventArgs e)
         {
 
-            //no idea how to make the loading pop-up work
+            
 
-            /*
-            //display loading pop-up
-            Form loadingForm = new Form();
-
-            Label text = new Label();
-            text.Text = "Searching...";
-
-            Size size = new Size();
-            size.Width = 100;
-            size.Height = 10;
-
-            text.Size = size;
-            text.AutoSize = true;
-
-            loadingForm.Controls.Add(text);
-            loadingForm.ShowDialog();
-            */
-
-
+            LoadingScreen load = new LoadingScreen();
+            load.Show();
 
             SearchAndSort search = new SearchAndSort();
+            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) 
+            {
+                load.Close();
+                MessageBox.Show("Please enter a selection in all boxes");
+                
+                return;
+            };
+
+
+
             string inputName = uxNameLookupText.Text;
             string inputEthnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString();
 
@@ -184,12 +193,9 @@ namespace OAHeLP_Database_Project
             //settin up the new sorted list as the datasource
             subjectList = subjectListSorted;
 
-            //loadingForm.Close();
+            load.Close();
             uxNamesListBox.DataSource = subjectList;
             uxNamesListBox.Refresh();
-
-            
-
         }//SearchButtonClick
 
 
@@ -295,29 +301,9 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxMedicalHistoryButton_Click(object sender, EventArgs e)
         {
-            var selectedName = uxNamesListBox.GetItemText(uxNamesListBox.SelectedItem);
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = $"";
-
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        // FIX THIS
-                        var id = reader.GetString(0);
-                        //MedicalHistory medicalHistory = new MedicalHistory(id);
-                        //medicalHistory.Show();
-                    }
-                }
-            }
-
-
+            Subject selectedSubject = subjectList[uxNamesListBox.SelectedIndex];
+            MedicalHistory medicalHistory = new MedicalHistory(selectedSubject.SubjectID);
+            medicalHistory.Show();
         }
 
         #region UI Stuff

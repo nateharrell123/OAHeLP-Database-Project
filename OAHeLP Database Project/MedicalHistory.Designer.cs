@@ -52,6 +52,7 @@ namespace OAHeLP_Database_Project
             this.ClientSize = new System.Drawing.Size(708, 440);
             this.Controls.Add(this.uxMedicalHistoryDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "MedicalHistory";
             this.Text = "MedicalHistory";
             ((System.ComponentModel.ISupportInitialize)(this.uxMedicalHistoryDataGridView)).EndInit();

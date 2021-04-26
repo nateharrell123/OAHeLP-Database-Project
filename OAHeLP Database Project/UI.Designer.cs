@@ -97,8 +97,8 @@ namespace OAHeLP_Database_Project
             this.uxSexComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxSexComboBox.FormattingEnabled = true;
             this.uxSexComboBox.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
+            "M",
+            "F"});
             this.uxSexComboBox.Location = new System.Drawing.Point(224, 82);
             this.uxSexComboBox.Name = "uxSexComboBox";
             this.uxSexComboBox.Size = new System.Drawing.Size(171, 28);
@@ -171,7 +171,7 @@ namespace OAHeLP_Database_Project
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(879, 639);
+            this.button2.Location = new System.Drawing.Point(862, 639);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(194, 55);
             this.button2.TabIndex = 10;
@@ -184,7 +184,7 @@ namespace OAHeLP_Database_Project
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(608, 639);
+            this.button1.Location = new System.Drawing.Point(584, 639);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(194, 55);
             this.button1.TabIndex = 9;
@@ -197,7 +197,7 @@ namespace OAHeLP_Database_Project
             this.uxDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxDeleteButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxDeleteButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxDeleteButton.Location = new System.Drawing.Point(336, 639);
+            this.uxDeleteButton.Location = new System.Drawing.Point(308, 639);
             this.uxDeleteButton.Name = "uxDeleteButton";
             this.uxDeleteButton.Size = new System.Drawing.Size(194, 55);
             this.uxDeleteButton.TabIndex = 8;
@@ -344,7 +344,7 @@ namespace OAHeLP_Database_Project
             this.uxNamesListBox.ItemHeight = 25;
             this.uxNamesListBox.Location = new System.Drawing.Point(12, 211);
             this.uxNamesListBox.Name = "uxNamesListBox";
-            this.uxNamesListBox.Size = new System.Drawing.Size(465, 379);
+            this.uxNamesListBox.Size = new System.Drawing.Size(465, 404);
             this.uxNamesListBox.TabIndex = 17;
             this.uxNamesListBox.SelectedIndexChanged += new System.EventHandler(this.uxNamesListBox_SelectedIndexChanged);
             // 
@@ -444,7 +444,7 @@ namespace OAHeLP_Database_Project
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1146, 622);
+            this.ClientSize = new System.Drawing.Size(1146, 712);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.uxSearchProjectIDButton);

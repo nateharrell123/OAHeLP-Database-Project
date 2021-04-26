@@ -37,8 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <IntermediateOutputPath>C:\Users\haler\AppData\Local\Temp\vsE4F5.tmp\Debug\</IntermediateOutputPath>
-
+    <IntermediateOutputPath>C:\Users\haler\AppData\Local\Temp\vs134F.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,7 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <IntermediateOutputPath>C:\Users\haler\AppData\Local\Temp\vs75A5.tmp\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\haler\AppData\Local\Temp\vs134F.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -82,6 +81,12 @@
     <Compile Include="DetailedView.Designer.cs">
       <DependentUpon>DetailedView.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadingScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingScreen.Designer.cs">
+      <DependentUpon>LoadingScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="MedicalHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DetailedView.resx">
       <DependentUpon>DetailedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingScreen.resx">
+      <DependentUpon>LoadingScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MedicalHistory.resx">
       <DependentUpon>MedicalHistory.cs</DependentUpon>

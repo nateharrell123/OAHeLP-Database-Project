@@ -144,6 +144,7 @@ namespace OAHeLP_Database_Project
         {
 
             //no idea how to make the loading pop-up work
+            // I gotchu don't worry
 
             /*
             //display loading pop-up
@@ -162,6 +163,9 @@ namespace OAHeLP_Database_Project
             loadingForm.Controls.Add(text);
             loadingForm.ShowDialog();
             */
+
+            LoadingScreen load = new LoadingScreen();
+            load.Show();
 
             SearchAndSort search = new SearchAndSort();
             if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) return;
@@ -199,7 +203,7 @@ namespace OAHeLP_Database_Project
             //settin up the new sorted list as the datasource
             subjectList = subjectListSorted;
 
-            //loadingForm.Close();
+            load.Close();
             uxNamesListBox.DataSource = subjectList;
             uxNamesListBox.Refresh();
         }//SearchButtonClick

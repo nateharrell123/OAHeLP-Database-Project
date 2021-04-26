@@ -85,8 +85,8 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
-            string[] fullName = uxNameLookupText.Text.Split(' ');
             if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) return;
+            string[] fullName = uxNameLookupText.Text.Split(' ');
             var ethnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString(); 
             var sex = uxSexComboBox.SelectedItem.ToString(); 
             if (fullName.Length == 0)
@@ -104,7 +104,6 @@ namespace OAHeLP_Database_Project
 
             if (dialogResult == DialogResult.Yes)
             {
-
                 string firstName, middleNames, lastNames;
 
                 if (fullName.Length == 1)

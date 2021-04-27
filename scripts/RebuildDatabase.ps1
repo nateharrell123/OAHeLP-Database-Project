@@ -1,7 +1,7 @@
 Param(
    [string] $Server = "(LocalDB)\MSSQLLocalDb",
-   [string] $Database = "OAHELP"  
- #[string] $Database = "C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf"
+   #[string] $Database = "OAHELP"  
+ [string] $Database = "C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf"
 
 )
 

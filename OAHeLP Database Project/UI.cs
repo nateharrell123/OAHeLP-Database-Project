@@ -149,7 +149,7 @@ namespace OAHeLP_Database_Project
             LoadingScreen load = new LoadingScreen();
             load.Show();
 
-            SearchAndSort search = new SearchAndSort();
+            SearchAndSort search = new SearchAndSort(connectionString);
             if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null || uxVillageComboBox.SelectedItem == null) 
             {
                 load.Close();

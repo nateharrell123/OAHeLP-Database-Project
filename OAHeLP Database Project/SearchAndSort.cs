@@ -23,13 +23,14 @@ namespace OAHeLP_Database_Project
         /// this dictionary tracks each subject's score compared to test data
         /// </summary>
         Dictionary<int, int> subjectIDAndScores = new Dictionary<int, int>();
+        private string connectionString;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public SearchAndSort()
+        public SearchAndSort(string connection)
         {
-
+            connectionString = connection;
         }//searchandsort
 
 
@@ -60,7 +61,8 @@ namespace OAHeLP_Database_Project
                 inputSex = "F";
             }//else
 
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
 
             using (connection = new SqlConnection(connectionString))
             {

@@ -30,7 +30,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         public SearchAndSort(string connection)
         {
-            connectionString = connection;
+            this.connectionString = connection;
         }//searchandsort
 
 
@@ -46,7 +46,7 @@ namespace OAHeLP_Database_Project
         public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageName, string inputSex)
         {
             SqlConnection connection;
-            string connectionString;
+            //string connectionString;
 
 
             //alright, the very first thing we need to do is normalize our data
@@ -61,7 +61,7 @@ namespace OAHeLP_Database_Project
                 inputSex = "F";
             }//else
 
-            connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
 
             using (connection = new SqlConnection(connectionString))

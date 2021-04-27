@@ -79,9 +79,10 @@ namespace SubjectData
             string middleNames, 
             string lastName, 
             string ethnicGroup, 
+            string village,
             char sex)
         {
-            var d = new AddSubjectDataDelegate(firstName, middleNames, lastName, ethnicGroup, sex);
+            var d = new AddSubjectDataDelegate(firstName, middleNames, lastName, ethnicGroup, village, sex);
             return executor.ExecuteNonQuery(d);
         }
     }

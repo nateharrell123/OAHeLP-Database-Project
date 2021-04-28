@@ -50,6 +50,7 @@ namespace OAHeLP_Database_Project
 
                 }
             }
+            else uxPictureBox.Image = uxPictureBox.Image = Image.FromFile($"{path}\\..\\..\\Images\\default.jpg");
 
         }
 

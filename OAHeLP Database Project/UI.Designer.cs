@@ -87,6 +87,7 @@ namespace OAHeLP_Database_Project
             "Temuan"});
             this.uxEthnicGroupComboBox.Location = new System.Drawing.Point(224, 39);
             this.uxEthnicGroupComboBox.Name = "uxEthnicGroupComboBox";
+            this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 32);
             this.uxEthnicGroupComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxEthnicGroupComboBox.TabIndex = 15;
             // 
@@ -137,6 +138,7 @@ namespace OAHeLP_Database_Project
             "Pulai Chondong"});
             this.uxVillageComboBox.Location = new System.Drawing.Point(47, 83);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
+            this.uxVillageComboBox.Size = new System.Drawing.Size(171, 32);
             this.uxVillageComboBox.Size = new System.Drawing.Size(171, 28);
             this.uxVillageComboBox.TabIndex = 15;
             // 
@@ -202,6 +204,7 @@ namespace OAHeLP_Database_Project
             this.uxDeleteButton.Text = "Remove Subject";
             this.uxDeleteButton.UseVisualStyleBackColor = false;
             this.uxDeleteButton.Click += new System.EventHandler(this.uxDeleteButton_Click);
+
             // 
             // uxMedicalHistoryButton
             // 

@@ -9,8 +9,6 @@ using System.Data.SqlClient; // need this for SQL
 using System.Drawing;
 using System.Linq;
 using System.Threading;
-using SubjectData.Models;
-using SubjectData;
 using System.Windows.Forms;
 using System.Configuration;
 
@@ -37,7 +35,10 @@ namespace OAHeLP_Database_Project
         public UI()
         {
             //DisplaySplashScreen();
+            //connectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Jack\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf'; Integrated Security = True";
+            //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+
             repo = new SqlSubjectRepository(connectionString);
             subjectList = new BindingList<Subject>();
             InitializeComponent();
@@ -85,10 +86,11 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
-            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) return;
+            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null || uxVillageComboBox.SelectedItem == null) return;
             string[] fullName = uxNameLookupText.Text.Split(' ');
             var ethnicGroup = uxEthnicGroupComboBox.SelectedItem.ToString(); 
-            var sex = uxSexComboBox.SelectedItem.ToString(); 
+            var sex = uxSexComboBox.SelectedItem.ToString();
+            var villageName = uxVillageComboBox.SelectedItem.ToString();
             if (fullName.Length == 0)
             {
                 MessageBox.Show("Please enter a name.");
@@ -109,7 +111,7 @@ namespace OAHeLP_Database_Project
                 if (fullName.Length == 1)
                 {
                     firstName = fullName[0];
-                    Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, Convert.ToChar(sex));
+                    Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, villageName, Convert.ToChar(sex));
                     subjectList.Add(subject);
                 }
                 else if (fullName.Length == 2)
@@ -117,7 +119,7 @@ namespace OAHeLP_Database_Project
                     firstName = fullName[0];
                     middleNames = fullName[1];
 
-                    Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, Convert.ToChar(sex));
+                    Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, villageName, Convert.ToChar(sex));
                     subjectList.Add(subject);
                 }
                 else if (fullName.Length == 3)
@@ -126,7 +128,7 @@ namespace OAHeLP_Database_Project
                     middleNames = fullName[1];
                     lastNames = fullName[2];
 
-                    Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, Convert.ToChar(sex));
+                    Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, villageName, Convert.ToChar(sex));
                     subjectList.Add(subject);
                 }
                 detailedView.UpdateView();
@@ -147,8 +149,8 @@ namespace OAHeLP_Database_Project
             LoadingScreen load = new LoadingScreen();
             load.Show();
 
-            SearchAndSort search = new SearchAndSort();
-            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null) 
+            SearchAndSort search = new SearchAndSort(connectionString);
+            if (uxEthnicGroupComboBox.SelectedItem == null || uxSexComboBox.SelectedItem == null || uxVillageComboBox.SelectedItem == null) 
             {
                 load.Close();
                 MessageBox.Show("Please enter a selection in all boxes");

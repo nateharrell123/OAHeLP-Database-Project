@@ -1,7 +1,7 @@
 Param(
    [string] $Server = "(LocalDB)\MSSQLLocalDb",
-   #[string] $Database = "OAHELP"  
- [string] $Database = "C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf"
+   [string] $Database = "OAHELP"  
+ #[string] $Database = "C:\Users\rshale\source\repos\OAHeLP-Database-Project\OAHeLP Database Project\Database1.mdf"
 
 )
 
@@ -51,6 +51,8 @@ Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetICSubje
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "DeleteSubject.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "AddSubject.sql"
 Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetResidenceHistory.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetVillageSummary.sql"
+Invoke-SqlCmd -ServerInstance $Server -Database $Database -InputFile "GetClinicsSummary.sql"
 
 
 

@@ -85,333 +85,350 @@ namespace OAHeLP_Database_Project
         {
             SqlConnection connection;
             string connectionString;
-
+            string queryString;
+            SqlCommand command;
+            SqlDataReader reader;
 
             //alright, the very first thing we need to do is normalize our data
-            //the database stores sex as either M or F, so if it's any version of male/female we need to normalize it to M or F
+            {
+                //the database stores sex as either M or F, so if it's any version of male/female we need to normalize it to M or F
 
-            if (inputSex.Equals("Male"))
-            {
-                inputSex = "M";
-            }//if
-            else if(inputSex.Equals("Female"))
-            {
-                inputSex = "F";
-            }//else
+                if (inputSex.Equals("Male"))
+                {
+                    inputSex = "M";
+                }//if
+                else if (inputSex.Equals("Female"))
+                {
+                    inputSex = "F";
+                }//else
+            }//input data checking and normalization
 
             connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
 
             using (connection = new SqlConnection(connectionString))
             {
                 //firstly this we need to grab the long and lat info for the inputVillage, so we'll run a quick query for that. 
-
-                string queryString;
-                queryString = $"SELECT V.[Name],V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.[Name] = '{inputVillageName}'";
-
-
-                SqlCommand command = new SqlCommand(queryString, connection);
-                connection.Open();
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                //now this is going into a list array so that I don't pull out my hair trying to work with it
-                //it's going to be a list array of strings, that's the easiest to parse into other types if need be
-                List<string[]> queryResultsListInputVillageGPS = new List<string[]>();
-
-                if (reader.HasRows)
+                List<string[]> queryResultsListInputVillageGPS;
                 {
-                    //The while loop iterates through the rows
-                    while (reader.Read())
+
+                    queryString = $"SELECT V.[Name],V.GPSLatitude,V.GPSLongitude FROM [Subject].Village V WHERE V.[Name] = '{inputVillageName}'";
+
+
+                    command = new SqlCommand(queryString, connection);
+                    connection.Open();
+
+                    reader = command.ExecuteReader();
+
+                    //now this is going into a list array so that I don't pull out my hair trying to work with it
+                    //it's going to be a list array of strings, that's the easiest to parse into other types if need be
+                    queryResultsListInputVillageGPS = new List<string[]>();
+
+                    if (reader.HasRows)
                     {
-                        //string array to represent the row
-                        string[] row = new string[reader.FieldCount];
-
-                        row[0] = reader.GetValue(0).ToString();
-                        row[1] = reader.GetValue(1).ToString();
-                        row[2] = reader.GetValue(2).ToString();
-
-                        //this should only have one row, but better safe than sorry
-                        queryResultsListInputVillageGPS.Add(row);
-
-                    }//while
-                }//if
-
-                else
-                {
-                    Console.WriteLine("No rows found.");
-                }//else
-
-                reader.Close();
-
-                //alright, we're going to make a giant query so that we don't have to do a bunch of seperate ones. Then, we'll store the info and filter through it as needed
-
-                //also, eventually this should probably be some sort of string builder (or probably even more ideally a stored procedure) but I'm just hardcoding this for now to make everything clear
-
-                queryString = "SELECT S.SubjectID, S.Sex, EG.Name, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
-                    "FROM [Subject].[Subject] S " +
-                        "LEFT JOIN [Subject].[SubjectName] SN ON S.SubjectID = SN.SubjectID " +
-                        "LEFT JOIN [Subject].[Name] N ON SN.NameID = N.NameID " +
-                        "LEFT JOIN [Subject].Residence R ON S.SubjectID = R.SubjectID " +
-                        "LEFT JOIN [Subject].Village V ON V.VillageID = R.VillageID " +
-                        "LEFT JOIN [Subject].EthnicGroup EG ON EG.EthnicGroupID = S.EthnicGroupID " +
-                    $"WHERE Sex = '{inputSex}'" +
-                    " ORDER BY S.SubjectID";
-
-                //and that should be the entire query!
-
-                //for reference, this query will output a table that looks like this (as of 1.0 release)
-
-                //     0          1            2                3             4             5             6             7              8               9      
-                //S.SubjectID | S.Sex | EG.EthnicGroupName | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID | V.GPSLatitude | V.GPSLongitude
-
-
-                command = new SqlCommand(queryString, connection);
-                
-
-                reader = command.ExecuteReader();
-
-                //now this is going into a list array so that I don't pull out my hair trying to work with it
-                //it's going to be a list array of strings, that's the easiest to parse into other types if need be
-                List<string[]> queryResultsList = new List<string[]>();
-
-                if (reader.HasRows)
-                {
-
-                    int i = 0;//I mostly have th counter here just in case I need it. I don't actually think you do, but it's still decent to have
-
-                    //The while loop iterates through the rows
-                    while (reader.Read())
-                    {
-
-                        //string array to represent the row
-                        string[] row = new string[reader.FieldCount];
-
-                        //fieldcount returns the number of rows
-
-                        for (int j = 0; j < reader.FieldCount; j++)
+                        //The while loop iterates through the rows
+                        while (reader.Read())
                         {
-                            row[j] = reader.GetValue(j).ToString();
-                        }//for
+                            //string array to represent the row
+                            string[] row = new string[reader.FieldCount];
 
-                        //now that we have the row stored in the array, we can add it to the list
-                        queryResultsList.Add(row);
+                            row[0] = reader.GetValue(0).ToString();
+                            row[1] = reader.GetValue(1).ToString();
+                            row[2] = reader.GetValue(2).ToString();
 
-                        //enter their subjectIDs into the dict and start at a base score of 0
-                        subjectIDAndScores[reader.GetInt32(0)] = 0;
+                            //this should only have one row, but better safe than sorry
+                            queryResultsListInputVillageGPS.Add(row);
 
-                        i++;//iterate the counter
-                    }//while
-                }//if
-
-                else
-                {
-                    Console.WriteLine("No rows found.");
-                }//else
-                int readerCount = reader.FieldCount;
-                reader.Close();
-
-
-                //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to.
-                //Looking at data structures that would provide better performance definitely should be on the future dev docket, but it's not at the moment
-                string[,] queryResultsArray = new string[queryResultsList.Count, readerCount];
-
-                int counter = 0;
-                foreach (string[] SA in queryResultsList)
-                {
-                    //string array to represent the row
-
-                    for (int j = 0; j < readerCount; j++)
-                    {
-                        queryResultsArray[counter, j] = SA[j];
-                    }//for
-
-                    counter++;
-                }//foreach
-
-                //cool, now we have a 2d array with all of the data points we need!
-                //our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
-
-                //next, we need to filter through the Database for all of the subjects we already have that match the given ethnic group
-
-                //each row is one subject, but one subject may be on multiple rows if they have multiple names associated with the subject. 
-                for (int i = 0; i < counter - 1; i++)
-                {
-                    //check to see if this is the last entry for the given subject
-                    //it doesn't actually matter which entry it is, just matters that we only consider one of them
-                    if (!(queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0])))
-                    {
-                        //if this is the last record for that subject, we will look at the ethnic group compared to the input ethnic group
-                        if (queryResultsArray[i, 2].Equals(inputEthnicGroup))
-                        {
-
-                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplier;
-                        }//if
-                    }//if for ethnic group
-
-
-                    ///////////////////////////
-                    //next, in a loop, we run our nameMatch method.
-
-
-                    //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
-                    //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
-                    int nameCount = 0;
-                    while (queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0]))
-                    {
-                        nameCount++;
-                        i++;
+                        }//while
                     }//if
 
-                    //now we can check nameCount and run our name match a corrasponding number of times
-                    //we will take the lowest result from the series of runs
-                    int lowestResult = Int32.MaxValue;
-                    for (int j = 0; j <= nameCount; j++)
-                    {
-                        //the weird arithmetic in that box is because of:
-                        //i is the row we are on assuming that there was only one name
-                        //we subtract by namecount to take us back to the first entry (which is subtracting by 0 if there was only 1 name, and then subtracting by an additional 1 per name over 1 name)
-                        //we then add j, which will iterate a number of times = to the ammount of names
-                        //this is all because we don't actually want to manipulate i anymore since it's in the right place for the next subject
-                        //string[] row = queryResultsArray[i-nameCount+j];
-
-                        //we will now create a single string that is the first, all middles, and last name of the subject
-                        //string databaseRowName = row[4] + " " + row[5] + " " + row[6];
-                        string databaseRowName = queryResultsArray[i - nameCount + j, 4] + " " + queryResultsArray[i - nameCount + j, 5] + " " + queryResultsArray[i - nameCount + j, 6];
-
-                        //then we run nameMatch!
-                        int distance = nameMatch(inputName, databaseRowName);
-
-                        //next, compare the result to the lowest result and bing bang boom we got it
-                        if (distance < lowestResult)
-                        {
-                            lowestResult = distance;
-                        }//if
-
-                    }//for
-
-                    //now we take our lowest result and compare it to our weights
-                    if (lowestResult < nameMatchRankBaseWeight)
-                    {
-                        //multiplying the raw score by 2 to give a bit more weight to the namematch
-                        int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplier;
-                        subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += scoreAdd;
-                    }//if
                     else
                     {
-                        //nothing
+                        Console.WriteLine("No rows found.");
                     }//else
 
+                    reader.Close();
+                }//village query
 
-                    /////////////////////////////
-                    //next, we loop and check the given villageID compared to the current village. 
+
+                //alright, we're going to make a giant query so that we don't have to do a bunch of seperate ones. Then, we'll store the info and filter through it as needed
+                //also, eventually this should probably be some sort of string builder (or probably even more ideally a stored procedure) but I'm just hardcoding this for now to make everything clear
+
+                {
+                    queryString = "SELECT S.SubjectID, S.Sex, EG.Name, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
+                        "FROM [Subject].[Subject] S " +
+                            "LEFT JOIN [Subject].[SubjectName] SN ON S.SubjectID = SN.SubjectID " +
+                            "LEFT JOIN [Subject].[Name] N ON SN.NameID = N.NameID " +
+                            "LEFT JOIN [Subject].Residence R ON S.SubjectID = R.SubjectID " +
+                            "LEFT JOIN [Subject].Village V ON V.VillageID = R.VillageID " +
+                            "LEFT JOIN [Subject].EthnicGroup EG ON EG.EthnicGroupID = S.EthnicGroupID " +
+                        $"WHERE Sex = '{inputSex}'" +
+                        " ORDER BY S.SubjectID";
+
+                    //and that should be the entire query!
+
+                    //for reference, this query will output a table that looks like this (as of 1.0 release)
+
+                    //     0          1            2                3             4             5             6             7              8               9      
+                    //S.SubjectID | S.Sex | EG.EthnicGroupName | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID | V.GPSLatitude | V.GPSLongitude
 
 
-                    //check to see if this is the last entry for the given subject
-                    //it doesn't actually matter which entry it is, just matters that we only consider one of them
-                    if (!(queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0])))
+                    command = new SqlCommand(queryString, connection);
+
+
+                    reader = command.ExecuteReader();
+                }//getting the larger query
+
+
+                //organizing the data so that it's easier to work with
+                //this section takes the reader data and turns it into a 2-d array.
+                //everything from here on assumes that the data is stored in a 2-d array that can be easily imagined as rows and columns. 
+                //Looking at data structures that would provide better performance definitely should be on the future dev docket, but it's not at the moment
+                List<string[]> queryResultsList;
+                string[,] queryResultsArray;
+                int counter;
+                {
+
+                    //now this is going into a list array so that I don't pull out my hair trying to work with it
+                    //it's going to be a list array of strings, that's the easiest to parse into other types if need be
+                    int readerCount;
+                    {
+                        queryResultsList = new List<string[]>();
+
+                        if (reader.HasRows)
+                        {
+
+                            int i = 0;//I mostly have th counter here just in case I need it. I don't actually think you do, but it's still decent to have
+
+                            //The while loop iterates through the rows
+                            while (reader.Read())
+                            {
+
+                                //string array to represent the row
+                                string[] row = new string[reader.FieldCount];
+
+                                //fieldcount returns the number of rows
+
+                                for (int j = 0; j < reader.FieldCount; j++)
+                                {
+                                    row[j] = reader.GetValue(j).ToString();
+                                }//for
+
+                                //now that we have the row stored in the array, we can add it to the list
+                                queryResultsList.Add(row);
+
+                                //enter their subjectIDs into the dict and start at a base score of 0
+                                subjectIDAndScores[reader.GetInt32(0)] = 0;
+
+                                i++;//iterate the counter
+                            }//while
+                        }//if
+
+                        else
+                        {
+                            Console.WriteLine("No rows found.");
+                        }//else
+                        readerCount = reader.FieldCount;
+                        reader.Close();
+                    }//listarray
+
+                    //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to.
+                    queryResultsArray = new string[queryResultsList.Count, readerCount];
+                    counter = 0;
+                    foreach (string[] SA in queryResultsList)
+                    {
+                        //string array to represent the row
+
+                        for (int j = 0; j < readerCount; j++)
+                        {
+                            queryResultsArray[counter, j] = SA[j];
+                        }//for
+
+                        counter++;
+                    }//foreach
+
+                    //cool, now we have a 2d array with all of the data points we need!
+                    //our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
+
+                }//organization
+
+
+                //this section adds all of the raw score to each subject's rank. The rest of the method after this loop revolves around organizing the data
+                {
+                    for (int i = 0; i < counter - 1; i++)
                     {
 
-                        //if this is the last record, then we can look at the village
-                        //string[] row = queryResultsArray[i];
-
-                        //lets get the lat and long
-                        //not every subject has a res, so we just skip the ones that don't. 
-                        if (!queryResultsArray[i, 8].Equals(""))
-                        {
-                            double lat = double.Parse(queryResultsArray[i, 8]);
-                            double lon = double.Parse(queryResultsArray[i, 9]);
-
-                            //string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
-                            double inputLat = 0;
-                            double inputLon = 0;
-
-                            foreach (string[] SA in queryResultsListInputVillageGPS)
+                        //each row is one subject, but one subject may be on multiple rows if they have multiple names associated with the subject.
+                        { //ethnic group
+                          //check to see if this is the last entry for the given subject
+                          //it doesn't actually matter which entry it is, just matters that we only consider one of them
+                            if (!(queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0])))
                             {
-                                inputLat = double.Parse(SA[1]);
-                                inputLon = double.Parse(SA[2]);
-                            }//foreach
-
-
-                            //now we get to do a distance analysis!
-
-                            var sCoord = new GeoCoordinate(lat, lon);
-                            var eCoord = new GeoCoordinate(inputLat, inputLon);
-
-                            //this method returns the distance in meters
-                            double physicalDistance = sCoord.GetDistanceTo(eCoord);
-                            //now in km
-                            physicalDistance = physicalDistance / 1000;
-
-
-                            if (physicalDistance < maxAcceptableDistance)
-                            {
-                                //In this calculation, the highest value (where physicalDistance is 0) is 10, and the lowest value is 0
-                                int distanceRank = (maxAcceptableDistance - Convert.ToInt32(physicalDistance)) / (maxAcceptableDistance / 10);
-                                if (!(distanceRank < 0))
+                                //if this is the last record for that subject, we will look at the ethnic group compared to the input ethnic group
+                                if (queryResultsArray[i, 2].Equals(inputEthnicGroup))
                                 {
-                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceRank * distanceRankMultiplier;
+
+                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplier;
                                 }//if
+                            }//if for ethnic group
+
+                        }//ethnic group
+
+                        ///////////////////////////
+                        //next, we run our nameMatch method.
+
+                        {//namematching
+                         //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
+                         //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
+                            int nameCount = 0;
+                            while (queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0]))
+                            {
+                                nameCount++;
+                                i++;
+                            }//if
+
+                            //now we can check nameCount and run our name match a corrasponding number of times
+                            //we will take the lowest result from the series of runs
+                            int lowestResult = Int32.MaxValue;
+                            for (int j = 0; j <= nameCount; j++)
+                            {
+                                //the weird arithmetic in that box is because of:
+                                //i is the row we are on assuming that there was only one name
+                                //we subtract by namecount to take us back to the first entry (which is subtracting by 0 if there was only 1 name, and then subtracting by an additional 1 per name over 1 name)
+                                //we then add j, which will iterate a number of times = to the ammount of names
+                                //this is all because we don't actually want to manipulate i anymore since it's in the right place for the next subject
+                                //string[] row = queryResultsArray[i-nameCount+j];
+
+                                //we will now create a single string that is the first, all middles, and last name of the subject
+                                //string databaseRowName = row[4] + " " + row[5] + " " + row[6];
+                                string databaseRowName = queryResultsArray[i - nameCount + j, 4] + " " + queryResultsArray[i - nameCount + j, 5] + " " + queryResultsArray[i - nameCount + j, 6];
+
+                                //then we run nameMatch!
+                                int distance = nameMatch(inputName, databaseRowName);
+
+                                //next, compare the result to the lowest result and bing bang boom we got it
+                                if (distance < lowestResult)
+                                {
+                                    lowestResult = distance;
+                                }//if
+
+                            }//for
+
+                            //now we take our lowest result and compare it to our weights
+                            if (lowestResult < nameMatchRankBaseWeight)
+                            {
+                                //multiplying the raw score by 2 to give a bit more weight to the namematch
+                                int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplier;
+                                subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += scoreAdd;
                             }//if
                             else
                             {
+                                //nothing
+                            }//else
 
-                            }//else if
+                        }//namematching
+
+                        /////////////////////////////
+                        //next, check the given villageID compared to the current village. 
+
+                        {//village distance
+                         //check to see if this is the last entry for the given subject
+                         //it doesn't actually matter which entry it is, just matters that we only consider one of them
+                            if (!(queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0])))
+                            {
+
+                                //if this is the last record, then we can look at the village
+                                //string[] row = queryResultsArray[i];
+
+                                //lets get the lat and long
+                                //not every subject has a res, so we just skip the ones that don't. 
+                                if (!queryResultsArray[i, 8].Equals(""))
+                                {
+                                    double lat = double.Parse(queryResultsArray[i, 8]);
+                                    double lon = double.Parse(queryResultsArray[i, 9]);
+
+                                    //string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
+                                    double inputLat = 0;
+                                    double inputLon = 0;
+
+                                    foreach (string[] SA in queryResultsListInputVillageGPS)
+                                    {
+                                        inputLat = double.Parse(SA[1]);
+                                        inputLon = double.Parse(SA[2]);
+                                    }//foreach
+
+
+                                    //now we get to do a distance analysis!
+
+                                    var sCoord = new GeoCoordinate(lat, lon);
+                                    var eCoord = new GeoCoordinate(inputLat, inputLon);
+
+                                    //this method returns the distance in meters
+                                    double physicalDistance = sCoord.GetDistanceTo(eCoord);
+                                    //now in km
+                                    physicalDistance = physicalDistance / 1000;
+
+
+                                    if (physicalDistance < maxAcceptableDistance)
+                                    {
+                                        //In this calculation, the highest value (where physicalDistance is 0) is 10, and the lowest value is 0
+                                        int distanceRank = (maxAcceptableDistance - Convert.ToInt32(physicalDistance)) / (maxAcceptableDistance / 10);
+                                        if (!(distanceRank < 0))
+                                        {
+                                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceRank * distanceRankMultiplier;
+                                        }//if
+                                    }//if
+                                    else
+                                    {
+
+                                    }//else if
+                                }//if
+                            }//if
+                        }//village distance
+
+                        //if the subject has gone through all of the filters and has a score of 0, they are immedietly removed from the library
+                        if (subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] == 0)
+                        {
+                            subjectIDAndScores.Remove(int.Parse(queryResultsArray[i, 0]));
                         }//if
-                    }//if for village distance
 
-                }//for for ranking all of the subjects
+                    }//for for ranking all of the subjects
 
-
-                List<int> subjectsToRemove = new List<int>();
-                //Now we're going to filter out all of the zeroes
-                //we have to get all of the keys first before actually modifying the dictionary
-                foreach(KeyValuePair<int,int> i in subjectIDAndScores)
-                {
-                    if(i.Value == 0)
-                    {
-                        subjectsToRemove.Add(i.Key);
-                    }//if
-                }//foreach
-
-                //then we can go through and remove the subjects
-                foreach(int i in subjectsToRemove)
-                {
-                    subjectIDAndScores.Remove(i);
-                }//foreach
+                }//determining raw rank
 
 
                 //last thing I'm going to do is normalize the values a bit
-                
-                double maxValueInSet = subjectIDAndScores.Values.Max();
-                double minValueInSet = subjectIDAndScores.Values.Min();
-
-                
-
-                //getting the keys 
-                List<int> subjectIDs = subjectIDAndScores.Keys.ToList<int>();
-
-                //trasnforming the values
-                foreach(int i in subjectIDs)
                 {
-                    double oldVal = subjectIDAndScores[i];
-                    double newI = scaleBetween(oldVal, minNormalizedValue, maxNormalizedValue, minValueInSet, maxValueInSet);
-                    subjectIDAndScores[i] = Convert.ToInt32(newI);
-                }//foreach
+                    double maxValueInSet = subjectIDAndScores.Values.Max();
+                    double minValueInSet = subjectIDAndScores.Values.Min();
 
-                
+
+
+                    //getting the keys 
+                    List<int> subjectIDs = subjectIDAndScores.Keys.ToList<int>();
+
+                    //trasnforming the values
+                    foreach (int i in subjectIDs)
+                    {
+                        double oldVal = subjectIDAndScores[i];
+                        double newI = scaleBetween(oldVal, minNormalizedValue, maxNormalizedValue, minValueInSet, maxValueInSet);
+                        subjectIDAndScores[i] = Convert.ToInt32(newI);
+                    }//foreach
+
+                }//normalization
 
 
                 //then we're done!!!!
+
                 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 //this next bit would be CRAZY cool, it's on the future dev docket
+                {
+                    //after this, I would want to get a bit creative. We want both a time analysis on the given location and time analysis for all nearby locations. 
+                    //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
+                    //next, we do the same analysis if they have been at any other location within 50 miles, assigning varying points depending on how recently. 
+                }//future dev
 
-                //after this, I would want to get a bit creative. We want both a time analysis on the given location and time analysis for all nearby locations. 
-                //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
-                //next, we do the same analysis if they have been at any other location within 50 miles, assigning varying points depending on how recently. 
-
-
-                //after that we return the dictionary! This can then be used by the UI to display relative confidences. We can also do some normalization of the data before returning
+                //after that we return the dictionary! This can then be used by the UI to display relative confidences.
             }//opening connection
 
             connection.Close();

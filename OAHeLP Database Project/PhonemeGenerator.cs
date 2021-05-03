@@ -20,6 +20,8 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private static string recoPhonemes;
 
+        // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)
+
         /// <summary>
         /// This method is for getting the word phones from a given string
         /// </summary>

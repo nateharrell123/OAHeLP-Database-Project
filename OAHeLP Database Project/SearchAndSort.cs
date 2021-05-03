@@ -393,6 +393,13 @@ namespace OAHeLP_Database_Project
 
                     }//for for ranking all of the subjects
 
+                    //this next bit would be CRAZY cool, it's on the future dev docket
+                    {
+                        //after this, I would want to get a bit creative. We want both a time analysis on the given location and time analysis for all nearby locations. 
+                        //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
+                        //next, we do the same analysis if they have been at any other location within 50 miles, assigning varying points depending on how recently. 
+                    }//future dev
+
                 }//determining raw rank
 
 
@@ -416,17 +423,6 @@ namespace OAHeLP_Database_Project
 
                 }//normalization
 
-
-                //then we're done!!!!
-
-                //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                //this next bit would be CRAZY cool, it's on the future dev docket
-                {
-                    //after this, I would want to get a bit creative. We want both a time analysis on the given location and time analysis for all nearby locations. 
-                    //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
-                    //next, we do the same analysis if they have been at any other location within 50 miles, assigning varying points depending on how recently. 
-                }//future dev
 
                 //after that we return the dictionary! This can then be used by the UI to display relative confidences.
             }//opening connection
@@ -528,7 +524,7 @@ namespace OAHeLP_Database_Project
             return d[n, m];
         }//distance method
 
-        // Credit for method of retrieving IPA pronunciation from a string goes to Casey Chesnut (http://www.mperfect.net/speechSamples/)
+        
 
 
         

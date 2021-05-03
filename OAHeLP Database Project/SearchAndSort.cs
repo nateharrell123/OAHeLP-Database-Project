@@ -246,14 +246,12 @@ namespace OAHeLP_Database_Project
 
                             subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplier;
                         }//if
-                    }//if
-                }//for
+                    }//if for ethnic group
 
 
-                //next, in a loop, we run our nameMatch method. 
+                    ///////////////////////////
+                    //next, in a loop, we run our nameMatch method.
 
-                for (int i = 0; i < counter - 1; i++)
-                {
 
                     //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
                     //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
@@ -304,14 +302,10 @@ namespace OAHeLP_Database_Project
                     }//else
 
 
-                }//for
+                    /////////////////////////////
+                    //next, we loop and check the given villageID compared to the current village. 
 
 
-
-                //next, we loop and check the given villageID compared to the current village. 
-
-                for (int i = 0; i < counter - 1; i++)
-                {
                     //check to see if this is the last entry for the given subject
                     //it doesn't actually matter which entry it is, just matters that we only consider one of them
                     if (!(queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0])))
@@ -348,7 +342,7 @@ namespace OAHeLP_Database_Project
                             //now in km
                             physicalDistance = physicalDistance / 1000;
 
-                            
+
                             if (physicalDistance < maxAcceptableDistance)
                             {
                                 //In this calculation, the highest value (where physicalDistance is 0) is 10, and the lowest value is 0
@@ -363,8 +357,10 @@ namespace OAHeLP_Database_Project
 
                             }//else if
                         }//if
-                    }//if
-                }//for
+                    }//if for village distance
+
+                }//for for ranking all of the subjects
+
 
                 List<int> subjectsToRemove = new List<int>();
                 //Now we're going to filter out all of the zeroes

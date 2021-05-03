@@ -40,7 +40,7 @@ namespace OAHeLP_Database_Project
         /// <summary>
         /// after the base weight is determined, the ethnicGroup score can be multiplied to make it more significant in the overall rank of the subject. 
         /// </summary>
-        private int ethnicGroupRankMultiplyer = 1;
+        private int ethnicGroupRankMultiplier = 1;
 
         /// <summary>
         /// this is the amount that the base for the name match algorithm. 
@@ -52,7 +52,7 @@ namespace OAHeLP_Database_Project
         /// <summary>
         /// after the base weight is determined, the namematch score can be multiplied to make it more significant in the overall rank of the subject. 
         /// </summary>
-        private int nameMatchRankMultiplyer = 2;
+        private int nameMatchRankMultiplier = 2;
 
         /// <summary>
         /// this is the maximum distance (in km) that a subjects residence can be from the clinic for them to have any score added for this distance. 
@@ -63,7 +63,7 @@ namespace OAHeLP_Database_Project
         /// <summary>
         /// after the base weight is determined, the distance score can be multiplied to make it more significant in the overall rank of the subject. 
         /// </summary>
-        private int distanceRankMultiplyer = 1;
+        private int distanceRankMultiplier = 1;
 
         /// <summary>
         /// this is whatever we want the maximum value in our set to normalize to. This is completely unnecessary, and the normalization process can be removed to just output the raw scores if desired. 
@@ -250,7 +250,7 @@ namespace OAHeLP_Database_Project
                         if (queryResultsArray[i, 2].Equals(inputEthnicGroup))
                         {
 
-                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplyer;
+                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplier;
                         }//if
                     }//if
                 }//for
@@ -301,7 +301,7 @@ namespace OAHeLP_Database_Project
                     if (lowestResult < nameMatchRankBaseWeight)
                     {
                         //multiplying the raw score by 2 to give a bit more weight to the namematch
-                        int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplyer;
+                        int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplier;
                         subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += scoreAdd;
                     }//if
                     else
@@ -361,7 +361,7 @@ namespace OAHeLP_Database_Project
                                 int distanceRank = (maxAcceptableDistance - Convert.ToInt32(physicalDistance)) / (maxAcceptableDistance / 10);
                                 if (!(distanceRank < 0))
                                 {
-                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceRank * distanceRankMultiplyer;
+                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceRank * distanceRankMultiplier;
                                 }//if
                             }//if
                             else

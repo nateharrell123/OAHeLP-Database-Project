@@ -10,7 +10,6 @@ using System.Configuration;
 using System.Device.Location;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
-using System.Collections.Generic;
 
 namespace OAHeLP_Database_Project
 {
@@ -20,17 +19,63 @@ namespace OAHeLP_Database_Project
     {
 
         /// <summary>
-        /// this dictionary tracks each subject's score compared to test data
-        /// </summary>
-        Dictionary<int, int> subjectIDAndScores = new Dictionary<int, int>();
-
-        /// <summary>
         /// Constructor
         /// </summary>
         public SearchAndSort()
         {
 
         }//searchandsort
+
+
+        /// <summary>
+        /// this dictionary tracks each subject's score compared to test data
+        /// </summary>
+        private Dictionary<int, int> subjectIDAndScores = new Dictionary<int, int>();
+
+        /// <summary>
+        /// this is the amount that is added to a subjects score if they match the input ethnic group
+        /// </summary>
+        private int ethnicGroupRankWeight = 15;
+
+        /// <summary>
+        /// after the base weight is determined, the ethnicGroup score can be multiplied to make it more significant in the overall rank of the subject. 
+        /// </summary>
+        private int ethnicGroupRankMultiplyer = 1;
+
+        /// <summary>
+        /// this is the amount that the base for the name match algorithm. 
+        /// The name distance determined by name match will be subtracted from this number, meaning a higher distance results in a lower number being added to the rank
+        /// if that subtraction would cause the score to go negative then nothing is added (but this could certainly be changed to add a negative value)
+        /// </summary>
+        private int nameMatchRankBaseWeight = 15;
+
+        /// <summary>
+        /// after the base weight is determined, the namematch score can be multiplied to make it more significant in the overall rank of the subject. 
+        /// </summary>
+        private int nameMatchRankMultiplyer = 2;
+
+        /// <summary>
+        /// this is the maximum distance (in km) that a subjects residence can be from the clinic for them to have any score added for this distance. 
+        /// the rank that is added is then (maxAcceptableDistance - distanceAway / (maxAcceptableDistance/10))
+        /// </summary>
+        private int maxAcceptableDistance = 2500;
+
+        /// <summary>
+        /// after the base weight is determined, the distance score can be multiplied to make it more significant in the overall rank of the subject. 
+        /// </summary>
+        private int distanceRankMultiplyer = 1;
+
+        /// <summary>
+        /// this is whatever we want the maximum value in our set to normalize to. This is completely unnecessary, and the normalization process can be removed to just output the raw scores if desired. 
+        /// </summary>
+        private double maxNormalizedValue = 50;
+
+        /// <summary>
+        /// this is whatever we want the minimum value in our set to normalize to. This is completely unnecessary, and the normalization process can be removed to just output the raw scores if desired. 
+        /// </summary>
+        private double minNormalizedValue = 10;
+
+
 
 
 
@@ -74,7 +119,6 @@ namespace OAHeLP_Database_Project
                 connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
-                //you can access data through the following syntax:
 
                 //now this is going into a list array so that I don't pull out my hair trying to work with it
                 //it's going to be a list array of strings, that's the easiest to parse into other types if need be
@@ -106,9 +150,8 @@ namespace OAHeLP_Database_Project
                 reader.Close();
 
                 //alright, we're going to make a giant query so that we don't have to do a bunch of seperate ones. Then, we'll store the info and filter through it as needed
-                //so the question is, what all do we need?
 
-                //also, eventually this should probably be some sort of string builder, but I'm just hardcoding this for now to make everything clear
+                //also, eventually this should probably be some sort of string builder (or probably even more ideally a stored procedure) but I'm just hardcoding this for now to make everything clear
 
                 queryString = "SELECT S.SubjectID, S.Sex, EG.Name, N.NameID, N.FirstName, N.MiddleNames, N.LastName, V.VillageID, V.GPSLatitude, V.GPSLongitude " +
                     "FROM [Subject].[Subject] S " +
@@ -122,7 +165,7 @@ namespace OAHeLP_Database_Project
 
                 //and that should be the entire query!
 
-                //for reference, this query will output a table that looks like this
+                //for reference, this query will output a table that looks like this (as of 1.0 release)
 
                 //     0          1            2                3             4             5             6             7              8               9      
                 //S.SubjectID | S.Sex | EG.EthnicGroupName | N.NameID | N.FirstName | N.MiddleNames | N.LastName | V.VillageID | V.GPSLatitude | V.GPSLongitude
@@ -132,7 +175,6 @@ namespace OAHeLP_Database_Project
                 
 
                 reader = command.ExecuteReader();
-                //you can access data through the following syntax:
 
                 //now this is going into a list array so that I don't pull out my hair trying to work with it
                 //it's going to be a list array of strings, that's the easiest to parse into other types if need be
@@ -175,7 +217,8 @@ namespace OAHeLP_Database_Project
                 reader.Close();
 
 
-                //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to. We'll look at possible performance differences later
+                //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to.
+                //Looking at data structures that would provide better performance definitely should be on the future dev docket, but it's not at the moment
                 string[,] queryResultsArray = new string[queryResultsList.Count, readerCount];
 
                 int counter = 0;
@@ -195,7 +238,6 @@ namespace OAHeLP_Database_Project
                 //our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
 
                 //next, we need to filter through the Database for all of the subjects we already have that match the given ethnic group
-                //these individuals then get a +10 to their score
 
                 //each row is one subject, but one subject may be on multiple rows if they have multiple names associated with the subject. 
                 for (int i = 0; i < counter - 1; i++)
@@ -208,13 +250,13 @@ namespace OAHeLP_Database_Project
                         if (queryResultsArray[i, 2].Equals(inputEthnicGroup))
                         {
 
-                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += 15;
+                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplyer;
                         }//if
                     }//if
                 }//for
 
 
-                //next, in a loop, we run our nameMatch method. This will add 10-distance as long as distance is < 10
+                //next, in a loop, we run our nameMatch method. 
 
                 for (int i = 0; i < counter - 1; i++)
                 {
@@ -256,10 +298,10 @@ namespace OAHeLP_Database_Project
                     }//for
 
                     //now we take our lowest result and compare it to our weights
-                    if (lowestResult < 15)
+                    if (lowestResult < nameMatchRankBaseWeight)
                     {
                         //multiplying the raw score by 2 to give a bit more weight to the namematch
-                        int scoreAdd = (15 - lowestResult) * 2;
+                        int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplyer;
                         subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += scoreAdd;
                     }//if
                     else
@@ -312,14 +354,14 @@ namespace OAHeLP_Database_Project
                             //now in km
                             physicalDistance = physicalDistance / 1000;
 
-                            //The villages being within 100km is +10, within 500km is +5, within 2500km is +2
-                            if (physicalDistance < 2500)
+                            
+                            if (physicalDistance < maxAcceptableDistance)
                             {
                                 //In this calculation, the highest value (where physicalDistance is 0) is 10, and the lowest value is 0
-                                int distanceWeight = (2500 - Convert.ToInt32(physicalDistance)) / 250;
-                                if (!(distanceWeight < 0))
+                                int distanceRank = (maxAcceptableDistance - Convert.ToInt32(physicalDistance)) / (maxAcceptableDistance / 10);
+                                if (!(distanceRank < 0))
                                 {
-                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceWeight;
+                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceRank * distanceRankMultiplyer;
                                 }//if
                             }//if
                             else
@@ -353,9 +395,7 @@ namespace OAHeLP_Database_Project
                 double maxValueInSet = subjectIDAndScores.Values.Max();
                 double minValueInSet = subjectIDAndScores.Values.Min();
 
-                //this can be whatever we want them to be
-                double maxNormalizedValue = 50;
-                double minNormalizedValue = 10;
+                
 
                 //getting the keys 
                 List<int> subjectIDs = subjectIDAndScores.Keys.ToList<int>();
@@ -374,7 +414,7 @@ namespace OAHeLP_Database_Project
                 //then we're done!!!!
                 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                //this next bit would be CRAZY cool, but I don't think I have time
+                //this next bit would be CRAZY cool, it's on the future dev docket
 
                 //after this, I would want to get a bit creative. We want both a time analysis on the given location and time analysis for all nearby locations. 
                 //first, we look at if any of the subjects in the dictionary have been at this location and assign varying scores depending on how long it's been. These scores in particular could be a bit tricky, as I'm not sure whether it should be better or worse if they had been there they day before. Either way, we assign the scores. 
@@ -397,7 +437,7 @@ namespace OAHeLP_Database_Project
         private int nameMatch(string inputName, string dbName)
         {
 
-            //make this compatible with all character types? I think it currently is, but I'm not sure yet
+            //make this compatible with all character types? I think it currently is, but more testing is necessary to be entirely sure
 
             //first step is to pheoneticise the names
 
@@ -507,7 +547,7 @@ namespace OAHeLP_Database_Project
                     //now wav to txt (for reco phonemes)
                     recoPhonemes = String.Empty;
                     GrammarBuilder gb = new GrammarBuilder(MyWord);
-                    Grammar g = new Grammar(gb); //TODO the hard letters to recognize are 'g' and 'e'
+                    Grammar g = new Grammar(gb); //TODO the hard letters to recognize are 'g' and 'e', but it gets them a large majority of the time, at least 90%
                     SpeechRecognitionEngine reco = new SpeechRecognitionEngine();
                     reco.SpeechHypothesized += new EventHandler<SpeechHypothesizedEventArgs>(reco_SpeechHypothesized);
                     reco.SpeechRecognitionRejected += new EventHandler<SpeechRecognitionRejectedEventArgs>(reco_SpeechRecognitionRejected);
@@ -610,23 +650,4 @@ namespace OAHeLP_Database_Project
     }
 
 
-
-
-
-
-    /*
-
-    /// <summary>
-    /// Property of John Solomon
-    /// </summary>
-    public class SearchAndSort
-    {
-        public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageID, string inputSex)
-        {
-            Dictionary<int, int> asdf = new Dictionary<int, int>();
-            return asdf;
-        }
-    }
-
-    */
-}
+}//namespace

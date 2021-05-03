@@ -94,6 +94,7 @@
       <DependentUpon>MedicalHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Person.cs" />
+    <Compile Include="PhonemeGenerator.cs" />
     <Compile Include="SearchAndSort.cs" />
     <Compile Include="SplashScreen.cs">
       <SubType>Form</SubType>

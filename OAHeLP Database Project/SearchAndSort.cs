@@ -26,6 +26,7 @@ namespace OAHeLP_Database_Project
         /// </summary>
         private Dictionary<int, int> subjectIDAndScores = new Dictionary<int, int>();
 
+        private string connectionString;
         /// <summary>
         /// this is the amount that is added to a subjects score if they match the input ethnic group
         /// </summary>
@@ -84,7 +85,6 @@ namespace OAHeLP_Database_Project
         public Dictionary<int, int> SearchDB(string inputName, string inputEthnicGroup, string inputVillageName, string inputSex)
         {
             SqlConnection connection;
-            string connectionString;
             string queryString;
             SqlCommand command;
             SqlDataReader reader;
@@ -102,9 +102,6 @@ namespace OAHeLP_Database_Project
                     inputSex = "F";
                 }//else
             }//input data checking and normalization
-
-            //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
-            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
 
             using (connection = new SqlConnection(connectionString))
             {

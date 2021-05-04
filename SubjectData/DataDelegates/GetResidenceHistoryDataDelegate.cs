@@ -30,9 +30,9 @@ namespace SubjectData.DataDelegates
             List<Residence> result = new List<Residence>();
             do
             {
-                DateTime date = reader.GetDateTime("Date");
+                DateTime? date = reader.GetNullableDateTime("Date");
                 string village = reader.GetNullableString("VillageName");
-                if(village != null) result.Add(new Residence(date,village));
+                if(village != null && date != null) result.Add(new Residence((DateTime)date,village));
             }
             while (reader.Read());
             return result;

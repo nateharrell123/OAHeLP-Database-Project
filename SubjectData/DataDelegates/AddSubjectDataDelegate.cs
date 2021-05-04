@@ -57,7 +57,9 @@ namespace SubjectData.DataDelegates
                 (EthnicGroup)Enum.Parse(typeof(EthnicGroup), ethnicGroup),
                 null, sex, null, null, null, null, null, null);
             Name n = new Name(firstName, middleNames, lastName);
+            Residence r = new Residence(DateTime.Now, village);
             result.AddName(n);
+            result.AddResidence(r);
             return result;
         }
     }

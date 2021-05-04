@@ -16,3 +16,7 @@ DROP PROCEDURE [Subject].AddSubject;
 GO
 DROP PROCEDURE [Subject].GetResidenceHistory;
 GO
+DROP PROCEDURE Clinic.GetClinicsSummary;
+GO
+DROP PROCEDURE [Subject].[GetVillageSummary];
+GO

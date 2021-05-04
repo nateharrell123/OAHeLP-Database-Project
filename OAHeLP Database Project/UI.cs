@@ -19,15 +19,17 @@ namespace OAHeLP_Database_Project
     /// </summary>
     public partial class UI : Form
     {
-        SqlConnection connection;
+
+
+        private SqlConnection connection;
         private ISubjectRepository repo;
 
         /// <summary>
         /// The connection string.
         /// </summary>
         public static string connectionString; // might be a bad idea
-        BindingList<Subject> subjectList;
-        DetailedView detailedView;
+        private BindingList<Subject> subjectList;
+        private DetailedView detailedView;
 
         /// <summary>
         /// Connect to DB
@@ -227,7 +229,6 @@ namespace OAHeLP_Database_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void uxProjectIDTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -348,7 +349,6 @@ namespace OAHeLP_Database_Project
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void uxSearchProjectIDButton_Click(object sender, EventArgs e)
         {
             PopulateTable();

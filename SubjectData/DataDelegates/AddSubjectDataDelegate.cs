@@ -12,15 +12,17 @@ namespace SubjectData.DataDelegates
         public readonly string middleNames;
         public readonly string lastName;
         public readonly string ethnicGroup;
+        public readonly string village;
         public readonly char sex;
 
-        public AddSubjectDataDelegate(string firstName, string middleNames, string lastName, string ethnicGroup, char sex)
+        public AddSubjectDataDelegate(string firstName, string middleNames, string lastName, string ethnicGroup, string village, char sex)
            : base("Subject.AddSubject")
         {
             this.firstName = firstName;
             this.middleNames = middleNames;
             this.lastName = lastName;
             this.ethnicGroup = ethnicGroup;
+            this.village = village;
             this.sex = sex;
         }
         public override void PrepareCommand(SqlCommand command)
@@ -42,6 +44,9 @@ namespace SubjectData.DataDelegates
             p = command.Parameters.Add("Sex", SqlDbType.Char);
             p.Value = sex;
 
+            p = command.Parameters.Add("VillageName", SqlDbType.NVarChar);
+            p.Value = village;
+
             p = command.Parameters.Add("SubjectId", SqlDbType.Int);
             p.Direction = ParameterDirection.Output;
         }
@@ -52,7 +57,9 @@ namespace SubjectData.DataDelegates
                 (EthnicGroup)Enum.Parse(typeof(EthnicGroup), ethnicGroup),
                 null, sex, null, null, null, null, null, null);
             Name n = new Name(firstName, middleNames, lastName);
+            Residence r = new Residence(DateTime.Now, village);
             result.AddName(n);
+            result.AddResidence(r);
             return result;
         }
     }

@@ -15,9 +15,9 @@ namespace OAHeLP_Database_Project
         /// <summary>
         /// Constructor
         /// </summary>
-        public SearchAndSort()
+        public SearchAndSort(string connection)
         {
-
+            this.connectionString = connection;
         }//searchandsort
 
 
@@ -103,7 +103,8 @@ namespace OAHeLP_Database_Project
                 }//else
             }//input data checking and normalization
 
-            connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            //connectionString = @"Server=(localdb)\MSSQLLocalDb;Database=OAHELP;Integrated Security=SSPI;";
+            //connectionString = ConfigurationManager.ConnectionStrings["OAHeLP_Database_Project.Properties.Settings.Database1ConnectionString"].ConnectionString;
 
             using (connection = new SqlConnection(connectionString))
             {

@@ -102,7 +102,7 @@ namespace OAHeLP_Database_Project
                     inputSex = "F";
                 }//else
             }//input data checking and normalization
-
+            string inputPhone = PhonemeGenerator.GetPronunciationFromText(inputName);
             using (connection = new SqlConnection(connectionString))
             {
                 //firstly this we need to grab the long and lat info for the inputVillage, so we'll run a quick query for that. 
@@ -301,7 +301,7 @@ namespace OAHeLP_Database_Project
                                 string databaseRowName = queryResultsArray[i - nameCount + j, 4] + " " + queryResultsArray[i - nameCount + j, 5] + " " + queryResultsArray[i - nameCount + j, 6];
 
                                 //then we run nameMatch!
-                                int distance = nameMatch(inputName, databaseRowName);
+                                int distance = nameMatch( inputPhone, databaseRowName);
 
                                 //next, compare the result to the lowest result and bing bang boom we got it
                                 if (distance < lowestResult)
@@ -435,7 +435,7 @@ namespace OAHeLP_Database_Project
         /// <param name="inputName">the name that was entered as part of the input parameters</param>
         /// <param name="dbName">the current name from the database that we are comparing</param>
         /// <returns>Returns an int based on how close the match is. 3 = exact, 2 = Close Partial, 1 = Not very close partial, 0 = nothing</returns>
-        private int nameMatch(string inputName, string dbName)
+        private int nameMatch(string inputPhone, string dbName)
         {
 
             //make this compatible with all character types? I think it currently is, but more testing is necessary to be entirely sure
@@ -443,7 +443,7 @@ namespace OAHeLP_Database_Project
             //first step is to pheoneticise the names
             
 
-            string inputPhone = PhonemeGenerator.GetPronunciationFromText(inputName);
+            //string inputPhone = PhonemeGenerator.GetPronunciationFromText(inputName);
             string dbPhone = PhonemeGenerator.GetPronunciationFromText(dbName);
 
 

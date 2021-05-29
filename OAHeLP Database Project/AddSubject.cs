@@ -58,7 +58,7 @@ namespace OAHeLP_Database_Project
 
         private bool AllFieldsEntered()
         {
-            if (uxFirstNameTextBox)
+            return false;
         }
     }
 }

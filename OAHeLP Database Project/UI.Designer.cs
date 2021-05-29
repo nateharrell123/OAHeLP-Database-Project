@@ -37,8 +37,6 @@ namespace OAHeLP_Database_Project
             this.uxDetailedViewPanel = new System.Windows.Forms.Panel();
             this.uxNameLookupText = new System.Windows.Forms.TextBox();
             this.database1DataSet1 = new OAHeLP_Database_Project.Database1DataSet();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.uxDeleteButton = new System.Windows.Forms.Button();
             this.uxMedicalHistoryButton = new System.Windows.Forms.Button();
             this.database1DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -62,6 +60,8 @@ namespace OAHeLP_Database_Project
             this.panel3 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.database1DataSetBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -163,39 +163,13 @@ namespace OAHeLP_Database_Project
             this.database1DataSet1.DataSetName = "Database1DataSet";
             this.database1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(862, 639);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(194, 55);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Feature 3";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(584, 639);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 55);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Feature 2";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // uxDeleteButton
             // 
             this.uxDeleteButton.BackColor = System.Drawing.Color.LightSkyBlue;
             this.uxDeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxDeleteButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxDeleteButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxDeleteButton.Location = new System.Drawing.Point(308, 639);
+            this.uxDeleteButton.Location = new System.Drawing.Point(282, 639);
             this.uxDeleteButton.Name = "uxDeleteButton";
             this.uxDeleteButton.Size = new System.Drawing.Size(194, 55);
             this.uxDeleteButton.TabIndex = 8;
@@ -209,7 +183,7 @@ namespace OAHeLP_Database_Project
             this.uxMedicalHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxMedicalHistoryButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
             this.uxMedicalHistoryButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uxMedicalHistoryButton.Location = new System.Drawing.Point(32, 639);
+            this.uxMedicalHistoryButton.Location = new System.Drawing.Point(12, 639);
             this.uxMedicalHistoryButton.Name = "uxMedicalHistoryButton";
             this.uxMedicalHistoryButton.Size = new System.Drawing.Size(194, 55);
             this.uxMedicalHistoryButton.TabIndex = 7;
@@ -436,6 +410,32 @@ namespace OAHeLP_Database_Project
             this.button4.Text = "Details";
             this.button4.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(584, 639);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(194, 55);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Feature 2";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(862, 639);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(194, 55);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Feature 3";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,8 +481,6 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Panel uxDetailedViewPanel;
         private System.Windows.Forms.TextBox uxNameLookupText;
         private Database1DataSet database1DataSet1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button uxDeleteButton;
         private System.Windows.Forms.Button uxMedicalHistoryButton;
         private System.Windows.Forms.BindingSource database1DataSetBindingSource;
@@ -506,6 +504,8 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

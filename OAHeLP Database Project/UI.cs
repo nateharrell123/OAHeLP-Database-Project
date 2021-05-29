@@ -311,15 +311,19 @@ namespace OAHeLP_Database_Project
 
         private void uxDeleteButton_Click(object sender, EventArgs e)
         {
-            int id = subjectList[uxNamesListBox.SelectedIndex].SubjectID;
-            repo.DeleteSubject(id);
-            subjectList.Remove(subjectList[uxNamesListBox.SelectedIndex]);
-            if(subjectList.Count > 0)
+            DialogResult dialogResult = MessageBox.Show($"Remove {uxNamesListBox.SelectedItem} from the database?", "Add Person", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.No) return;
+            else
             {
-                detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
-                detailedView.UpdateView();
+                int id = subjectList[uxNamesListBox.SelectedIndex].SubjectID;
+                repo.DeleteSubject(id);
+                subjectList.Remove(subjectList[uxNamesListBox.SelectedIndex]);
+                if (subjectList.Count > 0)
+                {
+                    detailedView.UpdateSubject(subjectList[uxNamesListBox.SelectedIndex]);
+                    detailedView.UpdateView();
+                }
             }
-
         }
     }
 }

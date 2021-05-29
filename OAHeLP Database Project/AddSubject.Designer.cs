@@ -425,7 +425,7 @@ namespace OAHeLP_Database_Project
             // uxRemoveResidenceButton
             // 
             this.uxRemoveResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxRemoveResidenceButton.Location = new System.Drawing.Point(89, 275);
+            this.uxRemoveResidenceButton.Location = new System.Drawing.Point(197, 255);
             this.uxRemoveResidenceButton.Name = "uxRemoveResidenceButton";
             this.uxRemoveResidenceButton.Size = new System.Drawing.Size(180, 46);
             this.uxRemoveResidenceButton.TabIndex = 44;
@@ -459,7 +459,7 @@ namespace OAHeLP_Database_Project
             // uxAddResidenceButton
             // 
             this.uxAddResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxAddResidenceButton.Location = new System.Drawing.Point(89, 211);
+            this.uxAddResidenceButton.Location = new System.Drawing.Point(9, 255);
             this.uxAddResidenceButton.Name = "uxAddResidenceButton";
             this.uxAddResidenceButton.Size = new System.Drawing.Size(178, 46);
             this.uxAddResidenceButton.TabIndex = 41;

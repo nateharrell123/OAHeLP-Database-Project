@@ -53,10 +53,14 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxFinalizeAddButton_Click(object sender, EventArgs e)
         {
-            if (!AllFieldsEntered()) MessageBox.Show("One of the required fields hasn't been entered.");
+            //if (!AllFieldsEntered()) MessageBox.Show("One of the required fields hasn't been entered.");
             DialogResult dialogResult = MessageBox.Show($"Add {uxFirstNameTextBoxAdd.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
         }
 
+        /// <summary>
+        /// Assuming we want criteria for all fields entered
+        /// </summary>
+        /// <returns></returns>
         private bool AllFieldsEntered()
         {
             return false;

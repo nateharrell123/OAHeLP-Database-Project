@@ -57,9 +57,22 @@ namespace OAHeLP_Database_Project
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.uxFromResidenceHistoryLabelAdd = new System.Windows.Forms.Label();
+            this.uxToResidenceHistoryLabelAdd = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.uxAddResidenceButton = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.uxResidenceHistory = new System.Windows.Forms.ListBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.uxPictureBox = new System.Windows.Forms.PictureBox();
+            this.uxOpenPhotoButton = new System.Windows.Forms.Button();
             this.uxSubjectInfoPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uxPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // uxEthnicGroupComboBoxAdd
@@ -182,9 +195,9 @@ namespace OAHeLP_Database_Project
             "Kota Kinabalu",
             "Seremban",
             "Sandakan"});
-            this.comboBox1.Location = new System.Drawing.Point(136, 44);
+            this.comboBox1.Location = new System.Drawing.Point(89, 46);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(320, 29);
+            this.comboBox1.Size = new System.Drawing.Size(294, 29);
             this.comboBox1.TabIndex = 28;
             // 
             // uxSexLabelAdd
@@ -351,20 +364,27 @@ namespace OAHeLP_Database_Project
             this.panel1.Controls.Add(this.uxOaHeLPIDLabel);
             this.panel1.Controls.Add(this.uxICCardNumberTextBoxAdd);
             this.panel1.Controls.Add(this.uxICCardNumberLabelAdd);
-            this.panel1.Location = new System.Drawing.Point(12, 389);
+            this.panel1.Location = new System.Drawing.Point(749, 368);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(658, 162);
+            this.panel1.Size = new System.Drawing.Size(522, 162);
             this.panel1.TabIndex = 35;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.uxResidenceHistory);
+            this.panel2.Controls.Add(this.uxAddResidenceButton);
+            this.panel2.Controls.Add(this.dateTimePicker3);
+            this.panel2.Controls.Add(this.uxToResidenceHistoryLabelAdd);
+            this.panel2.Controls.Add(this.dateTimePicker2);
+            this.panel2.Controls.Add(this.uxFromResidenceHistoryLabelAdd);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.uxVillageLabelAdd);
-            this.panel2.Location = new System.Drawing.Point(792, 330);
+            this.panel2.Location = new System.Drawing.Point(12, 368);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(658, 162);
+            this.panel2.Size = new System.Drawing.Size(719, 319);
             this.panel2.TabIndex = 36;
             // 
             // button2
@@ -397,11 +417,127 @@ namespace OAHeLP_Database_Project
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(431, 37);
+            this.label2.Location = new System.Drawing.Point(436, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 70);
             this.label2.TabIndex = 43;
             this.label2.Text = "|";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.dateTimePicker2.Location = new System.Drawing.Point(89, 102);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(294, 29);
+            this.dateTimePicker2.TabIndex = 38;
+            // 
+            // uxFromResidenceHistoryLabelAdd
+            // 
+            this.uxFromResidenceHistoryLabelAdd.AutoSize = true;
+            this.uxFromResidenceHistoryLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxFromResidenceHistoryLabelAdd.ForeColor = System.Drawing.Color.White;
+            this.uxFromResidenceHistoryLabelAdd.Location = new System.Drawing.Point(5, 98);
+            this.uxFromResidenceHistoryLabelAdd.Name = "uxFromResidenceHistoryLabelAdd";
+            this.uxFromResidenceHistoryLabelAdd.Size = new System.Drawing.Size(77, 31);
+            this.uxFromResidenceHistoryLabelAdd.TabIndex = 37;
+            this.uxFromResidenceHistoryLabelAdd.Text = "From:";
+            // 
+            // uxToResidenceHistoryLabelAdd
+            // 
+            this.uxToResidenceHistoryLabelAdd.AutoSize = true;
+            this.uxToResidenceHistoryLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxToResidenceHistoryLabelAdd.ForeColor = System.Drawing.Color.White;
+            this.uxToResidenceHistoryLabelAdd.Location = new System.Drawing.Point(5, 150);
+            this.uxToResidenceHistoryLabelAdd.Name = "uxToResidenceHistoryLabelAdd";
+            this.uxToResidenceHistoryLabelAdd.Size = new System.Drawing.Size(48, 31);
+            this.uxToResidenceHistoryLabelAdd.TabIndex = 39;
+            this.uxToResidenceHistoryLabelAdd.Text = "To:";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.dateTimePicker3.Location = new System.Drawing.Point(89, 162);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(294, 29);
+            this.dateTimePicker3.TabIndex = 40;
+            // 
+            // uxAddResidenceButton
+            // 
+            this.uxAddResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.uxAddResidenceButton.Location = new System.Drawing.Point(89, 221);
+            this.uxAddResidenceButton.Name = "uxAddResidenceButton";
+            this.uxAddResidenceButton.Size = new System.Drawing.Size(284, 46);
+            this.uxAddResidenceButton.TabIndex = 41;
+            this.uxAddResidenceButton.Text = "Add Residence:";
+            this.uxAddResidenceButton.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.Enabled = false;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button5.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.button5.Location = new System.Drawing.Point(395, 46);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(310, 35);
+            this.button5.TabIndex = 43;
+            this.button5.Text = "Preview:";
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // uxResidenceHistory
+            // 
+            this.uxResidenceHistory.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.uxResidenceHistory.FormattingEnabled = true;
+            this.uxResidenceHistory.ItemHeight = 20;
+            this.uxResidenceHistory.Location = new System.Drawing.Point(395, 77);
+            this.uxResidenceHistory.Name = "uxResidenceHistory";
+            this.uxResidenceHistory.Size = new System.Drawing.Size(310, 224);
+            this.uxResidenceHistory.TabIndex = 42;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.uxOpenPhotoButton);
+            this.panel3.Controls.Add(this.uxPictureBox);
+            this.panel3.Controls.Add(this.button3);
+            this.panel3.Location = new System.Drawing.Point(756, 27);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(515, 319);
+            this.panel3.TabIndex = 37;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Enabled = false;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
+            this.button3.ForeColor = System.Drawing.Color.CadetBlue;
+            this.button3.Location = new System.Drawing.Point(-1, -1);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(242, 34);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "Upload Photo:";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // uxPictureBox
+            // 
+            this.uxPictureBox.Location = new System.Drawing.Point(12, 49);
+            this.uxPictureBox.Name = "uxPictureBox";
+            this.uxPictureBox.Size = new System.Drawing.Size(222, 191);
+            this.uxPictureBox.TabIndex = 27;
+            this.uxPictureBox.TabStop = false;
+            // 
+            // uxOpenPhotoButton
+            // 
+            this.uxOpenPhotoButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.uxOpenPhotoButton.Location = new System.Drawing.Point(260, 47);
+            this.uxOpenPhotoButton.Name = "uxOpenPhotoButton";
+            this.uxOpenPhotoButton.Size = new System.Drawing.Size(181, 52);
+            this.uxOpenPhotoButton.TabIndex = 28;
+            this.uxOpenPhotoButton.Text = "Open Photo:";
+            this.uxOpenPhotoButton.UseVisualStyleBackColor = true;
+            this.uxOpenPhotoButton.Click += new System.EventHandler(this.uxOpenPhotoButton_Click);
             // 
             // AddSubject
             // 
@@ -409,10 +545,11 @@ namespace OAHeLP_Database_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(1474, 750);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.uxSubjectInfoPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "AddSubject";
             this.Text = "Add Subject";
@@ -423,6 +560,8 @@ namespace OAHeLP_Database_Project
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uxPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -457,5 +596,16 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label uxFromResidenceHistoryLabelAdd;
+        private System.Windows.Forms.Label uxToResidenceHistoryLabelAdd;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Button uxAddResidenceButton;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListBox uxResidenceHistory;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.PictureBox uxPictureBox;
+        private System.Windows.Forms.Button uxOpenPhotoButton;
     }
 }

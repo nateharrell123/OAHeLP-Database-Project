@@ -21,5 +21,25 @@ namespace OAHeLP_Database_Project
         {
 
         }
+
+        /// <summary>
+        /// Load Photo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uxOpenPhotoButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All Files(*.*)|*.*|";
+
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
 }

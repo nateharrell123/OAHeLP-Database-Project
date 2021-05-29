@@ -316,7 +316,7 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxDeleteButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show($"Remove {uxNamesListBox.SelectedItem} from the database?", "Add Person", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show($"Remove {uxNamesListBox.SelectedItem} from the database?", "Remove Person", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No) return;
             else
             {

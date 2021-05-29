@@ -309,6 +309,11 @@ namespace OAHeLP_Database_Project
             PopulateTable();
         }
 
+        /// <summary>
+        /// Remove subject from DB.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uxDeleteButton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show($"Remove {uxNamesListBox.SelectedItem} from the database?", "Add Person", MessageBoxButtons.YesNo);

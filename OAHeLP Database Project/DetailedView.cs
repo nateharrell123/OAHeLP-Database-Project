@@ -23,7 +23,6 @@ namespace OAHeLP_Database_Project
 
         public void UpdateView()
         {
-
             uxProjectIDLabel.Text = $"Project ID: {subject.OAHeLPID}";
             uxNameLabel.Text = $"Name: {subject.Names[0].FirstName} {subject.Names[0].MiddleNames} {subject.Names[0].LastName}";
             uxSexLabel.Text = $"Sex: {subject.Sex}";
@@ -47,7 +46,6 @@ namespace OAHeLP_Database_Project
                 catch (System.IO.FileNotFoundException ex)
                 {
                     uxPictureBox.Image = uxPictureBox.Image = Image.FromFile($"{path}\\..\\..\\Images\\default.jpg");
-
                 }
             }
             else uxPictureBox.Image = uxPictureBox.Image = Image.FromFile($"{path}\\..\\..\\Images\\default.jpg");

@@ -69,7 +69,7 @@ namespace OAHeLP_Database_Project
                 if (dialogResult == DialogResult.Yes)
                 {
                     Subject subject = repo.AddSubject(uxFirstNameTextBox.Text, uxMiddleNameTextBox.Text, uxLastNameTextBox.Text, uxEthnicGroupComboBoxAdd.Text, uxVillageComboBox.Text, Convert.ToChar(uxSexComboBoxAdd.Text));
-                    subjectList.add(subject);
+                    list.Add(subject);
 
                     MessageBox.Show($"{name} has been registered successfully.");
                 }

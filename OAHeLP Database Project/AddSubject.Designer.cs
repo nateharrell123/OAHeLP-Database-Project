@@ -197,7 +197,7 @@ namespace OAHeLP_Database_Project
             this.uxMiddleNamesLabelAdd.AutoSize = true;
             this.uxMiddleNamesLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
             this.uxMiddleNamesLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxMiddleNamesLabelAdd.Location = new System.Drawing.Point(248, 37);
+            this.uxMiddleNamesLabelAdd.Location = new System.Drawing.Point(239, 37);
             this.uxMiddleNamesLabelAdd.Name = "uxMiddleNamesLabelAdd";
             this.uxMiddleNamesLabelAdd.Size = new System.Drawing.Size(191, 31);
             this.uxMiddleNamesLabelAdd.TabIndex = 39;
@@ -297,7 +297,7 @@ namespace OAHeLP_Database_Project
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(-1, -1);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(242, 34);
+            this.button4.Size = new System.Drawing.Size(232, 34);
             this.button4.TabIndex = 26;
             this.button4.Text = "Subject Info:";
             this.button4.UseVisualStyleBackColor = false;
@@ -424,13 +424,16 @@ namespace OAHeLP_Database_Project
             // 
             // uxRemoveResidenceButton
             // 
+            this.uxRemoveResidenceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.uxRemoveResidenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxRemoveResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.uxRemoveResidenceButton.ForeColor = System.Drawing.Color.Black;
             this.uxRemoveResidenceButton.Location = new System.Drawing.Point(25, 255);
             this.uxRemoveResidenceButton.Name = "uxRemoveResidenceButton";
             this.uxRemoveResidenceButton.Size = new System.Drawing.Size(180, 46);
             this.uxRemoveResidenceButton.TabIndex = 44;
             this.uxRemoveResidenceButton.Text = "Remove Residence:";
-            this.uxRemoveResidenceButton.UseVisualStyleBackColor = true;
+            this.uxRemoveResidenceButton.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
@@ -458,13 +461,15 @@ namespace OAHeLP_Database_Project
             // 
             // uxAddResidenceButton
             // 
+            this.uxAddResidenceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(235)))), ((int)(((byte)(229)))));
+            this.uxAddResidenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxAddResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxAddResidenceButton.Location = new System.Drawing.Point(211, 255);
             this.uxAddResidenceButton.Name = "uxAddResidenceButton";
             this.uxAddResidenceButton.Size = new System.Drawing.Size(178, 46);
             this.uxAddResidenceButton.TabIndex = 41;
             this.uxAddResidenceButton.Text = "Add Residence:";
-            this.uxAddResidenceButton.UseVisualStyleBackColor = true;
+            this.uxAddResidenceButton.UseVisualStyleBackColor = false;
             // 
             // uxTODateTimePicker
             // 
@@ -560,7 +565,7 @@ namespace OAHeLP_Database_Project
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(-1, -1);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(242, 34);
+            this.button3.Size = new System.Drawing.Size(235, 34);
             this.button3.TabIndex = 26;
             this.button3.Text = "Add Picture:";
             this.button3.UseVisualStyleBackColor = false;
@@ -577,22 +582,24 @@ namespace OAHeLP_Database_Project
             // 
             // uxFinalizeAddButton
             // 
-            this.uxFinalizeAddButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.uxFinalizeAddButton.BackColor = System.Drawing.Color.Salmon;
+            this.uxFinalizeAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uxFinalizeAddButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F, System.Drawing.FontStyle.Bold);
             this.uxFinalizeAddButton.Location = new System.Drawing.Point(124, 71);
             this.uxFinalizeAddButton.Name = "uxFinalizeAddButton";
             this.uxFinalizeAddButton.Size = new System.Drawing.Size(242, 52);
             this.uxFinalizeAddButton.TabIndex = 29;
             this.uxFinalizeAddButton.Text = "Finalize/Add";
-            this.uxFinalizeAddButton.UseVisualStyleBackColor = true;
+            this.uxFinalizeAddButton.UseVisualStyleBackColor = false;
             this.uxFinalizeAddButton.Click += new System.EventHandler(this.uxFinalizeAddButton_Click);
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.White;
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
             this.button6.Enabled = false;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
-            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
+            this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(124, -1);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(242, 34);

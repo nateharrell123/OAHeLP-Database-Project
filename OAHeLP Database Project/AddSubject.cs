@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DataAccess;
+using SubjectData;
+using SubjectData.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +18,12 @@ namespace OAHeLP_Database_Project
     /// </summary>
     public partial class AddSubject : Form
     {
-        public AddSubject()
+        private ISubjectRepository repo;
+
+        public AddSubject(ISubjectRepository subjectRepo)
         {
             InitializeComponent();
+            repo = subjectRepo;
         }
 
         /// <summary>
@@ -55,6 +61,8 @@ namespace OAHeLP_Database_Project
         {
             //if (!AllFieldsEntered()) MessageBox.Show("One of the required fields hasn't been entered.");
             DialogResult dialogResult = MessageBox.Show($"Add {uxFirstNameTextBoxAdd.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
+
+
         }
 
         /// <summary>

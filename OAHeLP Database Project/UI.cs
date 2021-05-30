@@ -19,10 +19,8 @@ namespace OAHeLP_Database_Project
     /// </summary>
     public partial class UI : Form
     {
-
-
         private SqlConnection connection;
-        private ISubjectRepository repo;
+        public ISubjectRepository repo; // using this in AddSubject now
 
         /// <summary>
         /// The connection string.
@@ -88,7 +86,7 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
-            AddSubject addSubject = new AddSubject();
+            AddSubject addSubject = new AddSubject(repo);
 
             addSubject.Show();
         }

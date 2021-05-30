@@ -59,10 +59,16 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxFinalizeAddButton_Click(object sender, EventArgs e)
         {
-            //if (!AllFieldsEntered()) MessageBox.Show("One of the required fields hasn't been entered.");
-            DialogResult dialogResult = MessageBox.Show($"Add {uxFirstNameTextBoxAdd.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
+            if (!AllFieldsEntered())
+            {
+                DialogResult dialogResult = MessageBox.Show($"Add {uxFirstNameTextBoxAdd.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
 
-
+                if (dialogResult == DialogResult.Yes)
+                {
+                    repo.AddSubject(uxFirstNameTextBox.Text, uxMiddleNameTextBox.Text, uxLastNameTextBox.Text, uxEthnicGroupComboBoxAdd.Text, "", Convert.ToChar(uxSexComboBoxAdd.Text));
+                }
+                else if (dialogResult == DialogResult.No) return;
+            }
         }
 
         /// <summary>
@@ -71,7 +77,12 @@ namespace OAHeLP_Database_Project
         /// <returns></returns>
         private bool AllFieldsEntered()
         {
-            return false;
+            if (uxFirstNameTextBox.Text == "" || uxMiddleNameTextBox.Text == "" || uxLastNameTextBox.Text == "" || string.IsNullOrEmpty(uxEthnicGroupComboBoxAdd.Text) || uxPictureBox.Image == null || uxProjectIDTextBoxAdd.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
+            {
+                MessageBox.Show("One of the required fields is missing.");
+                return false;
+            }
+            else return true;
         }
     }
 }

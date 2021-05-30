@@ -110,11 +110,11 @@ namespace OAHeLP_Database_Project
             // uxEthnicGroupLabel
             // 
             this.uxEthnicGroupLabel.AutoSize = true;
-            this.uxEthnicGroupLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxEthnicGroupLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxEthnicGroupLabel.ForeColor = System.Drawing.Color.White;
             this.uxEthnicGroupLabel.Location = new System.Drawing.Point(2, 114);
             this.uxEthnicGroupLabel.Name = "uxEthnicGroupLabel";
-            this.uxEthnicGroupLabel.Size = new System.Drawing.Size(163, 31);
+            this.uxEthnicGroupLabel.Size = new System.Drawing.Size(149, 30);
             this.uxEthnicGroupLabel.TabIndex = 1;
             this.uxEthnicGroupLabel.Text = "Ethnic Group:";
             // 
@@ -138,6 +138,7 @@ namespace OAHeLP_Database_Project
             this.uxSubjectInfoPanel.Controls.Add(this.button4);
             this.uxSubjectInfoPanel.Controls.Add(this.uxEthnicGroupLabel);
             this.uxSubjectInfoPanel.Controls.Add(this.uxEthnicGroupComboBoxAdd);
+            this.uxSubjectInfoPanel.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxSubjectInfoPanel.Location = new System.Drawing.Point(12, 27);
             this.uxSubjectInfoPanel.Name = "uxSubjectInfoPanel";
             this.uxSubjectInfoPanel.Size = new System.Drawing.Size(719, 319);
@@ -176,11 +177,11 @@ namespace OAHeLP_Database_Project
             // uxLastNameLabelAdd
             // 
             this.uxLastNameLabelAdd.AutoSize = true;
-            this.uxLastNameLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxLastNameLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxLastNameLabelAdd.ForeColor = System.Drawing.Color.White;
             this.uxLastNameLabelAdd.Location = new System.Drawing.Point(475, 38);
             this.uxLastNameLabelAdd.Name = "uxLastNameLabelAdd";
-            this.uxLastNameLabelAdd.Size = new System.Drawing.Size(135, 31);
+            this.uxLastNameLabelAdd.Size = new System.Drawing.Size(125, 30);
             this.uxLastNameLabelAdd.TabIndex = 41;
             this.uxLastNameLabelAdd.Text = "Last Name:";
             // 
@@ -195,11 +196,11 @@ namespace OAHeLP_Database_Project
             // uxMiddleNamesLabelAdd
             // 
             this.uxMiddleNamesLabelAdd.AutoSize = true;
-            this.uxMiddleNamesLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxMiddleNamesLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxMiddleNamesLabelAdd.ForeColor = System.Drawing.Color.White;
             this.uxMiddleNamesLabelAdd.Location = new System.Drawing.Point(245, 38);
             this.uxMiddleNamesLabelAdd.Name = "uxMiddleNamesLabelAdd";
-            this.uxMiddleNamesLabelAdd.Size = new System.Drawing.Size(191, 31);
+            this.uxMiddleNamesLabelAdd.Size = new System.Drawing.Size(177, 30);
             this.uxMiddleNamesLabelAdd.TabIndex = 39;
             this.uxMiddleNamesLabelAdd.Text = "Middle Name(s):";
             // 
@@ -214,18 +215,18 @@ namespace OAHeLP_Database_Project
             // uxFirstNameTextBoxAdd
             // 
             this.uxFirstNameTextBoxAdd.AutoSize = true;
-            this.uxFirstNameTextBoxAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxFirstNameTextBoxAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxFirstNameTextBoxAdd.ForeColor = System.Drawing.Color.White;
             this.uxFirstNameTextBoxAdd.Location = new System.Drawing.Point(3, 36);
             this.uxFirstNameTextBoxAdd.Name = "uxFirstNameTextBoxAdd";
-            this.uxFirstNameTextBoxAdd.Size = new System.Drawing.Size(136, 31);
+            this.uxFirstNameTextBoxAdd.Size = new System.Drawing.Size(126, 30);
             this.uxFirstNameTextBoxAdd.TabIndex = 37;
             this.uxFirstNameTextBoxAdd.Text = "First Name:";
             // 
             // uxDOB
             // 
             this.uxDOB.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxDOB.Location = new System.Drawing.Point(171, 263);
+            this.uxDOB.Location = new System.Drawing.Point(171, 248);
             this.uxDOB.Name = "uxDOB";
             this.uxDOB.Size = new System.Drawing.Size(284, 29);
             this.uxDOB.TabIndex = 36;
@@ -233,11 +234,11 @@ namespace OAHeLP_Database_Project
             // uxDOBLabelAdd
             // 
             this.uxDOBLabelAdd.AutoSize = true;
-            this.uxDOBLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxDOBLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxDOBLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxDOBLabelAdd.Location = new System.Drawing.Point(2, 261);
+            this.uxDOBLabelAdd.Location = new System.Drawing.Point(2, 246);
             this.uxDOBLabelAdd.Name = "uxDOBLabelAdd";
-            this.uxDOBLabelAdd.Size = new System.Drawing.Size(157, 31);
+            this.uxDOBLabelAdd.Size = new System.Drawing.Size(145, 30);
             this.uxDOBLabelAdd.TabIndex = 35;
             this.uxDOBLabelAdd.Text = "Date of Birth:";
             // 
@@ -256,11 +257,11 @@ namespace OAHeLP_Database_Project
             // uxEthnicityLabelAdd
             // 
             this.uxEthnicityLabelAdd.AutoSize = true;
-            this.uxEthnicityLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxEthnicityLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxEthnicityLabelAdd.ForeColor = System.Drawing.Color.White;
             this.uxEthnicityLabelAdd.Location = new System.Drawing.Point(2, 160);
             this.uxEthnicityLabelAdd.Name = "uxEthnicityLabelAdd";
-            this.uxEthnicityLabelAdd.Size = new System.Drawing.Size(111, 31);
+            this.uxEthnicityLabelAdd.Size = new System.Drawing.Size(102, 30);
             this.uxEthnicityLabelAdd.TabIndex = 31;
             this.uxEthnicityLabelAdd.Text = "Ethnicity:";
             // 
@@ -272,7 +273,7 @@ namespace OAHeLP_Database_Project
             this.uxSexComboBoxAdd.Items.AddRange(new object[] {
             "M",
             "F"});
-            this.uxSexComboBoxAdd.Location = new System.Drawing.Point(171, 221);
+            this.uxSexComboBoxAdd.Location = new System.Drawing.Point(171, 206);
             this.uxSexComboBoxAdd.Name = "uxSexComboBoxAdd";
             this.uxSexComboBoxAdd.Size = new System.Drawing.Size(73, 29);
             this.uxSexComboBoxAdd.TabIndex = 30;
@@ -280,11 +281,11 @@ namespace OAHeLP_Database_Project
             // uxSexLabelAdd
             // 
             this.uxSexLabelAdd.AutoSize = true;
-            this.uxSexLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxSexLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxSexLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxSexLabelAdd.Location = new System.Drawing.Point(2, 216);
+            this.uxSexLabelAdd.Location = new System.Drawing.Point(2, 201);
             this.uxSexLabelAdd.Name = "uxSexLabelAdd";
-            this.uxSexLabelAdd.Size = new System.Drawing.Size(57, 31);
+            this.uxSexLabelAdd.Size = new System.Drawing.Size(52, 30);
             this.uxSexLabelAdd.TabIndex = 29;
             this.uxSexLabelAdd.Text = "Sex:";
             // 
@@ -312,22 +313,22 @@ namespace OAHeLP_Database_Project
             // uxOaHeLPIDLabel
             // 
             this.uxOaHeLPIDLabel.AutoSize = true;
-            this.uxOaHeLPIDLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxOaHeLPIDLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxOaHeLPIDLabel.ForeColor = System.Drawing.Color.White;
             this.uxOaHeLPIDLabel.Location = new System.Drawing.Point(0, 46);
             this.uxOaHeLPIDLabel.Name = "uxOaHeLPIDLabel";
-            this.uxOaHeLPIDLabel.Size = new System.Drawing.Size(126, 31);
+            this.uxOaHeLPIDLabel.Size = new System.Drawing.Size(115, 30);
             this.uxOaHeLPIDLabel.TabIndex = 21;
             this.uxOaHeLPIDLabel.Text = "Project ID:";
             // 
             // uxVillageLabelAdd
             // 
             this.uxVillageLabelAdd.AutoSize = true;
-            this.uxVillageLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxVillageLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxVillageLabelAdd.ForeColor = System.Drawing.Color.White;
             this.uxVillageLabelAdd.Location = new System.Drawing.Point(5, 44);
             this.uxVillageLabelAdd.Name = "uxVillageLabelAdd";
-            this.uxVillageLabelAdd.Size = new System.Drawing.Size(92, 31);
+            this.uxVillageLabelAdd.Size = new System.Drawing.Size(84, 30);
             this.uxVillageLabelAdd.TabIndex = 27;
             this.uxVillageLabelAdd.Text = "Village:";
             // 
@@ -359,11 +360,11 @@ namespace OAHeLP_Database_Project
             // uxICCardNumberLabelAdd
             // 
             this.uxICCardNumberLabelAdd.AutoSize = true;
-            this.uxICCardNumberLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxICCardNumberLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxICCardNumberLabelAdd.ForeColor = System.Drawing.Color.White;
             this.uxICCardNumberLabelAdd.Location = new System.Drawing.Point(1, 102);
             this.uxICCardNumberLabelAdd.Name = "uxICCardNumberLabelAdd";
-            this.uxICCardNumberLabelAdd.Size = new System.Drawing.Size(199, 31);
+            this.uxICCardNumberLabelAdd.Size = new System.Drawing.Size(183, 30);
             this.uxICCardNumberLabelAdd.TabIndex = 33;
             this.uxICCardNumberLabelAdd.Text = "IC Card Number:";
             // 
@@ -422,7 +423,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxRemoveResidenceButton
             // 
-            this.uxRemoveResidenceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.uxRemoveResidenceButton.BackColor = System.Drawing.Color.Salmon;
             this.uxRemoveResidenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxRemoveResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxRemoveResidenceButton.ForeColor = System.Drawing.Color.Black;
@@ -480,11 +481,11 @@ namespace OAHeLP_Database_Project
             // uxToResidenceHistoryLabelAdd
             // 
             this.uxToResidenceHistoryLabelAdd.AutoSize = true;
-            this.uxToResidenceHistoryLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxToResidenceHistoryLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxToResidenceHistoryLabelAdd.ForeColor = System.Drawing.Color.White;
             this.uxToResidenceHistoryLabelAdd.Location = new System.Drawing.Point(5, 150);
             this.uxToResidenceHistoryLabelAdd.Name = "uxToResidenceHistoryLabelAdd";
-            this.uxToResidenceHistoryLabelAdd.Size = new System.Drawing.Size(48, 31);
+            this.uxToResidenceHistoryLabelAdd.Size = new System.Drawing.Size(43, 30);
             this.uxToResidenceHistoryLabelAdd.TabIndex = 39;
             this.uxToResidenceHistoryLabelAdd.Text = "To:";
             // 
@@ -499,11 +500,11 @@ namespace OAHeLP_Database_Project
             // uxFromResidenceHistoryLabelAdd
             // 
             this.uxFromResidenceHistoryLabelAdd.AutoSize = true;
-            this.uxFromResidenceHistoryLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
+            this.uxFromResidenceHistoryLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxFromResidenceHistoryLabelAdd.ForeColor = System.Drawing.Color.White;
             this.uxFromResidenceHistoryLabelAdd.Location = new System.Drawing.Point(5, 98);
             this.uxFromResidenceHistoryLabelAdd.Name = "uxFromResidenceHistoryLabelAdd";
-            this.uxFromResidenceHistoryLabelAdd.Size = new System.Drawing.Size(77, 31);
+            this.uxFromResidenceHistoryLabelAdd.Size = new System.Drawing.Size(70, 30);
             this.uxFromResidenceHistoryLabelAdd.TabIndex = 37;
             this.uxFromResidenceHistoryLabelAdd.Text = "From:";
             // 
@@ -578,7 +579,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxFinalizeAddButton
             // 
-            this.uxFinalizeAddButton.BackColor = System.Drawing.Color.Salmon;
+            this.uxFinalizeAddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(235)))), ((int)(((byte)(229)))));
             this.uxFinalizeAddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxFinalizeAddButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F, System.Drawing.FontStyle.Bold);
             this.uxFinalizeAddButton.Location = new System.Drawing.Point(124, 71);

@@ -85,7 +85,7 @@ namespace OAHeLP_Database_Project
         {
             if (uxFirstNameTextBox.Text == "" || uxMiddleNameTextBox.Text == "" || uxLastNameTextBox.Text == "" || string.IsNullOrEmpty(uxEthnicGroupComboBoxAdd.Text) || uxProjectIDTextBoxAdd.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
             {
-                MessageBox.Show("One of the required fields is missing.");
+                MessageBox.Show("One of the required fields is missing.", ":(", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else return true;

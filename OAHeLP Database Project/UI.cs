@@ -21,12 +21,12 @@ namespace OAHeLP_Database_Project
     {
         private SqlConnection connection;
         public ISubjectRepository repo; // using this in AddSubject now
+        public BindingList<Subject> subjectList; // this too
 
         /// <summary>
         /// The connection string.
         /// </summary>
         public static string connectionString; // might be a bad idea
-        private BindingList<Subject> subjectList;
         private DetailedView detailedView;
 
         /// <summary>
@@ -98,9 +98,6 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxSearchButton_Click_1(object sender, EventArgs e)
         {
-
-            
-
             LoadingScreen load = new LoadingScreen();
             load.Show();
 

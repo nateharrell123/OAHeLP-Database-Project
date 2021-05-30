@@ -18,12 +18,14 @@ namespace OAHeLP_Database_Project
     /// </summary>
     public partial class AddSubject : Form
     {
-        private ISubjectRepository repo;
+        ISubjectRepository repo;
+        BindingList<Subject> list;
 
-        public AddSubject(ISubjectRepository subjectRepo)
+        public AddSubject(ISubjectRepository subjectRepo, BindingList<Subject> subjectList)
         {
             InitializeComponent();
             repo = subjectRepo;
+            list = subjectList;
         }
 
         /// <summary>
@@ -59,13 +61,17 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxFinalizeAddButton_Click(object sender, EventArgs e)
         {
-            if (!AllFieldsEntered())
+            var name = $"{uxFirstNameTextBox.Text} {uxMiddleNameTextBox.Text} {uxLastNameTextBox.Text}";
+            if (AllFieldsEntered())
             {
-                DialogResult dialogResult = MessageBox.Show($"Add {uxFirstNameTextBoxAdd.Text} to the database?", "Add Person", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show($"Add {name} to the database?", "Add Person", MessageBoxButtons.YesNo);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    repo.AddSubject(uxFirstNameTextBox.Text, uxMiddleNameTextBox.Text, uxLastNameTextBox.Text, uxEthnicGroupComboBoxAdd.Text, "", Convert.ToChar(uxSexComboBoxAdd.Text));
+                    Subject subject = repo.AddSubject(uxFirstNameTextBox.Text, uxMiddleNameTextBox.Text, uxLastNameTextBox.Text, uxEthnicGroupComboBoxAdd.Text, uxVillageComboBox.Text, Convert.ToChar(uxSexComboBoxAdd.Text));
+                    subjectList.add(subject);
+
+                    MessageBox.Show($"{name} has been registered successfully.");
                 }
                 else if (dialogResult == DialogResult.No) return;
             }
@@ -77,7 +83,7 @@ namespace OAHeLP_Database_Project
         /// <returns></returns>
         private bool AllFieldsEntered()
         {
-            if (uxFirstNameTextBox.Text == "" || uxMiddleNameTextBox.Text == "" || uxLastNameTextBox.Text == "" || string.IsNullOrEmpty(uxEthnicGroupComboBoxAdd.Text) || uxPictureBox.Image == null || uxProjectIDTextBoxAdd.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
+            if (uxFirstNameTextBox.Text == "" || uxMiddleNameTextBox.Text == "" || uxLastNameTextBox.Text == "" || string.IsNullOrEmpty(uxEthnicGroupComboBoxAdd.Text) || uxProjectIDTextBoxAdd.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
             {
                 MessageBox.Show("One of the required fields is missing.");
                 return false;

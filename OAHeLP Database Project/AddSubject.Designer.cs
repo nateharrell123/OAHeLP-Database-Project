@@ -187,7 +187,7 @@ namespace OAHeLP_Database_Project
             // uxMiddleNameTextBox
             // 
             this.uxMiddleNameTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxMiddleNameTextBox.Location = new System.Drawing.Point(242, 70);
+            this.uxMiddleNameTextBox.Location = new System.Drawing.Point(251, 71);
             this.uxMiddleNameTextBox.Name = "uxMiddleNameTextBox";
             this.uxMiddleNameTextBox.Size = new System.Drawing.Size(197, 29);
             this.uxMiddleNameTextBox.TabIndex = 40;
@@ -197,7 +197,7 @@ namespace OAHeLP_Database_Project
             this.uxMiddleNamesLabelAdd.AutoSize = true;
             this.uxMiddleNamesLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
             this.uxMiddleNamesLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxMiddleNamesLabelAdd.Location = new System.Drawing.Point(239, 37);
+            this.uxMiddleNamesLabelAdd.Location = new System.Drawing.Point(245, 38);
             this.uxMiddleNamesLabelAdd.Name = "uxMiddleNamesLabelAdd";
             this.uxMiddleNamesLabelAdd.Size = new System.Drawing.Size(191, 31);
             this.uxMiddleNamesLabelAdd.TabIndex = 39;

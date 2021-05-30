@@ -225,7 +225,7 @@ namespace OAHeLP_Database_Project
             // uxDOB
             // 
             this.uxDOB.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxDOB.Location = new System.Drawing.Point(171, 261);
+            this.uxDOB.Location = new System.Drawing.Point(171, 263);
             this.uxDOB.Name = "uxDOB";
             this.uxDOB.Size = new System.Drawing.Size(284, 29);
             this.uxDOB.TabIndex = 36;
@@ -235,7 +235,7 @@ namespace OAHeLP_Database_Project
             this.uxDOBLabelAdd.AutoSize = true;
             this.uxDOBLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
             this.uxDOBLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxDOBLabelAdd.Location = new System.Drawing.Point(8, 261);
+            this.uxDOBLabelAdd.Location = new System.Drawing.Point(2, 261);
             this.uxDOBLabelAdd.Name = "uxDOBLabelAdd";
             this.uxDOBLabelAdd.Size = new System.Drawing.Size(157, 31);
             this.uxDOBLabelAdd.TabIndex = 35;
@@ -272,7 +272,7 @@ namespace OAHeLP_Database_Project
             this.uxSexComboBoxAdd.Items.AddRange(new object[] {
             "M",
             "F"});
-            this.uxSexComboBoxAdd.Location = new System.Drawing.Point(66, 214);
+            this.uxSexComboBoxAdd.Location = new System.Drawing.Point(171, 221);
             this.uxSexComboBoxAdd.Name = "uxSexComboBoxAdd";
             this.uxSexComboBoxAdd.Size = new System.Drawing.Size(73, 29);
             this.uxSexComboBoxAdd.TabIndex = 30;
@@ -282,7 +282,7 @@ namespace OAHeLP_Database_Project
             this.uxSexLabelAdd.AutoSize = true;
             this.uxSexLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 18F);
             this.uxSexLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxSexLabelAdd.Location = new System.Drawing.Point(7, 214);
+            this.uxSexLabelAdd.Location = new System.Drawing.Point(2, 216);
             this.uxSexLabelAdd.Name = "uxSexLabelAdd";
             this.uxSexLabelAdd.Size = new System.Drawing.Size(57, 31);
             this.uxSexLabelAdd.TabIndex = 29;
@@ -290,11 +290,11 @@ namespace OAHeLP_Database_Project
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
             this.button4.Enabled = false;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.button4.ForeColor = System.Drawing.Color.CadetBlue;
+            this.button4.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
+            this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(-1, -1);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(242, 34);
@@ -378,11 +378,11 @@ namespace OAHeLP_Database_Project
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
             this.button1.Enabled = false;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.button1.ForeColor = System.Drawing.Color.CadetBlue;
+            this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(-1, -1);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(242, 34);
@@ -425,7 +425,7 @@ namespace OAHeLP_Database_Project
             // uxRemoveResidenceButton
             // 
             this.uxRemoveResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxRemoveResidenceButton.Location = new System.Drawing.Point(197, 255);
+            this.uxRemoveResidenceButton.Location = new System.Drawing.Point(25, 255);
             this.uxRemoveResidenceButton.Name = "uxRemoveResidenceButton";
             this.uxRemoveResidenceButton.Size = new System.Drawing.Size(180, 46);
             this.uxRemoveResidenceButton.TabIndex = 44;
@@ -459,7 +459,7 @@ namespace OAHeLP_Database_Project
             // uxAddResidenceButton
             // 
             this.uxAddResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxAddResidenceButton.Location = new System.Drawing.Point(9, 255);
+            this.uxAddResidenceButton.Location = new System.Drawing.Point(211, 255);
             this.uxAddResidenceButton.Name = "uxAddResidenceButton";
             this.uxAddResidenceButton.Size = new System.Drawing.Size(178, 46);
             this.uxAddResidenceButton.TabIndex = 41;
@@ -506,11 +506,11 @@ namespace OAHeLP_Database_Project
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
             this.button2.Enabled = false;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.button2.ForeColor = System.Drawing.Color.CadetBlue;
+            this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(-1, -1);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(242, 34);
@@ -553,11 +553,11 @@ namespace OAHeLP_Database_Project
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
             this.button3.Enabled = false;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
-            this.button3.ForeColor = System.Drawing.Color.CadetBlue;
+            this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
+            this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(-1, -1);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(242, 34);

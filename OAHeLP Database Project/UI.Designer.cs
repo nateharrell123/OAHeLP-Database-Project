@@ -448,10 +448,10 @@ namespace OAHeLP_Database_Project
             // uxNameLabel
             // 
             this.uxNameLabel.AutoSize = true;
-            this.uxNameLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F);
-            this.uxNameLabel.Location = new System.Drawing.Point(42, 39);
+            this.uxNameLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.uxNameLabel.Location = new System.Drawing.Point(43, 47);
             this.uxNameLabel.Name = "uxNameLabel";
-            this.uxNameLabel.Size = new System.Drawing.Size(89, 25);
+            this.uxNameLabel.Size = new System.Drawing.Size(75, 21);
             this.uxNameLabel.TabIndex = 20;
             this.uxNameLabel.Text = "Name(s):";
             // 

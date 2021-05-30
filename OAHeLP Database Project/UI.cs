@@ -86,7 +86,7 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxAddPersonButton_Click_1(object sender, EventArgs e)
         {
-            AddSubject addSubject = new AddSubject(repo);
+            AddSubject addSubject = new AddSubject(repo, subjectList);
 
             addSubject.Show();
         }

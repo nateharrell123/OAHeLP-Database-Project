@@ -190,16 +190,21 @@ namespace OAHeLP_Database_Project
                     //it's going to be a list array of strings, that's the easiest to parse into other types if need be
                     int readerCount;
                     {
+                        counter = 0;
                         queryResultsList = new List<string[]>();
 
                         if (reader.HasRows)
                         {
 
                             int i = 0;//I mostly have th counter here just in case I need it. I don't actually think you do, but it's still decent to have
+                            
+                            
 
                             //The while loop iterates through the rows
                             while (reader.Read())
                             {
+
+                                counter++;
 
                                 //string array to represent the row
                                 string[] row = new string[reader.FieldCount];
@@ -229,6 +234,12 @@ namespace OAHeLP_Database_Project
                         reader.Close();
                     }//listarray
 
+                    //-------------------------------------------------------
+
+
+                    /*
+                    //Edited this part of the code out, should be a bit faster. Eventually want to remove the entire "organization" section, if the list<string[]>
+
                     //oooookay. Now we have a list of arrays with all of the info in them. I'm going to turn this into a 2d array mostly because I just sort of want to.
                     queryResultsArray = new string[queryResultsList.Count, readerCount];
                     counter = 0;
@@ -244,6 +255,11 @@ namespace OAHeLP_Database_Project
                         counter++;
                     }//foreach
 
+
+                    */
+
+
+
                     //cool, now we have a 2d array with all of the data points we need!
                     //our dictionary is full of only subjects with the perscribed sex. This should help narrow future searches since we are very confident that sex will be correct
 
@@ -254,18 +270,19 @@ namespace OAHeLP_Database_Project
                 {
                     for (int i = 0; i < counter - 1; i++)
                     {
+                        string[] iArray = queryResultsList[i];
 
                         //each row is one subject, but one subject may be on multiple rows if they have multiple names associated with the subject.
                         { //ethnic group
                           //check to see if this is the last entry for the given subject
                           //it doesn't actually matter which entry it is, just matters that we only consider one of them
-                            if (!(queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0])))
+                            if (!(iArray[0].Equals((queryResultsList[i + 1])[0])))
                             {
                                 //if this is the last record for that subject, we will look at the ethnic group compared to the input ethnic group
-                                if (queryResultsArray[i, 2].Equals(inputEthnicGroup))
+                                if (iArray[2].Equals(inputEthnicGroup))
                                 {
 
-                                    subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplier;
+                                    subjectIDAndScores[int.Parse(iArray[0])] += ethnicGroupRankWeight * ethnicGroupRankMultiplier;
                                 }//if
                             }//if for ethnic group
 
@@ -278,7 +295,7 @@ namespace OAHeLP_Database_Project
                          //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
                          //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
                             int nameCount = 0;
-                            while (queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0]))
+                            while (iArray[0].Equals((queryResultsList[i + 1])[0]))
                             {
                                 nameCount++;
                                 i++;
@@ -298,7 +315,7 @@ namespace OAHeLP_Database_Project
 
                                 //we will now create a single string that is the first, all middles, and last name of the subject
                                 //string databaseRowName = row[4] + " " + row[5] + " " + row[6];
-                                string databaseRowName = queryResultsArray[i - nameCount + j, 4] + " " + queryResultsArray[i - nameCount + j, 5] + " " + queryResultsArray[i - nameCount + j, 6];
+                                string databaseRowName = (queryResultsList[i - nameCount + j])[4] + " " + (queryResultsList[i - nameCount + j])[5] + " " + (queryResultsList[i - nameCount + j])[6];
 
                                 //then we run nameMatch!
                                 int distance = nameMatch(inputName, databaseRowName);
@@ -316,7 +333,7 @@ namespace OAHeLP_Database_Project
                             {
                                 //multiplying the raw score by 2 to give a bit more weight to the namematch
                                 int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplier;
-                                subjectIDAndScores[int.Parse(queryResultsArray[i - nameCount, 0])] += scoreAdd;
+                                subjectIDAndScores[int.Parse((queryResultsList[i - nameCount])[0])] += scoreAdd;
                             }//if
                             else
                             {
@@ -331,7 +348,8 @@ namespace OAHeLP_Database_Project
                         {//village distance
                          //check to see if this is the last entry for the given subject
                          //it doesn't actually matter which entry it is, just matters that we only consider one of them
-                            if (!(queryResultsArray[i, 0].Equals(queryResultsArray[i + 1, 0])))
+                            if (!(iArray[0].Equals
+                                ((queryResultsList[i + 1])[0])))
                             {
 
                                 //if this is the last record, then we can look at the village
@@ -339,10 +357,10 @@ namespace OAHeLP_Database_Project
 
                                 //lets get the lat and long
                                 //not every subject has a res, so we just skip the ones that don't. 
-                                if (!queryResultsArray[i, 8].Equals(""))
+                                if (!iArray[8].Equals(""))
                                 {
-                                    double lat = double.Parse(queryResultsArray[i, 8]);
-                                    double lon = double.Parse(queryResultsArray[i, 9]);
+                                    double lat = double.Parse(iArray[8]);
+                                    double lon = double.Parse(iArray[9]);
 
                                     //string[] inputRecordRow = queryResultsListInputVillageGPS.GetValue(0);
                                     double inputLat = 0;
@@ -372,7 +390,7 @@ namespace OAHeLP_Database_Project
                                         int distanceRank = (maxAcceptableDistance - Convert.ToInt32(physicalDistance)) / (maxAcceptableDistance / 10);
                                         if (!(distanceRank < 0))
                                         {
-                                            subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] += distanceRank * distanceRankMultiplier;
+                                            subjectIDAndScores[int.Parse(iArray[0])] += distanceRank * distanceRankMultiplier;
                                         }//if
                                     }//if
                                     else
@@ -384,9 +402,9 @@ namespace OAHeLP_Database_Project
                         }//village distance
 
                         //if the subject has gone through all of the filters and has a score of 0, they are immedietly removed from the library
-                        if (subjectIDAndScores[int.Parse(queryResultsArray[i, 0])] == 0)
+                        if (subjectIDAndScores[int.Parse(iArray[0])] == 0)
                         {
-                            subjectIDAndScores.Remove(int.Parse(queryResultsArray[i, 0]));
+                            subjectIDAndScores.Remove(int.Parse(iArray[0]));
                         }//if
 
                     }//for for ranking all of the subjects

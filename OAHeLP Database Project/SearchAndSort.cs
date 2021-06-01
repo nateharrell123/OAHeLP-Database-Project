@@ -148,6 +148,12 @@ namespace OAHeLP_Database_Project
                 }//village query
 
 
+                //time testing to see where we are
+                //Console.WriteLine("After village query" + DateTime.Now);
+                //basically everything except for raw rank is negligable in terms of time
+
+
+
                 //alright, we're going to make a giant query so that we don't have to do a bunch of seperate ones. Then, we'll store the info and filter through it as needed
                 //also, eventually this should probably be some sort of string builder (or probably even more ideally a stored procedure) but I'm just hardcoding this for now to make everything clear
 
@@ -177,12 +183,16 @@ namespace OAHeLP_Database_Project
                 }//getting the larger query
 
 
+                //time testing to see where we are
+                //Console.WriteLine("After larger query" + DateTime.Now);
+                //basically everything except for raw rank is negligable in terms of time
+
+
                 //organizing the data so that it's easier to work with
                 //this section takes the reader data and turns it into a 2-d array.
                 //everything from here on assumes that the data is stored in a 2-d array that can be easily imagined as rows and columns. 
                 //Looking at data structures that would provide better performance definitely should be on the future dev docket, but it's not at the moment
                 List<string[]> queryResultsList;
-                string[,] queryResultsArray;
                 int counter;
                 {
 
@@ -265,6 +275,10 @@ namespace OAHeLP_Database_Project
 
                 }//organization
 
+                //time testing to see where we are
+                //Console.WriteLine("After organization" + DateTime.Now);
+                //basically everything except for raw rank is negligable in terms of time
+
 
                 //this section adds all of the raw score to each subject's rank. The rest of the method after this loop revolves around organizing the data
                 {
@@ -288,60 +302,7 @@ namespace OAHeLP_Database_Project
 
                         }//ethnic group
 
-                        ///////////////////////////
-                        //next, we run our nameMatch method.
-
-                        {//namematching
-                         //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
-                         //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
-                            int nameCount = 0;
-                            while (iArray[0].Equals((queryResultsList[i + 1])[0]))
-                            {
-                                nameCount++;
-                                i++;
-                            }//if
-
-                            //now we can check nameCount and run our name match a corrasponding number of times
-                            //we will take the lowest result from the series of runs
-                            int lowestResult = Int32.MaxValue;
-                            for (int j = 0; j <= nameCount; j++)
-                            {
-                                //the weird arithmetic in that box is because of:
-                                //i is the row we are on assuming that there was only one name
-                                //we subtract by namecount to take us back to the first entry (which is subtracting by 0 if there was only 1 name, and then subtracting by an additional 1 per name over 1 name)
-                                //we then add j, which will iterate a number of times = to the ammount of names
-                                //this is all because we don't actually want to manipulate i anymore since it's in the right place for the next subject
-                                //string[] row = queryResultsArray[i-nameCount+j];
-
-                                //we will now create a single string that is the first, all middles, and last name of the subject
-                                //string databaseRowName = row[4] + " " + row[5] + " " + row[6];
-                                string databaseRowName = (queryResultsList[i - nameCount + j])[4] + " " + (queryResultsList[i - nameCount + j])[5] + " " + (queryResultsList[i - nameCount + j])[6];
-
-                                //then we run nameMatch!
-                                int distance = nameMatch(inputName, databaseRowName);
-
-                                //next, compare the result to the lowest result and bing bang boom we got it
-                                if (distance < lowestResult)
-                                {
-                                    lowestResult = distance;
-                                }//if
-
-                            }//for
-
-                            //now we take our lowest result and compare it to our weights
-                            if (lowestResult < nameMatchRankBaseWeight)
-                            {
-                                //multiplying the raw score by 2 to give a bit more weight to the namematch
-                                int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplier;
-                                subjectIDAndScores[int.Parse((queryResultsList[i - nameCount])[0])] += scoreAdd;
-                            }//if
-                            else
-                            {
-                                //nothing
-                            }//else
-
-                        }//namematching
-
+                        
                         /////////////////////////////
                         //next, check the given villageID compared to the current village. 
 
@@ -401,12 +362,73 @@ namespace OAHeLP_Database_Project
                             }//if
                         }//village distance
 
+
+                        ///////////////////////////
+                        //next, we run our nameMatch method.
+
+                        //this takes the vast majority of the time, and limiting the amount of names that are in consideration is crucially related to the time that the program takes. 
+                        //this means that, while the namematching is incredibly powerful, we want to do it last, and probably remove some subjects from consideration before its run
+                        //we'll have to make some hard decisions, and likely include more filters before this is really possible. Right now the namematch is the most accurate part of the program, but also takes the longest by far. 
+                        {//namematching
+                         //first, we have to check if the given subject has more than one name, which would result in their ID being listed more than once
+                         //if that is the case, then we need to figure out how many names they have, represented by nameCount (default 0)
+                            int nameCount = 0;
+                            while (iArray[0].Equals((queryResultsList[i + 1])[0]))
+                            {
+                                nameCount++;
+                                i++;
+                            }//if
+                            
+                            //now we can check nameCount and run our name match a corrasponding number of times
+                            //we will take the lowest result from the series of runs
+                            int lowestResult = Int32.MaxValue;
+                            for (int j = 0; j <= nameCount; j++)
+                            {
+                                //the weird arithmetic in that box is because of:
+                                //i is the row we are on assuming that there was only one name
+                                //we subtract by namecount to take us back to the first entry (which is subtracting by 0 if there was only 1 name, and then subtracting by an additional 1 per name over 1 name)
+                                //we then add j, which will iterate a number of times = to the ammount of names
+                                //this is all because we don't actually want to manipulate i anymore since it's in the right place for the next subject
+
+                                //we will now create a single string that is the first, all middles, and last name of the subject
+                                string databaseRowName = (queryResultsList[i - nameCount + j])[4] + " " + (queryResultsList[i - nameCount + j])[5] + " " + (queryResultsList[i - nameCount + j])[6];
+
+                                //then we run nameMatch!
+                                int distance = nameMatch(inputName, databaseRowName);
+
+                                //next, compare the result to the lowest result and bing bang boom we got it
+                                if (distance < lowestResult)
+                                {
+                                    lowestResult = distance;
+                                }//if
+
+                            }//for
+
+                            //now we take our lowest result and compare it to our weights
+                            if (lowestResult < nameMatchRankBaseWeight)
+                            {
+                                //multiplying the raw score by 2 to give a bit more weight to the namematch
+                                int scoreAdd = (nameMatchRankBaseWeight - lowestResult) * nameMatchRankMultiplier;
+                                subjectIDAndScores[int.Parse((queryResultsList[i - nameCount])[0])] += scoreAdd;
+                            }//if
+
+                            else
+                            {
+                                //nothing
+                            }//else
+
+
+                            
+                        }//namematching
+
                         //if the subject has gone through all of the filters and has a score of 0, they are immedietly removed from the library
                         if (subjectIDAndScores[int.Parse(iArray[0])] == 0)
                         {
                             subjectIDAndScores.Remove(int.Parse(iArray[0]));
                         }//if
 
+                        //just printing the counter to see how many times the namematch has to run
+                        //Console.WriteLine("Number of people: " + counter);
                     }//for for ranking all of the subjects
 
                     //this next bit would be CRAZY cool, it's on the future dev docket
@@ -418,6 +440,10 @@ namespace OAHeLP_Database_Project
 
                 }//determining raw rank
 
+
+                //time testing to see where we are
+                //Console.WriteLine("After raw rank" + DateTime.Now);
+                //basically everything except for raw rank is negligable in terms of time
 
                 //last thing I'm going to do is normalize the values a bit
                 {
@@ -440,6 +466,11 @@ namespace OAHeLP_Database_Project
                 }//normalization
 
 
+                //time testing to see where we are
+                //Console.WriteLine("After normalization" + DateTime.Now);
+                //basically everything except for raw rank is negligable in terms of time
+
+
                 //after that we return the dictionary! This can then be used by the UI to display relative confidences.
             }//opening connection
 
@@ -457,7 +488,6 @@ namespace OAHeLP_Database_Project
         {
 
             //make this compatible with all character types? I think it currently is, but more testing is necessary to be entirely sure
-
             //first step is to pheoneticise the names
             
 

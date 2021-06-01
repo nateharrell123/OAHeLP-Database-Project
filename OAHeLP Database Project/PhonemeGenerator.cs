@@ -36,10 +36,12 @@ namespace OAHeLP_Database_Project
             {
                 using (SpeechSynthesizer synth = new SpeechSynthesizer())
                 {
+                    //text to wav
                     synth.SetOutputToWaveStream(audioStream);
                     synth.Speak(MyWord);
                     synth.SetOutputToNull();
                     audioStream.Position = 0;
+
 
                     //now wav to txt (for reco phonemes)
                     recoPhonemes = String.Empty;

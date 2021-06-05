@@ -122,7 +122,7 @@ namespace OAHeLP_Database_Project
             // uxFirstNameTextBox
             // 
             this.uxFirstNameTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxFirstNameTextBox.Location = new System.Drawing.Point(172, 93);
+            this.uxFirstNameTextBox.Location = new System.Drawing.Point(173, 36);
             this.uxFirstNameTextBox.Name = "uxFirstNameTextBox";
             this.uxFirstNameTextBox.Size = new System.Drawing.Size(345, 29);
             this.uxFirstNameTextBox.TabIndex = 38;
@@ -132,7 +132,7 @@ namespace OAHeLP_Database_Project
             this.uxFirstNameTextBoxAdd.AutoSize = true;
             this.uxFirstNameTextBoxAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxFirstNameTextBoxAdd.ForeColor = System.Drawing.Color.White;
-            this.uxFirstNameTextBoxAdd.Location = new System.Drawing.Point(4, 93);
+            this.uxFirstNameTextBoxAdd.Location = new System.Drawing.Point(5, 36);
             this.uxFirstNameTextBoxAdd.Name = "uxFirstNameTextBoxAdd";
             this.uxFirstNameTextBoxAdd.Size = new System.Drawing.Size(102, 30);
             this.uxFirstNameTextBoxAdd.TabIndex = 37;
@@ -142,7 +142,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxDOB.CustomFormat = "";
             this.uxDOB.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxDOB.Location = new System.Drawing.Point(173, 49);
+            this.uxDOB.Location = new System.Drawing.Point(172, 87);
             this.uxDOB.Name = "uxDOB";
             this.uxDOB.Size = new System.Drawing.Size(345, 29);
             this.uxDOB.TabIndex = 36;
@@ -152,7 +152,7 @@ namespace OAHeLP_Database_Project
             this.uxDOBLabelAdd.AutoSize = true;
             this.uxDOBLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxDOBLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxDOBLabelAdd.Location = new System.Drawing.Point(4, 47);
+            this.uxDOBLabelAdd.Location = new System.Drawing.Point(3, 85);
             this.uxDOBLabelAdd.Name = "uxDOBLabelAdd";
             this.uxDOBLabelAdd.Size = new System.Drawing.Size(145, 30);
             this.uxDOBLabelAdd.TabIndex = 35;
@@ -239,9 +239,9 @@ namespace OAHeLP_Database_Project
             "Semai",
             "Temiar",
             "Temuan"});
-            this.uxVillageComboBox.Location = new System.Drawing.Point(228, 46);
+            this.uxVillageComboBox.Location = new System.Drawing.Point(271, 46);
             this.uxVillageComboBox.Name = "uxVillageComboBox";
-            this.uxVillageComboBox.Size = new System.Drawing.Size(225, 29);
+            this.uxVillageComboBox.Size = new System.Drawing.Size(246, 29);
             this.uxVillageComboBox.TabIndex = 28;
             // 
             // uxICCardNumberLabelAdd
@@ -342,7 +342,7 @@ namespace OAHeLP_Database_Project
             // 
             this.uxAddResidenceButton.BackColor = System.Drawing.SystemColors.Control;
             this.uxAddResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxAddResidenceButton.Location = new System.Drawing.Point(279, 168);
+            this.uxAddResidenceButton.Location = new System.Drawing.Point(316, 168);
             this.uxAddResidenceButton.Name = "uxAddResidenceButton";
             this.uxAddResidenceButton.Size = new System.Drawing.Size(160, 46);
             this.uxAddResidenceButton.TabIndex = 41;
@@ -497,9 +497,9 @@ namespace OAHeLP_Database_Project
             "Semai",
             "Temiar",
             "Temuan"});
-            this.comboBox1.Location = new System.Drawing.Point(228, 90);
+            this.comboBox1.Location = new System.Drawing.Point(271, 88);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(225, 29);
+            this.comboBox1.Size = new System.Drawing.Size(247, 29);
             this.comboBox1.TabIndex = 46;
             // 
             // label1

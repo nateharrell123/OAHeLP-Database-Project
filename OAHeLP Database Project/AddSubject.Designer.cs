@@ -33,12 +33,6 @@ namespace OAHeLP_Database_Project
             this.uxEthnicGroupComboBoxAdd = new System.Windows.Forms.ComboBox();
             this.uxEthnicGroupLabel = new System.Windows.Forms.Label();
             this.uxSubjectInfoPanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.uxLastNameTextBox = new System.Windows.Forms.TextBox();
-            this.uxLastNameLabelAdd = new System.Windows.Forms.Label();
-            this.uxMiddleNameTextBox = new System.Windows.Forms.TextBox();
-            this.uxMiddleNamesLabelAdd = new System.Windows.Forms.Label();
             this.uxFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.uxFirstNameTextBoxAdd = new System.Windows.Forms.Label();
             this.uxDOB = new System.Windows.Forms.DateTimePicker();
@@ -121,12 +115,6 @@ namespace OAHeLP_Database_Project
             // uxSubjectInfoPanel
             // 
             this.uxSubjectInfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.uxSubjectInfoPanel.Controls.Add(this.label2);
-            this.uxSubjectInfoPanel.Controls.Add(this.label1);
-            this.uxSubjectInfoPanel.Controls.Add(this.uxLastNameTextBox);
-            this.uxSubjectInfoPanel.Controls.Add(this.uxLastNameLabelAdd);
-            this.uxSubjectInfoPanel.Controls.Add(this.uxMiddleNameTextBox);
-            this.uxSubjectInfoPanel.Controls.Add(this.uxMiddleNamesLabelAdd);
             this.uxSubjectInfoPanel.Controls.Add(this.uxFirstNameTextBox);
             this.uxSubjectInfoPanel.Controls.Add(this.uxFirstNameTextBoxAdd);
             this.uxSubjectInfoPanel.Controls.Add(this.uxDOB);
@@ -144,72 +132,12 @@ namespace OAHeLP_Database_Project
             this.uxSubjectInfoPanel.Size = new System.Drawing.Size(719, 319);
             this.uxSubjectInfoPanel.TabIndex = 2;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(436, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 70);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "|";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 40F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(204, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 70);
-            this.label1.TabIndex = 37;
-            this.label1.Text = "|";
-            // 
-            // uxLastNameTextBox
-            // 
-            this.uxLastNameTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxLastNameTextBox.Location = new System.Drawing.Point(480, 72);
-            this.uxLastNameTextBox.Name = "uxLastNameTextBox";
-            this.uxLastNameTextBox.Size = new System.Drawing.Size(225, 29);
-            this.uxLastNameTextBox.TabIndex = 42;
-            // 
-            // uxLastNameLabelAdd
-            // 
-            this.uxLastNameLabelAdd.AutoSize = true;
-            this.uxLastNameLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
-            this.uxLastNameLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxLastNameLabelAdd.Location = new System.Drawing.Point(475, 38);
-            this.uxLastNameLabelAdd.Name = "uxLastNameLabelAdd";
-            this.uxLastNameLabelAdd.Size = new System.Drawing.Size(125, 30);
-            this.uxLastNameLabelAdd.TabIndex = 41;
-            this.uxLastNameLabelAdd.Text = "Last Name:";
-            // 
-            // uxMiddleNameTextBox
-            // 
-            this.uxMiddleNameTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxMiddleNameTextBox.Location = new System.Drawing.Point(251, 71);
-            this.uxMiddleNameTextBox.Name = "uxMiddleNameTextBox";
-            this.uxMiddleNameTextBox.Size = new System.Drawing.Size(197, 29);
-            this.uxMiddleNameTextBox.TabIndex = 40;
-            // 
-            // uxMiddleNamesLabelAdd
-            // 
-            this.uxMiddleNamesLabelAdd.AutoSize = true;
-            this.uxMiddleNamesLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
-            this.uxMiddleNamesLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxMiddleNamesLabelAdd.Location = new System.Drawing.Point(245, 38);
-            this.uxMiddleNamesLabelAdd.Name = "uxMiddleNamesLabelAdd";
-            this.uxMiddleNamesLabelAdd.Size = new System.Drawing.Size(177, 30);
-            this.uxMiddleNamesLabelAdd.TabIndex = 39;
-            this.uxMiddleNamesLabelAdd.Text = "Middle Name(s):";
-            // 
             // uxFirstNameTextBox
             // 
             this.uxFirstNameTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxFirstNameTextBox.Location = new System.Drawing.Point(8, 70);
             this.uxFirstNameTextBox.Name = "uxFirstNameTextBox";
-            this.uxFirstNameTextBox.Size = new System.Drawing.Size(197, 29);
+            this.uxFirstNameTextBox.Size = new System.Drawing.Size(405, 29);
             this.uxFirstNameTextBox.TabIndex = 38;
             // 
             // uxFirstNameTextBoxAdd
@@ -219,9 +147,9 @@ namespace OAHeLP_Database_Project
             this.uxFirstNameTextBoxAdd.ForeColor = System.Drawing.Color.White;
             this.uxFirstNameTextBoxAdd.Location = new System.Drawing.Point(3, 36);
             this.uxFirstNameTextBoxAdd.Name = "uxFirstNameTextBoxAdd";
-            this.uxFirstNameTextBoxAdd.Size = new System.Drawing.Size(126, 30);
+            this.uxFirstNameTextBoxAdd.Size = new System.Drawing.Size(102, 30);
             this.uxFirstNameTextBoxAdd.TabIndex = 37;
-            this.uxFirstNameTextBoxAdd.Text = "First Name:";
+            this.uxFirstNameTextBoxAdd.Text = "Name(s):";
             // 
             // uxDOB
             // 
@@ -291,10 +219,10 @@ namespace OAHeLP_Database_Project
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
+            this.button4.BackColor = System.Drawing.Color.White;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
-            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.ForeColor = System.Drawing.Color.Black;
             this.button4.Location = new System.Drawing.Point(-1, -1);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(232, 34);
@@ -378,10 +306,10 @@ namespace OAHeLP_Database_Project
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
+            this.button1.BackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(-1, -1);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(242, 34);
@@ -423,7 +351,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxRemoveResidenceButton
             // 
-            this.uxRemoveResidenceButton.BackColor = System.Drawing.Color.Salmon;
+            this.uxRemoveResidenceButton.BackColor = System.Drawing.Color.White;
             this.uxRemoveResidenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxRemoveResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxRemoveResidenceButton.ForeColor = System.Drawing.Color.Black;
@@ -460,7 +388,7 @@ namespace OAHeLP_Database_Project
             // 
             // uxAddResidenceButton
             // 
-            this.uxAddResidenceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(235)))), ((int)(((byte)(229)))));
+            this.uxAddResidenceButton.BackColor = System.Drawing.Color.White;
             this.uxAddResidenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uxAddResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxAddResidenceButton.Location = new System.Drawing.Point(211, 255);
@@ -510,10 +438,10 @@ namespace OAHeLP_Database_Project
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
+            this.button2.BackColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.ForeColor = System.Drawing.Color.Black;
             this.button2.Location = new System.Drawing.Point(-1, -1);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(242, 34);
@@ -556,10 +484,10 @@ namespace OAHeLP_Database_Project
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
+            this.button3.BackColor = System.Drawing.Color.White;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.ForeColor = System.Drawing.Color.Black;
             this.button3.Location = new System.Drawing.Point(-1, -1);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(235, 34);
@@ -695,16 +623,10 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.DateTimePicker uxDOB;
         private System.Windows.Forms.Label uxFirstNameTextBoxAdd;
         private System.Windows.Forms.TextBox uxFirstNameTextBox;
-        private System.Windows.Forms.TextBox uxMiddleNameTextBox;
-        private System.Windows.Forms.Label uxMiddleNamesLabelAdd;
-        private System.Windows.Forms.TextBox uxLastNameTextBox;
-        private System.Windows.Forms.Label uxLastNameLabelAdd;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker uxFromResidenceHistoryDateTimePicker;
         private System.Windows.Forms.Label uxFromResidenceHistoryLabelAdd;
         private System.Windows.Forms.Label uxToResidenceHistoryLabelAdd;

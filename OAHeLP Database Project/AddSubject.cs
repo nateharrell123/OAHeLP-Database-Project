@@ -24,7 +24,7 @@ namespace OAHeLP_Database_Project
         public AddSubject(ISubjectRepository subjectRepo, BindingList<Subject> subjectList)
         {
             InitializeComponent();
-            uxDOB.CustomFormat = "MMMM dd yyyy";
+            uxDOB.CustomFormat = "MMMM yyyy";
             repo = subjectRepo;
             list = subjectList;
         }
@@ -63,7 +63,11 @@ namespace OAHeLP_Database_Project
         private void uxFinalizeAddButton_Click(object sender, EventArgs e)
         {
             string[] fullName = uxFirstNameTextBox.Text.Split(' ');
-            var ethnicGroup = ux
+            var ethnicGroup = uxEthnicityComboBoxAdd.Text;
+            char sex;
+
+            if (uxSexMale.Checked) sex = 'M';
+            else sex = 'F';
 
             if (fullName.Length == 0)
             {
@@ -90,7 +94,7 @@ namespace OAHeLP_Database_Project
                         if (fullName.Length == 1)
                         {
                             firstName = fullName[0];
-                            Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, Convert.ToChar(sex));
+                            Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, "", sex);
                             list.Add(subject);
                         }
                         else if (fullName.Length == 2)
@@ -98,7 +102,7 @@ namespace OAHeLP_Database_Project
                             firstName = fullName[0];
                             middleNames = fullName[1];
 
-                            Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, Convert.ToChar(sex));
+                            Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, "", sex);
                             list.Add(subject);
                         }
                         else if (fullName.Length == 3)
@@ -107,28 +111,28 @@ namespace OAHeLP_Database_Project
                             middleNames = fullName[1];
                             lastNames = fullName[2];
 
-                            Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, Convert.ToChar(sex));
+                            Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, "", sex);
                             list.Add(subject);
                         }
 
                         MessageBox.Show($"{name} has been registered successfully.");
+                    }
+                    else if (dialogResult == DialogResult.No) return;
                 }
-                else if (dialogResult == DialogResult.No) return;
             }
         }
-
         /// <summary>
         /// Assuming we want criteria for all fields entered
         /// </summary>
         /// <returns></returns>
         private bool AllFieldsEntered()
         {
-            if (uxFirstNameTextBox.Text == "" || string.IsNullOrEmpty(uxEthnicGroupComboBoxAdd.Text) || uxProjectIDTextBoxAdd.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
+            if (uxFirstNameTextBox.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
             {
                 MessageBox.Show("One of the required fields is missing.", ":(", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else return true;
         }
-    }
+    } // end class
 }

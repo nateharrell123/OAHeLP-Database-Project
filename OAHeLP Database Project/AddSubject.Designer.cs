@@ -30,16 +30,15 @@ namespace OAHeLP_Database_Project
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddSubject));
-            this.uxEthnicGroupComboBoxAdd = new System.Windows.Forms.ComboBox();
-            this.uxEthnicGroupLabel = new System.Windows.Forms.Label();
             this.uxSubjectInfoPanel = new System.Windows.Forms.Panel();
+            this.uxSexFemale = new System.Windows.Forms.RadioButton();
+            this.uxSexMale = new System.Windows.Forms.RadioButton();
             this.uxFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.uxFirstNameTextBoxAdd = new System.Windows.Forms.Label();
             this.uxDOB = new System.Windows.Forms.DateTimePicker();
             this.uxDOBLabelAdd = new System.Windows.Forms.Label();
             this.uxEthnicityComboBoxAdd = new System.Windows.Forms.ComboBox();
             this.uxEthnicityLabelAdd = new System.Windows.Forms.Label();
-            this.uxSexComboBoxAdd = new System.Windows.Forms.ComboBox();
             this.uxSexLabelAdd = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.uxProjectIDTextBoxAdd = new System.Windows.Forms.TextBox();
@@ -81,63 +80,57 @@ namespace OAHeLP_Database_Project
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // uxEthnicGroupComboBoxAdd
-            // 
-            this.uxEthnicGroupComboBoxAdd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uxEthnicGroupComboBoxAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxEthnicGroupComboBoxAdd.FormattingEnabled = true;
-            this.uxEthnicGroupComboBoxAdd.Items.AddRange(new object[] {
-            "Batek",
-            "Jahai",
-            "Jakun",
-            "Lanoh",
-            "Malay",
-            "Mendriq",
-            "Semai",
-            "Temiar",
-            "Temuan"});
-            this.uxEthnicGroupComboBoxAdd.Location = new System.Drawing.Point(171, 116);
-            this.uxEthnicGroupComboBoxAdd.Name = "uxEthnicGroupComboBoxAdd";
-            this.uxEthnicGroupComboBoxAdd.Size = new System.Drawing.Size(242, 29);
-            this.uxEthnicGroupComboBoxAdd.TabIndex = 0;
-            // 
-            // uxEthnicGroupLabel
-            // 
-            this.uxEthnicGroupLabel.AutoSize = true;
-            this.uxEthnicGroupLabel.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
-            this.uxEthnicGroupLabel.ForeColor = System.Drawing.Color.White;
-            this.uxEthnicGroupLabel.Location = new System.Drawing.Point(2, 114);
-            this.uxEthnicGroupLabel.Name = "uxEthnicGroupLabel";
-            this.uxEthnicGroupLabel.Size = new System.Drawing.Size(149, 30);
-            this.uxEthnicGroupLabel.TabIndex = 1;
-            this.uxEthnicGroupLabel.Text = "Ethnic Group:";
-            // 
             // uxSubjectInfoPanel
             // 
             this.uxSubjectInfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.uxSubjectInfoPanel.Controls.Add(this.uxSexFemale);
+            this.uxSubjectInfoPanel.Controls.Add(this.uxSexMale);
             this.uxSubjectInfoPanel.Controls.Add(this.uxFirstNameTextBox);
             this.uxSubjectInfoPanel.Controls.Add(this.uxFirstNameTextBoxAdd);
             this.uxSubjectInfoPanel.Controls.Add(this.uxDOB);
             this.uxSubjectInfoPanel.Controls.Add(this.uxDOBLabelAdd);
             this.uxSubjectInfoPanel.Controls.Add(this.uxEthnicityComboBoxAdd);
             this.uxSubjectInfoPanel.Controls.Add(this.uxEthnicityLabelAdd);
-            this.uxSubjectInfoPanel.Controls.Add(this.uxSexComboBoxAdd);
             this.uxSubjectInfoPanel.Controls.Add(this.uxSexLabelAdd);
             this.uxSubjectInfoPanel.Controls.Add(this.button4);
-            this.uxSubjectInfoPanel.Controls.Add(this.uxEthnicGroupLabel);
-            this.uxSubjectInfoPanel.Controls.Add(this.uxEthnicGroupComboBoxAdd);
             this.uxSubjectInfoPanel.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxSubjectInfoPanel.Location = new System.Drawing.Point(12, 27);
             this.uxSubjectInfoPanel.Name = "uxSubjectInfoPanel";
             this.uxSubjectInfoPanel.Size = new System.Drawing.Size(719, 319);
             this.uxSubjectInfoPanel.TabIndex = 2;
             // 
+            // uxSexFemale
+            // 
+            this.uxSexFemale.AutoSize = true;
+            this.uxSexFemale.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.uxSexFemale.ForeColor = System.Drawing.Color.White;
+            this.uxSexFemale.Location = new System.Drawing.Point(228, 180);
+            this.uxSexFemale.Name = "uxSexFemale";
+            this.uxSexFemale.Size = new System.Drawing.Size(41, 34);
+            this.uxSexFemale.TabIndex = 40;
+            this.uxSexFemale.TabStop = true;
+            this.uxSexFemale.Text = "F";
+            this.uxSexFemale.UseVisualStyleBackColor = true;
+            // 
+            // uxSexMale
+            // 
+            this.uxSexMale.AutoSize = true;
+            this.uxSexMale.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.uxSexMale.ForeColor = System.Drawing.Color.White;
+            this.uxSexMale.Location = new System.Drawing.Point(172, 180);
+            this.uxSexMale.Name = "uxSexMale";
+            this.uxSexMale.Size = new System.Drawing.Size(50, 34);
+            this.uxSexMale.TabIndex = 39;
+            this.uxSexMale.TabStop = true;
+            this.uxSexMale.Text = "M";
+            this.uxSexMale.UseVisualStyleBackColor = true;
+            // 
             // uxFirstNameTextBox
             // 
             this.uxFirstNameTextBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxFirstNameTextBox.Location = new System.Drawing.Point(8, 70);
+            this.uxFirstNameTextBox.Location = new System.Drawing.Point(172, 93);
             this.uxFirstNameTextBox.Name = "uxFirstNameTextBox";
-            this.uxFirstNameTextBox.Size = new System.Drawing.Size(405, 29);
+            this.uxFirstNameTextBox.Size = new System.Drawing.Size(382, 29);
             this.uxFirstNameTextBox.TabIndex = 38;
             // 
             // uxFirstNameTextBoxAdd
@@ -145,7 +138,7 @@ namespace OAHeLP_Database_Project
             this.uxFirstNameTextBoxAdd.AutoSize = true;
             this.uxFirstNameTextBoxAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxFirstNameTextBoxAdd.ForeColor = System.Drawing.Color.White;
-            this.uxFirstNameTextBoxAdd.Location = new System.Drawing.Point(3, 36);
+            this.uxFirstNameTextBoxAdd.Location = new System.Drawing.Point(4, 93);
             this.uxFirstNameTextBoxAdd.Name = "uxFirstNameTextBoxAdd";
             this.uxFirstNameTextBoxAdd.Size = new System.Drawing.Size(102, 30);
             this.uxFirstNameTextBoxAdd.TabIndex = 37;
@@ -153,10 +146,11 @@ namespace OAHeLP_Database_Project
             // 
             // uxDOB
             // 
+            this.uxDOB.CustomFormat = "";
             this.uxDOB.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxDOB.Location = new System.Drawing.Point(171, 248);
+            this.uxDOB.Location = new System.Drawing.Point(173, 49);
             this.uxDOB.Name = "uxDOB";
-            this.uxDOB.Size = new System.Drawing.Size(284, 29);
+            this.uxDOB.Size = new System.Drawing.Size(382, 29);
             this.uxDOB.TabIndex = 36;
             // 
             // uxDOBLabelAdd
@@ -164,7 +158,7 @@ namespace OAHeLP_Database_Project
             this.uxDOBLabelAdd.AutoSize = true;
             this.uxDOBLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxDOBLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxDOBLabelAdd.Location = new System.Drawing.Point(2, 246);
+            this.uxDOBLabelAdd.Location = new System.Drawing.Point(4, 47);
             this.uxDOBLabelAdd.Name = "uxDOBLabelAdd";
             this.uxDOBLabelAdd.Size = new System.Drawing.Size(145, 30);
             this.uxDOBLabelAdd.TabIndex = 35;
@@ -177,9 +171,9 @@ namespace OAHeLP_Database_Project
             this.uxEthnicityComboBoxAdd.FormattingEnabled = true;
             this.uxEthnicityComboBoxAdd.Items.AddRange(new object[] {
             "Ethnicities go here:"});
-            this.uxEthnicityComboBoxAdd.Location = new System.Drawing.Point(171, 165);
+            this.uxEthnicityComboBoxAdd.Location = new System.Drawing.Point(173, 137);
             this.uxEthnicityComboBoxAdd.Name = "uxEthnicityComboBoxAdd";
-            this.uxEthnicityComboBoxAdd.Size = new System.Drawing.Size(242, 29);
+            this.uxEthnicityComboBoxAdd.Size = new System.Drawing.Size(382, 29);
             this.uxEthnicityComboBoxAdd.TabIndex = 32;
             // 
             // uxEthnicityLabelAdd
@@ -187,31 +181,18 @@ namespace OAHeLP_Database_Project
             this.uxEthnicityLabelAdd.AutoSize = true;
             this.uxEthnicityLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxEthnicityLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxEthnicityLabelAdd.Location = new System.Drawing.Point(2, 160);
+            this.uxEthnicityLabelAdd.Location = new System.Drawing.Point(4, 137);
             this.uxEthnicityLabelAdd.Name = "uxEthnicityLabelAdd";
             this.uxEthnicityLabelAdd.Size = new System.Drawing.Size(102, 30);
             this.uxEthnicityLabelAdd.TabIndex = 31;
             this.uxEthnicityLabelAdd.Text = "Ethnicity:";
-            // 
-            // uxSexComboBoxAdd
-            // 
-            this.uxSexComboBoxAdd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uxSexComboBoxAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxSexComboBoxAdd.FormattingEnabled = true;
-            this.uxSexComboBoxAdd.Items.AddRange(new object[] {
-            "M",
-            "F"});
-            this.uxSexComboBoxAdd.Location = new System.Drawing.Point(171, 206);
-            this.uxSexComboBoxAdd.Name = "uxSexComboBoxAdd";
-            this.uxSexComboBoxAdd.Size = new System.Drawing.Size(73, 29);
-            this.uxSexComboBoxAdd.TabIndex = 30;
             // 
             // uxSexLabelAdd
             // 
             this.uxSexLabelAdd.AutoSize = true;
             this.uxSexLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
             this.uxSexLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxSexLabelAdd.Location = new System.Drawing.Point(2, 201);
+            this.uxSexLabelAdd.Location = new System.Drawing.Point(5, 184);
             this.uxSexLabelAdd.Name = "uxSexLabelAdd";
             this.uxSexLabelAdd.Size = new System.Drawing.Size(52, 30);
             this.uxSexLabelAdd.TabIndex = 29;
@@ -604,9 +585,6 @@ namespace OAHeLP_Database_Project
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox uxEthnicGroupComboBoxAdd;
-        private System.Windows.Forms.Label uxEthnicGroupLabel;
         private System.Windows.Forms.Panel uxSubjectInfoPanel;
         private System.Windows.Forms.Label uxOaHeLPIDLabel;
         private System.Windows.Forms.TextBox uxProjectIDTextBoxAdd;
@@ -614,7 +592,6 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.Label uxVillageLabelAdd;
         private System.Windows.Forms.ComboBox uxVillageComboBox;
         private System.Windows.Forms.Label uxSexLabelAdd;
-        private System.Windows.Forms.ComboBox uxSexComboBoxAdd;
         private System.Windows.Forms.Label uxEthnicityLabelAdd;
         private System.Windows.Forms.ComboBox uxEthnicityComboBoxAdd;
         private System.Windows.Forms.Label uxICCardNumberLabelAdd;
@@ -647,5 +624,7 @@ namespace OAHeLP_Database_Project
         private System.Windows.Forms.ToolStripMenuItem translateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishMalayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem malayEnglishToolStripMenuItem;
+        private System.Windows.Forms.RadioButton uxSexMale;
+        private System.Windows.Forms.RadioButton uxSexFemale;
     }
 }

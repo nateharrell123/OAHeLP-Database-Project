@@ -24,6 +24,7 @@ namespace OAHeLP_Database_Project
         public AddSubject(ISubjectRepository subjectRepo, BindingList<Subject> subjectList)
         {
             InitializeComponent();
+            uxDOB.CustomFormat = "MMMM dd yyyy";
             repo = subjectRepo;
             list = subjectList;
         }
@@ -61,17 +62,56 @@ namespace OAHeLP_Database_Project
         /// <param name="e"></param>
         private void uxFinalizeAddButton_Click(object sender, EventArgs e)
         {
-            var name = $"{uxFirstNameTextBox.Text} {uxMiddleNameTextBox.Text} {uxLastNameTextBox.Text}";
+            string[] fullName = uxFirstNameTextBox.Text.Split(' ');
+            var ethnicGroup = ux
+
+            if (fullName.Length == 0)
+            {
+                MessageBox.Show("Please enter a name.");
+                return;
+            }
+            if (fullName.Length > 3)
+            {
+                MessageBox.Show("Please enter up to three (3) names.");
+                return;
+            }
+            var name = $"{uxFirstNameTextBox.Text}";
             if (AllFieldsEntered())
             {
                 DialogResult dialogResult = MessageBox.Show($"Add {name} to the database?", "Add Person", MessageBoxButtons.YesNo);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Subject subject = repo.AddSubject(uxFirstNameTextBox.Text, uxMiddleNameTextBox.Text, uxLastNameTextBox.Text, uxEthnicGroupComboBoxAdd.Text, uxVillageComboBox.Text, Convert.ToChar(uxSexComboBoxAdd.Text));
-                    list.Add(subject);
+                    if (dialogResult == DialogResult.Yes)
+                    {
 
-                    MessageBox.Show($"{name} has been registered successfully.");
+                        string firstName, middleNames, lastNames;
+
+                        if (fullName.Length == 1)
+                        {
+                            firstName = fullName[0];
+                            Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, Convert.ToChar(sex));
+                            list.Add(subject);
+                        }
+                        else if (fullName.Length == 2)
+                        {
+                            firstName = fullName[0];
+                            middleNames = fullName[1];
+
+                            Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, Convert.ToChar(sex));
+                            list.Add(subject);
+                        }
+                        else if (fullName.Length == 3)
+                        {
+                            firstName = fullName[0];
+                            middleNames = fullName[1];
+                            lastNames = fullName[2];
+
+                            Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, Convert.ToChar(sex));
+                            list.Add(subject);
+                        }
+
+                        MessageBox.Show($"{name} has been registered successfully.");
                 }
                 else if (dialogResult == DialogResult.No) return;
             }
@@ -83,7 +123,7 @@ namespace OAHeLP_Database_Project
         /// <returns></returns>
         private bool AllFieldsEntered()
         {
-            if (uxFirstNameTextBox.Text == "" || uxMiddleNameTextBox.Text == "" || uxLastNameTextBox.Text == "" || string.IsNullOrEmpty(uxEthnicGroupComboBoxAdd.Text) || uxProjectIDTextBoxAdd.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
+            if (uxFirstNameTextBox.Text == "" || string.IsNullOrEmpty(uxEthnicGroupComboBoxAdd.Text) || uxProjectIDTextBoxAdd.Text == "" || uxICCardNumberTextBoxAdd.Text == "")
             {
                 MessageBox.Show("One of the required fields is missing.", ":(", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

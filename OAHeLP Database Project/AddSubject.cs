@@ -86,41 +86,38 @@ namespace OAHeLP_Database_Project
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    if (dialogResult == DialogResult.Yes)
+                    string firstName, middleNames, lastNames;
+
+                    if (fullName.Length == 1)
                     {
-
-                        string firstName, middleNames, lastNames;
-
-                        if (fullName.Length == 1)
-                        {
-                            firstName = fullName[0];
-                            Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, "", sex);
-                            list.Add(subject);
-                        }
-                        else if (fullName.Length == 2)
-                        {
-                            firstName = fullName[0];
-                            middleNames = fullName[1];
-
-                            Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, "", sex);
-                            list.Add(subject);
-                        }
-                        else if (fullName.Length == 3)
-                        {
-                            firstName = fullName[0];
-                            middleNames = fullName[1];
-                            lastNames = fullName[2];
-
-                            Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, "", sex);
-                            list.Add(subject);
-                        }
-
-                        MessageBox.Show($"{name} has been registered successfully.");
+                        firstName = fullName[0];
+                        Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, "", sex);
+                        list.Add(subject);
                     }
-                    else if (dialogResult == DialogResult.No) return;
+                    else if (fullName.Length == 2)
+                    {
+                        firstName = fullName[0];
+                        middleNames = fullName[1];
+
+                        Subject subject = repo.AddSubject(firstName, middleNames, "", ethnicGroup, "", sex);
+                        list.Add(subject);
+                    }
+                    else if (fullName.Length == 3)
+                    {
+                        firstName = fullName[0];
+                        middleNames = fullName[1];
+                        lastNames = fullName[2];
+
+                        Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, "", sex);
+                        list.Add(subject);
+                    }
+
+                    MessageBox.Show($"{name} has been registered successfully.");
                 }
+                else return;
             }
-        }
+        } // end func
+
         /// <summary>
         /// Assuming we want criteria for all fields entered
         /// </summary>

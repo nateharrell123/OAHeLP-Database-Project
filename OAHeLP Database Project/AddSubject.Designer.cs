@@ -41,13 +41,13 @@ namespace OAHeLP_Database_Project
             this.uxEthnicityLabelAdd = new System.Windows.Forms.Label();
             this.uxSexLabelAdd = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.uxVillageLabelAdd = new System.Windows.Forms.Label();
-            this.uxVillageComboBox = new System.Windows.Forms.ComboBox();
             this.uxICCardNumberLabelAdd = new System.Windows.Forms.Label();
             this.uxICCardNumberTextBoxAdd = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.uxRemoveResidenceButton = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.uxResidenceHistoryPreview = new System.Windows.Forms.ListBox();
@@ -65,8 +65,6 @@ namespace OAHeLP_Database_Project
             this.translateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishMalayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.malayEnglishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.uxSubjectInfoPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -144,7 +142,7 @@ namespace OAHeLP_Database_Project
             this.uxDOB.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxDOB.Location = new System.Drawing.Point(172, 87);
             this.uxDOB.Name = "uxDOB";
-            this.uxDOB.Size = new System.Drawing.Size(345, 29);
+            this.uxDOB.Size = new System.Drawing.Size(219, 29);
             this.uxDOB.TabIndex = 36;
             // 
             // uxDOBLabelAdd
@@ -175,7 +173,7 @@ namespace OAHeLP_Database_Project
             "Temuan"});
             this.uxEthnicityComboBoxAdd.Location = new System.Drawing.Point(173, 137);
             this.uxEthnicityComboBoxAdd.Name = "uxEthnicityComboBoxAdd";
-            this.uxEthnicityComboBoxAdd.Size = new System.Drawing.Size(345, 29);
+            this.uxEthnicityComboBoxAdd.Size = new System.Drawing.Size(218, 29);
             this.uxEthnicityComboBoxAdd.TabIndex = 32;
             // 
             // uxEthnicityLabelAdd
@@ -213,37 +211,6 @@ namespace OAHeLP_Database_Project
             this.button4.Text = "Subject Info:";
             this.button4.UseVisualStyleBackColor = false;
             // 
-            // uxVillageLabelAdd
-            // 
-            this.uxVillageLabelAdd.AutoSize = true;
-            this.uxVillageLabelAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
-            this.uxVillageLabelAdd.ForeColor = System.Drawing.Color.White;
-            this.uxVillageLabelAdd.Location = new System.Drawing.Point(5, 44);
-            this.uxVillageLabelAdd.Name = "uxVillageLabelAdd";
-            this.uxVillageLabelAdd.Size = new System.Drawing.Size(217, 30);
-            this.uxVillageLabelAdd.TabIndex = 27;
-            this.uxVillageLabelAdd.Text = "Residence Found At:";
-            // 
-            // uxVillageComboBox
-            // 
-            this.uxVillageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uxVillageComboBox.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxVillageComboBox.FormattingEnabled = true;
-            this.uxVillageComboBox.Items.AddRange(new object[] {
-            "Batek",
-            "Jahai",
-            "Jakun",
-            "Lanoh",
-            "Malay",
-            "Mendriq",
-            "Semai",
-            "Temiar",
-            "Temuan"});
-            this.uxVillageComboBox.Location = new System.Drawing.Point(271, 46);
-            this.uxVillageComboBox.Name = "uxVillageComboBox";
-            this.uxVillageComboBox.Size = new System.Drawing.Size(246, 29);
-            this.uxVillageComboBox.TabIndex = 28;
-            // 
             // uxICCardNumberLabelAdd
             // 
             this.uxICCardNumberLabelAdd.AutoSize = true;
@@ -260,7 +227,7 @@ namespace OAHeLP_Database_Project
             this.uxICCardNumberTextBoxAdd.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxICCardNumberTextBoxAdd.Location = new System.Drawing.Point(190, 54);
             this.uxICCardNumberTextBoxAdd.Name = "uxICCardNumberTextBoxAdd";
-            this.uxICCardNumberTextBoxAdd.Size = new System.Drawing.Size(312, 29);
+            this.uxICCardNumberTextBoxAdd.Size = new System.Drawing.Size(272, 29);
             this.uxICCardNumberTextBoxAdd.TabIndex = 34;
             // 
             // button1
@@ -284,7 +251,7 @@ namespace OAHeLP_Database_Project
             this.panel1.Controls.Add(this.uxICCardNumberLabelAdd);
             this.panel1.Location = new System.Drawing.Point(568, 279);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(522, 237);
+            this.panel1.Size = new System.Drawing.Size(476, 128);
             this.panel1.TabIndex = 35;
             // 
             // panel2
@@ -293,21 +260,52 @@ namespace OAHeLP_Database_Project
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.uxRemoveResidenceButton);
+            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.uxResidenceHistoryPreview);
             this.panel2.Controls.Add(this.uxAddResidenceButton);
             this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.uxVillageComboBox);
-            this.panel2.Controls.Add(this.uxVillageLabelAdd);
             this.panel2.Location = new System.Drawing.Point(12, 279);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(539, 237);
+            this.panel2.Size = new System.Drawing.Size(539, 307);
             this.panel2.TabIndex = 36;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Batek",
+            "Jahai",
+            "Jakun",
+            "Lanoh",
+            "Malay",
+            "Mendriq",
+            "Semai",
+            "Temiar",
+            "Temuan"});
+            this.comboBox1.Location = new System.Drawing.Point(204, 39);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(313, 29);
+            this.comboBox1.TabIndex = 46;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(5, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(201, 30);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Current Residence:";
             // 
             // uxRemoveResidenceButton
             // 
             this.uxRemoveResidenceButton.BackColor = System.Drawing.SystemColors.Control;
             this.uxRemoveResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
             this.uxRemoveResidenceButton.ForeColor = System.Drawing.Color.Black;
-            this.uxRemoveResidenceButton.Location = new System.Drawing.Point(25, 168);
+            this.uxRemoveResidenceButton.Location = new System.Drawing.Point(10, 216);
             this.uxRemoveResidenceButton.Name = "uxRemoveResidenceButton";
             this.uxRemoveResidenceButton.Size = new System.Drawing.Size(167, 46);
             this.uxRemoveResidenceButton.TabIndex = 44;
@@ -321,11 +319,11 @@ namespace OAHeLP_Database_Project
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
             this.button5.ForeColor = System.Drawing.Color.CadetBlue;
-            this.button5.Location = new System.Drawing.Point(12, 539);
+            this.button5.Location = new System.Drawing.Point(203, 90);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(539, 43);
+            this.button5.Size = new System.Drawing.Size(315, 37);
             this.button5.TabIndex = 43;
-            this.button5.Text = "Residence History Preview:";
+            this.button5.Text = "Preview:";
             this.button5.UseVisualStyleBackColor = false;
             // 
             // uxResidenceHistoryPreview
@@ -333,18 +331,18 @@ namespace OAHeLP_Database_Project
             this.uxResidenceHistoryPreview.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F);
             this.uxResidenceHistoryPreview.FormattingEnabled = true;
             this.uxResidenceHistoryPreview.ItemHeight = 20;
-            this.uxResidenceHistoryPreview.Location = new System.Drawing.Point(12, 578);
+            this.uxResidenceHistoryPreview.Location = new System.Drawing.Point(203, 126);
             this.uxResidenceHistoryPreview.Name = "uxResidenceHistoryPreview";
-            this.uxResidenceHistoryPreview.Size = new System.Drawing.Size(539, 124);
+            this.uxResidenceHistoryPreview.Size = new System.Drawing.Size(315, 164);
             this.uxResidenceHistoryPreview.TabIndex = 42;
             // 
             // uxAddResidenceButton
             // 
             this.uxAddResidenceButton.BackColor = System.Drawing.SystemColors.Control;
             this.uxAddResidenceButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxAddResidenceButton.Location = new System.Drawing.Point(316, 168);
+            this.uxAddResidenceButton.Location = new System.Drawing.Point(9, 144);
             this.uxAddResidenceButton.Name = "uxAddResidenceButton";
-            this.uxAddResidenceButton.Size = new System.Drawing.Size(160, 46);
+            this.uxAddResidenceButton.Size = new System.Drawing.Size(167, 46);
             this.uxAddResidenceButton.TabIndex = 41;
             this.uxAddResidenceButton.Text = "Add Residence:";
             this.uxAddResidenceButton.UseVisualStyleBackColor = false;
@@ -370,13 +368,13 @@ namespace OAHeLP_Database_Project
             this.panel3.Controls.Add(this.button3);
             this.panel3.Location = new System.Drawing.Point(568, 27);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(522, 238);
+            this.panel3.Size = new System.Drawing.Size(476, 238);
             this.panel3.TabIndex = 37;
             // 
             // uxOpenPhotoButton
             // 
             this.uxOpenPhotoButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxOpenPhotoButton.Location = new System.Drawing.Point(273, 175);
+            this.uxOpenPhotoButton.Location = new System.Drawing.Point(211, 175);
             this.uxOpenPhotoButton.Name = "uxOpenPhotoButton";
             this.uxOpenPhotoButton.Size = new System.Drawing.Size(181, 52);
             this.uxOpenPhotoButton.TabIndex = 28;
@@ -413,16 +411,16 @@ namespace OAHeLP_Database_Project
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.uxFinalizeAddButton);
             this.panel4.Controls.Add(this.button6);
-            this.panel4.Location = new System.Drawing.Point(568, 539);
+            this.panel4.Location = new System.Drawing.Point(568, 424);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(522, 162);
+            this.panel4.Size = new System.Drawing.Size(476, 162);
             this.panel4.TabIndex = 38;
             // 
             // uxFinalizeAddButton
             // 
             this.uxFinalizeAddButton.BackColor = System.Drawing.SystemColors.Control;
             this.uxFinalizeAddButton.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.uxFinalizeAddButton.Location = new System.Drawing.Point(124, 71);
+            this.uxFinalizeAddButton.Location = new System.Drawing.Point(105, 71);
             this.uxFinalizeAddButton.Name = "uxFinalizeAddButton";
             this.uxFinalizeAddButton.Size = new System.Drawing.Size(242, 52);
             this.uxFinalizeAddButton.TabIndex = 29;
@@ -436,7 +434,7 @@ namespace OAHeLP_Database_Project
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft YaHei Light", 11F, System.Drawing.FontStyle.Bold);
             this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(163)))), ((int)(((byte)(42)))), ((int)(((byte)(0)))));
-            this.button6.Location = new System.Drawing.Point(124, -1);
+            this.button6.Location = new System.Drawing.Point(105, -1);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(242, 34);
             this.button6.TabIndex = 26;
@@ -451,7 +449,7 @@ namespace OAHeLP_Database_Project
             this.translateToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1115, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1065, 25);
             this.menuStrip1.TabIndex = 39;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -482,48 +480,15 @@ namespace OAHeLP_Database_Project
             this.malayEnglishToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.malayEnglishToolStripMenuItem.Text = "Malay -> English";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei Light", 12F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Batek",
-            "Jahai",
-            "Jakun",
-            "Lanoh",
-            "Malay",
-            "Mendriq",
-            "Semai",
-            "Temiar",
-            "Temuan"});
-            this.comboBox1.Location = new System.Drawing.Point(271, 88);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(247, 29);
-            this.comboBox1.TabIndex = 46;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 16F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(5, 88);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 30);
-            this.label1.TabIndex = 45;
-            this.label1.Text = "Current Residence:";
-            // 
             // AddSubject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
-            this.ClientSize = new System.Drawing.Size(1115, 727);
+            this.ClientSize = new System.Drawing.Size(1065, 603);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.uxResidenceHistoryPreview);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.uxSubjectInfoPanel);
             this.Controls.Add(this.menuStrip1);
@@ -551,8 +516,6 @@ namespace OAHeLP_Database_Project
         #endregion
         private System.Windows.Forms.Panel uxSubjectInfoPanel;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label uxVillageLabelAdd;
-        private System.Windows.Forms.ComboBox uxVillageComboBox;
         private System.Windows.Forms.Label uxSexLabelAdd;
         private System.Windows.Forms.Label uxEthnicityLabelAdd;
         private System.Windows.Forms.ComboBox uxEthnicityComboBoxAdd;

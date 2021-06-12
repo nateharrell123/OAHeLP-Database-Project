@@ -86,12 +86,13 @@ namespace OAHeLP_Database_Project
 
                 if (dialogResult == DialogResult.Yes)
                 {
+                    DateTime timeAdded = DateTime.Now; // Tom said it would be useful to know when the record was submitted
+                    // parse name
                     string firstName, middleNames, lastNames;
-
                     if (fullName.Length == 1)
                     {
                         firstName = fullName[0];
-                        Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, "", sex);
+                        Subject subject = repo.AddSubject(firstName, "", "", ethnicGroup, "", sex); // needs an OAHeLP ID assigned on backend
                         list.Add(subject);
                     }
                     else if (fullName.Length == 2)

@@ -68,12 +68,6 @@ namespace OAHeLP_Database_Project
 
             if (uxSexMale.Checked) sex = 'M';
             else sex = 'F';
-
-            if (fullName.Length == 0)
-            {
-                MessageBox.Show("Please enter a name.");
-                return;
-            }
             if (fullName.Length > 3)
             {
                 MessageBox.Show("Please enter up to three (3) names.");
@@ -112,7 +106,6 @@ namespace OAHeLP_Database_Project
                         Subject subject = repo.AddSubject(firstName, middleNames, lastNames, ethnicGroup, "", sex);
                         list.Add(subject);
                     }
-
                     MessageBox.Show($"{name} has been registered successfully.");
                 }
                 else return;

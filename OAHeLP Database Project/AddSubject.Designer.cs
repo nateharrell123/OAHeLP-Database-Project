@@ -296,9 +296,9 @@ namespace OAHeLP_Database_Project
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(5, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 30);
+            this.label1.Size = new System.Drawing.Size(167, 30);
             this.label1.TabIndex = 45;
-            this.label1.Text = "Current Residence:";
+            this.label1.Text = "Current Village:";
             // 
             // uxRemoveResidenceButton
             // 
@@ -357,7 +357,7 @@ namespace OAHeLP_Database_Project
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(242, 34);
             this.button2.TabIndex = 26;
-            this.button2.Text = "Residence History:";
+            this.button2.Text = "Village History:";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // panel3

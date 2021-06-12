@@ -44,5 +44,6 @@ namespace SubjectData
 
         bool DeleteSubject(int id);
         Subject AddSubject(string firstName, string middleNames, string lastName, string ethnicGroup, string village, char sex);
+        // remove ethnic group (?), add DateTime for date registered, add DateTime for DOB, string for OAHeLP ID
     }
 }
